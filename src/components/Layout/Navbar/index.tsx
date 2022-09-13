@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className='container-fluid'>
         <Link
           className='d-flex align-items-center navbar-brand mr-0'
-          to={isLoggedIn ? routeNames.dashboard : routeNames.home}
+          to={isLoggedIn ? routeNames.converters : routeNames.home}
         >
           <ElrondLogo className='elrond-logo' />
           <span className='dapp-name text-muted'>{dAppName}</span>

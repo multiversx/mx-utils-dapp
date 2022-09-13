@@ -1,5 +1,4 @@
 import React from 'react';
-import { useGetLoginInfo } from '@elrondnetwork/dapp-core/hooks';
 import {
   ExtensionLoginButton,
   WebWalletLoginButton,
@@ -9,14 +8,6 @@ import {
 import { routeNames } from 'routes';
 
 export const UnlockRoute: () => JSX.Element = () => {
-  const { isLoggedIn } = useGetLoginInfo();
-
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      window.location.href = routeNames.dashboard;
-    }
-  }, [isLoggedIn]);
-
   return (
     <div className='home d-flex flex-fill align-items-center'>
       <div className='m-auto' data-testid='unlockPage'>
@@ -26,20 +17,20 @@ export const UnlockRoute: () => JSX.Element = () => {
             <p className='mb-4'>pick a login method</p>
 
             <ExtensionLoginButton
-              callbackRoute={routeNames.dashboard}
+              callbackRoute={routeNames.converters}
               loginButtonText={'Extension'}
             />
             <WebWalletLoginButton
-              callbackRoute={routeNames.dashboard}
+              callbackRoute={routeNames.converters}
               loginButtonText={'Web wallet'}
             />
             <LedgerLoginButton
               loginButtonText={'Ledger'}
-              callbackRoute={routeNames.dashboard}
+              callbackRoute={routeNames.converters}
               className={'test-class_name'}
             />
             <WalletConnectLoginButton
-              callbackRoute={routeNames.dashboard}
+              callbackRoute={routeNames.converters}
               loginButtonText={'Maiar'}
             />
           </div>

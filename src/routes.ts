@@ -1,13 +1,11 @@
 import { dAppName } from 'config';
+import Converters from 'pages/Converters';
 import withPageTitle from './components/PageTitle';
-import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
-import Transaction from './pages/Transaction';
 
 export const routeNames = {
-  home: '/',
-  dashboard: '/dashboard',
-  transaction: '/transaction',
+  home: '/home',
+  converters: '/',
   unlock: '/unlock',
   ledger: '/ledger',
   walletconnect: '/walletconnect'
@@ -20,15 +18,9 @@ const routes: Array<any> = [
     component: Home
   },
   {
-    path: routeNames.dashboard,
+    path: routeNames.converters,
     title: 'Dashboard',
-    component: Dashboard,
-    authenticatedRoute: true
-  },
-  {
-    path: routeNames.transaction,
-    title: 'Transaction',
-    component: Transaction
+    component: Converters
   }
 ];
 
