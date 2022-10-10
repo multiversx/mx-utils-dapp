@@ -1,0 +1,93 @@
+.converter {
+  display: initial;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    .label {
+      margin-bottom: 0.25rem;
+      font-size: 0.66rem;
+      color: #b0b3b8;
+      font-weight: 300;
+      line-height: 1;
+      display: inline-block;
+    }
+
+    .field {
+      border-radius: 0.5rem;
+      background-color: #18191a;
+      margin-bottom: 0.25rem;
+      border: none;
+      padding: 10px 15px;
+      color: #b0b3b8;
+      font-weight: 300;
+      flex: 1;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    .error {
+      color: #d9534f;
+      font-size: 0.66rem;
+    }
+  }
+
+  .result {
+    color: #b0b3b8;
+    margin-top: 10px;
+    display: flex;
+
+    strong {
+      margin-right: 5px;
+    }
+
+    .copy {
+      display: none;
+      margin-left: 10px;
+
+      &.active {
+        display: block;
+      }
+
+      path {
+        fill: #b0b3b8;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+
+    .button {
+      border: 1px solid #1b4cd9;
+      color: #1b4cd9;
+      font-size: 0.75rem;
+      padding: 0.5rem 0.875rem;
+      border-radius: 0.25rem;
+      background-color: transparent;
+      outline: none;
+      transition: all 200ms ease;
+      cursor: pointer;
+      display: none;
+
+      &:hover {
+        background-color: #1b4cd9;
+        color: #b0b3b8;
+      }
+
+      &:first-child {
+        margin-right: 10px;
+      }
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+}

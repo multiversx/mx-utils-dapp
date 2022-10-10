@@ -1,42 +1,37 @@
+import { ComponentType } from 'react';
+
 import { dAppName } from 'config';
 import Converters from 'pages/Converters';
+
 import withPageTitle from './components/PageTitle';
-import Home from './pages/Home';
 
-export const routeNames = {
-  home: '/home',
-  converters: '/',
-  unlock: '/unlock',
-  ledger: '/ledger',
-  walletconnect: '/walletconnect'
-};
+export interface RouteType {
+  path: string;
+  title: string;
+  component: ComponentType;
+}
 
-const routes: Array<any> = [
+export const routes: RouteType[] = [
   {
-    path: routeNames.home,
+    path: '/home',
     title: 'Home',
-    component: Home
+    component: Converters
   },
   {
-    path: routeNames.converters,
-    title: 'Dashboard',
+    path: '/converters',
+    title: 'Converters',
     component: Converters
   }
 ];
 
-const mappedRoutes = routes.map((route) => {
+export default routes.map((route) => {
   const title = route.title
     ? `${route.title} • Elrond ${dAppName}`
     : `Elrond ${dAppName}`;
 
-  const requiresAuth = Boolean(route.authenticatedRoute);
-  const wrappedComponent = withPageTitle(title, route.component);
-
   return {
     path: route.path,
-    component: wrappedComponent,
-    authenticatedRoute: requiresAuth
+    title: route.title,
+    component: withPageTitle(title, route.component)
   };
 });
-
-export default mappedRoutes;

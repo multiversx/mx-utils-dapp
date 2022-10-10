@@ -1,43 +1,63 @@
-import React from 'react';
-import { useGetAccountInfo } from '@elrondnetwork/dapp-core/hooks';
-import { logout } from '@elrondnetwork/dapp-core/utils';
-import { Navbar as BsNavbar, NavItem, Nav } from 'react-bootstrap';
+import React, { MouseEvent, useCallback } from 'react';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { dAppName } from 'config';
-import { routeNames } from 'routes';
-import { ReactComponent as ElrondLogo } from './../../../assets/img/elrond.svg';
+import { useDispatch, useGlobalContext } from 'context';
+import { ReactComponent as ElrondLogo } from 'assets/img/elrond.svg';
+import { ReactComponent as ElrondSymbol } from 'assets/img/elrond-symbol.svg';
+
+import styles from './styles.module.scss';
 
 const Navbar = () => {
-  const { address } = useGetAccountInfo();
+  const { isMenuToggled } = useGlobalContext();
 
-  const handleLogout = () => {
-    logout(`${window.location.origin}/unlock`);
-  };
-
-  const isLoggedIn = Boolean(address);
+  const dispatch = useDispatch();
+  const onMenuTrigger = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      dispatch({ type: 'getIsMenuToggled', isMenuToggled: !isMenuToggled });
+    },
+    [dispatch, isMenuToggled]
+  );
 
   return (
-    <BsNavbar className='bg-white border-bottom px-4 py-3'>
-      <div className='container-fluid'>
-        <Link
-          className='d-flex align-items-center navbar-brand mr-0'
-          to={isLoggedIn ? routeNames.converters : routeNames.home}
-        >
-          <ElrondLogo className='elrond-logo' />
-          <span className='dapp-name text-muted'>{dAppName}</span>
+    <header className={styles.header}>
+      <div className={styles.wrapper}>
+        <Link to='/converters' className={styles.heading}>
+          <div className={styles.logo}>
+            <ElrondLogo />
+          </div>
+
+          <div className={classNames(styles.logo, styles.symbol)}>
+            <ElrondSymbol />
+          </div>
+
+          <span className={styles.application}>{dAppName}</span>
         </Link>
 
-        <Nav className='ml-auto'>
-          {isLoggedIn && (
-            <NavItem>
-              <button className='btn btn-link' onClick={handleLogout}>
-                Close
-              </button>
-            </NavItem>
-          )}
-        </Nav>
+        <div className={styles.right}>
+          <div className={styles.mode}>
+            <FontAwesomeIcon icon={true ? faSun : faMoon} />
+          </div>
+
+          <div
+            onClick={onMenuTrigger}
+            className={classNames(styles.burger, {
+              [styles.active]: isMenuToggled
+            })}
+          >
+            <div className={styles.bars}>
+              {Array.from({ length: 3 }).map((item, index) => (
+                <span className={styles.bar} key={`bar-${index}`}></span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </BsNavbar>
+    </header>
   );
 };
 
