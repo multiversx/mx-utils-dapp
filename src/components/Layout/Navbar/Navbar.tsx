@@ -34,20 +34,22 @@ const Navbar = () => {
 
   /*
    * Switch between light mode and dark mode (local state dispatcher and local storage).
+   * The local state will hold for six months after which it'll be removed.
    */
 
   const onThemeSwitch = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       event.preventDefault();
-      dispatch({
-        type: 'switchTheme',
-        theme: isDark ? ThemeEnumType.light : ThemeEnumType.dark
-      });
 
       storage.setLocalItem({
         key: 'theme',
         data: isDark ? ThemeEnumType.light : ThemeEnumType.dark,
         expires: moment().add(6, 'months').unix()
+      });
+
+      dispatch({
+        type: 'switchTheme',
+        theme: isDark ? ThemeEnumType.light : ThemeEnumType.dark
       });
     },
     [isDark, dispatch]

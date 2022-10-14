@@ -3,7 +3,7 @@ import { DappProvider } from '@elrondnetwork/dapp-core/wrappers';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 
 import { ContextProvider } from 'context';
-import Layout from 'components/Layout';
+import { Layout } from 'components/Layout';
 import routes from 'routes';
 import Page404 from 'pages/Page404';
 
@@ -17,11 +17,7 @@ const App = () => (
         <Layout>
           <Routes>
             {routes.map((route: any, index: number) => (
-              <Route
-                path={route.path}
-                key={'route-key-' + index}
-                element={<route.component />}
-              />
+              <Route path={route.path} key={'route-key-' + index} element={<route.component />} />
             ))}
 
             <Route path='*' element={<Page404 />} />

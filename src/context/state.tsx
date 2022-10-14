@@ -1,3 +1,4 @@
+import { defaultTheme } from 'config';
 import { ThemeEnumType } from 'helpers/enum';
 
 export interface StateType {
@@ -7,5 +8,5 @@ export interface StateType {
 
 export const initializer: StateType = {
   isMenuToggled: false,
-  theme: ThemeEnumType.dark
+  theme: defaultTheme
 };
