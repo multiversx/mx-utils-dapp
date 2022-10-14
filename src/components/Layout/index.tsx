@@ -1,16 +1,17 @@
-import React, { ReactNode } from 'react';
-import Navbar from './Navbar';
+import { PropsWithChildren } from 'react';
 
-interface LayoutPropsTypes {
-  children: ReactNode;
-}
+import useTheme from 'helpers/useTheme';
+import { Navbar } from 'components/Layout/Navbar';
 
-const Layout = (props: LayoutPropsTypes) => {
+const Layout = (props: PropsWithChildren) => {
   const { children } = props;
+
+  useTheme();
 
   return (
     <div>
       <Navbar />
+
       {children}
     </div>
   );

@@ -1,10 +1,6 @@
 .categories {
   padding: 25px;
 
-  @media (min-width: 1440px) {
-    width: calc(75% - 50px);
-  }
-
   .category {
     margin-bottom: 45px;
     position: relative;
@@ -14,23 +10,23 @@
     }
 
     .name {
-      color: #b0b3b8;
+      color: var(--text);
       font-weight: 400;
       margin: 0 0 25px;
     }
 
     .converters {
       .converter {
-        background-color: #2a2a2b;
+        background-color: var(--background);
         padding: 25px;
         margin-bottom: 25px;
-        border-radius: 0.5rem;
-        border: 1px solid #2a2a2b;
-        transition: all 400ms ease;
+        border-radius: 8px;
+        border: 1px solid var(--background);
+        transition: border-color 400ms ease;
         position: relative;
 
         &.active {
-          border-color: #b0b3b8;
+          border-color: var(--text);
         }
 
         &:last-child {
@@ -38,9 +34,9 @@
         }
 
         .title {
-          color: #b0b3b8;
+          color: var(--text);
           font-weight: 300;
-          font-size: 1rem;
+          font-size: 16px;
           margin: 0 0 15px;
           line-height: 1.5;
         }

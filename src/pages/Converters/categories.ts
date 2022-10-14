@@ -36,7 +36,7 @@ export const categories: CategoryType[] = [
     identifier: 'addresses',
     converters: [
       {
-        title: 'Convert Bech32 address to Hexadecimal address',
+        title: 'Convert a bech32 address to a hexadecimal address',
         label: 'Bech32 address',
         identifier: 'bech32-to-hexadecimal',
         compute: (address: string) => new Address(address).hex(),
@@ -50,7 +50,7 @@ export const categories: CategoryType[] = [
         }
       },
       {
-        title: 'Convert Hexadecimal address to Bech32 address',
+        title: 'Convert a hexadecimal address to a bech32 address',
         label: 'Hexadecimal address',
         identifier: 'hexadecimal-to-bech32',
         compute: (address: string) => Address.fromHex(address).bech32(),
@@ -80,7 +80,7 @@ export const categories: CategoryType[] = [
     identifier: 'numeric',
     converters: [
       {
-        title: 'Convert decimal to hexadecimal',
+        title: 'Convert a decimal to a hexadecimal',
         label: 'Decimal value',
         identifier: 'decimal-to-hexadecimal',
         compute: (value: string) => BigNumber(value, 10).toString(16),
@@ -94,7 +94,7 @@ export const categories: CategoryType[] = [
         }
       },
       {
-        title: 'Convert hexadecimal to decimal',
+        title: 'Convert a hexadecimal to a decimal',
         label: 'Hexadecimal value',
         identifier: 'hexadecimal-to-decimal',
         compute: (value: string) => BigNumber(value, 16).toString(10),
@@ -108,7 +108,7 @@ export const categories: CategoryType[] = [
         }
       },
       {
-        title: 'Convert decimal to base64',
+        title: 'Convert a decimal to base64',
         label: 'Decimal value',
         compute: (value: string) =>
           Buffer.from(value, 'ascii').toString('base64'),
@@ -123,7 +123,7 @@ export const categories: CategoryType[] = [
         }
       },
       {
-        title: 'Convert base64 to decimal',
+        title: 'Convert base64 to a decimal',
         label: 'Base64 value',
         compute: (value: string) =>
           Buffer.from(value, 'base64').toString('ascii'),
@@ -158,11 +158,11 @@ export const categories: CategoryType[] = [
     converters: [
       {
         title: 'Parse amount (denominate)',
-        label: 'Decimal value',
+        label: 'Numeric value',
         compute: parseAmount,
         identifier: 'decimal-to-integer',
         validate: {
-          required: 'Integer required.',
+          required: 'Numeric value required.',
           test: {
             error: 'Value must be an integer.',
             callback: (value: string | undefined) =>
@@ -172,7 +172,7 @@ export const categories: CategoryType[] = [
       },
       {
         title: 'Format amount (nominate)',
-        label: 'Integer value',
+        label: 'Denominated value',
         compute: (value: string) =>
           formatAmount({
             input: value,
@@ -180,7 +180,7 @@ export const categories: CategoryType[] = [
           }),
         identifier: 'integer-to-decimal',
         validate: {
-          required: 'Integer required.',
+          required: 'Denominated value required.',
           test: {
             error: 'Value must be an integer.',
             callback: (value: string | undefined) =>
@@ -195,7 +195,7 @@ export const categories: CategoryType[] = [
     identifier: 'string-converters',
     converters: [
       {
-        title: 'Convert string to hexadecimal encoded string',
+        title: 'Convert a string to a hexadecimal encoded string',
         label: 'String value',
         compute: (value: string) => Buffer.from(value, 'ascii').toString('hex'),
         identifier: 'string-to-hexadecimal',
@@ -204,7 +204,7 @@ export const categories: CategoryType[] = [
         }
       },
       {
-        title: 'Convert hexadecimal encoded string to string',
+        title: 'Convert a hexadecimal encoded string to a string',
         label: 'Hexadecimal value',
         compute: (value: string) => Buffer.from(value, 'hex').toString('utf8'),
         identifier: 'hexadecimal-to-string',
@@ -218,7 +218,7 @@ export const categories: CategoryType[] = [
         }
       },
       {
-        title: 'Convert string to base64 encoded string',
+        title: 'Convert a string to a base64 encoded string',
         label: 'String value',
         compute: (value: string) =>
           Buffer.from(value, 'ascii').toString('base64'),
@@ -228,7 +228,7 @@ export const categories: CategoryType[] = [
         }
       },
       {
-        title: 'Convert base64 encoded string to string',
+        title: 'Convert a base64 encoded string to a string',
         label: 'Base64 value',
         compute: (value: string) =>
           Buffer.from(value, 'base64').toString('ascii'),
@@ -252,7 +252,7 @@ export const categories: CategoryType[] = [
         }
       },
       {
-        title: 'Convert hexadecimal encoded string to base64',
+        title: 'Convert a hexadecimal encoded string to base64',
         label: 'Hexadecimal value',
         compute: (value: string) =>
           Buffer.from(value, 'hex').toString('base64'),
@@ -267,7 +267,7 @@ export const categories: CategoryType[] = [
         }
       },
       {
-        title: 'Convert base64 encoded string to hexadecimal encoded string.',
+        title: 'Convert a base64 encoded string to hexadecimal encoded string.',
         label: 'Base64 value',
         compute: (value: string) =>
           Buffer.from(value, 'base64').toString('hex'),

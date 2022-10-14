@@ -1,7 +1,8 @@
 import { ComponentType } from 'react';
 
-import { dAppName } from 'config';
-import Converters from 'pages/Converters';
+import { application } from 'config';
+import { Converters } from 'pages/Converters';
+import { Home } from 'pages/Home';
 
 import withPageTitle from './components/PageTitle';
 
@@ -13,9 +14,9 @@ export interface RouteType {
 
 export const routes: RouteType[] = [
   {
-    path: '/home',
+    path: '/',
     title: 'Home',
-    component: Converters
+    component: Home
   },
   {
     path: '/converters',
@@ -26,8 +27,8 @@ export const routes: RouteType[] = [
 
 export default routes.map((route) => {
   const title = route.title
-    ? `${route.title} • Elrond ${dAppName}`
-    : `Elrond ${dAppName}`;
+    ? `${route.title} • Elrond ${application}`
+    : `Elrond ${application}`;
 
   return {
     path: route.path,

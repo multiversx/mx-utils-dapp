@@ -1,0 +1,17 @@
+.page404 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 30px;
+  max-width: 850px;
+  color: var(--text);
+  margin: 0 auto;
+  line-height: 1.5;
+
+  a {
+    color: var(--text);
+  }
+}

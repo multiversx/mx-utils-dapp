@@ -1,0 +1,22 @@
+.footer {
+  text-align: center;
+  padding: 30px;
+  margin-top: auto;
+
+  .elrond {
+    text-align: center;
+    display: inline-flex;
+    color: var(--text);
+    align-items: flex-end;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .heart {
+    margin: 0 5px;
+
+    path {
+      fill: red;
+    }
+  }
+}
