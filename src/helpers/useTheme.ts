@@ -15,7 +15,7 @@ const useTheme = () => {
    */
 
   const loadStylesheet = useCallback(() => {
-    const defaultTheme = [ThemeEnumType.light, ThemeEnumType.dark].find(
+    const defaultTheme = Object.values(ThemeEnumType).find(
       (mode) => window.matchMedia(`(prefers-color-scheme: ${mode})`).matches
     );
 
