@@ -13,9 +13,9 @@
   .navigation {
     position: fixed;
     width: 100%;
-    transition: all 400ms ease;
+    transition: right 400ms ease;
     right: 100%;
-    background-color: #242526;
+    background-color: var(--navigation);
     top: 60px;
     overflow-y: scroll;
     height: 100%;
@@ -37,7 +37,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: #1b4cd9;
+      background: var(--link);
       border-radius: 10px;
     }
 
@@ -49,10 +49,10 @@
       margin: 0;
       line-height: 1;
       font-weight: 500;
-      color: #4e5052;
+      color: var(--dark);
       padding: 25px 25px 10px;
-      font-size: 0.625rem;
-      letter-spacing: 0.125rem;
+      font-size: 10px;
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
@@ -67,23 +67,23 @@
         &.active,
         &:hover {
           .item {
-            background-color: #2a2a2b;
+            background-color: var(--background);
 
             &:before {
-              background-color: #1b4cd9;
+              background-color: var(--link);
             }
 
             .path {
-              color: #1b4cd9;
+              color: var(--link);
             }
 
             .trigger {
               &:before {
-                background-color: #1b4cd9;
+                background-color: var(--link);
               }
 
               svg path {
-                fill: #1b4cd9;
+                fill: var(--link);
               }
             }
           }
@@ -109,7 +109,7 @@
           .path {
             padding: 25px;
             flex: 1;
-            color: #b0b3b8;
+            color: var(--text);
             text-decoration: none;
             display: flex;
             transition: all 400ms ease;
@@ -122,7 +122,7 @@
             }
 
             .title {
-              font-size: 0.85rem;
+              font-size: 14px;
             }
           }
 
@@ -141,7 +141,7 @@
               right: 100%;
               content: '';
               position: absolute;
-              background-color: #4e5052;
+              background-color: var(--dark);
             }
 
             .caret {
@@ -153,7 +153,7 @@
               }
 
               path {
-                fill: #4e5052;
+                fill: var(--dark);
               }
             }
           }
@@ -164,7 +164,7 @@
           overflow: hidden;
           transition: max-height 0.8s cubic-bezier(0, 1, 0, 1) -0.1s;
           padding: 0;
-          background-color: #2a2a2b;
+          background-color: var(--background);
           list-style: none;
           position: relative;
 
@@ -175,7 +175,7 @@
             content: '';
             top: 0;
             bottom: 0;
-            background-color: #1b4cd9;
+            background-color: var(--link);
           }
 
           &.active {
@@ -193,13 +193,13 @@
             }
 
             .name {
-              font-size: 0.875rem;
+              font-size: 14px;
               position: relative;
               text-decoration: none;
               margin: 10px 0;
               display: inline-block;
               transition: all 400ms ease;
-              color: #b0b3b8;
+              color: var(--text);
 
               &:before {
                 right: calc(100% + 15px);
@@ -207,7 +207,7 @@
                 width: 5px;
                 content: '';
                 position: absolute;
-                background-color: #b0b3b8;
+                background-color: var(--text);
                 top: 50%;
                 transition: all 400ms ease;
                 transform: translateY(-50%);
@@ -215,10 +215,10 @@
 
               &.active,
               &:hover {
-                color: #1b4cd9;
+                color: var(--link);
 
                 &:before {
-                  background-color: #1b4cd9;
+                  background-color: var(--link);
                 }
               }
             }
@@ -233,10 +233,10 @@
                 }
 
                 .text {
-                  font-size: 0.75rem;
+                  font-size: 12px;
                   text-decoration: none;
                   position: relative;
-                  color: #b0b3b8;
+                  color: var(--text);
                   line-height: 1.5;
                   display: inline-block;
                   transition: all 400ms ease;
@@ -247,7 +247,7 @@
                     width: 5px;
                     content: '';
                     position: absolute;
-                    background-color: #b0b3b8;
+                    background-color: var(--text);
                     top: 50%;
                     transition: all 400ms ease;
                     transform: translateY(-50%);
@@ -255,10 +255,10 @@
 
                   &.active,
                   &:hover {
-                    color: #1b4cd9;
+                    color: var(--link);
 
                     &:before {
-                      background-color: #1b4cd9;
+                      background-color: var(--link);
                     }
                   }
                 }
@@ -272,12 +272,24 @@
 
   .content {
     margin-top: 60px;
+    display: flex;
+    flex: 1;
 
     @media (min-width: 992px) {
       height: 100%;
       overflow: scroll;
       margin-top: 0;
       flex: 1;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      @media (min-width: 1440px) {
+        max-width: 75%;
+      }
     }
   }
 }

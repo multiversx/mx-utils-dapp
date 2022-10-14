@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { CopyButton } from '@elrondnetwork/dapp-core/UI/CopyButton';
 import { object, string } from 'yup';
 import classNames from 'classnames';
 
+import { useGlobalContext } from 'context';
 import { ConverterType } from 'pages/Converters/categories';
 
 import styles from './styles.module.scss';
@@ -14,8 +15,14 @@ interface SubmitType {
 
 const Converter = (props: ConverterType) => {
   const { label, compute, validate, identifier } = props;
+  const { theme } = useGlobalContext();
+
   const [value, setValue] = useState('');
   const initialValues = { converter: '' };
+
+  /*
+   * Update the computed value to the current state.
+   */
 
   const onSubmit = useCallback(
     (payload: SubmitType) => {
@@ -23,6 +30,10 @@ const Converter = (props: ConverterType) => {
     },
     [compute]
   );
+
+  /*
+   * Set up the validation schema with conditional testing.
+   */
 
   const schema = string().required(validate.required);
   const validationSchema = object().shape({
@@ -79,14 +90,17 @@ const Converter = (props: ConverterType) => {
           <div className={styles.buttons}>
             <button
               type='submit'
-              className={classNames(styles.button, styles.active)}
+              className={classNames(styles.button, styles.active, {
+                [styles.white]: theme === 'light'
+              })}
             >
               Convert
             </button>
 
             <button
               className={classNames(styles.button, {
-                [styles.active]: Boolean(value)
+                [styles.active]: Boolean(value),
+                [styles.white]: theme === 'light'
               })}
               type='button'
               onClick={() => {
@@ -103,4 +117,4 @@ const Converter = (props: ConverterType) => {
   );
 };
 
-export default Converter;
+export { Converter };

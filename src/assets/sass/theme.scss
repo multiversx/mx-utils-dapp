@@ -1,14 +1,3 @@
-/* Bootstrap overrides
--------------------------------------------------- */
-
-$body: #000;
-$headings-font-weight: 300 !important;
-$primary: #1b46c2;
-$light: #fafafa;
-
-$headings-font-weight: 300 !important;
-$a: #1392ff;
-
 * {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
@@ -19,7 +8,7 @@ html {
 }
 
 body {
-  background-color: #18191a;
+  background-color: var(--body);
   line-height: 1;
   overflow: hidden;
 }

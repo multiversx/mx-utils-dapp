@@ -1,11 +1,10 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
-import Template from 'components/Template/Template';
+import { Template } from 'components/Template';
 
 import { categories } from './categories';
-import Converter from './components/Converter/Converter';
+import { Converter } from './components/Converter';
 
 import styles from './styles.module.scss';
 
@@ -46,4 +45,4 @@ const Converters = () => {
   );
 };
 
-export default Converters;
+export { Converters };

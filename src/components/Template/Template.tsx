@@ -1,22 +1,29 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import {
+  useCallback,
+  useState,
+  useMemo,
+  useEffect,
+  PropsWithChildren
+} from 'react';
 import {
   faArrowRightArrowLeft,
   faCaretDown,
   faHome
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
+import classNames from 'classnames';
 
+import { Footer } from 'components/Layout/Footer';
 import { useDispatch, useGlobalContext } from 'context';
 import { categories as converterCategories } from 'pages/Converters/categories';
-
 import routes, { RouteType } from 'routes';
 
-import styles from './styles.module.scss';
-import { TemplatePropsTypes, NavigationType, ItemType } from './types';
+import { NavigationType, ItemType } from './types';
 
-const Template = (props: TemplatePropsTypes) => {
+import styles from './styles.module.scss';
+
+const Template = (props: PropsWithChildren) => {
   const [active, setActive] = useState('');
   const dispatch = useDispatch();
 
@@ -24,11 +31,19 @@ const Template = (props: TemplatePropsTypes) => {
   const { pathname, hash } = useLocation();
   const { isMenuToggled } = useGlobalContext();
 
+  /*
+   * Convert the given navigation, sent as an array, to a new Map instance for smoother retrieval, using get().
+   */
+
   const mapNavigation = useCallback(
     (navigation: NavigationType[]) =>
       new Map(navigation.map((item) => [item.path, item])),
     []
   );
+
+  /*
+   * On mobile, when clicking an item, first close the menu and then switch the active state to the new item.
+   */
 
   const onItemClick = useCallback(() => {
     if (window.innerWidth < 992) {
@@ -36,6 +51,10 @@ const Template = (props: TemplatePropsTypes) => {
       setTimeout(() => setActive(''), 400);
     }
   }, [dispatch]);
+
+  /*
+   * Look for a potentially available hash parameter and scroll to the specific section, if found.
+   */
 
   const scrollToSection = useCallback(() => {
     if (hash && document.querySelector(hash)) {
@@ -48,24 +67,61 @@ const Template = (props: TemplatePropsTypes) => {
     }
   }, [hash]);
 
-  const navigation = mapNavigation([
-    {
-      path: '/home',
-      icon: faHome
-    },
-    {
-      path: '/converters',
-      categories: converterCategories,
-      icon: faArrowRightArrowLeft
+  /*
+   * The memoized mapped navigation, controls the left sidebar navigation display.
+   */
+
+  const navigation = useMemo(
+    () =>
+      mapNavigation([
+        {
+          path: '/',
+          icon: faHome
+        },
+        {
+          path: '/converters',
+          categories: converterCategories,
+          icon: faArrowRightArrowLeft
+        }
+      ]),
+    [mapNavigation]
+  );
+
+  /*
+   * Check whether any active item in the menu, and open it by default.
+   */
+
+  const shouldMenuMountOpened = useCallback(() => {
+    const menu = navigation.get(pathname);
+
+    if (menu && menu.categories) {
+      const opened = menu.categories.some((category) =>
+        hash.includes(category.identifier)
+      );
+
+      if (opened) {
+        setActive(pathname);
+      }
     }
-  ]);
+  }, [hash, navigation, pathname]);
+
+  /*
+   * Assign each route the icon and categories for enhanced mapping.
+   */
 
   const items = routes.map(
     (route: RouteType): ItemType =>
       Object.assign(route, navigation.get(route.path))
   );
 
+  /*
+   * On mount, trigger the following actions:
+   * - Scroll to the section if hash is present.
+   * - Open the menu if any child item is active.
+   */
+
   useEffect(scrollToSection, [scrollToSection]);
+  useEffect(shouldMenuMountOpened, [shouldMenuMountOpened]);
 
   return (
     <main className={styles.template}>
@@ -163,9 +219,14 @@ const Template = (props: TemplatePropsTypes) => {
         </ul>
       </div>
 
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>
+        <div className={styles.wrapper}>
+          {children}
+          <Footer />
+        </div>
+      </div>
     </main>
   );
 };
 
-export default Template;
+export { Template };

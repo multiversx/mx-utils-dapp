@@ -1,17 +1,13 @@
-import React from 'react';
-import { ReactNode, createContext, useReducer, useContext } from 'react';
+import { PropsWithChildren } from 'react';
+import { createContext, useReducer, useContext } from 'react';
 
 import { DispatchType, reducer } from './reducer';
 import { StateType, initializer } from './state';
 
-interface ContextType {
-  children: ReactNode;
-}
-
 const Context = createContext<StateType | undefined>(undefined);
 const Dispatch = createContext<DispatchType | undefined>(undefined);
 
-const ContextProvider = (props: ContextType) => {
+const ContextProvider = (props: PropsWithChildren) => {
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, initializer);
 
