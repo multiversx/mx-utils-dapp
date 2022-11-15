@@ -1,14 +1,20 @@
-import { EnvironmentsEnum } from '@elrondnetwork/dapp-core/types';
+import { EnvironmentsEnum } from '@elrondnetwork/dapp-core/types/enums.types';
 import { DappProvider } from '@elrondnetwork/dapp-core/wrappers';
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import { ContextProvider } from 'context';
-import { Layout } from 'components/Layout';
-import routes from 'routes';
+import Layout from 'components/Layout';
 import Page404 from 'pages/Page404';
+import routes from 'routes';
+
+import type { RouteType } from 'routes';
+
+/*
+ * Handle the component declaration.
+ */
 
 const App = () => (
-  <Router>
+  <BrowserRouter>
     <DappProvider
       environment={EnvironmentsEnum.devnet}
       customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000 }}
@@ -16,8 +22,8 @@ const App = () => (
       <ContextProvider>
         <Layout>
           <Routes>
-            {routes.map((route: any, index: number) => (
-              <Route path={route.path} key={'route-key-' + index} element={<route.component />} />
+            {routes.map((route: RouteType) => (
+              <Route path={route.path} key={route.path} element={<route.component />} />
             ))}
 
             <Route path='*' element={<Page404 />} />
@@ -25,7 +31,7 @@ const App = () => (
         </Layout>
       </ContextProvider>
     </DappProvider>
-  </Router>
+  </BrowserRouter>
 );
 
 export default App;

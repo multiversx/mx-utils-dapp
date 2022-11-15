@@ -1,20 +1,27 @@
-import { PropsWithChildren } from 'react';
+import { Fragment } from 'react';
 
 import useTheme from 'helpers/useTheme';
-import { Navbar } from 'components/Layout/Navbar';
+
+import type { PropsWithChildren } from 'react';
+
+/*
+ * Handle the component declaration.
+ */
 
 const Layout = (props: PropsWithChildren) => {
   const { children } = props;
 
+  /*
+   * Call the theme initializer hook.
+   */
+
   useTheme();
 
-  return (
-    <div>
-      <Navbar />
+  /*
+   * Return the rendered component.
+   */
 
-      {children}
-    </div>
-  );
+  return <Fragment>{children}</Fragment>;
 };
 
-export { Layout };
+export default Layout;

@@ -6,6 +6,10 @@ import { StateType } from 'context/state';
 import { ThemeEnumType } from './enum';
 import storage from './storage';
 
+/*
+ * Handle the custom hook declaration.
+ */
+
 const useTheme = () => {
   const { theme } = useGlobalContext();
   const dispatch = useDispatch();
@@ -23,7 +27,8 @@ const useTheme = () => {
     const stylesheet = element as HTMLAnchorElement;
     const localTheme: StateType['theme'] = storage.getLocalItem('theme');
     const isDevelopment = process.env.NODE_ENV === 'development';
-    const shouldRequire = theme === localTheme || (!localTheme && theme === defaultTheme);
+    const shouldRequire =
+      theme === localTheme || (!localTheme && theme === defaultTheme);
 
     if (!localTheme && defaultTheme !== theme) {
       dispatch({
@@ -36,7 +41,10 @@ const useTheme = () => {
       dispatch({ type: 'switchTheme', theme: localTheme });
     }
 
-    // Load the uncompiled stylesheets, as SCSS files, conditionally, while developing.
+    /*
+     * Load the uncompiled stylesheets, as SCSS files, conditionally, while developing.
+     */
+
     if (stylesheet && isDevelopment && shouldRequire) {
       stylesheet.setAttribute('href', '');
 
@@ -49,7 +57,10 @@ const useTheme = () => {
       }
     }
 
-    // Switch between the compiled stylesheets, by replacing the hyper-reference attribute, while in production.
+    /*
+     * Switch between the compiled stylesheets, by replacing the hyper-reference attribute, while in production.
+     */
+
     if (stylesheet && !isDevelopment && shouldRequire) {
       const alpha = stylesheet.href.lastIndexOf('/') + 1;
       const beta = stylesheet.href.indexOf('.css');
@@ -61,6 +72,10 @@ const useTheme = () => {
       }
     }
   }, [dispatch, theme]);
+
+  /*
+   * On mount, run the stylesheeting loading function.
+   */
 
   useEffect(loadStylesheet, [loadStylesheet]);
 };
