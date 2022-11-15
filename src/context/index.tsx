@@ -1,5 +1,9 @@
-import { PropsWithChildren } from 'react';
-import { createContext, useReducer, useContext } from 'react';
+import {
+  createContext,
+  useReducer,
+  useContext,
+  PropsWithChildren
+} from 'react';
 
 import { DispatchType, reducer } from './reducer';
 import { StateType, initializer } from './state';
@@ -23,7 +27,7 @@ const useGlobalContext = () => {
 
   if (context === undefined) {
     throw new Error(
-      'The useDispatch hook must be used within a Context.Provider.'
+      'The useGlobalContext hook must be used within a Context.Provider.'
     );
   } else {
     return context;

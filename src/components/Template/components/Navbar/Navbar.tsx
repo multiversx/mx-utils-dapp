@@ -5,36 +5,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import moment from 'moment';
 
-import { application } from 'config';
-import { useDispatch, useGlobalContext } from 'context';
-import { ReactComponent as ElrondLogo } from 'assets/img/elrond.svg';
-import { ReactComponent as ElrondSymbol } from 'assets/img/elrond-symbol.svg';
 import { ThemeEnumType } from 'helpers/enum';
+import { applicationName } from 'config';
+import { useDispatch, useGlobalContext } from 'context';
+import ElrondLogo from 'assets/img/ElrondLogo';
+import ElrondSymbol from 'assets/img/ElrondSymbol';
 import storage from 'helpers/storage';
 
 import styles from './styles.module.scss';
 
-const Navbar = () => {
-  const { isMenuToggled, theme } = useGlobalContext();
+import type { NavbarPropsType } from './types';
+
+/*
+ * Handle the component declaration.
+ */
+
+const Navbar = (props: NavbarPropsType) => {
+  const { setToggleMenu, toggleMenu } = props;
+  const { theme } = useGlobalContext();
 
   const isDark = theme === ThemeEnumType.dark;
   const dispatch = useDispatch();
 
   /*
-   * On menu triggering, update the context by dispatching a toggled action type.
+   * On menu triggering, update the passed along state to the opposite of the current boolean value.
    */
 
   const onMenuTrigger = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       event.preventDefault();
-      dispatch({ type: 'getIsMenuToggled', isMenuToggled: !isMenuToggled });
+      setToggleMenu((toggleMenu: boolean) => !toggleMenu);
     },
-    [dispatch, isMenuToggled]
+    [setToggleMenu]
   );
 
   /*
-   * Switch between light mode and dark mode (local state dispatcher and local storage).
-   * The local state will hold for six months after which it'll be removed.
+   * Switch between light mode and dark mode (local state dispatcher and local storage), which will be memorized for six months.
    */
 
   const onThemeSwitch = useCallback(
@@ -54,6 +60,10 @@ const Navbar = () => {
     },
     [isDark, dispatch]
   );
+
+  /*
+   * Return the rendered component.
+   */
 
   return (
     <header className={styles.header}>
@@ -75,7 +85,7 @@ const Navbar = () => {
             <ElrondSymbol />
           </div>
 
-          <span className={styles.application}>{application}</span>
+          <span className={styles.application}>{applicationName}</span>
         </Link>
 
         <div className={styles.right}>
@@ -85,8 +95,9 @@ const Navbar = () => {
 
           <div
             onClick={onMenuTrigger}
+            data-testid='navbar-burger'
             className={classNames(styles.burger, {
-              [styles.active]: isMenuToggled
+              [styles.active]: toggleMenu
             })}
           >
             <div className={styles.bars}>
@@ -101,4 +112,4 @@ const Navbar = () => {
   );
 };
 
-export { Navbar };
+export default Navbar;

@@ -17,10 +17,10 @@ const storage = {
     localStorage.setItem(key, JSON.stringify(payload));
   },
   getLocalItem: (key: LocalKeyType) => {
-    const lsEntry = localStorage.getItem(key);
-    const item = lsEntry ? JSON.parse(lsEntry) : null;
+    const entry = localStorage.getItem(key);
+    const item = entry ? JSON.parse(entry) : null;
 
-    if (!lsEntry) {
+    if (!entry) {
       return null;
     }
 

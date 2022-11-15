@@ -110,6 +110,7 @@
         transform: rotate(0deg);
         transition: 0.5s ease-in-out;
         cursor: pointer;
+        display: block;
 
         @media (min-width: 992px) {
           display: none;

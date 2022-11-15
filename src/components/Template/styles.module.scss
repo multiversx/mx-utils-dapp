@@ -64,6 +64,10 @@
       .page {
         transition: all 400ms ease;
 
+        &.tester {
+          display: inline;
+        }
+
         &.active,
         &:hover {
           .item {
