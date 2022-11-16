@@ -1,71 +1,32 @@
-import {
-  useCallback,
-  useState,
-  useMemo,
-  useEffect,
-  PropsWithChildren
-} from 'react';
-import {
-  faArrowRightArrowLeft,
-  faCaretDown,
-  faHome
-} from '@fortawesome/free-solid-svg-icons';
+import { useCallback, useState, useEffect, PropsWithChildren } from 'react';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
-import routes, { RouteType } from 'routes';
-import useCategories from 'pages/Converters/hooks/useCategories';
+import { routes, RouteType } from 'routes';
 
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { Navbar } from './components/Navbar';
+import { Footer } from './components/Footer';
+
+import { useNavigation } from './hooks/useNavigation';
 
 import styles from './styles.module.scss';
 
-import type { NavigationType, ItemType } from './types';
+import type { ItemType } from './types';
 import type { ConverterType } from 'pages/Converters/components/Converter/types';
 
 /*
  * Handle the component declaration.
  */
 
-const Template = (props: PropsWithChildren) => {
+export const Template = (props: PropsWithChildren) => {
   const { children } = props;
-  const { categories } = useCategories();
+  const { navigation } = useNavigation();
   const { pathname, hash } = useLocation();
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [activePage, setActivePage] = useState(hash ? pathname : '');
-
-  /*
-   * Convert the given navigation, sent as an array, to a new Map instance for smoother retrieval, using get().
-   */
-
-  const mapNavigation = useCallback(
-    (navigation: NavigationType[]) =>
-      new Map(navigation.map((item) => [item.path, item])),
-    []
-  );
-
-  /*
-   * The memoized mapped navigation, controls the left sidebar navigation display.
-   */
-
-  const navigation = useMemo(
-    () =>
-      mapNavigation([
-        {
-          path: '/',
-          icon: faHome
-        },
-        {
-          path: '/converters',
-          categories,
-          icon: faArrowRightArrowLeft
-        }
-      ]),
-    [mapNavigation, categories]
-  );
 
   /*
    * Assign each route the icon and categories for enhanced mapping.
@@ -115,7 +76,7 @@ const Template = (props: PropsWithChildren) => {
     <div>
       <Navbar setToggleMenu={setToggleMenu} toggleMenu={toggleMenu} />
 
-      <main className={styles.template}>
+      <div className={styles.template}>
         <div
           id='navigation'
           data-testid='navigation'
@@ -224,9 +185,7 @@ const Template = (props: PropsWithChildren) => {
             <Footer />
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
-
-export default Template;

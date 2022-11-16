@@ -1,11 +1,10 @@
-import { ComponentType } from 'react';
+import type { ComponentType } from 'react';
 
 import { applicationName } from 'config';
+import { Converters } from 'pages/Converters';
+import { Home } from 'pages/Home';
 
-import Converters from 'pages/Converters';
-import Home from 'pages/Home';
-
-import withPageTitle from './components/PageTitle';
+import { withPageTitle } from './components/PageTitle';
 
 export interface RouteType {
   path: string;
@@ -13,7 +12,7 @@ export interface RouteType {
   component: ComponentType;
 }
 
-export const routes: RouteType[] = [
+const pages: RouteType[] = [
   {
     path: '/',
     title: 'Home',
@@ -26,12 +25,12 @@ export const routes: RouteType[] = [
   }
 ];
 
-export default routes.map((route) => {
-  const title = route.title
-    ? `${route.title} • Elrond ${applicationName}`
+export const routes = pages.map((page) => {
+  const title = page.title
+    ? `${page.title} • Elrond ${applicationName}`
     : `Elrond ${applicationName}`;
 
-  return Object.assign(route, {
-    component: withPageTitle(title, route.component)
+  return Object.assign(page, {
+    component: withPageTitle(title, page.component)
   });
 });

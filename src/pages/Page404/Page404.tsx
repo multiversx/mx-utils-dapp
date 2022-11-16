@@ -1,4 +1,4 @@
-import Template from 'components/Template';
+import { Template } from 'components/Template';
 
 import styles from './styles.module.scss';
 
@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
  * Handle the component declaration.
  */
 
-const Page404 = () => (
+export const Page404 = () => (
   <Template>
     <div className={styles.page404}>
       <h1 className={styles.title} data-testid='page404-title'>
@@ -23,5 +23,3 @@ const Page404 = () => (
     </div>
   </Template>
 );
-
-export default Page404;

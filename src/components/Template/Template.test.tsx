@@ -3,7 +3,7 @@ import { fireEvent, render, renderHook, screen } from '@testing-library/react';
 
 import { ContextProvider } from 'context';
 
-import Converters from 'pages/Converters';
+import { Converters } from 'pages/Converters';
 
 /*
  * Mock the Template component by wrapping it inside the required providers.

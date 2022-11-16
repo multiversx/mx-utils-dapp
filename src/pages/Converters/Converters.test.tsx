@@ -2,8 +2,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { render, renderHook, screen } from '@testing-library/react';
 
 import { ContextProvider } from 'context';
-import Converters from './Converters';
-import useCategories from './hooks/useCategories';
+
+import { Converters } from './Converters';
+import { useCategories } from './hooks/useCategories';
 
 /*
  * Mock the Converters component by wrapping it inside the required providers.

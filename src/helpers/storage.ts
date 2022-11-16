@@ -9,7 +9,7 @@ interface SetLocalItemType {
   expires: ExpiresType;
 }
 
-const storage = {
+export const storage = {
   setLocalItem: (parameters: SetLocalItemType) => {
     const { key, data, expires } = parameters;
     const payload = { expires, data };
@@ -42,5 +42,3 @@ const storage = {
     localStorage.removeItem(key);
   }
 };
-
-export default storage;

@@ -1,4 +1,4 @@
-const ElrondSymbol = () => (
+export const ElrondSymbol = () => (
   <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
     <g fillRule='evenodd'>
       <g transform='translate(0 -1)' fillRule='nonzero'>
@@ -110,5 +110,3 @@ const ElrondSymbol = () => (
     </g>
   </svg>
 );
-
-export default ElrondSymbol;

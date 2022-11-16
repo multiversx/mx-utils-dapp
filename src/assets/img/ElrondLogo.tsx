@@ -1,4 +1,4 @@
-const ElrondLogo = () => (
+export const ElrondLogo = () => (
   <svg viewBox='0 0 398 99' xmlns='http://www.w3.org/2000/svg'>
     <g fill='none' fillRule='evenodd'>
       <g transform='translate(0 -1)' fill='#000' fillRule='nonzero'>
@@ -111,5 +111,3 @@ const ElrondLogo = () => (
     </g>
   </svg>
 );
-
-export default ElrondLogo;

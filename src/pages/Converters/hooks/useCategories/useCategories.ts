@@ -12,7 +12,7 @@ import type { CategoryType } from './types';
  * Handle the custom hook declaration.
  */
 
-const useCategories = () => {
+export const useCategories = () => {
   const categories: CategoryType[] = [
     {
       name: 'Addresses',
@@ -286,5 +286,3 @@ const useCategories = () => {
 
   return { categories };
 };
-
-export default useCategories;
