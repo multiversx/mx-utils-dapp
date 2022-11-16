@@ -1,27 +1,25 @@
-import { Fragment } from 'react';
-
-import useTheme from 'helpers/useTheme';
+import { useTheme } from 'helpers/useTheme';
 
 import type { PropsWithChildren } from 'react';
+
+import styles from 'assets/sass/theme.module.scss';
 
 /*
  * Handle the component declaration.
  */
 
-const Layout = (props: PropsWithChildren) => {
+export const Layout = (props: PropsWithChildren) => {
   const { children } = props;
 
   /*
-   * Call the theme initializer hook.
+   * Call the theme initializer hook and get the current theme state.
    */
 
-  useTheme();
+  const { theme } = useTheme();
 
   /*
    * Return the rendered component.
    */
 
-  return <Fragment>{children}</Fragment>;
+  return <main className={styles[theme]}>{children}</main>;
 };
-
-export default Layout;

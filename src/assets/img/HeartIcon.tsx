@@ -1,5 +1,11 @@
-const HeartIcon = () => (
-  <svg width='14px' height='12px' viewBox='0 0 14 12' version='1.1' xmlns='http://www.w3.org/2000/svg'>
+export const HeartIcon = () => (
+  <svg
+    width='14px'
+    height='12px'
+    viewBox='0 0 14 12'
+    version='1.1'
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <title>heart</title>
     <desc>Created with Sketch.</desc>
     <g id='heart' stroke='none' strokeWidth='1' fillRule='evenodd'>
@@ -11,5 +17,3 @@ const HeartIcon = () => (
     </g>
   </svg>
 );
-
-export default HeartIcon;

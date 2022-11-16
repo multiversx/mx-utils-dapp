@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
  * Handle the component declaration.
  */
 
-const Converter = (props: ConverterType) => {
+export const Converter = (props: ConverterType) => {
   const { label, compute, validate, identifier } = props;
   const { theme } = useGlobalContext();
 
@@ -39,7 +39,11 @@ const Converter = (props: ConverterType) => {
   const schema = string().required(validate.required);
   const validationSchema = object().shape({
     converter: validate.test
-      ? schema.test(`${identifier}-is-valid`, validate.test.error, validate.test.callback)
+      ? schema.test(
+          `${identifier}-is-valid`,
+          validate.test.error,
+          validate.test.callback
+        )
       : schema
   });
 
@@ -120,5 +124,3 @@ const Converter = (props: ConverterType) => {
     </Formik>
   );
 };
-
-export default Converter;

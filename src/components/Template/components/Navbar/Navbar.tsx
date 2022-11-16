@@ -8,9 +8,9 @@ import moment from 'moment';
 import { ThemeEnumType } from 'helpers/enum';
 import { applicationName } from 'config';
 import { useDispatch, useGlobalContext } from 'context';
-import ElrondLogo from 'assets/img/ElrondLogo';
-import ElrondSymbol from 'assets/img/ElrondSymbol';
-import storage from 'helpers/storage';
+import { ElrondLogo } from 'assets/img/ElrondLogo';
+import { ElrondSymbol } from 'assets/img/ElrondSymbol';
+import { storage } from 'helpers/storage';
 
 import styles from './styles.module.scss';
 
@@ -20,7 +20,7 @@ import type { NavbarPropsType } from './types';
  * Handle the component declaration.
  */
 
-const Navbar = (props: NavbarPropsType) => {
+export const Navbar = (props: NavbarPropsType) => {
   const { setToggleMenu, toggleMenu } = props;
   const { theme } = useGlobalContext();
 
@@ -111,5 +111,3 @@ const Navbar = (props: NavbarPropsType) => {
     </header>
   );
 };
-
-export default Navbar;

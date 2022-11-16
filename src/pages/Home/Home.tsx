@@ -1,4 +1,4 @@
-import Template from 'components/Template';
+import { Template } from 'components/Template';
 
 import styles from './styles.module.scss';
 
@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
  * Handle the component declaration.
  */
 
-const Home = () => (
+export const Home = () => (
   <Template>
     <div className={styles.home}>
       <h1 className={styles.title} data-testid='home-title'>
@@ -24,5 +24,3 @@ const Home = () => (
     </div>
   </Template>
 );
-
-export default Home;

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import { ContextProvider } from 'context';
 
-import Home from './Home';
+import { Home } from './Home';
 
 /*
  * Mock the Home page by wrapping it inside the required providers.

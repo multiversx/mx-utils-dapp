@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
 import { ContextProvider } from 'context';
-import Page404 from './Page404';
+import { Page404 } from './Page404';
 
 /*
  * Mock the Page404 page by wrapping it inside the required providers.

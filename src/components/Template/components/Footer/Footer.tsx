@@ -1,4 +1,4 @@
-import HeartIcon from 'assets/img/HeartIcon';
+import { HeartIcon } from 'assets/img/HeartIcon';
 
 import { companyName, companyWebsite } from 'config';
 
@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
  * Handle the component declaration.
  */
 
-const Footer = () => (
+export const Footer = () => (
   <footer className={styles.footer}>
     <a
       href={companyWebsite}
@@ -24,5 +24,3 @@ const Footer = () => (
     </a>
   </footer>
 );
-
-export default Footer;

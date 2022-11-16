@@ -8,10 +8,10 @@ import {
   waitFor
 } from '@testing-library/react';
 
-import useCategories from 'pages/Converters/hooks/useCategories';
+import { useCategories } from 'pages/Converters/hooks/useCategories';
 import { ContextProvider } from 'context';
 
-import Converter from './Converter';
+import { Converter } from './Converter';
 
 import type { ConverterType } from './types';
 

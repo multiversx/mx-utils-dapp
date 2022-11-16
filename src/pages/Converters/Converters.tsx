@@ -1,10 +1,10 @@
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
-import Template from 'components/Template';
-import Converter from './components/Converter';
+import { Template } from 'components/Template';
+import { Converter } from './components/Converter';
 
-import useCategories from './hooks/useCategories';
+import { useCategories } from './hooks/useCategories';
 
 import styles from './styles.module.scss';
 
@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
  * Handle the component declaration.
  */
 
-const Converters = () => {
+export const Converters = () => {
   const { hash } = useLocation();
   const { categories } = useCategories();
 
@@ -65,5 +65,3 @@ const Converters = () => {
     </Template>
   );
 };
-
-export default Converters;
