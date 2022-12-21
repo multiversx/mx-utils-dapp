@@ -1,8 +1,8 @@
-import { useTheme } from 'helpers/useTheme';
-
 import type { PropsWithChildren } from 'react';
 
-import styles from 'assets/sass/theme.module.scss';
+import { useTheme } from 'helpers/useTheme';
+
+import '../../assets/sass/theme.scss';
 
 /*
  * Handle the component declaration.
@@ -12,14 +12,14 @@ export const Layout = (props: PropsWithChildren) => {
   const { children } = props;
 
   /*
-   * Call the theme initializer hook and get the current theme state.
+   * Call the theme initializer hook.
    */
 
-  const { theme } = useTheme();
+  useTheme();
 
   /*
    * Return the rendered component.
    */
 
-  return <main className={styles[theme]}>{children}</main>;
+  return <main>{children}</main>;
 };

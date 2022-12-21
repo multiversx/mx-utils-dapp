@@ -1,6 +1,7 @@
 import {
   faArrowRightArrowLeft,
-  faHome
+  faHome,
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useCategories } from 'pages/Converters/hooks/useCategories';
@@ -22,6 +23,10 @@ export const useNavigation = () => {
       path: '/converters',
       categories: data.categories,
       icon: faArrowRightArrowLeft
+    },
+    {
+      path: '/authentication',
+      icon: faUser
     }
   ];
 

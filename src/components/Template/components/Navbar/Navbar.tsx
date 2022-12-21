@@ -45,17 +45,17 @@ export const Navbar = (props: NavbarPropsType) => {
 
   const onThemeSwitch = useCallback(
     (event: MouseEvent<HTMLElement>) => {
+      const theme = isDark ? ThemeEnumType.light : ThemeEnumType.dark;
+
       event.preventDefault();
+      dispatch({ type: 'switchTheme', theme });
+      document.body.classList.remove(ThemeEnumType.dark, ThemeEnumType.light);
+      document.body.classList.add(theme);
 
       storage.setLocalItem({
         key: 'theme',
-        data: isDark ? ThemeEnumType.light : ThemeEnumType.dark,
+        data: theme,
         expires: moment().add(6, 'months').unix()
-      });
-
-      dispatch({
-        type: 'switchTheme',
-        theme: isDark ? ThemeEnumType.light : ThemeEnumType.dark
       });
     },
     [isDark, dispatch]

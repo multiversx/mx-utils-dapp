@@ -1,0 +1,59 @@
+.textarea {
+  display: flex;
+  margin-bottom: 0.25rem;
+  position: relative;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex: 1;
+  }
+
+  .field {
+    border-radius: 0.5rem;
+    background-color: var(--body);
+    border: none;
+    padding: 1rem;
+    line-height: 1.25;
+    resize: none;
+    color: transparent;
+    caret-color: var(--text);
+    font-weight: 300;
+    min-height: 10rem;
+
+    @media (min-width: 768px) {
+      min-height: calc(100% - 2rem);
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      border: none;
+    }
+
+    &.large {
+      @media (max-width: 575px) {
+        min-height: 18.75rem;
+      }
+    }
+  }
+
+  .clone {
+    padding: 1rem;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    position: absolute;
+    pointer-events: none;
+
+    .mirror {
+      line-height: 1.25;
+      flex: 1;
+      font-weight: 300;
+      word-break: break-word;
+      overflow-y: scroll;
+    }
+  }
+}

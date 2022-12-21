@@ -1,0 +1,23 @@
+.form {
+  background-color: var(--background);
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  border: 1px solid var(--background);
+  position: relative;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .subtitle {
+    color: var(--text);
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+}
