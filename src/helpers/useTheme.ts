@@ -34,6 +34,11 @@ export const useTheme = () => {
     if (localTheme && theme !== localTheme) {
       dispatch({ type: 'switchTheme', theme: localTheme });
     }
+
+    if (theme) {
+      document.body.classList.remove(ThemeEnumType.dark, ThemeEnumType.light);
+      document.body.classList.add(theme);
+    }
   }, [dispatch, theme]);
 
   /*

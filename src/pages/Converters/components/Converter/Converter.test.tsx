@@ -158,8 +158,7 @@ test('Successful error handling due to wrong input.', async () => {
     const elements = {
       value: screen.queryByTestId(`${identifier}-value`),
       clear: screen.queryByTestId(`${identifier}-clear-button`),
-      error: screen.getByTestId(`${identifier}-error`),
-      field: screen.getByTestId(`${identifier}-field`)
+      error: screen.getByTestId(`${identifier}-error`)
     };
 
     expect(elements.clear).not.toBeInTheDocument();

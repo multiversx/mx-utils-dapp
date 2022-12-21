@@ -87,7 +87,14 @@ export const Converter = (props: ConverterType) => {
           {value && (
             <div className={styles.result}>
               <strong>Result:</strong>
-              <span data-testid={`${identifier}-value`}>{value}</span>
+
+              <span
+                data-testid={`${identifier}-value`}
+                className={styles.value}
+              >
+                {value}
+              </span>
+
               <CopyButton text={value} className={styles.copy} />
             </div>
           )}

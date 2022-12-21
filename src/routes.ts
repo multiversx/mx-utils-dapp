@@ -1,6 +1,8 @@
 import type { ComponentType } from 'react';
 
 import { applicationName } from 'config';
+
+import { Authentication } from 'pages/Authentication';
 import { Converters } from 'pages/Converters';
 import { Home } from 'pages/Home';
 
@@ -22,13 +24,18 @@ const pages: RouteType[] = [
     path: '/converters',
     title: 'Converters',
     component: Converters
+  },
+  {
+    path: '/authentication',
+    title: 'Authentication',
+    component: Authentication
   }
 ];
 
 export const routes = pages.map((page) => {
   const title = page.title
-    ? `${page.title} • Elrond ${applicationName}`
-    : `Elrond ${applicationName}`;
+    ? `${page.title} • MultiversX ${applicationName}`
+    : `MultiversX ${applicationName}`;
 
   return Object.assign(page, {
     component: withPageTitle(title, page.component)

@@ -1,0 +1,120 @@
+* {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  line-height: 1;
+  overflow: hidden;
+  background-color: var(--body);
+
+  &.light {
+    --body: #e7ebf7;
+    --navigation: #ffffff;
+    --text: #000000;
+    --dark: #000000;
+    --link: #1b4cd9;
+    --background: #ffffff;
+  }
+
+  &.dark {
+    --body: #18191a;
+    --navigation: #242526;
+    --text: #b0b3b8;
+    --dark: #4e5052;
+    --link: #1b4cd9;
+    --background: #2a2a2b;
+  }
+}
+
+#dapp-modal {
+  z-index: 2023;
+  width: calc(100% - 3rem);
+  background: transparent;
+  padding: 1.5rem;
+
+  .dapp-modal-dialog-content {
+    background-color: var(--body);
+    box-shadow: 0.25rem 0.25rem 1rem 0.5rem var(--body);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    position: relative;
+    max-width: 30rem;
+    color: var(--text);
+    z-index: 2000;
+    margin: 0 auto;
+    border: 1px solid var(--background);
+
+    .dapp-modal-dialog-header {
+      background: transparent;
+      padding: 0;
+      font-size: 2rem;
+      font-weight: 600;
+      display: flex;
+      margin-bottom: 2rem;
+      align-items: center;
+      justify-content: space-between;
+
+      .dapp-core-component__dappModalStyles__dappModalHeaderText {
+        padding: 0;
+      }
+
+      .dapp-modal-dialog-close-button {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.5rem;
+        border: 1px solid var(--background);
+        cursor: pointer;
+        transition: all 400ms ease !important;
+        position: relative;
+        color: var(--text);
+        background: transparent;
+        font-size: 1rem;
+        padding: 0;
+
+        &:hover {
+          background-color: var(--background);
+        }
+
+        svg {
+          font-size: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+
+    .dapp-modal-dialog-content-body {
+      padding: 0;
+
+      .dapp-core-component__main__card {
+        margin: 0;
+        border: none;
+        background: transparent;
+
+        .dapp-core-component__main__card-body {
+          padding: 0;
+        }
+      }
+
+      .dapp-core-component__main__qr-code-svg-container {
+        & + .dapp-core-component__main__h4 {
+          margin-top: 1rem;
+          line-height: 1;
+
+          & + .dapp-core-component__main__lead {
+            line-height: 1;
+            font-size: 1rem;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

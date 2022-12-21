@@ -1,0 +1,112 @@
+.authentication {
+  padding: 1.5rem;
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 0.75rem);
+    }
+  }
+
+  .subtitle {
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    margin-top: 0;
+    color: var(--text);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .instructions {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .generate {
+      border: 1px solid var(--link);
+      color: var(--link);
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 4px;
+      background-color: transparent;
+      outline: none;
+      transition: all 200ms ease;
+      cursor: pointer;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      position: absolute;
+
+      &:hover {
+        background-color: var(--link);
+        color: var(--text);
+      }
+    }
+  }
+
+  .metrics {
+    background-color: var(--background);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--background);
+
+    @media (min-width: 768px) {
+      flex: 1;
+    }
+
+    .metric {
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .name {
+        color: var(--text);
+        font-weight: 300;
+        font-size: 1rem;
+        margin: 0 0 0.5rem;
+        line-height: 1.5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .result {
+        border-radius: 0.5rem;
+        background-color: var(--body);
+        padding: 0.625rem 1rem;
+        padding-right: 3rem;
+        font-weight: 300;
+        flex: 1 1;
+        min-height: 1.25rem;
+        word-break: break-all;
+        line-height: 1.25;
+        position: relative;
+
+        .copy {
+          position: absolute;
+          top: 50%;
+          right: 1rem;
+          transform: translateY(-50%);
+
+          path {
+            fill: var(--text);
+          }
+        }
+      }
+    }
+  }
+}
