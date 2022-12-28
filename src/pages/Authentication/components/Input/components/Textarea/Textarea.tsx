@@ -1,6 +1,16 @@
-import { FormEvent, useCallback, useEffect, useMemo, useRef } from 'react';
-import { Field, FormikProps } from 'formik';
-import { useGetIsLoggedIn } from '@elrondnetwork/dapp-core/hooks';
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef
+} from 'react';
+import { Field } from 'formik';
+import {
+  useGetIsLoggedIn,
+  useGetNetworkConfig
+} from '@elrondnetwork/dapp-core/hooks';
 import { useGetLoginInfo } from '@elrondnetwork/dapp-core/hooks/account/useGetLoginInfo';
 import { logout } from '@elrondnetwork/dapp-core/utils/logout';
 import classNames from 'classnames';
@@ -14,20 +24,27 @@ import {
   TokenColorsEnum,
   TokenDefaultColorsEnum
 } from 'pages/Authentication/enum';
+import { emptyMetrics } from 'pages/Authentication';
 
-import type { TextareaDivisionType } from './types';
-import type { FormValuesType } from '../../types';
+import { decodeToken } from './helpers/decodeToken';
+
+import type { TextareaDivisionType, TextareaPropsType } from './types';
+import type { NativeAuthDecoded } from '@elrondnetwork/native-auth-server/lib/src/entities/native.auth.decoded';
 
 import styles from './styles.module.scss';
+import { validateToken } from './helpers/validateToken';
 
 /*
  * Handle the component declaration.
  */
 
-export const Textarea = (props: FormikProps<FormValuesType>) => {
-  const { values, setFieldValue } = props;
-  const { tokenLogin, loginMethod } = useGetLoginInfo();
+export const Textarea = (props: TextareaPropsType) => {
   const { theme } = useTheme();
+  const { tokenLogin, loginMethod } = useGetLoginInfo();
+  const { values, setMetrics, setFieldValue, setFieldTouched, setFieldError } =
+    props;
+
+  const { network } = useGetNetworkConfig();
 
   const nativeAuthToken = storage.getLocalItem('nativeAuthToken');
   const clone = useRef<HTMLDivElement>(null);
@@ -76,17 +93,69 @@ export const Textarea = (props: FormikProps<FormValuesType>) => {
     });
   }, []);
 
+  const onChange = useCallback(
+    async (event: ChangeEvent<HTMLFormElement> | string) => {
+      const token = typeof event === 'string' ? event : event.target.value;
+
+      setFieldValue('token', token, false);
+      setFieldTouched('token', true, false);
+
+      if (!Boolean(token)) {
+        setFieldError('token', 'Invalid Signature');
+        return;
+      }
+
+      try {
+        const config = {
+          apiUrl: network.apiAddress
+        };
+
+        const promises = [decodeToken(token), validateToken(token, config)];
+        const [decoded, valid] = await Promise.allSettled(promises);
+        const decodedValue = decoded as any;
+
+        if (decoded.status === 'rejected') {
+          setFieldError('token', 'Token Undecodable');
+          setMetrics(emptyMetrics);
+          return;
+        } else {
+          setMetrics(decodedValue.value);
+        }
+
+        if (valid.status === 'rejected') {
+          setFieldError('token', 'Token Invalid');
+          return;
+        }
+
+        setFieldError('token', '');
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(error);
+          setMetrics(emptyMetrics);
+        }
+      }
+    },
+    [
+      setFieldError,
+      setFieldValue,
+      network.apiAddress,
+      setFieldTouched,
+      setMetrics
+    ]
+  );
+
   useEffect(() => {
     if (nativeAuthToken) {
       setFieldValue('token', nativeAuthToken, true);
       storage.removeLocalItem('nativeAuthToken');
+      onChange(nativeAuthToken);
     }
-  }, [setFieldValue, nativeAuthToken]);
+  }, [setFieldValue, onChange, nativeAuthToken]);
 
   useEffect(() => {
     if (isLoggedIn && tokenLogin && tokenLogin.nativeAuthToken) {
       const token = tokenLogin.nativeAuthToken;
-      const route = `${window.location.origin}/authentication`;
+      const route = `${window.location.origin}/auth`;
       const isWallet = loginMethod === 'wallet';
       const redirect = isWallet ? encodeURIComponent(route) : route;
 
@@ -111,6 +180,7 @@ export const Textarea = (props: FormikProps<FormValuesType>) => {
         component='textarea'
         name='token'
         onInput={onInput}
+        onChange={onChange}
         className={classNames(styles.field, {
           [styles.large]: Boolean(nativeAuthToken)
         })}
@@ -118,7 +188,7 @@ export const Textarea = (props: FormikProps<FormValuesType>) => {
 
       <div className={styles.clone}>
         <div className={styles.mirror} ref={clone}>
-          {mirror.map((word, index) => (
+          {mirror.map((word: any, index: any) => (
             <span
               style={{ color: word.color }}
               className={styles.word}
