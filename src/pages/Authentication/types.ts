@@ -6,6 +6,9 @@ export type MetricType = NativeAuthDecoded | undefined;
 
 export interface MetricItemType {
   name: string;
-  color: TokenColorsEnum;
-  data: ReactNode;
+  colors: (TokenColorsEnum | string)[];
+  data?: ReactNode;
+  explorer?: string;
+  identifier: string;
+  subItem?: boolean;
 }

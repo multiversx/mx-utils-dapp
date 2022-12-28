@@ -18,9 +18,14 @@
     color: transparent;
     caret-color: var(--text);
     font-weight: 300;
-    min-height: 10rem;
+    min-height: 19rem;
+
+    @media (min-width: 576px) {
+      min-height: 10rem;
+    }
 
     @media (min-width: 768px) {
+      flex: 1;
       min-height: calc(100% - 2rem);
     }
 

@@ -36,13 +36,13 @@
 
     .generate {
       border: 1px solid var(--link);
-      color: var(--link);
+      color: var(--text);
       font-size: 12px;
       padding: 8px 14px;
       border-radius: 4px;
-      background-color: transparent;
+      background-color: var(--link);
       outline: none;
-      transition: all 200ms ease;
+      transition: all 400ms ease;
       cursor: pointer;
       top: 50%;
       right: 0;
@@ -50,8 +50,7 @@
       position: absolute;
 
       &:hover {
-        background-color: var(--link);
-        color: var(--text);
+        color: var(--white);
       }
     }
   }
@@ -64,49 +63,6 @@
 
     @media (min-width: 768px) {
       flex: 1;
-    }
-
-    .metric {
-      margin-bottom: 1rem;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      .name {
-        color: var(--text);
-        font-weight: 300;
-        font-size: 1rem;
-        margin: 0 0 0.5rem;
-        line-height: 1.5;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .result {
-        border-radius: 0.5rem;
-        background-color: var(--body);
-        padding: 0.625rem 1rem;
-        padding-right: 3rem;
-        font-weight: 300;
-        flex: 1 1;
-        min-height: 1.25rem;
-        word-break: break-all;
-        line-height: 1.25;
-        position: relative;
-
-        .copy {
-          position: absolute;
-          top: 50%;
-          right: 1rem;
-          transform: translateY(-50%);
-
-          path {
-            fill: var(--text);
-          }
-        }
-      }
     }
   }
 }

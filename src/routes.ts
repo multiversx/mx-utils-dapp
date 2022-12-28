@@ -26,8 +26,8 @@ const pages: RouteType[] = [
     component: Converters
   },
   {
-    path: '/authentication',
-    title: 'Authentication',
+    path: '/auth',
+    title: 'Native Auth',
     component: Authentication
   }
 ];

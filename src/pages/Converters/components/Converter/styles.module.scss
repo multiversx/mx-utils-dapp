@@ -65,18 +65,17 @@
 
     .button {
       border: 1px solid var(--link);
-      color: var(--link);
+      color: var(--text);
       font-size: 12px;
       padding: 8px 14px;
       border-radius: 4px;
-      background-color: transparent;
+      background-color: var(--link);
       outline: none;
-      transition: all 200ms ease;
+      transition: all 400ms ease;
       cursor: pointer;
 
       &:hover {
-        background-color: var(--link);
-        color: var(--text);
+        color: var(--white);
       }
 
       &:first-child {
