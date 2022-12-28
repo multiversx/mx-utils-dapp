@@ -6,8 +6,12 @@
   }
 
   &.submetric {
-    padding-left: 2rem;
+    padding-left: 1rem;
     position: relative;
+
+    @media (min-width: 576px) {
+      padding-left: 1.5rem;
+    }
 
     &:after {
       content: '';
@@ -25,16 +29,20 @@
       &:before {
         position: absolute;
         content: '';
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1rem;
+        height: 1rem;
         border: solid;
         border-radius: 0 1rem 0;
         border-width: 0 2px 2px;
         border-right: hidden;
         border-color: var(--body);
         z-index: 2;
-        left: -2rem;
+        left: -1rem;
         bottom: 50%;
+
+        @media (min-width: 576px) {
+          left: -1.5rem;
+        }
       }
     }
   }
@@ -76,8 +84,12 @@
         content: '';
         background-color: var(--background);
         position: absolute;
-        left: -2rem;
+        left: -1rem;
         z-index: 1;
+
+        @media (min-width: 576px) {
+          left: -1.5rem;
+        }
       }
     }
 

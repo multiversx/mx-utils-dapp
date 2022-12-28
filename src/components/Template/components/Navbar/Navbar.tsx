@@ -77,14 +77,6 @@ export const Navbar = (props: NavbarPropsType) => {
             <ElrondLogo />
           </div>
 
-          <div
-            className={classNames(styles.logo, styles.symbol, {
-              [styles.dark]: theme === ThemeEnumType.light
-            })}
-          >
-            <ElrondSymbol />
-          </div>
-
           <span className={styles.application}>{applicationName}</span>
         </Link>
 
