@@ -89,9 +89,9 @@ export const Navbar = (props: NavbarPropsType) => {
         </Link>
 
         <div className={styles.right}>
-          <div className={styles.mode} onClick={onThemeSwitch}>
+          {/* <div className={styles.mode} onClick={onThemeSwitch}>
             <FontAwesomeIcon icon={isDark ? faSun : faMoon} />
-          </div>
+          </div> */}
 
           <div
             onClick={onMenuTrigger}

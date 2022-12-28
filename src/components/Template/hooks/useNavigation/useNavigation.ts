@@ -2,7 +2,7 @@ import {
   faArrowRightArrowLeft,
   faHome,
   faUser
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/pro-regular-svg-icons';
 
 import { useCategories } from 'pages/Converters/hooks/useCategories';
 
@@ -25,7 +25,7 @@ export const useNavigation = () => {
       icon: faArrowRightArrowLeft
     },
     {
-      path: '/authentication',
+      path: '/auth',
       icon: faUser
     }
   ];

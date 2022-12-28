@@ -10,16 +10,16 @@ export const Home = () => (
   <Template>
     <div className={styles.home}>
       <h1 className={styles.title} data-testid='home-title'>
-        Tools for the MultiversX Blockchain
+        Utilities for the MultiversX Blockchain
       </h1>
 
       <div className={styles.description} data-testid='home-description'>
-        This page offers an easy to use pack of tools necessary for interacting
-        with MultiversX Blockchain.
+        This page offers an easy to use pack of utilities necessary for
+        interacting with the MultiversX Blockchain.
       </div>
 
       <div className={styles.description} data-testid='home-description'>
-        Browse the menu on the left for MultiversX Tools.
+        Browse the menu on the left for MultiversX utilities.
       </div>
     </div>
   </Template>

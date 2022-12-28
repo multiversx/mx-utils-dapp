@@ -11,6 +11,7 @@ body {
   line-height: 1;
   overflow: hidden;
   background-color: var(--body);
+  --white: #ffffff;
 
   &.light {
     --body: #e7ebf7;
@@ -28,6 +29,18 @@ body {
     --dark: #4e5052;
     --link: #1b4cd9;
     --background: #2a2a2b;
+  }
+}
+
+.modal {
+  .dapp-core-component__main__card {
+    margin: 0;
+    border: none;
+    background: transparent;
+
+    .dapp-core-component__main__card-body {
+      padding: 0;
+    }
   }
 }
 

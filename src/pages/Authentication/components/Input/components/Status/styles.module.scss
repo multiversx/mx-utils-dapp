@@ -1,0 +1,30 @@
+.status {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+
+    &:before {
+      border-radius: 50%;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      content: '';
+      position: absolute;
+      border: 1px solid currentColor;
+    }
+  }
+
+  .text {
+    line-height: 1;
+  }
+}

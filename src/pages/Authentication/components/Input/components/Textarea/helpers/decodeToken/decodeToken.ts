@@ -7,6 +7,6 @@ export const decodeToken = async (token: string) => {
 
     return result;
   } catch {
-    throw new Error('Invalid token.');
+    throw new Error('Wrong token.');
   }
 };

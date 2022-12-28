@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+import { TransactionsToastList } from '@elrondnetwork/dapp-core/UI/TransactionsToastList';
 import { EnvironmentsEnum } from '@elrondnetwork/dapp-core/types/enums.types';
 import { DappProvider } from '@elrondnetwork/dapp-core/wrappers';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
@@ -19,21 +21,24 @@ export const App = () => (
       environment={EnvironmentsEnum.devnet}
       customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000 }}
     >
-      <ContextProvider>
-        <Layout>
-          <Routes>
-            {routes.map((route: RouteType) => (
-              <Route
-                path={route.path}
-                key={route.path}
-                element={<route.component />}
-              />
-            ))}
+      <Fragment>
+        <TransactionsToastList />
+        <ContextProvider>
+          <Layout>
+            <Routes>
+              {routes.map((route: RouteType) => (
+                <Route
+                  path={route.path}
+                  key={route.path}
+                  element={<route.component />}
+                />
+              ))}
 
-            <Route path='*' element={<Page404 />} />
-          </Routes>
-        </Layout>
-      </ContextProvider>
+              <Route path='*' element={<Page404 />} />
+            </Routes>
+          </Layout>
+        </ContextProvider>
+      </Fragment>
     </DappProvider>
   </BrowserRouter>
 );

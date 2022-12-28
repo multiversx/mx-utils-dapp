@@ -1,10 +1,10 @@
-import { useCallback, useState } from 'react';
-import { CopyButton } from '@elrondnetwork/dapp-core/UI/CopyButton';
+import { useState } from 'react';
 
 import { Template } from 'components/Template';
 
 import { Input } from './components/Input';
 import { Generate } from './components/Generate';
+import { Metric } from './components/Metric';
 
 import { TokenColorsEnum } from './enum';
 
@@ -12,13 +12,25 @@ import type { MetricItemType, MetricType } from './types';
 
 import styles from './styles.module.scss';
 
-const defaultMetrics: MetricType = {
+export const emptyMetrics: MetricType = {
   address: '',
   blockHash: '',
   signature: '',
   body: '',
   host: '',
-  ttl: 0
+  ttl: 0,
+  extraInfo: {}
+};
+
+export const defaultMetrics: MetricType = {
+  address: 'erd1wjytfn6zhqfcsejvhwv7q4usazs5ryc3j8hc78fldgjnyct8wejqkasunc',
+  blockHash: 'a71697208c89c1e020697574a48ec1666022872d70273e09c67a895f12ba407b',
+  signature:
+    '53121b33a2b1d95fe5a016588b8cdb3a17bfec55f2b39e977ff0c468dc0ceed53375344abb13c1f2ee819eef425c0a3f0202e9ced01bf195a74e9066e956da00',
+  body: 'bG9jYWxob3N0.a71697208c89c1e020697574a48ec1666022872d70273e09c67a895f12ba407b.86400.eyJ0aW1lc3RhbXAiOjE2NzIyMzA1Mjh9',
+  host: 'localhost',
+  ttl: 86400,
+  extraInfo: { timestamp: 1672230528 }
 };
 
 /*
@@ -26,40 +38,67 @@ const defaultMetrics: MetricType = {
  */
 
 export const Authentication = () => {
-  const [metrics, setMetrics] = useState<MetricType>(defaultMetrics);
   const [show, setShow] = useState(false);
+  const [metrics, setMetrics] = useState<MetricType>(defaultMetrics);
 
   const metricItems: MetricItemType[] = [
     {
       name: 'Address',
-      color: TokenColorsEnum.address,
+      identifier: 'address',
+      colors: [TokenColorsEnum.address],
       data: metrics ? metrics.address : undefined
     },
     {
       name: 'Body',
-      color: TokenColorsEnum.body,
+      identifier: 'body',
+      colors: [
+        TokenColorsEnum.host,
+        TokenColorsEnum.blockHash,
+        TokenColorsEnum.ttl,
+        TokenColorsEnum.extra
+      ],
       data: metrics ? metrics.body : undefined
     },
     {
-      name: 'Signature',
-      color: TokenColorsEnum.signature,
-      data: metrics ? metrics.signature : undefined
+      name: 'Host',
+      identifier: 'host',
+      colors: [TokenColorsEnum.host],
+      data: metrics ? metrics.host : undefined,
+      subItem: true
     },
     {
       name: 'Block Hash',
-      color: TokenColorsEnum.body,
-      data: metrics ? metrics.blockHash : undefined
+      identifier: 'blockHash',
+      colors: [TokenColorsEnum.blockHash],
+      data: metrics ? metrics.blockHash : undefined,
+      explorer: metrics ? `/blocks/${metrics.blockHash}` : '',
+      subItem: true
     },
+
     {
       name: 'Time to live (seconds)',
-      color: TokenColorsEnum.body,
-      data: metrics ? metrics.ttl : undefined
+      identifier: 'ttl',
+      colors: [TokenColorsEnum.ttl],
+      data: metrics ? metrics.ttl : undefined,
+      subItem: true
+    },
+    {
+      name: 'Extra Info',
+      identifier: 'extraInfo',
+      colors: [TokenColorsEnum.extra],
+      subItem: true,
+      data:
+        metrics && Object.keys(metrics.extraInfo || []).length > 0
+          ? JSON.stringify(metrics.extraInfo, null, 2)
+          : undefined
+    },
+    {
+      name: 'Signature',
+      identifier: 'signature',
+      colors: [TokenColorsEnum.signature],
+      data: metrics ? metrics.signature : undefined
     }
   ];
-
-  const onReset = useCallback(() => {
-    setMetrics(defaultMetrics);
-  }, []);
 
   /*
    * Return the rendered component.
@@ -78,7 +117,7 @@ export const Authentication = () => {
             </button>
           </h2>
 
-          <Input setMetrics={setMetrics} onReset={onReset} />
+          <Input setMetrics={setMetrics} />
         </div>
 
         <div className={styles.right}>
@@ -87,23 +126,7 @@ export const Authentication = () => {
           {metrics && (
             <div className={styles.metrics}>
               {metricItems.map((metric) => (
-                <div className={styles.metric} key={metric.name}>
-                  <div className={styles.name}>{metric.name}</div>
-
-                  <div
-                    className={styles.result}
-                    style={{ color: metric.color }}
-                  >
-                    <span>{metric.data}</span>
-
-                    {metric.data ? (
-                      <CopyButton
-                        text={String(metric.data) || ''}
-                        className={styles.copy}
-                      />
-                    ) : null}
-                  </div>
-                </div>
+                <Metric key={metric.identifier} {...metric} />
               ))}
             </div>
           )}
