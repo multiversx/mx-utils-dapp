@@ -27,12 +27,11 @@ import {
 import { emptyMetrics } from 'pages/Authentication';
 
 import { decodeToken } from './helpers/decodeToken';
+import { validateToken } from './helpers/validateToken';
 
 import type { TextareaDivisionType, TextareaPropsType } from './types';
-import type { NativeAuthDecoded } from '@elrondnetwork/native-auth-server/lib/src/entities/native.auth.decoded';
 
 import styles from './styles.module.scss';
-import { validateToken } from './helpers/validateToken';
 
 /*
  * Handle the component declaration.
