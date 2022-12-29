@@ -1,4 +1,6 @@
 import { useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkHorizontal } from '@fortawesome/pro-regular-svg-icons';
 import classNames from 'classnames';
 
 import { Template } from 'components/Template';
@@ -13,7 +15,7 @@ import styles from './styles.module.scss';
  */
 
 export const Converters = () => {
-  const { hash } = useLocation();
+  const { hash, pathname } = useLocation();
   const { categories } = useCategories();
 
   /*
@@ -33,6 +35,13 @@ export const Converters = () => {
 
             <h2 className={styles.name} data-testid={category.name}>
               {category.name}
+
+              <a
+                href={`${pathname}#${category.identifier}`}
+                className={styles.hash}
+              >
+                <FontAwesomeIcon icon={faLinkHorizontal} size='xs' />
+              </a>
             </h2>
 
             <div className={styles.converters}>
@@ -53,6 +62,13 @@ export const Converters = () => {
 
                   <h3 className={styles.title} data-testid={converter.title}>
                     {converter.title}
+
+                    <a
+                      href={`${pathname}#${category.identifier}-${converter.identifier}`}
+                      className={styles.hash}
+                    >
+                      <FontAwesomeIcon icon={faLinkHorizontal} size='xs' />
+                    </a>
                   </h3>
 
                   <Converter {...converter} />

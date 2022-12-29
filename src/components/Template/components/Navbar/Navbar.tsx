@@ -1,16 +1,11 @@
 import { MouseEvent, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import moment from 'moment';
 
 import { ThemeEnumType } from 'helpers/enum';
 import { applicationName } from 'config';
-import { useDispatch, useGlobalContext } from 'context';
+import { useGlobalContext } from 'context';
 import { ElrondLogo } from 'assets/img/ElrondLogo';
-import { ElrondSymbol } from 'assets/img/ElrondSymbol';
-import { storage } from 'helpers/storage';
 
 import styles from './styles.module.scss';
 
@@ -24,9 +19,6 @@ export const Navbar = (props: NavbarPropsType) => {
   const { setToggleMenu, toggleMenu } = props;
   const { theme } = useGlobalContext();
 
-  const isDark = theme === ThemeEnumType.dark;
-  const dispatch = useDispatch();
-
   /*
    * On menu triggering, update the passed along state to the opposite of the current boolean value.
    */
@@ -37,28 +29,6 @@ export const Navbar = (props: NavbarPropsType) => {
       setToggleMenu((toggleMenu: boolean) => !toggleMenu);
     },
     [setToggleMenu]
-  );
-
-  /*
-   * Switch between light mode and dark mode (local state dispatcher and local storage), which will be memorized for six months.
-   */
-
-  const onThemeSwitch = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      const theme = isDark ? ThemeEnumType.light : ThemeEnumType.dark;
-
-      event.preventDefault();
-      dispatch({ type: 'switchTheme', theme });
-      document.body.classList.remove(ThemeEnumType.dark, ThemeEnumType.light);
-      document.body.classList.add(theme);
-
-      storage.setLocalItem({
-        key: 'theme',
-        data: theme,
-        expires: moment().add(6, 'months').unix()
-      });
-    },
-    [isDark, dispatch]
   );
 
   /*
@@ -81,10 +51,6 @@ export const Navbar = (props: NavbarPropsType) => {
         </Link>
 
         <div className={styles.right}>
-          {/* <div className={styles.mode} onClick={onThemeSwitch}>
-            <FontAwesomeIcon icon={isDark ? faSun : faMoon} />
-          </div> */}
-
           <div
             onClick={onMenuTrigger}
             data-testid='navbar-burger'
