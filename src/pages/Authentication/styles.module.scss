@@ -33,26 +33,6 @@
       display: block;
       margin-top: 0.5rem;
     }
-
-    .generate {
-      border: 1px solid var(--link);
-      color: var(--text);
-      font-size: 12px;
-      padding: 8px 14px;
-      border-radius: 4px;
-      background-color: var(--link);
-      outline: none;
-      transition: all 400ms ease;
-      cursor: pointer;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      position: absolute;
-
-      &:hover {
-        color: var(--white);
-      }
-    }
   }
 
   .metrics {
