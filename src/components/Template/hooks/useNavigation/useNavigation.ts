@@ -4,8 +4,6 @@ import {
   faUser
 } from '@fortawesome/pro-regular-svg-icons';
 
-import { useCategories } from 'pages/Converters/hooks/useCategories';
-
 import type { NavigationType } from './types';
 
 /*
@@ -13,7 +11,6 @@ import type { NavigationType } from './types';
  */
 
 export const useNavigation = () => {
-  const data = useCategories();
   const navigation: NavigationType[] = [
     {
       path: '/',
@@ -21,7 +18,6 @@ export const useNavigation = () => {
     },
     {
       path: '/converters',
-      categories: data.categories,
       icon: faArrowRightArrowLeft
     },
     {

@@ -14,7 +14,6 @@ import { useNavigation } from './hooks/useNavigation';
 import styles from './styles.module.scss';
 
 import type { ItemType } from './types';
-import type { ConverterType } from 'pages/Converters/components/Converter/types';
 
 /*
  * Handle the component declaration.
@@ -124,56 +123,6 @@ export const Template = (props: PropsWithChildren) => {
                     </div>
                   )}
                 </div>
-
-                {item.categories && (
-                  <ul
-                    data-testid={`navigation-list-${item.path}`}
-                    className={classNames(styles.list, {
-                      [styles.active]: item.path === activePage
-                    })}
-                  >
-                    {item.categories.map((category) => (
-                      <li key={category.name} className={styles.category}>
-                        <a
-                          onClick={onItemClick}
-                          href={`${item.path}#${category.identifier}`}
-                          data-testid={`navigation-category-${category.identifier}`}
-                          className={classNames(styles.name, {
-                            [styles.active]: hash.includes(category.identifier)
-                          })}
-                        >
-                          {category.name}
-                        </a>
-
-                        {category.converters && (
-                          <ul className={styles.converters}>
-                            {category.converters.map(
-                              (converter: ConverterType) => (
-                                <li
-                                  key={converter.title}
-                                  className={styles.converter}
-                                >
-                                  <a
-                                    onClick={onItemClick}
-                                    data-testid={`navigation-item-#${category.identifier}-${converter.identifier}`}
-                                    href={`${item.path}#${category.identifier}-${converter.identifier}`}
-                                    className={classNames(styles.text, {
-                                      [styles.active]: hash.includes(
-                                        `${category.identifier}-${converter.identifier}`
-                                      )
-                                    })}
-                                  >
-                                    {converter.title}
-                                  </a>
-                                </li>
-                              )
-                            )}
-                          </ul>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </li>
             ))}
           </ul>

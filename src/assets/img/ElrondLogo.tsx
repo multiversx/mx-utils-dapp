@@ -6,7 +6,7 @@ export const ElrondLogo = () => (
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
   >
-    <g clip-path='url(#clip0_1955_878)'>
+    <g clipPath='url(#clip0_1955_878)'>
       <path
         d='M13.9119 25.7837L21.7577 7.29736H27.6077V31.4H23.7511V10.9849L15.0829 31.5287H12.3088L3.72653 11.1137V31.4H0V7.29736H6.11022L13.9119 25.7837Z'
         fill='white'
