@@ -7,4 +7,5 @@ export interface FormValuesType {
 
 export interface InputPropsType {
   setMetrics: Dispatch<SetStateAction<MetricType>>;
+  setShow: Dispatch<SetStateAction<boolean>>;
 }

@@ -13,7 +13,7 @@ import styles from './styles.module.scss';
  */
 
 export const Input = memo((props: InputPropsType) => {
-  const { setMetrics } = props;
+  const { setMetrics, setShow } = props;
 
   const initialValues = {
     token:
@@ -32,7 +32,12 @@ export const Input = memo((props: InputPropsType) => {
     >
       {(props: FormikProps<FormValuesType>) => (
         <Form className={styles.form}>
-          <h3 className={styles.subtitle}>Paste a token here</h3>
+          <h3 className={styles.subtitle}>
+            Paste a token here
+            <button onClick={() => setShow(true)} className={styles.generate}>
+              Generate new token
+            </button>
+          </h3>
 
           <Textarea {...props} setMetrics={setMetrics} />
           <Status {...props} />

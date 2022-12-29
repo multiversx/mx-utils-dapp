@@ -110,14 +110,9 @@ export const Authentication = () => {
 
       <div className={styles.authentication}>
         <div className={styles.left}>
-          <h2 className={styles.subtitle}>
-            Encoded
-            <button onClick={() => setShow(true)} className={styles.generate}>
-              Generate new token
-            </button>
-          </h2>
+          <h2 className={styles.subtitle}>Encoded</h2>
 
-          <Input setMetrics={setMetrics} />
+          <Input setMetrics={setMetrics} setShow={setShow} />
         </div>
 
         <div className={styles.right}>
