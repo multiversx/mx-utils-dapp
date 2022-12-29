@@ -19,5 +19,28 @@
     font-size: 1rem;
     margin: 0 0 1rem;
     line-height: 1.5;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+
+    .generate {
+      border: 1px solid var(--link);
+      color: var(--link);
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 4px;
+      background-color: transparent;
+      outline: none;
+      transition: all 400ms ease;
+      cursor: pointer;
+      margin-left: 1rem;
+
+      &:hover {
+        color: var(--black);
+        background-color: var(--link);
+      }
+    }
   }
 }

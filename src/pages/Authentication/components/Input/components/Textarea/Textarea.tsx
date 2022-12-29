@@ -100,7 +100,7 @@ export const Textarea = (props: TextareaPropsType) => {
       setFieldTouched('token', true, false);
 
       if (!Boolean(token)) {
-        setFieldError('token', 'Invalid Signature');
+        setFieldError('token', 'Token Undecodable');
         return;
       }
 
