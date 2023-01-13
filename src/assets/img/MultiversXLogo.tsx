@@ -1,4 +1,4 @@
-export const ElrondLogo = () => (
+export const MultiversXLogo = () => (
   <svg
     width='200'
     height='32'

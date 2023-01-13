@@ -14,7 +14,7 @@ export const Footer = () => (
       href={companyWebsite}
       target='_blank'
       rel='noreferrer'
-      className={styles.elrond}
+      className={styles.multiversx}
     >
       Made with
       <span className={styles.heart}>

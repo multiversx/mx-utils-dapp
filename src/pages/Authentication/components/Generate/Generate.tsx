@@ -4,7 +4,7 @@ import {
   LedgerLoginButton,
   WalletConnectLoginButton,
   WebWalletLoginButton
-} from '@elrondnetwork/dapp-core/UI';
+} from '@multiversx/sdk-dapp/UI';
 import { faArrowRight, faLock } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
@@ -42,11 +42,11 @@ export const Generate = (props: GeneratePropsType) => {
   const route = '/auth';
   const buttons = [
     {
-      name: 'Maiar DeFi Wallet',
+      name: 'DeFi Wallet',
       component: ExtensionLoginButton
     },
     {
-      name: 'Maiar',
+      name: 'xPortal Mobile Wallet',
       component: WalletConnectLoginButton,
       id: LoginContainersTypesEnum.walletConnect,
       onModalOpens: () =>
@@ -60,7 +60,7 @@ export const Generate = (props: GeneratePropsType) => {
         setOpenedContainerType(LoginContainersTypesEnum.ledger)
     },
     {
-      name: 'Elrond Web Wallet',
+      name: 'MultiversX Web Wallet',
       component: WebWalletLoginButton
     }
   ];

@@ -1,9 +1,9 @@
-import { stringIsFloat } from '@elrondnetwork/dapp-core/utils/validation/stringIsFloat';
-import { addressIsValid } from '@elrondnetwork/dapp-core/utils/account/addressIsValid';
-import { stringIsInteger } from '@elrondnetwork/dapp-core/utils/validation/stringIsInteger';
-import { formatAmount } from '@elrondnetwork/dapp-core/utils/operations/formatAmount';
-import { parseAmount } from '@elrondnetwork/dapp-core/utils/operations/parseAmount';
-import { Address } from '@elrondnetwork/erdjs/out';
+import { stringIsFloat } from '@multiversx/sdk-dapp/utils/validation/stringIsFloat';
+import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
+import { stringIsInteger } from '@multiversx/sdk-dapp/utils/validation/stringIsInteger';
+import { formatAmount } from '@multiversx/sdk-dapp/utils/operations/formatAmount';
+import { parseAmount } from '@multiversx/sdk-dapp/utils/operations/parseAmount';
+import { Address } from '@multiversx/sdk-core/out';
 import BigNumber from 'bignumber.js';
 
 import type { CategoryType } from './types';

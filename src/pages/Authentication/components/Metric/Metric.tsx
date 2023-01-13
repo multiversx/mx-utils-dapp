@@ -1,7 +1,7 @@
 import type { MetricItemType } from 'pages/Authentication/types';
 
-import { CopyButton } from '@elrondnetwork/dapp-core/UI/CopyButton';
-import { ExplorerLink } from '@elrondnetwork/dapp-core/UI/ExplorerLink';
+import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
+import { ExplorerLink } from '@multiversx/sdk-dapp/UI/ExplorerLink';
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
