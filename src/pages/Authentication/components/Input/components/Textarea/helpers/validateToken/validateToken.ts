@@ -1,6 +1,6 @@
-import { NativeAuthServer } from '@elrondnetwork/native-auth-server';
+import { NativeAuthServer } from '@multiversx/sdk-native-auth-server';
 
-import type { NativeAuthServerConfig } from '@elrondnetwork/native-auth-server/lib/src/entities/native.auth.server.config';
+import type { NativeAuthServerConfig } from '@multiversx/sdk-native-auth-server/lib/src/entities/native.auth.server.config';
 
 export const validateToken = async (
   token: string,

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { ThemeEnumType } from 'helpers/enum';
 import { applicationName } from 'config';
 import { useGlobalContext } from 'context';
-import { ElrondLogo } from 'assets/img/ElrondLogo';
+import { MultiversXLogo } from 'assets/img/MultiversXLogo';
 
 import styles from './styles.module.scss';
 
@@ -44,7 +44,7 @@ export const Navbar = (props: NavbarPropsType) => {
               [styles.dark]: theme === ThemeEnumType.light
             })}
           >
-            <ElrondLogo />
+            <MultiversXLogo />
           </div>
 
           <span className={styles.application}>{applicationName}</span>

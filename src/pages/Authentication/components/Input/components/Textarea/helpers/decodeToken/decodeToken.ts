@@ -1,4 +1,4 @@
-import { NativeAuthServer } from '@elrondnetwork/native-auth-server';
+import { NativeAuthServer } from '@multiversx/sdk-native-auth-server';
 
 export const decodeToken = async (token: string) => {
   try {

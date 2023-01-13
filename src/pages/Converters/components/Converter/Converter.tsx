@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { CopyButton } from '@elrondnetwork/dapp-core/UI/CopyButton';
+import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import { object, string } from 'yup';
 import classNames from 'classnames';
 

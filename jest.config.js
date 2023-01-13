@@ -16,8 +16,8 @@ module.exports = {
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$':
       'identity-obj-proxy',
-    '@elrondnetwork/dapp-core/(.*)':
-      '<rootDir>/node_modules/@elrondnetwork/dapp-core/__commonjs/$1',
+    '@multiversx/sdk-dapp/(.*)':
+      '<rootDir>/node_modules/@multiversx/sdk-dapp/__commonjs/$1',
     uint8arrays: '<rootDir>/node_modules/uint8arrays/cjs/src',
     multiformats: '<rootDir>/node_modules/multiformats/cjs/src'
   }
