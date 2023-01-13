@@ -1,0 +1,129 @@
+.metric {
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.submetric {
+    padding-left: 1rem;
+    position: relative;
+
+    @media (min-width: 576px) {
+      padding-left: 1.5rem;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      top: -1.5rem;
+      background-color: var(--body);
+      left: 0;
+      bottom: 0;
+    }
+
+    .result {
+      position: relative;
+
+      &:before {
+        position: absolute;
+        content: '';
+        width: 1rem;
+        height: 1rem;
+        border: solid;
+        border-radius: 0 1rem 0;
+        border-width: 0 2px 2px;
+        border-right: hidden;
+        border-color: var(--body);
+        z-index: 2;
+        left: -1rem;
+        bottom: 50%;
+
+        @media (min-width: 576px) {
+          left: -1.5rem;
+        }
+      }
+    }
+  }
+
+  .name {
+    color: var(--text);
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 0 0 0.5rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .result {
+    border-radius: 0.5rem;
+    background-color: var(--body);
+    padding: 0.625rem 1rem;
+    padding-right: 3rem;
+    font-weight: 300;
+    flex: 1 1;
+    min-height: 1.25rem;
+    word-break: break-all;
+    line-height: 1.25;
+    position: relative;
+
+    &.wide {
+      padding-right: 5rem;
+    }
+
+    &.format {
+      white-space: pre-wrap;
+
+      &:after {
+        top: calc(50% - 0.75rem);
+        width: 2px;
+        bottom: 0;
+        content: '';
+        background-color: var(--background);
+        position: absolute;
+        left: -1rem;
+        z-index: 1;
+
+        @media (min-width: 576px) {
+          left: -1.5rem;
+        }
+      }
+    }
+
+    .data {
+      .dot {
+        color: var(--white);
+
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+
+    .buttons {
+      position: absolute;
+      top: 50%;
+      display: flex;
+      align-items: center;
+      right: 1rem;
+      transform: translateY(-50%);
+
+      .copy,
+      .explorer {
+        margin-left: 1rem;
+
+        &:hover path {
+          fill: var(--white);
+        }
+      }
+
+      path {
+        fill: var(--text);
+        transition: all 400ms ease;
+      }
+    }
+  }
+}

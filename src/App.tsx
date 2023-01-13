@@ -1,46 +1,44 @@
-import React from 'react';
-import {
-  TransactionsToastList,
-  SignTransactionsModals,
-  NotificationModal
-} from '@elrondnetwork/dapp-core/UI';
-import { DappProvider } from '@elrondnetwork/dapp-core/wrappers';
+import { Fragment } from 'react';
+import { TransactionsToastList } from '@multiversx/sdk-dapp/UI/TransactionsToastList';
+import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types/enums.types';
+import { DappProvider } from '@multiversx/sdk-dapp/wrappers';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
-import Layout from 'components/Layout';
-import PageNotFound from 'pages/PageNotFound';
-import { routeNames } from 'routes';
-import routes from 'routes';
-import UnlockPage from './pages/UnlockPage';
+import { ContextProvider } from 'context';
+import { Layout } from 'components/Layout';
+import { Page404 } from 'pages/Page404';
+import { routes } from 'routes';
 
-const environment = 'devnet';
+import type { RouteType } from 'routes';
 
-const App = () => {
-  return (
-    <Router>
-      <DappProvider
-        environment={environment}
-        customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000 }}
-      >
-        <Layout>
-          <TransactionsToastList />
-          <NotificationModal />
-          <SignTransactionsModals className='custom-class-for-modals' />
-          <Routes>
-            <Route path={routeNames.unlock} element={<UnlockPage />} />
-            {routes.map((route: any, index: number) => (
-              <Route
-                path={route.path}
-                key={'route-key-' + index}
-                element={<route.component />}
-              />
-            ))}
-            <Route path='*' element={<PageNotFound />} />
-          </Routes>
-        </Layout>
-      </DappProvider>
-    </Router>
-  );
-};
+/*
+ * Handle the component declaration.
+ */
 
-export default App;
+export const App = () => (
+  <BrowserRouter>
+    <DappProvider
+      environment={EnvironmentsEnum.devnet}
+      customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000 }}
+    >
+      <Fragment>
+        <TransactionsToastList />
+        <ContextProvider>
+          <Layout>
+            <Routes>
+              {routes.map((route: RouteType) => (
+                <Route
+                  path={route.path}
+                  key={route.path}
+                  element={<route.component />}
+                />
+              ))}
+
+              <Route path='*' element={<Page404 />} />
+            </Routes>
+          </Layout>
+        </ContextProvider>
+      </Fragment>
+    </DappProvider>
+  </BrowserRouter>
+);

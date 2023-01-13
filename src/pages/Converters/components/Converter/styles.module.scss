@@ -1,0 +1,91 @@
+.converter {
+  display: initial;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    .label {
+      margin-bottom: 4px;
+      font-size: 10px;
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1;
+      display: inline-block;
+    }
+
+    .field {
+      border-radius: 8px;
+      background-color: var(--body);
+      margin-bottom: 4px;
+      border: none;
+      padding: 10px 15px;
+      color: var(--text);
+      font-weight: 300;
+      flex: 1;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    .error {
+      color: #d9534f;
+      font-size: 10px;
+    }
+  }
+
+  .result {
+    color: var(--text);
+    margin-top: 10px;
+    display: flex;
+
+    strong {
+      margin-right: 5px;
+    }
+
+    .value {
+      max-width: 100%;
+    }
+
+    .copy {
+      margin-left: 10px;
+
+      path {
+        fill: var(--text);
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+
+    .button {
+      border: 1px solid var(--link);
+      color: var(--link);
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 4px;
+      background-color: transparent;
+      outline: none;
+      transition: all 400ms ease;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--black);
+        background-color: var(--link);
+      }
+
+      &:first-child {
+        margin-right: 10px;
+      }
+
+      &.white:hover {
+        color: var(--navigation);
+      }
+    }
+  }
+}
