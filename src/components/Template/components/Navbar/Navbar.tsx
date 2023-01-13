@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { ThemeEnumType } from 'helpers/enum';
-import { applicationName } from 'config';
 import { useGlobalContext } from 'context';
 import { MultiversXLogo } from 'assets/img/MultiversXLogo';
 
@@ -46,8 +45,6 @@ export const Navbar = (props: NavbarPropsType) => {
           >
             <MultiversXLogo />
           </div>
-
-          <span className={styles.application}>{applicationName}</span>
         </Link>
 
         <div className={styles.right}>

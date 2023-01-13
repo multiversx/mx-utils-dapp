@@ -24,7 +24,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-        <!-- Social Cards -->
+    <!-- Social Cards -->
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MultiversX" />
@@ -33,9 +33,11 @@
     <meta
       name="twitter:description"
       content="It's an implementation of @multiversx/sdk-dapp, providing tools and utilities for interacting with the MultiversX blockchain."
-
     />
-    <meta name="twitter:image" content="https://template-dapp.multiversx.com/social.png" />
+    <meta
+      name="twitter:image"
+      content="https://template-dapp.multiversx.com/social.png"
+    />
 
     <!-- Other Cards -->
     <meta property="og:url" content="https://template-dapp.multiversx.com" />
@@ -43,15 +45,47 @@
     <meta
       property="og:description"
       content="It's an implementation of @multiversx/sdk-dapp, providing tools and utilities for interacting with the MultiversX blockchain."
-
     />
-    <meta property="og:image" content="https://template-dapp.multiversx.com/social.png" />
+    <meta
+      property="og:image"
+      content="https://template-dapp.multiversx.com/social.png"
+    />
 
     <title>MultiversX Utils</title>
 
-    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/%REACT_APP_THEME%.css?cachebust=%REACT_APP_CACHE_BUST%"></link>
-    <link id="stylesheet" rel="stylesheet" type="text/css" href="%PUBLIC_URL%/%REACT_APP_THEME%.css?cachebust=%REACT_APP_CACHE_BUST%"></link>
-    <link rel="stylesheet" href="%PUBLIC_URL%/dark.css?cachebust=%REACT_APP_CACHE_BUST%" media="print">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="%PUBLIC_URL%/%REACT_APP_THEME%.css?cachebust=%REACT_APP_CACHE_BUST%"
+    />
+
+    <link
+      id="stylesheet"
+      rel="stylesheet"
+      type="text/css"
+      href="%PUBLIC_URL%/%REACT_APP_THEME%.css?cachebust=%REACT_APP_CACHE_BUST%"
+    />
+
+    <link
+      rel="stylesheet"
+      href="%PUBLIC_URL%/dark.css?cachebust=%REACT_APP_CACHE_BUST%"
+      media="print"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D7D9K8JPCL"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-D7D9K8JPCL');
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
