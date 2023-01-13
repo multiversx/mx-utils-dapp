@@ -1,50 +1,43 @@
-import { dAppName } from 'config';
-import withPageTitle from './components/PageTitle';
-import Dashboard from './pages/Dashboard';
-import Home from './pages/Home';
-import Transaction from './pages/Transaction';
+import type { ComponentType } from 'react';
 
-export const routeNames = {
-  home: '/',
-  dashboard: '/dashboard',
-  transaction: '/transaction',
-  unlock: '/unlock',
-  ledger: '/ledger',
-  walletconnect: '/walletconnect'
-};
+import { applicationName } from 'config';
 
-const routes: Array<any> = [
+import { Authentication } from 'pages/Authentication';
+import { Converters } from 'pages/Converters';
+import { Home } from 'pages/Home';
+
+import { withPageTitle } from './components/PageTitle';
+
+export interface RouteType {
+  path: string;
+  title: string;
+  component: ComponentType;
+}
+
+const pages: RouteType[] = [
   {
-    path: routeNames.home,
+    path: '/',
     title: 'Home',
     component: Home
   },
   {
-    path: routeNames.dashboard,
-    title: 'Dashboard',
-    component: Dashboard,
-    authenticatedRoute: true
+    path: '/converters',
+    title: 'Converters',
+    component: Converters
   },
   {
-    path: routeNames.transaction,
-    title: 'Transaction',
-    component: Transaction
+    path: '/auth',
+    title: 'Native Auth',
+    component: Authentication
   }
 ];
 
-const mappedRoutes = routes.map((route) => {
-  const title = route.title
-    ? `${route.title} • Elrond ${dAppName}`
-    : `Elrond ${dAppName}`;
+export const routes = pages.map((page) => {
+  const title = page.title
+    ? `${page.title} • MultiversX ${applicationName}`
+    : `MultiversX ${applicationName}`;
 
-  const requiresAuth = Boolean(route.authenticatedRoute);
-  const wrappedComponent = withPageTitle(title, route.component);
-
-  return {
-    path: route.path,
-    component: wrappedComponent,
-    authenticatedRoute: requiresAuth
-  };
+  return Object.assign(page, {
+    component: withPageTitle(title, page.component)
+  });
 });
-
-export default mappedRoutes;
