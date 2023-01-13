@@ -1,9 +1,9 @@
-# @elrondnetwork/dapp-template
+# @multiversx/mx-template-dapp
 
-The **Elrond dApp Template**, built using [React.js](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/).
-It's a basic implementation of [@multiversx/sdk-dapp](https://www.npmjs.com/package/@multiversx/sdk-dapp), providing the basics for Elrond authentication and TX signing.
+The **MultiversX Utils**, built using [React.js](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/).
+It's an implementation of [@multiversx/sdk-dapp](https://www.npmjs.com/package/@multiversx/sdk-dapp), providing tools and utilities for interacting with the MultiversX blockchain.
 
-See [Dapp template](https://dapp-template.elrond.com/) for live demo.
+See [MultiversX Utils](https://utils.multiversx.com) for live demo.
 
 ## Requirements
 
@@ -57,7 +57,7 @@ npm run build
 
 ## Roadmap
 
-See the [open issues](https://github.com/ElrondNetwork/dapp-template/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/multiversx/mx-template-dapp/issues) for a list of proposed features (and known issues).
 
 ## Contributing
 
@@ -73,4 +73,4 @@ One can contribute by creating _pull requests_, or by opening _issues_ for disco
 
 ## Developers
 
-The [Elrond Team](https://elrond.com/team/).
+The [MultiversX Team](https://multiversx.com/).
