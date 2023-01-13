@@ -10,9 +10,9 @@ import { Field } from 'formik';
 import {
   useGetIsLoggedIn,
   useGetNetworkConfig
-} from '@elrondnetwork/dapp-core/hooks';
-import { useGetLoginInfo } from '@elrondnetwork/dapp-core/hooks/account/useGetLoginInfo';
-import { logout } from '@elrondnetwork/dapp-core/utils/logout';
+} from '@multiversx/sdk-dapp/hooks';
+import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
+import { logout } from '@multiversx/sdk-dapp/utils/logout';
 import classNames from 'classnames';
 import moment from 'moment';
 

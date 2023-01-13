@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
-import { TransactionsToastList } from '@elrondnetwork/dapp-core/UI/TransactionsToastList';
-import { EnvironmentsEnum } from '@elrondnetwork/dapp-core/types/enums.types';
-import { DappProvider } from '@elrondnetwork/dapp-core/wrappers';
+import { TransactionsToastList } from '@multiversx/sdk-dapp/UI/TransactionsToastList';
+import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types/enums.types';
+import { DappProvider } from '@multiversx/sdk-dapp/wrappers';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import { ContextProvider } from 'context';
