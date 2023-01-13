@@ -11,12 +11,12 @@
 
     .hash {
       font-size: 1rem;
-      color: var(--text);
+      color: var(--dark);
       margin-left: 0.5rem;
       transition: all 400ms ease;
 
       &:hover {
-        color: var(--white);
+        color: var(--text);
       }
     }
 
