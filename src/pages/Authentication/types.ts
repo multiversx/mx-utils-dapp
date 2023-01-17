@@ -15,6 +15,7 @@ export interface DefaultMetricType {
 export interface MetricItemType {
   name: string;
   colors: TokenColorsEnum[];
+  chain?: EnvironmentsEnum;
   data?: ReactNode;
   explorer?: string;
   identifier: string;
