@@ -18,7 +18,7 @@ import type { RouteType } from 'routes';
 export const App = () => (
   <BrowserRouter>
     <DappProvider
-      environment={EnvironmentsEnum.devnet}
+      environment={EnvironmentsEnum.mainnet}
       customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000 }}
     >
       <Fragment>
