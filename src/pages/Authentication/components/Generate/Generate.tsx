@@ -71,10 +71,6 @@ export const Generate = (props: GeneratePropsType) => {
   ];
 
   const navigate = useNavigate();
-  const onLoginRedirect = () => {
-    navigate('/terser', { replace: true });
-  };
-
   const onClose = () => {
     navigate(route);
     setShow(false);
@@ -127,7 +123,6 @@ export const Generate = (props: GeneratePropsType) => {
               <button.component
                 key={button.name}
                 callbackRoute={route}
-                onLoginRedirect={onLoginRedirect}
                 className={styles.button}
                 wrapContentInsideModal={false}
                 hideButtonWhenModalOpens={true}

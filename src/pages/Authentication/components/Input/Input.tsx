@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Formik, Form, FormikProps } from 'formik';
+import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
 import { Textarea } from './components/Textarea';
 import { Status } from './components/Status';
@@ -7,7 +8,6 @@ import { Status } from './components/Status';
 import type { FormValuesType, InputPropsType } from './types';
 
 import styles from './styles.module.scss';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
 /*
  * Handle the component declaration.
@@ -19,15 +19,15 @@ export const Input = memo((props: InputPropsType) => {
   const initialValues = {
     [EnvironmentsEnum.mainnet]: {
       token:
-        'ZXJkMXdoOWMwc2pyMnhuOGh6ZjAybHd3Y3I0amsyczg0dGF0OXVkMmthcTZ6cjd4enB2bDlsNXE4YXdtZXg.Ykc5allXeG9iM04wLmEwNjhiNDgxYjIyY2I4N2ZmOTRlY2IyYmIwNjNkMTgzNmFkMjM2YzQyMTc4YzdmYmM3ZGVjNTAyM2JkYmZmMjYuODY0MDAuZXlKMGFXMWxjM1JoYlhBaU9qRTJOek00T0RZeU1qSjk.8345772c09cbd6ba208411e2bf212878d7c968741fb9bf78f8c77fc7764a9615409f941c0fb668ad4b0ce0eb94350af756b36678afe7b3248c72a923e7b94004'
+        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLmQ4YjgzMDA1ZjRjY2M3OTRhYWFkZThmODE1ZDBjYjhiYWM1NTVkYjY2ZGJlOWJiZTg0MzZjMWU3ZWQ0YzZlNDYuODY0MDAuZXlKMGFXMWxjM1JoYlhBaU9qRTJOek01TlRBME5EWjk.a902ddd844a3a9c47f724b5fc65ff50370abd5298ed4207307e7113e273d3cb4501516a65f1ead3e1d7d10a9ea2554645e1e51b96826b649a3ce37c2528f1606'
     },
     [EnvironmentsEnum.devnet]: {
       token:
-        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLmE3MTY5NzIwOGM4OWMxZTAyMDY5NzU3NGE0OGVjMTY2NjAyMjg3MmQ3MDI3M2UwOWM2N2E4OTVmMTJiYTQwN2IuODY0MDAuZXlKMGFXMWxjM1JoYlhBaU9qRTJOekl5TXpBMU1qaDk.53121b33a2b1d95fe5a016588b8cdb3a17bfec55f2b39e977ff0c468dc0ceed53375344abb13c1f2ee819eef425c0a3f0202e9ced01bf195a74e9066e956da00'
+        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLjUyOGYwM2FkOWIwNjg3NTcyMDllNzY3YjE2ZjE3YmNhOTJjNzAzYzZiYzE0NmFiNzEyMGZhNmVjNzJlZDJhMDIuODY0MDAuZXlKMGFXMWxjM1JoYlhBaU9qRTJOek01TlRBMU56aDk.fa1cd80efc40effae33e7b0d6540476bd4309152a4642f9efd64335b7c3d0948f39f168893d18bc8712021a1456dd55034e89338a29c39f7d1b71471a0665205'
     },
     [EnvironmentsEnum.testnet]: {
       token:
-        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLmE3MTY5NzIwOGM4OWMxZTAyMDY5NzU3NGE0OGVjMTY2NjAyMjg3MmQ3MDI3M2UwOWM2N2E4OTVmMTJiYTQwN2IuODY0MDAuZXlKMGFXMWxjM1JoYlhBaU9qRTJOekl5TXpBMU1qaDk.53121b33a2b1d95fe5a016588b8cdb3a17bfec55f2b39e977ff0c468dc0ceed53375344abb13c1f2ee819eef425c0a3f0202e9ced01bf195a74e9066e956da00'
+        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLmE2NDU0MzUxYTc4MGExNTBlMDljNjg5ZTA1MzZjYTkxY2U0NzhhMmNiYTA1N2RkNmE2NGViZDJlYmQ3YmJhNWIuODY0MDAuZXlKMGFXMWxjM1JoYlhBaU9qRTJOek01TlRBMk9EQjk.3c2f1ed4deb9f01858ef6415c3b6ba90274395bcb26ab12764c59966909f30a81e2522d2aff33d48e3ba8f1b5f2f48ce62975465be64e43991e31b269cff1a0d'
     }
   }[chain];
 
@@ -40,6 +40,7 @@ export const Input = memo((props: InputPropsType) => {
       onSubmit={() => {}}
       initialValues={initialValues}
       validateOnMount={true}
+      enableReinitialize={true}
     >
       {(props: FormikProps<FormValuesType>) => (
         <Form className={styles.form}>
