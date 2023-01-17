@@ -7,10 +7,8 @@ import {
   useRef
 } from 'react';
 import { Field } from 'formik';
-import {
-  useGetIsLoggedIn,
-  useGetNetworkConfig
-} from '@multiversx/sdk-dapp/hooks';
+import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { logout } from '@multiversx/sdk-dapp/utils/logout';
 import classNames from 'classnames';
@@ -40,10 +38,14 @@ import styles from './styles.module.scss';
 export const Textarea = (props: TextareaPropsType) => {
   const { theme } = useTheme();
   const { tokenLogin, loginMethod } = useGetLoginInfo();
-  const { values, setMetrics, setFieldValue, setFieldTouched, setFieldError } =
-    props;
-
-  const { network } = useGetNetworkConfig();
+  const {
+    values,
+    chain,
+    setMetrics,
+    setFieldValue,
+    setFieldTouched,
+    setFieldError
+  } = props;
 
   const nativeAuthToken = storage.getLocalItem('nativeAuthToken');
   const clone = useRef<HTMLDivElement>(null);
@@ -106,10 +108,14 @@ export const Textarea = (props: TextareaPropsType) => {
 
       try {
         const config = {
-          apiUrl: network.apiAddress
+          apiUrl: fallbackNetworkConfigurations[chain].apiAddress
         };
 
-        const promises = [decodeToken(token), validateToken(token, config)];
+        const promises = [
+          decodeToken(token, config),
+          validateToken(token, config)
+        ];
+
         const [decoded, valid] = await Promise.allSettled(promises);
         const decodedValue = decoded as any;
 
@@ -134,13 +140,7 @@ export const Textarea = (props: TextareaPropsType) => {
         }
       }
     },
-    [
-      setFieldError,
-      setFieldValue,
-      network.apiAddress,
-      setFieldTouched,
-      setMetrics
-    ]
+    [setFieldError, chain, setFieldValue, setFieldTouched, setMetrics]
   );
 
   useEffect(() => {

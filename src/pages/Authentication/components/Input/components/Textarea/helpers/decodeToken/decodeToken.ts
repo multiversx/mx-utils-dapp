@@ -1,8 +1,13 @@
 import { NativeAuthServer } from '@multiversx/sdk-native-auth-server';
 
-export const decodeToken = async (token: string) => {
+import type { NativeAuthServerConfig } from '@multiversx/sdk-native-auth-server/lib/src/entities/native.auth.server.config';
+
+export const decodeToken = async (
+  token: string,
+  config: Partial<NativeAuthServerConfig>
+) => {
   try {
-    const server = new NativeAuthServer();
+    const server = new NativeAuthServer(config);
     const result = await server.decode(token);
 
     return result;
