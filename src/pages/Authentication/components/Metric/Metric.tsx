@@ -1,17 +1,22 @@
-import type { MetricItemType } from 'pages/Authentication/types';
-
+import { Fragment } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
-import { ExplorerLink } from '@multiversx/sdk-dapp/UI/ExplorerLink';
 import classNames from 'classnames';
 
+import type { MetricItemType } from 'pages/Authentication/types';
+
 import styles from './styles.module.scss';
-import { Fragment } from 'react';
 
 export const Metric = (props: MetricItemType) => {
-  const { subItem, name, colors, data, explorer, identifier } = props;
+  const { subItem, name, colors, data, explorer, identifier, chain } = props;
   const [color] = colors;
 
   const code = colors.length > 1 ? String(data).split('.') : [String(data)];
+  const link = chain
+    ? `${fallbackNetworkConfigurations[chain].explorerAddress}${explorer}`
+    : explorer;
 
   return (
     <div
@@ -42,7 +47,9 @@ export const Metric = (props: MetricItemType) => {
         {Boolean(data) ? (
           <div className={styles.buttons}>
             {explorer && data ? (
-              <ExplorerLink page={explorer} className={styles.explorer} />
+              <a href={link} target='_blank' rel='noreferrer'>
+                <FontAwesomeIcon icon={faSearch} className={styles.explorer} />
+              </a>
             ) : null}
 
             {data ? (

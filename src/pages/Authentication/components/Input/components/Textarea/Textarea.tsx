@@ -11,6 +11,7 @@ import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { logout } from '@multiversx/sdk-dapp/utils/logout';
+import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import moment from 'moment';
 
@@ -37,6 +38,7 @@ import styles from './styles.module.scss';
 
 export const Textarea = (props: TextareaPropsType) => {
   const { theme } = useTheme();
+  const { search } = useLocation();
   const { tokenLogin, loginMethod } = useGetLoginInfo();
   const {
     values,
@@ -154,7 +156,10 @@ export const Textarea = (props: TextareaPropsType) => {
   useEffect(() => {
     if (isLoggedIn && tokenLogin && tokenLogin.nativeAuthToken) {
       const token = tokenLogin.nativeAuthToken;
-      const route = `${window.location.origin}/auth`;
+      const route = search
+        ? `${window.location.origin}/auth${search}`
+        : `${window.location.origin}/auth`;
+
       const isWallet = loginMethod === 'wallet';
       const redirect = isWallet ? encodeURIComponent(route) : route;
 
@@ -167,7 +172,7 @@ export const Textarea = (props: TextareaPropsType) => {
         });
       }
     }
-  }, [isLoggedIn, nativeAuthToken, loginMethod, tokenLogin]);
+  }, [isLoggedIn, nativeAuthToken, loginMethod, tokenLogin, search]);
 
   /*
    * Return the rendered component.
