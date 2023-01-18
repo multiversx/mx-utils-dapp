@@ -11,7 +11,9 @@ export const validateToken = async (
     const valid = await server.validate(token);
 
     return valid;
-  } catch {
-    throw new Error('Invalid token.');
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
 };

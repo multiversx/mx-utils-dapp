@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { Formik, Form, FormikProps } from 'formik';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
+import { Environment } from './components/Environment';
 import { Textarea } from './components/Textarea';
 import { Status } from './components/Status';
 
@@ -14,20 +15,20 @@ import styles from './styles.module.scss';
  */
 
 export const Input = memo((props: InputPropsType) => {
-  const { setMetrics, setShow, chain } = props;
+  const { setMetrics, setShow, setChain, chain } = props;
 
   const initialValues = {
     [EnvironmentsEnum.mainnet]: {
       token:
-        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLmQ4YjgzMDA1ZjRjY2M3OTRhYWFkZThmODE1ZDBjYjhiYWM1NTVkYjY2ZGJlOWJiZTg0MzZjMWU3ZWQ0YzZlNDYuODY0MDAuZXlKMGFXMWxjM1JoYlhBaU9qRTJOek01TlRBME5EWjk.a902ddd844a3a9c47f724b5fc65ff50370abd5298ed4207307e7113e273d3cb4501516a65f1ead3e1d7d10a9ea2554645e1e51b96826b649a3ce37c2528f1606'
+        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLmY2ODE3NzUxMDc1NmVkY2U0NWVjYTg0Yjk0NTQ0YTZlYWNkZmEzNmU2OWRmZDNiOGYyNGM0MDEwZDE5OTA3NTEuMzAwLmV5SjBhVzFsYzNSaGJYQWlPakUyTnpNNU56SXlORFI5.a29dba3f0d2fb4712cb662bc8050c87bf9f0e7fd28f3c98efe0fda074be5b087bd75c075243e832c2985a9da044496b2cff3c852c8c963f9d3d840aed8799c07'
     },
     [EnvironmentsEnum.devnet]: {
       token:
-        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLjUyOGYwM2FkOWIwNjg3NTcyMDllNzY3YjE2ZjE3YmNhOTJjNzAzYzZiYzE0NmFiNzEyMGZhNmVjNzJlZDJhMDIuODY0MDAuZXlKMGFXMWxjM1JoYlhBaU9qRTJOek01TlRBMU56aDk.fa1cd80efc40effae33e7b0d6540476bd4309152a4642f9efd64335b7c3d0948f39f168893d18bc8712021a1456dd55034e89338a29c39f7d1b71471a0665205'
+        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLjE4YmM5ODI0NjFkMWI1M2M4MzdhMjRkZTRiNDYyM2MyYmI4MzU4NjdlYTJlOGRmMTQzNjVjZjQzNmRlZTFiMjMuNjAwLmV5SjBhVzFsYzNSaGJYQWlPakUyTnpNNU56SXpOalI5.f8d651eda06e82a894ff1dc9480a33aa1030b076dfd5983346eec6793381587b88c2daf770a10ac39f9911968c2f1d1304c0c7dd86a82bc79f07e89f873f7e02'
     },
     [EnvironmentsEnum.testnet]: {
       token:
-        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLmE2NDU0MzUxYTc4MGExNTBlMDljNjg5ZTA1MzZjYTkxY2U0NzhhMmNiYTA1N2RkNmE2NGViZDJlYmQ3YmJhNWIuODY0MDAuZXlKMGFXMWxjM1JoYlhBaU9qRTJOek01TlRBMk9EQjk.3c2f1ed4deb9f01858ef6415c3b6ba90274395bcb26ab12764c59966909f30a81e2522d2aff33d48e3ba8f1b5f2f48ce62975465be64e43991e31b269cff1a0d'
+        'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLjdkNzQxODI3OTM0NWZiZjFiM2UwMDU0MDMyZDFjM2UzYjIzMjRiOTgyMjNjYzZhODI1ZTc2ZjRmYmZkNGE3ZGQuOTAwLmV5SjBhVzFsYzNSaGJYQWlPakUyTnpNNU56TTVNRFo5.6912c4dddb58fbc8aa3ee210c9a6e6e66847abcd6eebe72fe5b5df02632598c9b568c3b3499eea3d62f321db7aab3e5e7fef293f8ae17aaa6042141bd6a23208'
     }
   }[chain];
 
@@ -39,16 +40,27 @@ export const Input = memo((props: InputPropsType) => {
     <Formik
       onSubmit={() => {}}
       initialValues={initialValues}
-      validateOnMount={true}
+      validateOnBlur={false}
+      validateOnChange={false}
       enableReinitialize={true}
+      initialErrors={{ token: 'Token Expired' }}
     >
       {(props: FormikProps<FormValuesType>) => (
         <Form className={styles.form}>
           <h3 className={styles.subtitle}>
-            Paste a token here
-            <button onClick={() => setShow(true)} className={styles.generate}>
-              Generate new token
-            </button>
+            <span>Paste a token here</span>
+
+            <div className={styles.wrapper}>
+              <button onClick={() => setShow(true)} className={styles.generate}>
+                Generate
+              </button>
+
+              <Environment
+                chain={chain}
+                setChain={setChain}
+                setMetrics={setMetrics}
+              />
+            </div>
           </h3>
 
           <Textarea {...props} setMetrics={setMetrics} chain={chain} />

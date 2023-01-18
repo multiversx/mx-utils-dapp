@@ -1,6 +1,7 @@
 import type { SetStateAction, Dispatch } from 'react';
+import type { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
+
 import type { MetricType } from 'pages/Authentication/types';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
 export interface FormValuesType {
   token: string;
@@ -8,6 +9,7 @@ export interface FormValuesType {
 
 export interface InputPropsType {
   setMetrics: Dispatch<SetStateAction<MetricType>>;
+  setChain: Dispatch<SetStateAction<EnvironmentsEnum>>;
   setShow: Dispatch<SetStateAction<boolean>>;
   chain: EnvironmentsEnum;
 }

@@ -80,8 +80,6 @@ export const Environment = (props: EnvironmentPropsType) => {
 
   return (
     <div className={styles.environment}>
-      <span className={styles.label}>Network:</span>
-
       <Select
         options={options.reverse()}
         defaultValue={{ label: chain, value: chain }}
