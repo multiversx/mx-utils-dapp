@@ -11,7 +11,9 @@ export const decodeToken = async (
     const result = await server.decode(token);
 
     return result;
-  } catch {
-    throw new Error('Wrong token.');
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
 };

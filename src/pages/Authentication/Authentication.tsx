@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { getChainID } from '@multiversx/sdk-dapp/utils/network';
 import { getEnvironmentForChainId } from '@multiversx/sdk-dapp/apiCalls/configuration/getEnvironmentForChainId';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
+import { useGetNetworkConfig } from '@multiversx/sdk-dapp/hooks';
 import { useLocation } from 'react-router-dom';
 
 import { Template } from 'components/Template';
@@ -9,7 +9,6 @@ import { Template } from 'components/Template';
 import { Input } from './components/Input';
 import { Metric } from './components/Metric';
 import { Generate } from './components/Generate';
-import { Environment } from './components/Environment';
 
 import { TokenColorsEnum } from './enum';
 
@@ -31,35 +30,35 @@ export const defaultMetrics: DefaultMetricType = {
   [EnvironmentsEnum.mainnet]: {
     address: 'erd1wjytfn6zhqfcsejvhwv7q4usazs5ryc3j8hc78fldgjnyct8wejqkasunc',
     blockHash:
-      'd8b83005f4ccc794aaade8f815d0cb8bac555db66dbe9bbe8436c1e7ed4c6e46',
+      'f68177510756edce45eca84b94544a6eacdfa36e69dfd3b8f24c4010d1990751',
     signature:
-      'a902ddd844a3a9c47f724b5fc65ff50370abd5298ed4207307e7113e273d3cb4501516a65f1ead3e1d7d10a9ea2554645e1e51b96826b649a3ce37c2528f1606',
-    body: 'bG9jYWxob3N0.d8b83005f4ccc794aaade8f815d0cb8bac555db66dbe9bbe8436c1e7ed4c6e46.86400.eyJ0aW1lc3RhbXAiOjE2NzM5NTA0NDZ9',
+      'a29dba3f0d2fb4712cb662bc8050c87bf9f0e7fd28f3c98efe0fda074be5b087bd75c075243e832c2985a9da044496b2cff3c852c8c963f9d3d840aed8799c07',
+    body: 'bG9jYWxob3N0.f68177510756edce45eca84b94544a6eacdfa36e69dfd3b8f24c4010d1990751.300.eyJ0aW1lc3RhbXAiOjE2NzM5NzIyNDR9',
     host: 'localhost',
-    ttl: 86400,
-    extraInfo: { timestamp: 1673950446 }
+    ttl: 300,
+    extraInfo: { timestamp: 1673972244 }
   },
   [EnvironmentsEnum.devnet]: {
     address: 'erd1wjytfn6zhqfcsejvhwv7q4usazs5ryc3j8hc78fldgjnyct8wejqkasunc',
     blockHash:
-      '528f03ad9b068757209e767b16f17bca92c703c6bc146ab7120fa6ec72ed2a02',
+      '18bc982461d1b53c837a24de4b4623c2bb835867ea2e8df14365cf436dee1b23',
     signature:
-      'fa1cd80efc40effae33e7b0d6540476bd4309152a4642f9efd64335b7c3d0948f39f168893d18bc8712021a1456dd55034e89338a29c39f7d1b71471a0665205',
-    body: 'bG9jYWxob3N0.528f03ad9b068757209e767b16f17bca92c703c6bc146ab7120fa6ec72ed2a02.86400.eyJ0aW1lc3RhbXAiOjE2NzM5NTA1Nzh9',
+      'f8d651eda06e82a894ff1dc9480a33aa1030b076dfd5983346eec6793381587b88c2daf770a10ac39f9911968c2f1d1304c0c7dd86a82bc79f07e89f873f7e02',
+    body: 'bG9jYWxob3N0.18bc982461d1b53c837a24de4b4623c2bb835867ea2e8df14365cf436dee1b23.600.eyJ0aW1lc3RhbXAiOjE2NzM5NzIzNjR9',
     host: 'localhost',
-    ttl: 86400,
-    extraInfo: { timestamp: 1673950578 }
+    ttl: 600,
+    extraInfo: { timestamp: 1673972364 }
   },
   [EnvironmentsEnum.testnet]: {
     address: 'erd1wjytfn6zhqfcsejvhwv7q4usazs5ryc3j8hc78fldgjnyct8wejqkasunc',
     blockHash:
-      'a6454351a780a150e09c689e0536ca91ce478a2cba057dd6a64ebd2ebd7bba5b',
+      '7d7418279345fbf1b3e0054032d1c3e3b2324b98223cc6a825e76f4fbfd4a7dd',
     signature:
-      '3c2f1ed4deb9f01858ef6415c3b6ba90274395bcb26ab12764c59966909f30a81e2522d2aff33d48e3ba8f1b5f2f48ce62975465be64e43991e31b269cff1a0d',
-    body: 'bG9jYWxob3N0.a6454351a780a150e09c689e0536ca91ce478a2cba057dd6a64ebd2ebd7bba5b.86400.eyJ0aW1lc3RhbXAiOjE2NzM5NTA2ODB9',
+      '6912c4dddb58fbc8aa3ee210c9a6e6e66847abcd6eebe72fe5b5df02632598c9b568c3b3499eea3d62f321db7aab3e5e7fef293f8ae17aaa6042141bd6a23208',
+    body: 'bG9jYWxob3N0.7d7418279345fbf1b3e0054032d1c3e3b2324b98223cc6a825e76f4fbfd4a7dd.900.eyJ0aW1lc3RhbXAiOjE2NzM5NzM5MDZ9',
     host: 'localhost',
-    ttl: 86400,
-    extraInfo: { timestamp: 1673950680 }
+    ttl: 900,
+    extraInfo: { timestamp: 1673973906 }
   }
 };
 
@@ -68,12 +67,14 @@ export const defaultMetrics: DefaultMetricType = {
  */
 
 export const Authentication = () => {
-  const location = useLocation();
-  const entries = Object.fromEntries(new URLSearchParams(location.search));
-  const network = entries.network as EnvironmentsEnum;
+  const { search } = useLocation();
+  const { network } = useGetNetworkConfig();
+
+  const entries = Object.fromEntries(new URLSearchParams(search));
+  const environment = entries.network as EnvironmentsEnum;
 
   const [chain, setChain] = useState<EnvironmentsEnum>(
-    network || getEnvironmentForChainId(getChainID())
+    environment || getEnvironmentForChainId(network.chainId)
   );
 
   const [show, setShow] = useState(false);
@@ -150,18 +151,17 @@ export const Authentication = () => {
         <div className={styles.left}>
           <h2 className={styles.subtitle}>Encoded</h2>
 
-          <Input setMetrics={setMetrics} setShow={setShow} chain={chain} />
+          <Input
+            setMetrics={setMetrics}
+            setShow={setShow}
+            setChain={setChain}
+            chain={chain}
+          />
         </div>
 
         <div className={styles.right}>
           <h2 className={styles.subtitle}>
             <span>Decoded</span>
-
-            <Environment
-              chain={chain}
-              setChain={setChain}
-              setMetrics={setMetrics}
-            />
           </h2>
 
           {metrics && (

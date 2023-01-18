@@ -1,16 +1,9 @@
 .environment {
-  position: absolute;
-  right: 0;
-  top: 50%;
+  margin-left: 0.5rem;
   z-index: 1;
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
   font-size: 1rem;
-
-  .label {
-    margin-right: 0.5rem;
-  }
 
   .control {
     background-color: transparent;
@@ -30,7 +23,7 @@
     .container {
       background-color: var(--header);
       padding: 0.5rem;
-      border-radius: 0.5rem;
+      border-radius: 0.25rem;
       font-size: 1rem;
       min-width: 5rem;
       text-align: center;
@@ -53,7 +46,7 @@
     font-size: 1rem;
     width: auto;
     background: var(--header);
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     box-shadow: none;
     overflow: hidden;
 

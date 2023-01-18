@@ -105,6 +105,7 @@ export const Textarea = (props: TextareaPropsType) => {
 
       if (!Boolean(token)) {
         setFieldError('token', 'Token Undecodable');
+        setMetrics(emptyMetrics);
         return;
       }
 
@@ -120,6 +121,9 @@ export const Textarea = (props: TextareaPropsType) => {
 
         const [decoded, valid] = await Promise.allSettled(promises);
         const decodedValue = decoded as any;
+        const tokenExpired =
+          valid.status === 'rejected' &&
+          valid.reason.message === 'Token expired';
 
         if (decoded.status === 'rejected') {
           setFieldError('token', 'Token Undecodable');
@@ -129,12 +133,17 @@ export const Textarea = (props: TextareaPropsType) => {
           setMetrics(decodedValue.value);
         }
 
+        if (tokenExpired) {
+          setFieldError('token', 'Token Expired');
+          return;
+        }
+
         if (valid.status === 'rejected') {
           setFieldError('token', 'Token Invalid');
           return;
         }
 
-        setFieldError('token', '');
+        setFieldError('token', undefined);
       } catch (error) {
         if (error instanceof Error) {
           console.error(error);
@@ -147,7 +156,7 @@ export const Textarea = (props: TextareaPropsType) => {
 
   useEffect(() => {
     if (nativeAuthToken) {
-      setFieldValue('token', nativeAuthToken, true);
+      setFieldValue('token', nativeAuthToken, false);
       storage.removeLocalItem('nativeAuthToken');
       onChange(nativeAuthToken);
     }
