@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { getEnvironmentForChainId } from '@multiversx/sdk-dapp/apiCalls/configuration/getEnvironmentForChainId';
+import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
+import { useGetNetworkConfig } from '@multiversx/sdk-dapp/hooks';
+import { useLocation } from 'react-router-dom';
 
 import { Template } from 'components/Template';
 
 import { Input } from './components/Input';
-import { Generate } from './components/Generate';
 import { Metric } from './components/Metric';
+import { Generate } from './components/Generate';
 
 import { TokenColorsEnum } from './enum';
 
-import type { MetricItemType, MetricType } from './types';
+import type { DefaultMetricType, MetricItemType, MetricType } from './types';
 
 import styles from './styles.module.scss';
 
@@ -22,15 +26,40 @@ export const emptyMetrics: MetricType = {
   extraInfo: {}
 };
 
-export const defaultMetrics: MetricType = {
-  address: 'erd1wjytfn6zhqfcsejvhwv7q4usazs5ryc3j8hc78fldgjnyct8wejqkasunc',
-  blockHash: 'a71697208c89c1e020697574a48ec1666022872d70273e09c67a895f12ba407b',
-  signature:
-    '53121b33a2b1d95fe5a016588b8cdb3a17bfec55f2b39e977ff0c468dc0ceed53375344abb13c1f2ee819eef425c0a3f0202e9ced01bf195a74e9066e956da00',
-  body: 'bG9jYWxob3N0.a71697208c89c1e020697574a48ec1666022872d70273e09c67a895f12ba407b.86400.eyJ0aW1lc3RhbXAiOjE2NzIyMzA1Mjh9',
-  host: 'localhost',
-  ttl: 86400,
-  extraInfo: { timestamp: 1672230528 }
+export const defaultMetrics: DefaultMetricType = {
+  [EnvironmentsEnum.mainnet]: {
+    address: 'erd1wjytfn6zhqfcsejvhwv7q4usazs5ryc3j8hc78fldgjnyct8wejqkasunc',
+    blockHash:
+      'f68177510756edce45eca84b94544a6eacdfa36e69dfd3b8f24c4010d1990751',
+    signature:
+      'a29dba3f0d2fb4712cb662bc8050c87bf9f0e7fd28f3c98efe0fda074be5b087bd75c075243e832c2985a9da044496b2cff3c852c8c963f9d3d840aed8799c07',
+    body: 'bG9jYWxob3N0.f68177510756edce45eca84b94544a6eacdfa36e69dfd3b8f24c4010d1990751.300.eyJ0aW1lc3RhbXAiOjE2NzM5NzIyNDR9',
+    host: 'localhost',
+    ttl: 300,
+    extraInfo: { timestamp: 1673972244 }
+  },
+  [EnvironmentsEnum.devnet]: {
+    address: 'erd1wjytfn6zhqfcsejvhwv7q4usazs5ryc3j8hc78fldgjnyct8wejqkasunc',
+    blockHash:
+      '18bc982461d1b53c837a24de4b4623c2bb835867ea2e8df14365cf436dee1b23',
+    signature:
+      'f8d651eda06e82a894ff1dc9480a33aa1030b076dfd5983346eec6793381587b88c2daf770a10ac39f9911968c2f1d1304c0c7dd86a82bc79f07e89f873f7e02',
+    body: 'bG9jYWxob3N0.18bc982461d1b53c837a24de4b4623c2bb835867ea2e8df14365cf436dee1b23.600.eyJ0aW1lc3RhbXAiOjE2NzM5NzIzNjR9',
+    host: 'localhost',
+    ttl: 600,
+    extraInfo: { timestamp: 1673972364 }
+  },
+  [EnvironmentsEnum.testnet]: {
+    address: 'erd1wjytfn6zhqfcsejvhwv7q4usazs5ryc3j8hc78fldgjnyct8wejqkasunc',
+    blockHash:
+      '7d7418279345fbf1b3e0054032d1c3e3b2324b98223cc6a825e76f4fbfd4a7dd',
+    signature:
+      '6912c4dddb58fbc8aa3ee210c9a6e6e66847abcd6eebe72fe5b5df02632598c9b568c3b3499eea3d62f321db7aab3e5e7fef293f8ae17aaa6042141bd6a23208',
+    body: 'bG9jYWxob3N0.7d7418279345fbf1b3e0054032d1c3e3b2324b98223cc6a825e76f4fbfd4a7dd.900.eyJ0aW1lc3RhbXAiOjE2NzM5NzM5MDZ9',
+    host: 'localhost',
+    ttl: 900,
+    extraInfo: { timestamp: 1673973906 }
+  }
 };
 
 /*
@@ -38,8 +67,18 @@ export const defaultMetrics: MetricType = {
  */
 
 export const Authentication = () => {
+  const { search } = useLocation();
+  const { network } = useGetNetworkConfig();
+
+  const entries = Object.fromEntries(new URLSearchParams(search));
+  const environment = entries.network as EnvironmentsEnum;
+
+  const [chain, setChain] = useState<EnvironmentsEnum>(
+    environment || getEnvironmentForChainId(network.chainId)
+  );
+
   const [show, setShow] = useState(false);
-  const [metrics, setMetrics] = useState<MetricType>(defaultMetrics);
+  const [metrics, setMetrics] = useState<MetricType>(defaultMetrics[chain]);
 
   const metricItems: MetricItemType[] = [
     {
@@ -106,22 +145,29 @@ export const Authentication = () => {
 
   return (
     <Template>
-      <Generate show={show} setShow={setShow} />
+      <Generate show={show} setShow={setShow} chain={chain} />
 
       <div className={styles.authentication}>
         <div className={styles.left}>
           <h2 className={styles.subtitle}>Encoded</h2>
 
-          <Input setMetrics={setMetrics} setShow={setShow} />
+          <Input
+            setMetrics={setMetrics}
+            setShow={setShow}
+            setChain={setChain}
+            chain={chain}
+          />
         </div>
 
         <div className={styles.right}>
-          <h2 className={styles.subtitle}>Decoded</h2>
+          <h2 className={styles.subtitle}>
+            <span>Decoded</span>
+          </h2>
 
           {metrics && (
             <div className={styles.metrics}>
               {metricItems.map((metric) => (
-                <Metric key={metric.identifier} {...metric} />
+                <Metric key={metric.identifier} chain={chain} {...metric} />
               ))}
             </div>
           )}
