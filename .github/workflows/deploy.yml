@@ -2,7 +2,7 @@ name: deploy
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   repository_dispatch:
     types: deploy
   workflow_dispatch:
@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
       - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '16.x'
       - run: cp ./src/config.devnet.tsx ./src/config.tsx
       - run: npm install
       - run: npm run build
