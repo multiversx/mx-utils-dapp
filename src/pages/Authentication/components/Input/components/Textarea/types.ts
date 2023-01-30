@@ -5,6 +5,7 @@ import type { FormValuesType } from '../../types';
 
 export interface TextareaPropsType extends FormikProps<FormValuesType> {
   setMetrics: Dispatch<SetStateAction<MetricType>>;
+  chain: string;
 }
 
 export interface TextareaDivisionType {
