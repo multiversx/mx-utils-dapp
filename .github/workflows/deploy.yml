@@ -17,7 +17,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-      - run: cp ./src/config.devnet.tsx ./src/config.tsx
       - run: npm install
       - run: npm run build
         env:
