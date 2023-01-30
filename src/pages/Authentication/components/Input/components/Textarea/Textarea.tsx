@@ -7,12 +7,11 @@ import {
   useRef
 } from 'react';
 import { Field } from 'formik';
-import {
-  useGetIsLoggedIn,
-  useGetNetworkConfig
-} from '@multiversx/sdk-dapp/hooks';
+import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { logout } from '@multiversx/sdk-dapp/utils/logout';
+import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import moment from 'moment';
 
@@ -39,11 +38,16 @@ import styles from './styles.module.scss';
 
 export const Textarea = (props: TextareaPropsType) => {
   const { theme } = useTheme();
+  const { search } = useLocation();
   const { tokenLogin, loginMethod } = useGetLoginInfo();
-  const { values, setMetrics, setFieldValue, setFieldTouched, setFieldError } =
-    props;
-
-  const { network } = useGetNetworkConfig();
+  const {
+    values,
+    chain,
+    setMetrics,
+    setFieldValue,
+    setFieldTouched,
+    setFieldError
+  } = props;
 
   const nativeAuthToken = storage.getLocalItem('nativeAuthToken');
   const clone = useRef<HTMLDivElement>(null);
@@ -101,17 +105,25 @@ export const Textarea = (props: TextareaPropsType) => {
 
       if (!Boolean(token)) {
         setFieldError('token', 'Token Undecodable');
+        setMetrics(emptyMetrics);
         return;
       }
 
       try {
         const config = {
-          apiUrl: network.apiAddress
+          apiUrl: fallbackNetworkConfigurations[chain].apiAddress
         };
 
-        const promises = [decodeToken(token), validateToken(token, config)];
+        const promises = [
+          decodeToken(token, config),
+          validateToken(token, config)
+        ];
+
         const [decoded, valid] = await Promise.allSettled(promises);
         const decodedValue = decoded as any;
+        const tokenExpired =
+          valid.status === 'rejected' &&
+          valid.reason.message === 'Token expired';
 
         if (decoded.status === 'rejected') {
           setFieldError('token', 'Token Undecodable');
@@ -121,12 +133,17 @@ export const Textarea = (props: TextareaPropsType) => {
           setMetrics(decodedValue.value);
         }
 
+        if (tokenExpired) {
+          setFieldError('token', 'Token Expired');
+          return;
+        }
+
         if (valid.status === 'rejected') {
           setFieldError('token', 'Token Invalid');
           return;
         }
 
-        setFieldError('token', '');
+        setFieldError('token', undefined);
       } catch (error) {
         if (error instanceof Error) {
           console.error(error);
@@ -134,18 +151,12 @@ export const Textarea = (props: TextareaPropsType) => {
         }
       }
     },
-    [
-      setFieldError,
-      setFieldValue,
-      network.apiAddress,
-      setFieldTouched,
-      setMetrics
-    ]
+    [setFieldError, chain, setFieldValue, setFieldTouched, setMetrics]
   );
 
   useEffect(() => {
     if (nativeAuthToken) {
-      setFieldValue('token', nativeAuthToken, true);
+      setFieldValue('token', nativeAuthToken, false);
       storage.removeLocalItem('nativeAuthToken');
       onChange(nativeAuthToken);
     }
@@ -154,7 +165,10 @@ export const Textarea = (props: TextareaPropsType) => {
   useEffect(() => {
     if (isLoggedIn && tokenLogin && tokenLogin.nativeAuthToken) {
       const token = tokenLogin.nativeAuthToken;
-      const route = `${window.location.origin}/auth`;
+      const route = search
+        ? `${window.location.origin}/auth${search}`
+        : `${window.location.origin}/auth`;
+
       const isWallet = loginMethod === 'wallet';
       const redirect = isWallet ? encodeURIComponent(route) : route;
 
@@ -167,7 +181,7 @@ export const Textarea = (props: TextareaPropsType) => {
         });
       }
     }
-  }, [isLoggedIn, nativeAuthToken, loginMethod, tokenLogin]);
+  }, [isLoggedIn, nativeAuthToken, loginMethod, tokenLogin, search]);
 
   /*
    * Return the rendered component.

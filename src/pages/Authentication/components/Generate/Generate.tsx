@@ -5,9 +5,10 @@ import {
   WalletConnectLoginButton,
   WebWalletLoginButton
 } from '@multiversx/sdk-dapp/UI';
+import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants/network';
 import { faArrowRight, faLock } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 
 import { CloseIcon } from 'assets/img/CloseIcon';
@@ -23,7 +24,12 @@ enum LoginContainersTypesEnum {
 }
 
 export const Generate = (props: GeneratePropsType) => {
-  const { show, setShow } = props;
+  const { chain, show, setShow } = props;
+  const { search, pathname } = useLocation();
+  const { network } = Object.fromEntries(new URLSearchParams(search));
+
+  const apiAddress = fallbackNetworkConfigurations[chain].apiAddress;
+  const route = network ? `${pathname}?network=${network}` : pathname;
 
   const [openedLoginContainerType, setOpenedContainerType] = useState(
     LoginContainersTypesEnum.none
@@ -39,10 +45,9 @@ export const Generate = (props: GeneratePropsType) => {
     return shouldRender ? content : null;
   }
 
-  const route = '/auth';
   const buttons = [
     {
-      name: 'DeFi Wallet',
+      name: 'MultiversX DeFi Wallet',
       component: ExtensionLoginButton
     },
     {
@@ -66,10 +71,6 @@ export const Generate = (props: GeneratePropsType) => {
   ];
 
   const navigate = useNavigate();
-  const onLoginRedirect = () => {
-    navigate(route, { replace: true });
-  };
-
   const onClose = () => {
     navigate(route);
     setShow(false);
@@ -122,11 +123,10 @@ export const Generate = (props: GeneratePropsType) => {
               <button.component
                 key={button.name}
                 callbackRoute={route}
-                onLoginRedirect={onLoginRedirect}
                 className={styles.button}
                 wrapContentInsideModal={false}
                 hideButtonWhenModalOpens={true}
-                nativeAuth={true}
+                nativeAuth={{ apiAddress, expirySeconds: 900 }}
                 {...button}
               >
                 <span className={styles.name}>{button.name}</span>

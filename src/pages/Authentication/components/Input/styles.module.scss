@@ -1,8 +1,8 @@
 .form {
   background-color: var(--background);
-  padding: 25px;
-  margin-bottom: 25px;
-  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
   border: 1px solid var(--background);
   position: relative;
 
@@ -25,21 +25,26 @@
     justify-content: space-between;
     white-space: nowrap;
 
-    .generate {
-      border: 1px solid var(--link);
-      color: var(--link);
-      font-size: 12px;
-      padding: 8px 14px;
-      border-radius: 4px;
-      background-color: transparent;
-      outline: none;
-      transition: all 400ms ease;
-      cursor: pointer;
-      margin-left: 1rem;
+    .wrapper {
+      display: flex;
+      align-items: center;
 
-      &:hover {
-        color: var(--black);
-        background-color: var(--link);
+      .generate {
+        border: 1px solid var(--link);
+        color: var(--link);
+        font-size: 0.75rem;
+        padding: 0.5rem 0.875rem;
+        border-radius: 0.25rem;
+        background-color: transparent;
+        outline: none;
+        transition: all 400ms ease;
+        cursor: pointer;
+        margin-left: 1rem;
+
+        &:hover {
+          color: var(--black);
+          background-color: var(--link);
+        }
       }
     }
   }
