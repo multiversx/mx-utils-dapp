@@ -27,12 +27,12 @@ export const useTheme = () => {
     if (!localTheme && defaultTheme !== theme) {
       dispatch({
         type: 'switchTheme',
-        theme: defaultTheme || ThemeEnumType.dark
+        theme: ThemeEnumType.dark
       });
     }
 
     if (localTheme && theme !== localTheme) {
-      dispatch({ type: 'switchTheme', theme: localTheme });
+      dispatch({ type: 'switchTheme', theme: ThemeEnumType.dark });
     }
 
     if (theme) {
