@@ -29,7 +29,7 @@ jobs:
       - run: aws s3 sync ./build/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
       - uses: rtCamp/action-slack-notify@master
         env:
-          SLACK_ICON_EMOJI: ':nerd_face:'
+          SLACK_ICON_EMOJI: ':hammer_and_wrench:'
           SLACK_USERNAME: ${{ secrets.AWS_S3_BUCKET }}
           SLACK_MESSAGE: ${{ secrets.AWS_S3_BUCKET }}
           SLACK_FOOTER: ''
