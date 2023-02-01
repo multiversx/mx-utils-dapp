@@ -198,7 +198,10 @@ export const useCategories = () => {
             test: {
               error: 'Value must be a hexadecimal.',
               callback: (value: string | undefined) =>
-                value ? parseInt(value, 16).toString(16) === value : false
+                value
+                  ? Buffer.from(value, 'hex').length == value.length / 2 &&
+                    /[0-9A-Fa-f]/g.test(value)
+                  : false
             }
           }
         },
