@@ -199,7 +199,7 @@ export const useCategories = () => {
               error: 'Value must be a hexadecimal.',
               callback: (value: string | undefined) =>
                 value
-                  ? Buffer.from(value, 'hex').length == value.length / 2 &&
+                  ? Buffer.from(value, 'hex').length === value.length / 2 &&
                     /[0-9A-Fa-f]/g.test(value)
                   : false
             }
