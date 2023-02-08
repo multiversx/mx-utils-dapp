@@ -126,7 +126,7 @@ export const Generate = (props: GeneratePropsType) => {
                 className={styles.button}
                 wrapContentInsideModal={false}
                 hideButtonWhenModalOpens={true}
-                nativeAuth={{ apiAddress, expirySeconds: 900 }}
+                nativeAuth={{ apiAddress, expirySeconds: 7200 }}
                 {...button}
               >
                 <span className={styles.name}>{button.name}</span>
