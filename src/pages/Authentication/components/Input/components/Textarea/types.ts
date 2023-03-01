@@ -1,6 +1,8 @@
+import type { Dispatch, SetStateAction } from 'react';
 import type { FormikProps } from 'formik';
-import { MetricType } from 'pages/Authentication/types';
-import { Dispatch, SetStateAction } from 'react';
+
+import type { MetricType } from 'pages/Authentication/types';
+
 import type { FormValuesType } from '../../types';
 
 export interface TextareaPropsType extends FormikProps<FormValuesType> {

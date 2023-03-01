@@ -81,7 +81,7 @@ export const Generate = (props: GeneratePropsType) => {
   const titles = {
     [LoginContainersTypesEnum.none]: 'Select Provider',
     [LoginContainersTypesEnum.ledger]: 'Login with Ledger',
-    [LoginContainersTypesEnum.walletConnect]: 'Login with Maiar'
+    [LoginContainersTypesEnum.walletConnect]: 'Login with xPortal'
   };
 
   return (
@@ -105,17 +105,6 @@ export const Generate = (props: GeneratePropsType) => {
           <div className={styles.close} onClick={onClose}>
             <CloseIcon />
           </div>
-        </div>
-
-        <div className={styles.warning}>
-          <span className={styles.phishing}>
-            <FontAwesomeIcon icon={faLock} className={styles.lock} />
-            Scam/Phising verification:{' '}
-            <span className={styles.highlighted}>https://</span>
-            utils.multiversx.com
-            <br />
-            Check the website link carefully!
-          </span>
         </div>
 
         <div className={styles.buttons}>
