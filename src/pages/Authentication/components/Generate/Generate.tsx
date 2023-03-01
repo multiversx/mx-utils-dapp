@@ -54,6 +54,7 @@ export const Generate = (props: GeneratePropsType) => {
       name: 'xPortal Mobile Wallet',
       component: WalletConnectLoginButton,
       id: LoginContainersTypesEnum.walletConnect,
+      isWalletConnectV2: true,
       onModalOpens: () =>
         setOpenedContainerType(LoginContainersTypesEnum.walletConnect)
     },
