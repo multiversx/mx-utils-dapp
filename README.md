@@ -1,7 +1,7 @@
 # @multiversx/mx-template-dapp
 
 The **MultiversX Utils**, built using [React.js](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/).
-It's an implementation of [@multiversx/sdk-dapp](https://www.npmjs.com/package/@multiversx/sdk-dapp), providing tools and utilities for interacting with the MultiversX blockchain.
+This page offers an easy to use pack of utilities necessary for interacting with the MultiversX Blockchain.
 
 See [MultiversX Utils](https://utils.multiversx.com) for live demo.
 
