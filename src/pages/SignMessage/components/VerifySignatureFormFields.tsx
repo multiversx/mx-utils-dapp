@@ -131,7 +131,7 @@ export const VerifySignatureFormFields = ({
               />
             </div>
 
-            {verifySuccess !== undefined && (
+            {Boolean(verifySuccess) && (
               <div className={styles.result}>
                 <strong>Signature:</strong>
 
@@ -151,7 +151,7 @@ export const VerifySignatureFormFields = ({
                 Verify
               </button>
 
-              {verifySuccess !== undefined && (
+              {Boolean(verifySuccess) && (
                 <button
                   type='button'
                   className={classNames(styles.button, {

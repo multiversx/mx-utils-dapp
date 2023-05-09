@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { faCheck, faTimes } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -12,10 +11,7 @@ import styles from './styles.module.scss';
 export const Status = (props: FormikProps<FormValuesType>) => {
   const { errors, values } = props;
 
-  const isTokenError = useMemo(
-    () => Boolean(errors.token) || !Boolean(values.token),
-    [values.token, errors.token]
-  );
+  const isTokenError = Boolean(errors.token) || !Boolean(values.token);
 
   const isMessageError = errors.message;
 
