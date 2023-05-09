@@ -105,6 +105,10 @@ export const Textarea = (props: TextareaPropsType) => {
 
       if (!Boolean(token)) {
         setFieldError('token', 'Token Undecodable');
+        setFieldError(
+          'message',
+          'The provided token is not a NativeAuth token.'
+        );
         setMetrics(emptyMetrics);
         return;
       }
@@ -120,6 +124,7 @@ export const Textarea = (props: TextareaPropsType) => {
         ];
 
         const [decoded, valid] = await Promise.allSettled(promises);
+
         const decodedValue = decoded as any;
         const tokenExpired =
           valid.status === 'rejected' &&
@@ -127,6 +132,10 @@ export const Textarea = (props: TextareaPropsType) => {
 
         if (decoded.status === 'rejected') {
           setFieldError('token', 'Token Undecodable');
+          setFieldError(
+            'message',
+            'The provided token is not a NativeAuth token.'
+          );
           setMetrics(emptyMetrics);
           return;
         } else {
@@ -135,15 +144,18 @@ export const Textarea = (props: TextareaPropsType) => {
 
         if (tokenExpired) {
           setFieldError('token', 'Token Expired');
+          setFieldError('message', undefined);
           return;
         }
 
         if (valid.status === 'rejected') {
           setFieldError('token', 'Token Invalid');
+          setFieldError('message', "Signature doesn't match.");
           return;
         }
 
         setFieldError('token', undefined);
+        setFieldError('message', undefined);
       } catch (error) {
         if (error instanceof Error) {
           console.error(error);
