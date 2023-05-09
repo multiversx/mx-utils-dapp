@@ -111,7 +111,7 @@ export const VerifySignatureForm = () => {
               </div>
             )}
 
-            {verifySuccess !== undefined && (
+            {Boolean(verifySuccess) && (
               <div className={styles.result}>
                 <strong>Signature:</strong>
 
