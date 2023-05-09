@@ -3,6 +3,7 @@ import type { Dispatch, SetStateAction } from 'react';
 
 export interface GeneratePropsType {
   show: boolean;
-  chain: EnvironmentsEnum;
   setShow: Dispatch<SetStateAction<boolean>>;
+  chain?: EnvironmentsEnum;
+  callbackAfterLogin?: () => void;
 }
