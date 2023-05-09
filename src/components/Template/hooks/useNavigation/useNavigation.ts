@@ -1,7 +1,8 @@
 import {
   faArrowRightArrowLeft,
   faHome,
-  faUser
+  faUser,
+  faMessage
 } from '@fortawesome/pro-regular-svg-icons';
 
 import type { NavigationType } from './types';
@@ -23,6 +24,10 @@ export const useNavigation = () => {
     {
       path: '/auth',
       icon: faUser
+    },
+    {
+      path: '/sign-message',
+      icon: faMessage
     }
   ];
 
