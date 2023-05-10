@@ -36,7 +36,6 @@ This page offers an easy to use pack of utilities necessary for interacting with
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
   </ol>
@@ -53,7 +52,7 @@ This page offers an easy to use pack of utilities necessary for interacting with
 
 The dapp is a client side only poject and is built using the Create React App scripts.
 
-Follow the next step to start using this dapp or follow the next tutorial on [Youtube](https://www.youtube.com/watch?v=BkjUmBsmQYM)
+Follow the next step to start using this dapp.
 
 ### Prerequisites
 
