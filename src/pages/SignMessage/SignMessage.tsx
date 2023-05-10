@@ -43,6 +43,7 @@ export const SignMessage = () => {
     });
 
     if (!signableMessage) {
+      logout();
       return;
     }
 
