@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkHorizontal } from '@fortawesome/pro-regular-svg-icons';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
 
 import { Template } from 'components/Template';
@@ -40,7 +40,7 @@ export const Converters = () => {
                 href={`${pathname}#${category.identifier}`}
                 className={styles.hash}
               >
-                <FontAwesomeIcon icon={faLinkHorizontal} size='xs' />
+                <FontAwesomeIcon icon={faLink} size='xs' />
               </a>
             </h2>
 
@@ -67,7 +67,7 @@ export const Converters = () => {
                       href={`${pathname}#${category.identifier}-${converter.identifier}`}
                       className={styles.hash}
                     >
-                      <FontAwesomeIcon icon={faLinkHorizontal} size='xs' />
+                      <FontAwesomeIcon icon={faLink} size='xs' />
                     </a>
                   </h3>
 
