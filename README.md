@@ -1,6 +1,6 @@
 <div style="text-align:center">
   <img
-  src="https://github.com/multiversx/mx-utils-dapp/blob/master/public/preview.jpg"
+  src="https://github.com/multiversx/mx-utils-dapp/blob/main/public/preview.jpg"
   alt="MultiversX Network">
 </div>
 <br>
