@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowDownLong,
   faArrowUpLong
-} from '@fortawesome/pro-regular-svg-icons';
+} from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
 
 import { defaultMetrics } from 'pages/Authentication/Authentication';

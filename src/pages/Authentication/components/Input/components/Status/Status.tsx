@@ -1,4 +1,4 @@
-import { faCheck, faTimes } from '@fortawesome/pro-regular-svg-icons';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { TokenColorsEnum } from 'pages/Authentication/enum';
