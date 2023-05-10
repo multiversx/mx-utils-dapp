@@ -1,63 +1,83 @@
-# @multiversx/mx-template-dapp
+<div style="text-align:center">
+  <img
+  src="https://github.com/multiversx/mx-utils-dapp/blob/master/public/preview.jpg"
+  alt="MultiversX Network">
+</div>
+<br>
 
-The **MultiversX Utils**, built using [React.js](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/).
-It's an implementation of [@multiversx/sdk-dapp](https://www.npmjs.com/package/@multiversx/sdk-dapp), providing tools and utilities for interacting with the MultiversX blockchain.
+[![](https://img.shields.io/badge/made%20by-MultiversX-blue.svg)](http://multiversx.com/)
+<br />
 
-See [MultiversX Utils](https://utils.multiversx.com) for live demo.
+<p align="center">
 
-## Requirements
+ <h3 align="center">MultiversX Utils</h3>
 
-- Node.js version 12.16.2+
-- Npm version 6.14.4+
+  <p align="center">
+This page offers an easy to use pack of utilities necessary for interacting with the MultiversX Blockchain.
+    <br />
+    <br />
+    <br />
+    ·
+    <a href="https://github.com/multiversx/mx-utils-dapp/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/multiversx/mx-utils-dapp/issues">Request Feature</a>
+  </p>
+</p>
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#built-with">Built With</a>    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+  </ol>
+</details>
+
+### Built With
+
+- [React](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+
+<!-- GETTING STARTED -->
 
 ## Getting Started
 
-The dapp is a client side only project and is built using the [Create React App](https://create-react-app.dev) scripts.
+The dapp is a client side only poject and is built using the Create React App scripts.
+
+Follow the next step to start using this dapp.
+
+### Prerequisites
+
+For _development_ you will need to have the following:
+
+- node version 14.17.6
+- npm
 
 ### Instalation and running
 
 ### Step 1. Install modules
 
-From a terminal, navigate to the project folder and run:
+From a terminal, navigate to the project folder and run `yarn install`
 
-```bash
-npm install
-```
+### Step 2. Run the dashboard
 
-### Step 2. Update environment
+To run the project locally run `yarn start` from the project folder. Open http://localhost:3001 to view it in the browser.
 
-Go to `App.tsx` and edit the `environment` variable according to the environment you want the app to run on.
-Valid values are `testnet`, `devnet` or `mainnet`
-
-If you need to edit the network configuration, you can pass in a `customNetworkConfig` object.
-More info about this can be found in [dapp-core documentation](https://github.com/multiversx/sdk-dapp)
-
-### Step 3. Running in development mode
-
-In the project folder run:
-
-```bash
-npm run start
-```
-
-This will start the React app in development mode, using the configs found in the `config.tsx` file.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### Step 4. Build for testing and production use
-
-A build of the app is necessary to deploy for testing purposes or for production use.
-To build the project run:
-
-```bash
-npm run build
-```
+<!-- ROADMAP -->
 
 ## Roadmap
 
-See the [open issues](https://github.com/multiversx/mx-template-dapp/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/multiversx/mx-utils-dapp/issues) for a list of proposed features (and known issues).
+
+<!-- CONTRIBUTING -->
 
 ## Contributing
 
@@ -70,7 +90,3 @@ One can contribute by creating _pull requests_, or by opening _issues_ for disco
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-## Developers
-
-The [MultiversX Team](https://multiversx.com/).
