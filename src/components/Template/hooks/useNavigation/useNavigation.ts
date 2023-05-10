@@ -3,7 +3,7 @@ import {
   faHome,
   faUser,
   faMessage
-} from '@fortawesome/pro-regular-svg-icons';
+} from '@fortawesome/free-solid-svg-icons';
 
 import type { NavigationType } from './types';
 

@@ -6,7 +6,7 @@ import {
   WebWalletLoginButton
 } from '@multiversx/sdk-dapp/UI';
 import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants/network';
-import { faArrowRight } from '@fortawesome/pro-regular-svg-icons';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
