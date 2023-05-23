@@ -9,6 +9,8 @@ import { Status } from './components/Status';
 import type { FormValuesType, InputPropsType } from './types';
 
 import styles from './styles.module.scss';
+import { useDispatch } from 'context';
+import { ActionTypeEnum } from 'context/reducer';
 
 /*
  * Handle the component declaration.
@@ -16,6 +18,8 @@ import styles from './styles.module.scss';
 
 export const Input = memo((props: InputPropsType) => {
   const { setMetrics, setShow, setChain, chain } = props;
+
+  const dispatch = useDispatch();
 
   const initialValues = {
     [EnvironmentsEnum.mainnet]: {
@@ -31,6 +35,15 @@ export const Input = memo((props: InputPropsType) => {
         'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLjdkNzQxODI3OTM0NWZiZjFiM2UwMDU0MDMyZDFjM2UzYjIzMjRiOTgyMjNjYzZhODI1ZTc2ZjRmYmZkNGE3ZGQuOTAwLmV5SjBhVzFsYzNSaGJYQWlPakUyTnpNNU56TTVNRFo5.6912c4dddb58fbc8aa3ee210c9a6e6e66847abcd6eebe72fe5b5df02632598c9b568c3b3499eea3d62f321db7aab3e5e7fef293f8ae17aaa6042141bd6a23208'
     }
   }[chain];
+
+  const handleGenerateClick = () => {
+    setShow(true);
+
+    dispatch({
+      type: ActionTypeEnum.switchDappEnvironment,
+      dappEnvironment: chain
+    });
+  };
 
   /*
    * Return the rendered component.
@@ -51,7 +64,7 @@ export const Input = memo((props: InputPropsType) => {
             <span>Paste a token here</span>
 
             <div className={styles.wrapper}>
-              <button onClick={() => setShow(true)} className={styles.generate}>
+              <button onClick={handleGenerateClick} className={styles.generate}>
                 Generate
               </button>
 

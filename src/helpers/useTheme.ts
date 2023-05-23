@@ -6,6 +6,8 @@ import { StateType } from 'context/state';
 import { ThemeEnumType } from './enum';
 import { storage } from './storage';
 
+import { ActionTypeEnum } from 'context/reducer';
+
 /*
  * Handle the custom hook declaration.
  */
@@ -26,13 +28,13 @@ export const useTheme = () => {
 
     if (!localTheme && defaultTheme !== theme) {
       dispatch({
-        type: 'switchTheme',
+        type: ActionTypeEnum.switchTheme,
         theme: ThemeEnumType.dark
       });
     }
 
     if (localTheme && theme !== localTheme) {
-      dispatch({ type: 'switchTheme', theme: ThemeEnumType.dark });
+      dispatch({ type: ActionTypeEnum.switchTheme, theme: ThemeEnumType.dark });
     }
 
     if (theme) {
