@@ -7,6 +7,7 @@ import {
 
 import { DispatchType, reducer } from './reducer';
 import { StateType, initializer } from './state';
+import { DappProvider } from '@multiversx/sdk-dapp/wrappers';
 
 const Context = createContext<StateType | undefined>(undefined);
 const Dispatch = createContext<DispatchType | undefined>(undefined);
@@ -17,7 +18,16 @@ const ContextProvider = (props: PropsWithChildren) => {
 
   return (
     <Context.Provider value={state}>
-      <Dispatch.Provider value={dispatch}>{children}</Dispatch.Provider>
+      <DappProvider
+        environment={state.dappEnvironment}
+        customNetworkConfig={{
+          name: 'customConfig',
+          apiTimeout: 6000,
+          walletConnectV2ProjectId: '9b1a9564f91cb659ffe21b73d5c4e2d8'
+        }}
+      >
+        <Dispatch.Provider value={dispatch}>{children}</Dispatch.Provider>
+      </DappProvider>
     </Context.Provider>
   );
 };

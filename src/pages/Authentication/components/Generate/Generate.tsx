@@ -12,7 +12,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 
 import { CloseIcon } from 'assets/img/CloseIcon';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
 import type { GeneratePropsType } from './types';
 
@@ -26,12 +25,8 @@ enum LoginContainersTypesEnum {
 }
 
 export const Generate = (props: GeneratePropsType) => {
-  const {
-    chain = EnvironmentsEnum.mainnet,
-    show,
-    setShow,
-    callbackAfterLogin
-  } = props;
+  const { chain, show, setShow, callbackAfterLogin } = props;
+
   const isLoggedIn = useGetIsLoggedIn();
   const { search, pathname } = useLocation();
   const { network } = Object.fromEntries(new URLSearchParams(search));
