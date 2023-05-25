@@ -86,7 +86,7 @@ export const useCategories = () => {
             test: {
               error: 'Value must be a hexadecimal.',
               callback: (value: string | undefined) =>
-                value ? BigNumber(value, 16).toString(10) !== 'NaN' : false
+                value ? /^[0-9a-fA-F]+$/.test(value) : false
             }
           }
         },
@@ -198,10 +198,7 @@ export const useCategories = () => {
             test: {
               error: 'Value must be a hexadecimal.',
               callback: (value: string | undefined) =>
-                value
-                  ? Buffer.from(value, 'hex').length === value.length / 2 &&
-                    /[0-9A-Fa-f]/g.test(value)
-                  : false
+                value ? /^[0-9a-fA-F]+$/.test(value) : false
             }
           }
         },
@@ -250,7 +247,7 @@ export const useCategories = () => {
             test: {
               error: 'Value must be a hexadecimal.',
               callback: (value: string | undefined) =>
-                value ? parseInt(value, 16).toString(16) === value : false
+                value ? /^[0-9a-fA-F]+$/.test(value) : false
             }
           }
         },
