@@ -7,7 +7,8 @@
   "repository": "@multiversx/mx-utils-dapp",
   "dependencies": {
     "@babel/core": "^7.16.0",
-    "@fortawesome/free-solid-svg-icons": "6.2.1",
+    "@fortawesome/free-solid-svg-icons": "6.1.0",
+    "@fortawesome/fontawesome-svg-core": "6.1.0",
     "@fortawesome/react-fontawesome": "0.2.0",
     "@multiversx/sdk-core": "12.2.0",
     "@multiversx/sdk-dapp": "2.12.9",
