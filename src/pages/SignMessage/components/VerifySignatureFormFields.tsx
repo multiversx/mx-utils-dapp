@@ -43,7 +43,6 @@ export const VerifySignatureFormFields = ({
     const signedMessage = getSignedMessage(values);
 
     const { isVerified } = verifyMessage(signedMessage);
-
     setVerifySuccess(isVerified);
   };
 
@@ -54,7 +53,19 @@ export const VerifySignatureFormFields = ({
       .test('addressIsValid', 'Invalid address', (value) =>
         Boolean(value && addressIsValid(value))
       ),
-    signature: string().required('Required')
+    signature: string()
+      .required('Required')
+      .test('signatureIsValid', 'Value must be base64 input', (value) => {
+        if (!value) return false;
+
+        try {
+          atob(value);
+
+          return true;
+        } catch {
+          return false;
+        }
+      })
   });
 
   const formikProps = {
@@ -131,7 +142,7 @@ export const VerifySignatureFormFields = ({
               />
             </div>
 
-            {Boolean(verifySuccess) && (
+            {verifySuccess !== undefined && (
               <div className={styles.result}>
                 <strong>Signature:</strong>
 
@@ -151,7 +162,7 @@ export const VerifySignatureFormFields = ({
                 Verify
               </button>
 
-              {Boolean(verifySuccess) && (
+              {verifySuccess !== undefined && (
                 <button
                   type='button'
                   className={classNames(styles.button, {
