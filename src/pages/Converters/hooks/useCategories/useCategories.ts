@@ -263,8 +263,11 @@ export const useCategories = () => {
           title:
             'Convert a base64 encoded string to hexadecimal encoded string.',
           label: 'Base64 value',
-          compute: (value: string) =>
-            Buffer.from(value, 'base64').toString('hex'),
+          compute: (value: string) => {
+            const hex = Buffer.from(value, 'base64').toString('hex');
+
+            return hex.length % 2 ? `0${hex}` : hex;
+          },
           identifier: 'base64-to-hexadecimal',
           validate: {
             required: 'Base64 value required.',
