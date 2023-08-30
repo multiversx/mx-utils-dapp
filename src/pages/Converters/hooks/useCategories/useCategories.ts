@@ -22,7 +22,11 @@ export const useCategories = () => {
           title: 'Convert a bech32 address to a hexadecimal address',
           label: 'Bech32 address',
           identifier: 'bech32-to-hexadecimal',
-          compute: (address: string) => new Address(address).hex(),
+          compute: (address: string) => {
+            const hex = new Address(address).hex();
+
+            return hex.length % 2 ? `0${hex}` : hex;
+          },
           validate: {
             required: 'Bech32 address required.',
             test: {
@@ -66,7 +70,11 @@ export const useCategories = () => {
           title: 'Convert a decimal to a hexadecimal',
           label: 'Decimal value',
           identifier: 'decimal-to-hexadecimal',
-          compute: (value: string) => BigNumber(value, 10).toString(16),
+          compute: (value: string) => {
+            const hex = BigNumber(value, 10).toString(16);
+
+            return hex.length % 2 ? `0${hex}` : hex;
+          },
           validate: {
             required: 'Decimal required.',
             test: {
@@ -255,8 +263,11 @@ export const useCategories = () => {
           title:
             'Convert a base64 encoded string to hexadecimal encoded string.',
           label: 'Base64 value',
-          compute: (value: string) =>
-            Buffer.from(value, 'base64').toString('hex'),
+          compute: (value: string) => {
+            const hex = Buffer.from(value, 'base64').toString('hex');
+
+            return hex.length % 2 ? `0${hex}` : hex;
+          },
           identifier: 'base64-to-hexadecimal',
           validate: {
             required: 'Base64 value required.',
