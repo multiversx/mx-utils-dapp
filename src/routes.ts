@@ -8,6 +8,7 @@ import { Home } from 'pages/Home';
 import { SignMessage } from 'pages/SignMessage';
 
 import { withPageTitle } from './components/PageTitle';
+import { Explainer } from 'pages/Explainer';
 
 export interface RouteType {
   path: string;
@@ -35,6 +36,11 @@ const pages: RouteType[] = [
     path: '/sign-message',
     title: 'Sign Message',
     component: SignMessage
+  },
+  {
+    path: '/explainer',
+    title: 'Explainer',
+    component: Explainer
   }
 ];
 
