@@ -7,49 +7,73 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useGlobalContext } from 'context';
 
 import styles from '../styles.module.scss';
-import { assistantApi } from 'helpers/assistantApi';
-import { useState } from 'react';
+import { AssistantApiSSETypes, assistantApi } from 'helpers/assistantApi';
+import { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ExplainForm = () => {
   const { theme } = useGlobalContext();
-  const [explainerResponse, setExplainerResponse] = useState<string | null>(
-    null
-  );
-  const [showExplanation, setShowExplanation] = useState<boolean>(false);
+  const [explainerResponse, setExplainerResponse] = useState<string | null>(null);
   const [showLoader, setShowLoader] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [eventSource, setEventSource] = useState<EventSource | null>(null);
 
   const initialValues = { repositoryUrl: '' };
 
+  const handleEventSourceError = useCallback(() => {
+    eventSource?.close();
+    setShowLoader(false);
+    setErrorMessage("Explainer encounterd an unknown error. Please try again.");
+  }, [eventSource]);
+
+  const handleCodeExplanationStreamFailed = useCallback((event: MessageEvent) => {
+    eventSource?.close();
+    setErrorMessage(event.data);
+    setShowLoader(false);
+    setExplainerResponse(null);
+  }, [eventSource]);
+
+  const handleCodeExplanationStreamChunk = useCallback((event: MessageEvent) => {
+    setExplainerResponse((prevResponse) => {
+      return prevResponse === null ? event.data : prevResponse + event.data;
+    });
+  }, []);
+
+  const handleCodeExplanationStreamFinished = useCallback(() => {
+    eventSource?.close();
+    setShowLoader(false);
+  }, [eventSource]);
+
+  useEffect(() => {
+    console.log('useEffect', eventSource);
+
+    if (eventSource) {
+      eventSource.addEventListener(AssistantApiSSETypes.error, handleEventSourceError);
+      eventSource.addEventListener(AssistantApiSSETypes.codeExplanation.streamFailed, handleCodeExplanationStreamFailed);
+      eventSource.addEventListener(AssistantApiSSETypes.codeExplanation.streamChunk, handleCodeExplanationStreamChunk);
+      eventSource.addEventListener(AssistantApiSSETypes.codeExplanation.chunkFinished, handleCodeExplanationStreamFinished);
+    }
+
+    return () => {
+      if (eventSource) {
+        eventSource.removeEventListener(AssistantApiSSETypes.error, handleEventSourceError);
+        eventSource.removeEventListener(AssistantApiSSETypes.codeExplanation.streamFailed, handleCodeExplanationStreamFailed);
+        eventSource.removeEventListener(AssistantApiSSETypes.codeExplanation.streamChunk, handleCodeExplanationStreamChunk);
+        eventSource.removeEventListener(AssistantApiSSETypes.codeExplanation.chunkFinished, handleCodeExplanationStreamFinished);
+      }
+    }
+  }, [eventSource, handleCodeExplanationStreamChunk, handleCodeExplanationStreamFailed, handleCodeExplanationStreamFinished, handleEventSourceError]);
+
   const onSubmit = ({ repositoryUrl }: { repositoryUrl: string }) => {
     setExplainerResponse(null);
-    setShowExplanation(true);
     setShowLoader(true);
-    const eventSource = assistantApi.getExplanationEventSource({
+    setErrorMessage(null);
+
+    const newEventSource = assistantApi.getCodeExplanationEventSource({
       repositoryUrl
     });
 
-    eventSource.onerror = () => {
-      console.log('EventSource failed');
-    };
-
-    eventSource.addEventListener(
-      'code-explanation-stream-chunk',
-      (event: any) => {
-        setShowExplanation(true);
-        setExplainerResponse((prevResponse) => {
-          return prevResponse === null ? event.data : prevResponse + event.data;
-        });
-      }
-    );
-
-    eventSource.addEventListener(
-      'code-explanation-chunk-finished',
-      (event: any) => {
-        setShowLoader(false);
-        eventSource.close();
-      }
-    );
+    setEventSource(newEventSource);
   };
 
   const schema = string().required('Required');
@@ -93,6 +117,7 @@ export const ExplainForm = () => {
                   className={styles.error}
                   component='div'
                 />
+                <div className={styles.error}>{errorMessage}</div>
               </div>
 
               <div className={styles.buttons}>
@@ -101,6 +126,7 @@ export const ExplainForm = () => {
                   className={classNames(styles.button, styles.active, {
                     [styles.white]: theme === 'light'
                   })}
+                  disabled={showLoader}
                 >
                   Explain
                 </button>
@@ -109,10 +135,11 @@ export const ExplainForm = () => {
           )}
         </Formik>
       </div>
-      {showExplanation && (
+      {(showLoader || explainerResponse) && (
         <div className={styles.wrapper}>
           <h3 className={styles.title}>
-            Explanation {showLoader && <FontAwesomeIcon icon={faSpinner} spin />}
+            Explanation{' '}
+            {showLoader && <FontAwesomeIcon icon={faSpinner} spin />}
           </h3>
           {explainerResponse && (
             <div className={styles.explanation}>
