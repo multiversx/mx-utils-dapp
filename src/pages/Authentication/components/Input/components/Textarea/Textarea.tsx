@@ -17,10 +17,7 @@ import moment from 'moment';
 
 import { storage } from 'helpers/storage';
 
-import {
-  TokenColorsEnum,
-  TokenDefaultColorsEnum
-} from 'pages/Authentication/enum';
+import { TokenColorsEnum } from 'pages/Authentication/enum';
 import { emptyMetrics } from 'pages/Authentication';
 
 import { decodeToken } from './helpers/decodeToken';
@@ -50,7 +47,7 @@ export const Textarea = (props: TextareaPropsType) => {
   const clone = useRef<HTMLDivElement>(null);
   const isLoggedIn = useGetIsLoggedIn();
 
-  const defaultColor = TokenDefaultColorsEnum.darkDefault;
+  const defaultColor = '#000000';
 
   const mirror = useMemo(() => {
     const parts = values.token.split('.');
