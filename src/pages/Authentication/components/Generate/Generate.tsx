@@ -32,6 +32,8 @@ export const Generate = (props: GeneratePropsType) => {
   const { network } = Object.fromEntries(new URLSearchParams(search));
 
   const apiAddress = fallbackNetworkConfigurations[chain].apiAddress;
+
+  console.log('apiAddress: ', apiAddress);
   const route = network ? `${pathname}?network=${network}` : pathname;
 
   const [openedLoginContainerType, setOpenedContainerType] = useState(

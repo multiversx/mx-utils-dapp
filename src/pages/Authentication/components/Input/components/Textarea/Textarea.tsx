@@ -15,8 +15,6 @@ import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import moment from 'moment';
 
-import { ThemeEnumType } from 'helpers/enum';
-import { useTheme } from 'helpers/useTheme';
 import { storage } from 'helpers/storage';
 
 import {
@@ -37,7 +35,6 @@ import styles from './styles.module.scss';
  */
 
 export const Textarea = (props: TextareaPropsType) => {
-  const { theme } = useTheme();
   const { search } = useLocation();
   const { tokenLogin, loginMethod } = useGetLoginInfo();
   const {
@@ -53,10 +50,7 @@ export const Textarea = (props: TextareaPropsType) => {
   const clone = useRef<HTMLDivElement>(null);
   const isLoggedIn = useGetIsLoggedIn();
 
-  const defaultColor =
-    theme === ThemeEnumType.dark
-      ? TokenDefaultColorsEnum.lightDefault
-      : TokenDefaultColorsEnum.darkDefault;
+  const defaultColor = TokenDefaultColorsEnum.darkDefault;
 
   const mirror = useMemo(() => {
     const parts = values.token.split('.');

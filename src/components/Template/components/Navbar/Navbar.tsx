@@ -2,8 +2,6 @@ import { MouseEvent, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { ThemeEnumType } from 'helpers/enum';
-import { useGlobalContext } from 'context';
 import { MultiversXLogo } from 'assets/img/MultiversXLogo';
 
 import styles from './styles.module.scss';
@@ -16,7 +14,6 @@ import type { NavbarPropsType } from './types';
 
 export const Navbar = (props: NavbarPropsType) => {
   const { setToggleMenu, toggleMenu } = props;
-  const { theme } = useGlobalContext();
 
   /*
    * On menu triggering, update the passed along state to the opposite of the current boolean value.
@@ -38,11 +35,7 @@ export const Navbar = (props: NavbarPropsType) => {
     <header className={styles.header}>
       <div className={styles.wrapper}>
         <Link to='/' className={styles.heading}>
-          <div
-            className={classNames(styles.logo, {
-              [styles.dark]: theme === ThemeEnumType.light
-            })}
-          >
+          <div className={classNames(styles.logo)}>
             <MultiversXLogo />
           </div>
         </Link>
