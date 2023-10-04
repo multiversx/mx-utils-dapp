@@ -4,8 +4,6 @@ import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import { object, string } from 'yup';
 import classNames from 'classnames';
 
-import { useGlobalContext } from 'context';
-
 import styles from '../styles.module.scss';
 
 interface SignFormProps {
@@ -21,8 +19,6 @@ export const SignMessageForm = ({
   setMessage,
   setShow
 }: SignFormProps) => {
-  const { theme } = useGlobalContext();
-
   const initialValues = { message: '' };
 
   const onSubmit = () => {
@@ -85,9 +81,7 @@ export const SignMessageForm = ({
             <div className={styles.buttons}>
               <button
                 type='submit'
-                className={classNames(styles.button, styles.active, {
-                  [styles.white]: theme === 'light'
-                })}
+                className={classNames(styles.button, styles.active)}
               >
                 Sign
               </button>
@@ -95,9 +89,7 @@ export const SignMessageForm = ({
               {signature && (
                 <button
                   type='button'
-                  className={classNames(styles.button, {
-                    [styles.white]: theme === 'light'
-                  })}
+                  className={classNames(styles.button)}
                   onClick={() => {
                     setSignature('');
                     resetForm();

@@ -3,15 +3,11 @@ import { ErrorMessage, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
 import classNames from 'classnames';
 
-import { useGlobalContext } from 'context';
-
 import styles from '../styles.module.scss';
 import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
 import { verifyMessage } from '@multiversx/sdk-dapp/hooks/signMessage/verifyMessage';
 
 export const VerifySignatureForm = () => {
-  const { theme } = useGlobalContext();
-
   const [verifiedMessage, setVerifiedMessage] = useState<string>();
   const [signerAddress, setSignerAddress] = useState<string>();
   const [verifySuccess, setVerifySuccess] = useState<boolean>();
@@ -124,9 +120,7 @@ export const VerifySignatureForm = () => {
             <div className={styles.buttons}>
               <button
                 type='submit'
-                className={classNames(styles.button, styles.active, {
-                  [styles.white]: theme === 'light'
-                })}
+                className={classNames(styles.button, styles.active)}
               >
                 Verify
               </button>
@@ -134,9 +128,7 @@ export const VerifySignatureForm = () => {
               {verifiedMessage && (
                 <button
                   type='button'
-                  className={classNames(styles.button, {
-                    [styles.white]: theme === 'light'
-                  })}
+                  className={classNames(styles.button)}
                   onClick={() => {
                     resetForm();
                     resetVerifyFormResults();
