@@ -1,0 +1,140 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 2022;
+  bottom: 0;
+  padding: 1.5rem;
+
+  &:before {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    content: '';
+    opacity: 0.75;
+    position: absolute;
+    background-color: var(--background);
+  }
+
+  .dialog {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .unlock {
+    background-color: var(--body);
+    box-shadow: 0.25rem 0.25rem 1rem 0.5rem var(--body);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    color: var(--text);
+    position: relative;
+    max-width: 30rem;
+    z-index: 2000;
+    margin: 0 auto;
+    border: 1px solid var(--background);
+
+    .heading {
+      display: flex;
+      margin-bottom: 2rem;
+      align-items: center;
+      justify-content: space-between;
+
+      .title {
+        font-weight: 600;
+        font-size: 1.5rem;
+
+        @media (min-width: 576px) {
+          font-size: 2rem;
+        }
+      }
+
+      .close {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.5rem;
+        border: 1px solid var(--background);
+        cursor: pointer;
+        transition: all 400ms ease;
+        box-sizing: border-box;
+
+        &:hover {
+          background-color: var(--background);
+        }
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+
+    .warning {
+      display: flex;
+      justify-content: center;
+
+      .phishing {
+        background-color: rgba(#ffaa00, 0.25);
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        flex: 0;
+        white-space: nowrap;
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+        line-height: 1.5;
+
+        @media (min-width: 576px) {
+          margin-bottom: 3rem;
+        }
+
+        .lock {
+          margin-right: 0.25rem;
+          color: #00b9f1;
+        }
+
+        span {
+          color: #00b9f1;
+        }
+      }
+    }
+
+    .buttons {
+      .button {
+        margin: 0;
+        width: 100%;
+        background-color: transparent;
+        border: 1px solid var(--background);
+        border-radius: 8px;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 1rem;
+        padding: 1rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: all 400ms ease !important;
+        color: var(--text);
+
+        &:hover {
+          background-color: var(--background);
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 0.75rem;
+        }
+
+        .arrow {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
