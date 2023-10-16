@@ -10,7 +10,6 @@ import { sendTransactions } from '@multiversx/sdk-dapp/services';
 import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
 import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
 import { useCallback } from 'react';
-import { chainIdByEnvironment } from '@multiversx/sdk-dapp/constants';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
 export const useDeployments = ({ chain }: { chain: EnvironmentsEnum }) => {
@@ -62,9 +61,6 @@ export const useDeployments = ({ chain }: { chain: EnvironmentsEnum }) => {
         // No need to pass the address if you want to deploy a new smart contract
         const smartContract = new SmartContract();
 
-        console.log('chainIdByEnvironment', chainIdByEnvironment);
-        console.log('chain', chain);
-
         const transaction = smartContract.deploy({
           deployer: Address.fromString(account.address),
           code,
@@ -72,7 +68,7 @@ export const useDeployments = ({ chain }: { chain: EnvironmentsEnum }) => {
           codeMetadata,
           initArguments: args,
           value: TokenTransfer.egldFromAmount(0),
-          chainID: chainIdByEnvironment[chain] ?? 'devnet'
+          chainID: getChainID()
         });
 
         return sendTransaction(transaction, 'deploy');
