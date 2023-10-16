@@ -9,8 +9,11 @@ import { getChainID, refreshAccount } from '@multiversx/sdk-dapp/utils';
 import { sendTransactions } from '@multiversx/sdk-dapp/services';
 import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
 import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
+import { useCallback } from 'react';
+import { chainIdByEnvironment } from '@multiversx/sdk-dapp/constants';
+import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
-export const useDeployments = () => {
+export const useDeployments = ({ chain }: { chain: EnvironmentsEnum }) => {
   const { account } = useGetAccountInfo();
 
   const sendTransaction = async (
@@ -19,6 +22,7 @@ export const useDeployments = () => {
   ) => {
     try {
       await refreshAccount();
+
       const { sessionId, error } = await sendTransactions({
         transactions: transaction.toPlainObject(),
         transactionsDisplayInfo: {
@@ -37,84 +41,91 @@ export const useDeployments = () => {
     }
   };
 
-  const deploy = async ({
-    code,
-    args,
-    gasLimit = 55000000,
-    upgradeable,
-    readable,
-    payable,
-    payableBySc
-  }: DeployOrUpgradeParamsType) => {
-    console.log('Account', account);
+  const deploy = useCallback(
+    async ({
+      code,
+      args,
+      gasLimit = 55000000,
+      upgradeable,
+      readable,
+      payable,
+      payableBySc
+    }: DeployOrUpgradeParamsType) => {
+      try {
+        const codeMetadata = new CodeMetadata(
+          upgradeable ?? true,
+          readable ?? true,
+          payable ?? false,
+          payableBySc ?? true
+        );
 
-    try {
-      const codeMetadata = new CodeMetadata(
-        upgradeable ?? true,
-        readable ?? true,
-        payable ?? false,
-        payableBySc ?? true
-      );
+        // No need to pass the address if you want to deploy a new smart contract
+        const smartContract = new SmartContract();
 
-      // No need to pass the address if you want to deploy a new smart contract
-      const smartContract = new SmartContract();
+        console.log('chainIdByEnvironment', chainIdByEnvironment);
+        console.log('chain', chain);
 
-      const transaction = smartContract.deploy({
-        deployer: Address.fromString(account.address),
-        code,
-        gasLimit: gasLimit,
-        codeMetadata,
-        initArguments: args,
-        value: TokenTransfer.egldFromAmount(0),
-        chainID: getChainID()
-      });
+        const transaction = smartContract.deploy({
+          deployer: Address.fromString(account.address),
+          code,
+          gasLimit: gasLimit,
+          codeMetadata,
+          initArguments: args,
+          value: TokenTransfer.egldFromAmount(0),
+          chainID: chainIdByEnvironment[chain] ?? 'devnet'
+        });
 
-      return sendTransaction(transaction, 'deploy');
-    } catch (error: any) {
-      console.error(error);
-      return { success: false, error: error.message, sessionId: null };
-    }
-  };
+        return sendTransaction(transaction, 'deploy');
+      } catch (error: any) {
+        console.error(error);
+        return { success: false, error: error.message, sessionId: null };
+      }
+    },
+    [account.address]
+  );
 
-  const upgrade = async ({
-    address,
-    code,
-    args,
-    gasLimit = 55000000,
-    upgradeable,
-    readable,
-    payable,
-    payableBySc
-  }: DeployOrUpgradeParamsType) => {
-    try {
-      const codeMetadata = new CodeMetadata(
-        upgradeable ?? true,
-        readable ?? true,
-        payable ?? false,
-        payableBySc ?? true
-      );
+  const upgrade = useCallback(
+    async ({
+      address,
+      code,
+      args,
+      gasLimit = 55000000,
+      upgradeable,
+      readable,
+      payable,
+      payableBySc
+    }: DeployOrUpgradeParamsType) => {
+      try {
+        const codeMetadata = new CodeMetadata(
+          upgradeable ?? true,
+          readable ?? true,
+          payable ?? false,
+          payableBySc ?? true
+        );
 
-      const smartContract = new SmartContract({
-        // This is the smart contract address that you want to upgrade
-        address: address ? new Address(address) : undefined
-      });
+        const smartContract = new SmartContract({
+          // This is the smart contract address that you want to upgrade
+          address: address ? new Address(address) : undefined
+        });
 
-      const transaction = smartContract.upgrade({
-        caller: Address.fromString(account.address),
-        code,
-        gasLimit: gasLimit,
-        codeMetadata,
-        initArguments: args,
-        value: TokenTransfer.egldFromAmount(0),
-        chainID: getChainID()
-      });
+        const transaction = smartContract.upgrade({
+          caller: Address.fromString(account.address),
+          code,
+          gasLimit: gasLimit,
+          codeMetadata,
+          initArguments: args,
+          value: TokenTransfer.egldFromAmount(0),
+          chainID: getChainID()
+        });
 
-      return sendTransaction(transaction, 'upgrade');
-    } catch (error: any) {
-      console.error(error);
-      return { success: false, error: error.message, sessionId: null };
-    }
-  };
+        return sendTransaction(transaction, 'upgrade');
+      } catch (error: any) {
+        console.error(error);
+        return { success: false, error: error.message, sessionId: null };
+      }
+    },
+    [account.address]
+  );
 
   return {
     deploy,

@@ -1,7 +1,7 @@
 import styles from '../styles.module.scss';
 import { Trim } from '@multiversx/sdk-dapp/UI';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useUploadWasmCode from '../hooks/useUploadWasmCode';
 import { useGetDeployedContractAddress } from '../hooks/useGetDeployedContractAddress';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -23,9 +23,9 @@ export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
   const { wasmCode, onUpload } = useUploadWasmCode();
   const { contractOrDeployerAddress } =
     useGetDeployedContractAddress(sessionId);
-  const { upgrade } = useDeployments();
+  const { upgrade } = useDeployments({ chain });
 
-  const handleUpgrade = async () => {
+  const handleUpgrade = useCallback(async () => {
     if (!wasmCode || !isLoggedIn || !Boolean(address)) {
       return;
     }
@@ -39,7 +39,7 @@ export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
 
     const response = await upgrade(params);
     setSessionId(response.sessionId ?? '');
-  };
+  }, [address, isLoggedIn, upgrade, upgradeContractAddress, wasmCode]);
 
   useEffect(() => {
     if (isLoggedIn && Boolean(address)) {
@@ -66,7 +66,6 @@ export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
               id='upgrade_file_input'
               type='file'
               accept='.wasm'
-              disabled={!isLoggedIn}
             />
           </div>
           <div className={styles.upload}>
@@ -79,7 +78,6 @@ export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
               className={styles.field}
               autoComplete='off'
               value={upgradeContractAddress}
-              disabled={!isLoggedIn}
               onChange={(e) => setUpgradeContractAddress(e.target.value)}
             />
           </div>
@@ -105,6 +103,7 @@ export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
             className={styles.field}
             placeholder='.wasm code will be displayed here...'
             value={wasmCode?.toString()}
+            readOnly={true}
           />
           {contractOrDeployerAddress && (
             <div className={styles.result}>

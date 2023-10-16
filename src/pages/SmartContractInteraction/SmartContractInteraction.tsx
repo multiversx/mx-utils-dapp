@@ -8,20 +8,16 @@ import styles from './styles.module.scss';
 import { DeploySection } from './components/DeploySection';
 import { UpgradeSection } from './components/UpgradeSection';
 import { Environment } from './components/Environment';
-import { DEPLOY_ENV_KEY, UPGRADE_ENV_KEY } from './constants';
+import { NETWORK } from './constants';
 
 export const SmartContractInteraction = () => {
   const { search } = useLocation();
   const { network } = useGetNetworkConfig();
 
   const entries = Object.fromEntries(new URLSearchParams(search));
-  const environmentDeploy = entries[DEPLOY_ENV_KEY] as EnvironmentsEnum;
-  const environmentUpgrade = entries[UPGRADE_ENV_KEY] as EnvironmentsEnum;
-  const [deployChain, setDeployChain] = useState<EnvironmentsEnum>(
-    environmentDeploy || getEnvironmentForChainId(network.chainId)
-  );
-  const [upgradeChain, setUpgradeChain] = useState<EnvironmentsEnum>(
-    environmentUpgrade || getEnvironmentForChainId(network.chainId)
+  const environment = entries[NETWORK] as EnvironmentsEnum;
+  const [chain, setChain] = useState<EnvironmentsEnum>(
+    environment || getEnvironmentForChainId(network.chainId)
   );
 
   return (
@@ -30,24 +26,16 @@ export const SmartContractInteraction = () => {
         <div className={styles.wrapper}>
           <div className={styles.header}>
             <h3 className={styles.title}> Deploy Contract </h3>
-            <Environment
-              chain={deployChain}
-              setChain={setDeployChain}
-              networkKey={DEPLOY_ENV_KEY}
-            />
+            <Environment chain={chain} setChain={setChain} />
           </div>
-          <DeploySection chain={deployChain} />
+          <DeploySection chain={chain} />
         </div>
         <div className={styles.wrapper}>
           <div className={styles.header}>
             <h3 className={styles.title}> Upgrade Contract </h3>
-            <Environment
-              chain={upgradeChain}
-              setChain={setUpgradeChain}
-              networkKey={UPGRADE_ENV_KEY}
-            />
+            <Environment chain={chain} setChain={setChain} />
           </div>
-          <UpgradeSection chain={upgradeChain} />
+          <UpgradeSection chain={chain} />
         </div>
       </div>
     </Template>

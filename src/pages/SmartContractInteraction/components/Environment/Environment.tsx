@@ -8,9 +8,11 @@ import {
   faArrowUpLong
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
-
 import type { EnvironmentPropsType, OptionType } from './types';
 import styles from './styles.module.scss';
+import { ActionTypeEnum } from 'context/reducer';
+import { useDispatch } from 'context';
+import { NETWORK } from '../../constants';
 
 const customComponents = {
   Control: (props: any) => (
@@ -43,15 +45,12 @@ const customComponents = {
   IndicatorSeparator: null
 };
 
-export const Environment = ({
-  chain,
-  setChain,
-  networkKey
-}: EnvironmentPropsType) => {
+export const Environment = ({ chain, setChain }: EnvironmentPropsType) => {
   const navigate = useNavigate();
   const { search } = useLocation();
-
   const { pathname } = useLocation();
+
+  const dispatch = useDispatch();
 
   const options: OptionType[] = Object.values(EnvironmentsEnum).map(
     (chain) => ({
@@ -61,24 +60,29 @@ export const Environment = ({
   );
 
   const onChange = useCallback(
-    (option: SingleValue<OptionType>) => {
+    async (option: SingleValue<OptionType>) => {
       if (option) {
+        dispatch({
+          type: ActionTypeEnum.switchDappEnvironment,
+          dappEnvironment: option.value as EnvironmentsEnum
+        });
+
         setChain(option.value as EnvironmentsEnum);
 
         const params = new URLSearchParams(search);
-        params.set(networkKey, option.value);
+        params.set(NETWORK, option.value);
 
         navigate(`${pathname}?${params.toString()}`);
       }
     },
-    [pathname, navigate, networkKey, search]
+    [pathname, navigate, search, dispatch, chain]
   );
 
   return (
     <div className={styles.environment}>
       <Select
         options={options.reverse()}
-        defaultValue={{ label: chain, value: chain }}
+        value={{ label: chain, value: chain }}
         onChange={onChange}
         isSearchable={false}
         components={customComponents}

@@ -13,7 +13,7 @@ import { Modal } from 'react-bootstrap';
 
 import { CloseIcon } from 'assets/img/CloseIcon';
 
-import type { GeneratePropsType } from './types';
+import type { LoginModalPropsType } from './types';
 
 import styles from './styles.module.scss';
 import { useGetAccountProvider } from '@multiversx/sdk-dapp/hooks';
@@ -25,16 +25,14 @@ enum LoginContainersTypesEnum {
   none = 'none'
 }
 
-export const LoginModal = (props: GeneratePropsType) => {
+export const LoginModal = (props: LoginModalPropsType) => {
   const { chain, show, setShow } = props;
 
   const { providerType } = useGetAccountProvider();
   const { search, pathname } = useLocation();
-  const { network } = Object.fromEntries(new URLSearchParams(search));
 
   const apiAddress = fallbackNetworkConfigurations[chain].apiAddress;
-
-  const route = network ? `${pathname}?network=${network}` : pathname;
+  const route = `${pathname}${search}`;
 
   const [openedLoginContainerType, setOpenedContainerType] = useState(
     LoginContainersTypesEnum.none

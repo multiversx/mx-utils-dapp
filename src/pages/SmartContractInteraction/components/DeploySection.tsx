@@ -21,7 +21,7 @@ export const DeploySection = ({ chain }: { chain: EnvironmentsEnum }) => {
   const { wasmCode, onUpload } = useUploadWasmCode();
   const { contractOrDeployerAddress, setContractOrDeployerAddress } =
     useGetDeployedContractAddress(sessionId);
-  const { deploy } = useDeployments();
+  const { deploy } = useDeployments({ chain });
 
   const handleDeploy = useCallback(async () => {
     if (!wasmCode || !isLoggedIn || !Boolean(address)) {
@@ -37,7 +37,7 @@ export const DeploySection = ({ chain }: { chain: EnvironmentsEnum }) => {
 
     const response = await deploy(params);
     setSessionId(response.sessionId ?? '');
-  }, [wasmCode, isLoggedIn, address]);
+  }, [wasmCode, isLoggedIn, address, deploy]);
 
   useEffect(() => {
     if (isLoggedIn && Boolean(address)) {
