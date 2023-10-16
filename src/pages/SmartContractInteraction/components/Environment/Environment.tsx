@@ -43,7 +43,11 @@ const customComponents = {
   IndicatorSeparator: null
 };
 
-export const Environment = ({ chain, setChain, networkKey }: EnvironmentPropsType) => {
+export const Environment = ({
+  chain,
+  setChain,
+  networkKey
+}: EnvironmentPropsType) => {
   const navigate = useNavigate();
   const { search } = useLocation();
 
