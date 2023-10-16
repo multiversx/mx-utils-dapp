@@ -6,6 +6,7 @@ import {
     useGetNetworkConfig,
     useGetSuccessfulTransactions
 } from "@multiversx/sdk-dapp/hooks";
+import {logout} from "@multiversx/sdk-dapp/utils/logout";
 
 export const useGetDeployedContractAddress = (sessionId: string) => {
     const [contractOrDeployerAddress, setContractOrDeployerAddress] = useState('');
@@ -46,6 +47,7 @@ export const useGetDeployedContractAddress = (sessionId: string) => {
     }, [sessionId, isLoggedIn, completedTransactions.successfulTransactions[sessionId]?.status]);
 
     return {
-        contractOrDeployerAddress
+        contractOrDeployerAddress,
+        setContractOrDeployerAddress
     }
 }

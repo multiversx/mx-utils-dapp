@@ -43,8 +43,9 @@ const customComponents = {
   IndicatorSeparator: null
 };
 
-export const Environment = ({ chain, setChain }: EnvironmentPropsType) => {
+export const Environment = ({ chain, setChain, networkKey }: EnvironmentPropsType) => {
   const navigate = useNavigate();
+  const { search } = useLocation();
 
   const { pathname } = useLocation();
 
@@ -59,10 +60,14 @@ export const Environment = ({ chain, setChain }: EnvironmentPropsType) => {
     (option: SingleValue<OptionType>) => {
       if (option) {
         setChain(option.value as EnvironmentsEnum);
-        navigate(`${pathname}?network=${option.value}`);
+
+        const params = new URLSearchParams(search);
+        params.set(networkKey, option.value);
+
+        navigate(`${pathname}?${params.toString()}`);
       }
     },
-    [setChain, pathname, navigate]
+    [pathname, navigate, networkKey, search]
   );
 
   return (

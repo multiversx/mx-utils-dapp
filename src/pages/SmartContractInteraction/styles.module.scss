@@ -168,6 +168,13 @@
           &.white:hover {
             color: var(--navigation);
           }
+
+          &:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            background-color: transparent;
+            color: var(--link);
+          }
         }
       }
     }

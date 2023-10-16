@@ -44,6 +44,8 @@ export const useDeployments = () => {
             payableBySc
         }: DeployOrUpgradeParamsType
     )=> {
+        console.log("Account", account)
+
         try {
             const codeMetadata = new CodeMetadata(
                 upgradeable ?? true,
@@ -56,7 +58,6 @@ export const useDeployments = () => {
             const smartContract = new SmartContract();
 
             const transaction = smartContract.deploy({
-                // !!! Attention !!! the deployer address is the address of the logged in user
                 deployer: Address.fromString(account.address),
                 code,
                 gasLimit: gasLimit,
@@ -99,7 +100,6 @@ export const useDeployments = () => {
             });
 
             const transaction = smartContract.upgrade({
-                // !!! Attention !!! the caller address is the address of the logged in user
                 caller: Address.fromString(account.address),
                 code,
                 gasLimit: gasLimit,
