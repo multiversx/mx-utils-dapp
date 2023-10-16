@@ -49,7 +49,7 @@ export const Navbar = (props: NavbarPropsType) => {
             })}
           >
             <div className={styles.bars}>
-              {Array.from({ length: 3 }).map((item, index) => (
+              {Array.from({ length: 4 }).map((item, index) => (
                 <span className={styles.bar} key={`bar-${index}`}></span>
               ))}
             </div>
