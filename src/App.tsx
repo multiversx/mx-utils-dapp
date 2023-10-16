@@ -1,5 +1,6 @@
 import React from 'react';
 import { TransactionsToastList } from '@multiversx/sdk-dapp/UI/TransactionsToastList';
+import {SignTransactionsModals} from "@multiversx/sdk-dapp/UI/SignTransactionsModals/SignTransactionsModals";
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import { ContextProvider } from 'context';
@@ -18,6 +19,7 @@ export const App = () => (
   <BrowserRouter>
     <ContextProvider>
       <TransactionsToastList />
+      <SignTransactionsModals />
       <Routes>
         {routes.map((route: RouteType) => (
           <Route

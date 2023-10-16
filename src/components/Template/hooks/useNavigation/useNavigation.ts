@@ -2,7 +2,8 @@ import {
   faArrowRightArrowLeft,
   faHome,
   faUser,
-  faMessage
+  faMessage,
+  faFile
 } from '@fortawesome/free-solid-svg-icons';
 
 import type { NavigationType } from './types';
@@ -28,6 +29,10 @@ export const useNavigation = () => {
     {
       path: '/sign-message',
       icon: faMessage
+    },
+    {
+      path: '/smart-contract',
+      icon: faFile
     }
   ];
 
