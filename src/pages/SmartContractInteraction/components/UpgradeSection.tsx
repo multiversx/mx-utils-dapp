@@ -24,15 +24,9 @@ export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
     const { upgrade } = useDeployments();
 
     const handleUpgrade = async () => {
-        console.log("deploying...")
-        console.log("isLoggedIn", isLoggedIn);
-        console.log("wasmCode", wasmCode);
-
         if (!wasmCode || !isLoggedIn || !Boolean(address)) {
             return;
         }
-
-        console.log("account address...: ", address)
 
         const params: DeployOrUpgradeParamsType = {
             code: wasmCode,

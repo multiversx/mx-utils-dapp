@@ -38,8 +38,8 @@ const pages: RouteType[] = [
     component: SignMessage
   },
   {
-    path: '/smart-contracts',
-    title: 'Smart Contracts',
+    path: '/smart-contract',
+    title: 'SC Interaction',
     component: SmartContractInteraction
   }
 ];

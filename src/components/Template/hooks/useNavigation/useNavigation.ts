@@ -31,7 +31,7 @@ export const useNavigation = () => {
       icon: faMessage
     },
     {
-      path: '/smart-contracts',
+      path: '/smart-contract',
       icon: faFile
     }
   ];

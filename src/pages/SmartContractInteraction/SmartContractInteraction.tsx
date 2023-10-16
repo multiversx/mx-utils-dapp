@@ -8,14 +8,15 @@ import styles from './styles.module.scss';
 import {DeploySection} from "./components/DeploySection";
 import {UpgradeSection} from "./components/UpgradeSection";
 import {Environment} from "./components/Environment";
+import {DEPLOY_ENV_KEY, UPGRADE_ENV_KEY} from "./constants";
 
 export const SmartContractInteraction = () => {
     const { search } = useLocation();
     const { network } = useGetNetworkConfig();
 
     const entries = Object.fromEntries(new URLSearchParams(search));
-    const environmentDeploy = entries["deploy-env"] as EnvironmentsEnum;
-    const environmentUpgrade = entries["upgrade-env"] as EnvironmentsEnum;
+    const environmentDeploy = entries[DEPLOY_ENV_KEY] as EnvironmentsEnum;
+    const environmentUpgrade = entries[UPGRADE_ENV_KEY] as EnvironmentsEnum;
     const [deployChain, setDeployChain] = useState<EnvironmentsEnum>(
         environmentDeploy || getEnvironmentForChainId(network.chainId)
     );
@@ -32,7 +33,7 @@ export const SmartContractInteraction = () => {
                         <Environment
                             chain={deployChain}
                             setChain={setDeployChain}
-                            networkKey={"deploy-env"}
+                            networkKey={DEPLOY_ENV_KEY}
                         />
                     </div>
                     <DeploySection chain={deployChain} />
@@ -43,7 +44,7 @@ export const SmartContractInteraction = () => {
                         <Environment
                             chain={upgradeChain}
                             setChain={setUpgradeChain}
-                            networkKey={"upgrade-env"}
+                            networkKey={UPGRADE_ENV_KEY}
                         />
                     </div>
                     <UpgradeSection chain={upgradeChain} />
