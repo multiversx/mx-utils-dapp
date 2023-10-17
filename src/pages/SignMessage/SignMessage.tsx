@@ -19,7 +19,7 @@ import {
   InitialVerifyFormValuesType,
   SignedMessageStatusesEnum
 } from './types';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
+import { useChain } from 'hooks/useChain';
 
 export const SignMessage = () => {
   const { signMessage } = useSignMessage();
@@ -37,6 +37,7 @@ export const SignMessage = () => {
     });
 
   const [searchParams] = useSearchParams();
+  const { chain } = useChain();
 
   const handleSignMessage = async () => {
     const signableMessage = await signMessage({
@@ -87,7 +88,7 @@ export const SignMessage = () => {
     <>
       <Template>
         <Generate
-          chain={EnvironmentsEnum.mainnet}
+          chain={chain}
           show={showProvidersModal}
           setShow={setShowProvidersModal}
           callbackAfterLogin={handleSignMessage}

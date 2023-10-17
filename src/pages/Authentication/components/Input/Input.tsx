@@ -17,7 +17,7 @@ import { ActionTypeEnum } from 'context/reducer';
  */
 
 export const Input = memo((props: InputPropsType) => {
-  const { setMetrics, setShow, setChain, chain } = props;
+  const { setMetrics, setShow, chain } = props;
 
   const dispatch = useDispatch();
 
@@ -67,12 +67,6 @@ export const Input = memo((props: InputPropsType) => {
               <button onClick={handleGenerateClick} className={styles.generate}>
                 Generate
               </button>
-
-              <Environment
-                chain={chain}
-                setChain={setChain}
-                setMetrics={setMetrics}
-              />
             </div>
           </h3>
 

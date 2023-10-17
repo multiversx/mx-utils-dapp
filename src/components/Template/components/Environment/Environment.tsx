@@ -12,7 +12,7 @@ import type { EnvironmentPropsType, OptionType } from './types';
 import styles from './styles.module.scss';
 import { ActionTypeEnum } from 'context/reducer';
 import { useDispatch } from 'context';
-import { NETWORK } from '../../constants';
+import { NETWORK } from 'constants/environment';
 
 const customComponents = {
   Control: (props: any) => (
@@ -45,7 +45,7 @@ const customComponents = {
   IndicatorSeparator: null
 };
 
-export const Environment = ({ chain, setChain }: EnvironmentPropsType) => {
+export const Environment = ({ chain }: EnvironmentPropsType) => {
   const navigate = useNavigate();
   const { search } = useLocation();
   const { pathname } = useLocation();
@@ -66,8 +66,6 @@ export const Environment = ({ chain, setChain }: EnvironmentPropsType) => {
           type: ActionTypeEnum.switchDappEnvironment,
           dappEnvironment: option.value as EnvironmentsEnum
         });
-
-        setChain(option.value as EnvironmentsEnum);
 
         const params = new URLSearchParams(search);
         params.set(NETWORK, option.value);

@@ -24,7 +24,6 @@ import {
 } from '@multiversx/sdk-dapp/hooks';
 import { logout } from '@multiversx/sdk-dapp/utils/logout';
 import { Trim } from '@multiversx/sdk-dapp/UI';
-import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 
 /*
  * Handle the component declaration.
@@ -84,8 +83,6 @@ export const Template = (props: PropsWithChildren) => {
   /*
    * Return the rendered component.
    */
-
-  console.log('isLoggedIn', isLoggedIn);
 
   return (
     <div>

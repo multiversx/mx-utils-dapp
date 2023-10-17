@@ -10,7 +10,6 @@ export interface FormValuesType {
 
 export interface InputPropsType {
   setMetrics: Dispatch<SetStateAction<MetricType>>;
-  setChain: Dispatch<SetStateAction<EnvironmentsEnum>>;
   setShow: Dispatch<SetStateAction<boolean>>;
   chain: EnvironmentsEnum;
 }

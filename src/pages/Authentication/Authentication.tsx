@@ -1,20 +1,13 @@
 import { useState } from 'react';
-import { getEnvironmentForChainId } from '@multiversx/sdk-dapp/apiCalls/configuration/getEnvironmentForChainId';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
-import { useGetNetworkConfig } from '@multiversx/sdk-dapp/hooks';
-import { useLocation } from 'react-router-dom';
-
 import { Template } from 'components/Template';
-
 import { Input } from './components/Input';
 import { Metric } from './components/Metric';
 import { Generate } from './components/Generate';
-
 import { TokenColorsEnum } from './enum';
-
 import type { DefaultMetricType, MetricItemType, MetricType } from './types';
-
 import styles from './styles.module.scss';
+import { useChain } from 'hooks/useChain';
 
 export const emptyMetrics: MetricType = {
   address: '',
@@ -67,15 +60,7 @@ export const defaultMetrics: DefaultMetricType = {
  */
 
 export const Authentication = () => {
-  const { search } = useLocation();
-  const { network } = useGetNetworkConfig();
-
-  const entries = Object.fromEntries(new URLSearchParams(search));
-  const environment = entries.network as EnvironmentsEnum;
-
-  const [chain, setChain] = useState<EnvironmentsEnum>(
-    environment || getEnvironmentForChainId(network.chainId)
-  );
+  const { chain } = useChain();
 
   const [show, setShow] = useState(false);
   const [metrics, setMetrics] = useState<MetricType>(defaultMetrics[chain]);
@@ -151,12 +136,7 @@ export const Authentication = () => {
         <div className={styles.left}>
           <h2 className={styles.subtitle}>Encoded</h2>
 
-          <Input
-            setMetrics={setMetrics}
-            setShow={setShow}
-            setChain={setChain}
-            chain={chain}
-          />
+          <Input setMetrics={setMetrics} setShow={setShow} chain={chain} />
         </div>
 
         <div className={styles.right}>
