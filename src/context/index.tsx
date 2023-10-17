@@ -8,13 +8,23 @@ import {
 import { DispatchType, reducer } from './reducer';
 import { StateType, initializer } from './state';
 import { DappProvider } from '@multiversx/sdk-dapp/wrappers';
+import { useLocation } from 'react-router-dom';
+import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
 const Context = createContext<StateType | undefined>(undefined);
 const Dispatch = createContext<DispatchType | undefined>(undefined);
 
 const ContextProvider = (props: PropsWithChildren) => {
   const { children } = props;
-  const [state, dispatch] = useReducer(reducer, initializer);
+
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const network = params.get('network') ?? initializer.dappEnvironment;
+
+  const [state, dispatch] = useReducer(reducer, {
+    ...initializer,
+    dappEnvironment: network as EnvironmentsEnum
+  });
 
   return (
     <Context.Provider value={state}>

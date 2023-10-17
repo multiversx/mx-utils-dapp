@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import {
   ExtensionLoginButton,
   LedgerLoginButton,
@@ -13,10 +13,11 @@ import { Modal } from 'react-bootstrap';
 
 import { CloseIcon } from 'assets/img/CloseIcon';
 
-import type { GeneratePropsType } from './types';
+import type { LoginModalPropsType } from './types';
 
 import styles from './styles.module.scss';
-import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import { useGetAccountProvider } from '@multiversx/sdk-dapp/hooks';
+import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
 
 enum LoginContainersTypesEnum {
   walletConnect = 'walletConnect',
@@ -24,28 +25,22 @@ enum LoginContainersTypesEnum {
   none = 'none'
 }
 
-export const Generate = (props: GeneratePropsType) => {
-  const { chain, show, setShow, callbackAfterLogin } = props;
+export const LoginModal = (props: LoginModalPropsType) => {
+  const { chain, show, setShow } = props;
 
-  const isLoggedIn = useGetIsLoggedIn();
+  const { providerType } = useGetAccountProvider();
   const { search, pathname } = useLocation();
-  const { network } = Object.fromEntries(new URLSearchParams(search));
 
   const apiAddress = fallbackNetworkConfigurations[chain].apiAddress;
-
-  console.log('apiAddress: ', apiAddress);
-  const route = network ? `${pathname}?network=${network}` : pathname;
+  const route = `${pathname}${search}`;
 
   const [openedLoginContainerType, setOpenedContainerType] = useState(
     LoginContainersTypesEnum.none
   );
 
-  useEffect(() => {
-    if (isLoggedIn && callbackAfterLogin) {
-      callbackAfterLogin();
-      onClose();
-    }
-  }, [isLoggedIn]);
+  const onLoginRedirect = () => {
+    onClose();
+  };
 
   function renderLoginButton(
     content: ReactNode,
@@ -79,8 +74,7 @@ export const Generate = (props: GeneratePropsType) => {
     },
     {
       name: 'MultiversX Web Wallet',
-      component: WebWalletLoginButton,
-      disableDefaultBehavior: Boolean(callbackAfterLogin)
+      component: WebWalletLoginButton
     }
   ];
 
@@ -123,36 +117,22 @@ export const Generate = (props: GeneratePropsType) => {
         <div className={styles.buttons}>
           {buttons.map((button) =>
             renderLoginButton(
-              button.disableDefaultBehavior ? (
-                <button
-                  onClick={callbackAfterLogin}
-                  className={styles.button}
-                  key={button.name}
-                >
-                  <span className={styles.name}>{button.name}</span>
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    className={styles.arrow}
-                  />
-                </button>
-              ) : (
-                <button.component
-                  key={button.name}
-                  callbackRoute={route}
-                  className={styles.button}
-                  wrapContentInsideModal={false}
-                  hideButtonWhenModalOpens={true}
-                  nativeAuth={{ apiAddress, expirySeconds: 7200 }}
-                  {...button}
-                >
-                  <span className={styles.name}>{button.name}</span>
+              <button.component
+                key={button.name}
+                callbackRoute={
+                  providerType === LoginMethodsEnum.wallet ? route : undefined
+                }
+                className={styles.button}
+                wrapContentInsideModal={false}
+                hideButtonWhenModalOpens={true}
+                nativeAuth={{ apiAddress, expirySeconds: 7200 }}
+                onLoginRedirect={onLoginRedirect}
+                {...button}
+              >
+                <span className={styles.name}>{button.name}</span>
 
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    className={styles.arrow}
-                  />
-                </button.component>
-              ),
+                <FontAwesomeIcon icon={faArrowRight} className={styles.arrow} />
+              </button.component>,
               button.id
             )
           )}

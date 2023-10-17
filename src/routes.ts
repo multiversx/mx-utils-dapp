@@ -6,6 +6,7 @@ import { Authentication } from 'pages/Authentication';
 import { Converters } from 'pages/Converters';
 import { Home } from 'pages/Home';
 import { SignMessage } from 'pages/SignMessage';
+import { SmartContractInteraction } from 'pages/SmartContractInteraction/SmartContractInteraction';
 
 import { withPageTitle } from './components/PageTitle';
 import { Explainer } from 'pages/Explainer';
@@ -36,6 +37,11 @@ const pages: RouteType[] = [
     path: '/sign-message',
     title: 'Sign Message',
     component: SignMessage
+  },
+  {
+    path: '/smart-contract',
+    title: 'SC Interaction',
+    component: SmartContractInteraction
   },
   {
     path: '/explainer',

@@ -4,8 +4,6 @@ import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import { object, string } from 'yup';
 import classNames from 'classnames';
 
-import { useGlobalContext } from 'context';
-
 import type { ConverterType, SubmitType } from './types';
 
 import styles from './styles.module.scss';
@@ -16,7 +14,6 @@ import styles from './styles.module.scss';
 
 export const Converter = (props: ConverterType) => {
   const { label, compute, validate, identifier } = props;
-  const { theme } = useGlobalContext();
 
   const [value, setValue] = useState('');
   const initialValues = { converter: '' };
@@ -103,9 +100,7 @@ export const Converter = (props: ConverterType) => {
             <button
               type='submit'
               data-testid={`${identifier}-submit-button`}
-              className={classNames(styles.button, styles.active, {
-                [styles.white]: theme === 'light'
-              })}
+              className={classNames(styles.button, styles.active)}
             >
               Convert
             </button>
@@ -114,9 +109,7 @@ export const Converter = (props: ConverterType) => {
               <button
                 type='button'
                 data-testid={`${identifier}-clear-button`}
-                className={classNames(styles.button, {
-                  [styles.white]: theme === 'light'
-                })}
+                className={classNames(styles.button)}
                 onClick={() => {
                   setValue('');
                   resetForm();

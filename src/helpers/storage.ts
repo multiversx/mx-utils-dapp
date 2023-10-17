@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 type ExpiresType = number | false;
-type LocalKeyType = 'theme' | 'nativeAuthToken';
+type LocalKeyType = 'nativeAuthToken';
 
 interface SetLocalItemType {
   key: LocalKeyType;

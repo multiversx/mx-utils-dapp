@@ -8,8 +8,3 @@ export enum TokenColorsEnum {
   ttl = '#a8329a',
   extra = '#3298a8'
 }
-
-export enum TokenDefaultColorsEnum {
-  darkDefault = '#000000',
-  lightDefault = '#ffffff'
-}

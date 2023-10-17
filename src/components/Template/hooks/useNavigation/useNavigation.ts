@@ -3,6 +3,7 @@ import {
   faHome,
   faUser,
   faMessage,
+  faFile,
   faRobot
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,6 +30,10 @@ export const useNavigation = () => {
     {
       path: '/sign-message',
       icon: faMessage
+    },
+    {
+      path: '/smart-contract',
+      icon: faFile
     },
     {
       path: '/explainer',

@@ -4,16 +4,15 @@ import classNames from 'classnames';
 import { object, string } from 'yup';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import { useGlobalContext } from 'context';
-
 import styles from '../styles.module.scss';
 import { AssistantApiSSETypes, assistantApi } from 'helpers/assistantApi';
 import { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ExplainForm = () => {
-  const { theme } = useGlobalContext();
-  const [explainerResponse, setExplainerResponse] = useState<string | null>(null);
+  const [explainerResponse, setExplainerResponse] = useState<string | null>(
+    null
+  );
   const [showLoader, setShowLoader] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [eventSource, setEventSource] = useState<EventSource | null>(null);
@@ -23,21 +22,27 @@ export const ExplainForm = () => {
   const handleEventSourceError = useCallback(() => {
     eventSource?.close();
     setShowLoader(false);
-    setErrorMessage("Explainer encounterd an unknown error. Please try again.");
+    setErrorMessage('Explainer encounterd an unknown error. Please try again.');
   }, [eventSource]);
 
-  const handleCodeExplanationStreamFailed = useCallback((event: MessageEvent) => {
-    eventSource?.close();
-    setErrorMessage(event.data);
-    setShowLoader(false);
-    setExplainerResponse(null);
-  }, [eventSource]);
+  const handleCodeExplanationStreamFailed = useCallback(
+    (event: MessageEvent) => {
+      eventSource?.close();
+      setErrorMessage(event.data);
+      setShowLoader(false);
+      setExplainerResponse(null);
+    },
+    [eventSource]
+  );
 
-  const handleCodeExplanationStreamChunk = useCallback((event: MessageEvent) => {
-    setExplainerResponse((prevResponse) => {
-      return prevResponse === null ? event.data : prevResponse + event.data;
-    });
-  }, []);
+  const handleCodeExplanationStreamChunk = useCallback(
+    (event: MessageEvent) => {
+      setExplainerResponse((prevResponse) => {
+        return prevResponse === null ? event.data : prevResponse + event.data;
+      });
+    },
+    []
+  );
 
   const handleCodeExplanationStreamFinished = useCallback(() => {
     eventSource?.close();
@@ -48,21 +53,51 @@ export const ExplainForm = () => {
     console.log('useEffect', eventSource);
 
     if (eventSource) {
-      eventSource.addEventListener(AssistantApiSSETypes.error, handleEventSourceError);
-      eventSource.addEventListener(AssistantApiSSETypes.codeExplanation.streamFailed, handleCodeExplanationStreamFailed);
-      eventSource.addEventListener(AssistantApiSSETypes.codeExplanation.streamChunk, handleCodeExplanationStreamChunk);
-      eventSource.addEventListener(AssistantApiSSETypes.codeExplanation.chunkFinished, handleCodeExplanationStreamFinished);
+      eventSource.addEventListener(
+        AssistantApiSSETypes.error,
+        handleEventSourceError
+      );
+      eventSource.addEventListener(
+        AssistantApiSSETypes.codeExplanation.streamFailed,
+        handleCodeExplanationStreamFailed
+      );
+      eventSource.addEventListener(
+        AssistantApiSSETypes.codeExplanation.streamChunk,
+        handleCodeExplanationStreamChunk
+      );
+      eventSource.addEventListener(
+        AssistantApiSSETypes.codeExplanation.chunkFinished,
+        handleCodeExplanationStreamFinished
+      );
     }
 
     return () => {
       if (eventSource) {
-        eventSource.removeEventListener(AssistantApiSSETypes.error, handleEventSourceError);
-        eventSource.removeEventListener(AssistantApiSSETypes.codeExplanation.streamFailed, handleCodeExplanationStreamFailed);
-        eventSource.removeEventListener(AssistantApiSSETypes.codeExplanation.streamChunk, handleCodeExplanationStreamChunk);
-        eventSource.removeEventListener(AssistantApiSSETypes.codeExplanation.chunkFinished, handleCodeExplanationStreamFinished);
+        eventSource.removeEventListener(
+          AssistantApiSSETypes.error,
+          handleEventSourceError
+        );
+        eventSource.removeEventListener(
+          AssistantApiSSETypes.codeExplanation.streamFailed,
+          handleCodeExplanationStreamFailed
+        );
+        eventSource.removeEventListener(
+          AssistantApiSSETypes.codeExplanation.streamChunk,
+          handleCodeExplanationStreamChunk
+        );
+        eventSource.removeEventListener(
+          AssistantApiSSETypes.codeExplanation.chunkFinished,
+          handleCodeExplanationStreamFinished
+        );
       }
-    }
-  }, [eventSource, handleCodeExplanationStreamChunk, handleCodeExplanationStreamFailed, handleCodeExplanationStreamFinished, handleEventSourceError]);
+    };
+  }, [
+    eventSource,
+    handleCodeExplanationStreamChunk,
+    handleCodeExplanationStreamFailed,
+    handleCodeExplanationStreamFinished,
+    handleEventSourceError
+  ]);
 
   const onSubmit = ({ repositoryUrl }: { repositoryUrl: string }) => {
     setExplainerResponse(null);
@@ -123,9 +158,7 @@ export const ExplainForm = () => {
               <div className={styles.buttons}>
                 <button
                   type='submit'
-                  className={classNames(styles.button, styles.active, {
-                    [styles.white]: theme === 'light'
-                  })}
+                  className={classNames(styles.button, styles.active)}
                   disabled={showLoader}
                 >
                   Explain
