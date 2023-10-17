@@ -161,7 +161,21 @@
               }
             }
           }
+
+          .unlock {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+          }
         }
+      }
+    }
+
+    @media(min-width:992px) {
+      li:last-child {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
       }
     }
   }

@@ -1,7 +1,11 @@
 import { useCallback, useState, useEffect, PropsWithChildren } from 'react';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCaretDown,
+  faSignIn,
+  faSignOut
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { routes, RouteType } from 'routes';
@@ -14,6 +18,13 @@ import { useNavigation } from './hooks/useNavigation';
 import styles from './styles.module.scss';
 
 import type { ItemType } from './types';
+import {
+  useGetAccountInfo,
+  useGetIsLoggedIn
+} from '@multiversx/sdk-dapp/hooks';
+import { logout } from '@multiversx/sdk-dapp/utils/logout';
+import { Trim } from '@multiversx/sdk-dapp/UI';
+import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 
 /*
  * Handle the component declaration.
@@ -26,6 +37,9 @@ export const Template = (props: PropsWithChildren) => {
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [activePage, setActivePage] = useState(hash ? pathname : '');
+
+  const isLoggedIn = useGetIsLoggedIn();
+  const { address } = useGetAccountInfo();
 
   /*
    * Assign each route the icon and categories for enhanced mapping.
@@ -71,6 +85,8 @@ export const Template = (props: PropsWithChildren) => {
    * Return the rendered component.
    */
 
+  console.log('isLoggedIn', isLoggedIn);
+
   return (
     <div>
       <Navbar setToggleMenu={setToggleMenu} toggleMenu={toggleMenu} />
@@ -86,45 +102,90 @@ export const Template = (props: PropsWithChildren) => {
           <h6 className={styles.menu}>Menu</h6>
 
           <ul className={styles.pages}>
-            {items.map((item) => (
-              <li
-                key={item.path}
-                data-testid={`navigation-page-${item.path}`}
-                className={classNames(styles.page, {
-                  [styles.active]:
-                    item.path === activePage || item.path === pathname
-                })}
-              >
-                <div className={styles.item}>
-                  <a
-                    href={item.path}
-                    className={styles.path}
-                    onClick={onItemClick}
-                  >
-                    <FontAwesomeIcon icon={item.icon} className={styles.icon} />
-                    <span className={styles.title}>{item.title}</span>
-                  </a>
-
-                  {item.categories && (
-                    <div
-                      className={styles.trigger}
-                      onClick={() =>
-                        setActivePage(activePage === '' ? item.path : '')
-                      }
+            {items
+              .filter((x) => x.path !== '/unlock')
+              .map((item) => (
+                <li
+                  key={item.path}
+                  data-testid={`navigation-page-${item.path}`}
+                  className={classNames(styles.page, {
+                    [styles.active]:
+                      item.path === activePage || item.path === pathname
+                  })}
+                >
+                  <div className={styles.item}>
+                    <Link
+                      to={item.path}
+                      className={styles.path}
+                      onClick={onItemClick}
                     >
-                      <span
-                        data-testid={`navigation-caret-${item.path}`}
-                        className={classNames(styles.caret, {
-                          [styles.active]: item.path === activePage
-                        })}
+                      <FontAwesomeIcon
+                        icon={item.icon}
+                        className={styles.icon}
+                      />
+                      <span className={styles.title}>{item.title}</span>
+                    </Link>
+
+                    {item.categories && (
+                      <div
+                        className={styles.trigger}
+                        onClick={() =>
+                          setActivePage(activePage === '' ? item.path : '')
+                        }
                       >
-                        <FontAwesomeIcon icon={faCaretDown} />
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </li>
-            ))}
+                        <span
+                          data-testid={`navigation-caret-${item.path}`}
+                          className={classNames(styles.caret, {
+                            [styles.active]: item.path === activePage
+                          })}
+                        >
+                          <FontAwesomeIcon icon={faCaretDown} />
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </li>
+              ))}
+            <li
+              key={'unlock'}
+              data-testid={`navigation-page-unlock`}
+              className={classNames(styles.page, {
+                [styles.active]:
+                  '/unlock' === activePage || '/unlock' === pathname
+              })}
+            >
+              <div className={styles.item} style={{ display: 'inherit' }}>
+                <Link
+                  to={isLoggedIn ? '' : '/unlock'}
+                  className={classNames(styles.path, styles.unlock)}
+                  onClick={isLoggedIn ? () => logout() : onItemClick}
+                >
+                  <div className={styles.title}>
+                    {isLoggedIn ? (
+                      <FontAwesomeIcon
+                        icon={faSignOut}
+                        className={styles.icon}
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faSignIn}
+                        className={styles.icon}
+                      />
+                    )}
+                    <span className={styles.title}>
+                      {isLoggedIn ? 'Logout' : 'Login'}
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      marginTop: '0.5rem'
+                    }}
+                  >
+                    <Trim text={address} className={styles.title} />
+                  </div>
+                </Link>
+              </div>
+            </li>
           </ul>
         </div>
 
