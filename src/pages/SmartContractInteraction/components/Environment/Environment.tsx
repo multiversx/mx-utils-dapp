@@ -13,7 +13,6 @@ import styles from './styles.module.scss';
 import { ActionTypeEnum } from 'context/reducer';
 import { useDispatch } from 'context';
 import { NETWORK } from '../../constants';
-import { logout } from '@multiversx/sdk-dapp/utils/logout';
 
 const customComponents = {
   Control: (props: any) => (
@@ -73,7 +72,6 @@ export const Environment = ({ chain, setChain }: EnvironmentPropsType) => {
         const params = new URLSearchParams(search);
         params.set(NETWORK, option.value);
 
-        await logout();
         navigate(`${pathname}?${params.toString()}`);
       }
     },

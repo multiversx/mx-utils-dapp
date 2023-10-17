@@ -28,7 +28,9 @@ export const Unlock = () => {
   const { search } = useLocation();
   const isLoggedIn = useGetIsLoggedIn();
 
-  const route = `/${search}`;
+  const searchParams = new URLSearchParams(search);
+  const callbackUrl = searchParams.get('callbackUrl');
+  const route = callbackUrl ?? `/${search}`;
 
   const [openedLoginContainerType, setOpenedContainerType] = useState(
     LoginContainersTypesEnum.none

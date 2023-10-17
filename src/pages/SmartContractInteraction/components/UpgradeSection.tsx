@@ -8,12 +8,12 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
 import { useDeployments } from '../hooks/useDeployments';
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
-import { LoginModal } from './LoginModal';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
+import { useCallbackRoute } from 'hooks/useCallbackRoute';
+import { useNavigate } from 'react-router-dom';
 
 export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
   const [sessionId, setSessionId] = useLocalStorage('upgradeSessionId', '');
-  const [showProvidersModal, setShowProvidersModal] = useState(false);
   const [upgradeContractAddress, setUpgradeContractAddress] =
     useState<string>('');
 
@@ -24,6 +24,9 @@ export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
   const { contractOrDeployerAddress } =
     useGetDeployedContractAddress(sessionId);
   const { upgrade } = useDeployments({ chain });
+
+  const callbackRoute = useCallbackRoute();
+  const navigate = useNavigate();
 
   const handleUpgrade = useCallback(async () => {
     if (!wasmCode || !isLoggedIn || !Boolean(address)) {
@@ -48,75 +51,70 @@ export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
   }, [isLoggedIn, address]);
 
   return (
-    <>
-      <LoginModal
-        chain={chain}
-        show={showProvidersModal}
-        setShow={setShowProvidersModal}
-      />
-      <div className={styles.smartcontract}>
-        <div className={styles.form}>
-          <div className={styles.upload}>
-            <label htmlFor='upgrade_file_input' className={styles.label}>
-              Upload .wasm file
-            </label>
-            <input
-              onChange={onUpload}
-              className={styles.field}
-              id='upgrade_file_input'
-              type='file'
-              accept='.wasm'
-            />
-          </div>
-          <div className={styles.upload}>
-            <label htmlFor='contract_address' className={styles.label}>
-              Contract Address
-            </label>
-            <input
-              id='contract_address'
-              type='text'
-              className={styles.field}
-              autoComplete='off'
-              value={upgradeContractAddress}
-              onChange={(e) => setUpgradeContractAddress(e.target.value)}
-            />
-          </div>
-          {!upgradeContractAddress && (
-            <div className={styles.error}>
-              <span>Contract address is required</span>
-            </div>
-          )}
-
-          <div className={styles.buttons}>
-            <button
-              onClick={() =>
-                isLoggedIn ? handleUpgrade() : setShowProvidersModal(true)
-              }
-              className={styles.button}
-              disabled={!wasmCode || !upgradeContractAddress}
-            >
-              Upgrade
-            </button>
-          </div>
-          <textarea
-            rows={10}
+    <div className={styles.smartcontract}>
+      <div className={styles.form}>
+        <div className={styles.upload}>
+          <label htmlFor='upgrade_file_input' className={styles.label}>
+            Upload .wasm file
+          </label>
+          <input
+            onChange={onUpload}
             className={styles.field}
-            placeholder='.wasm code will be displayed here...'
-            value={wasmCode?.toString()}
-            readOnly={true}
+            id='upgrade_file_input'
+            type='file'
+            accept='.wasm'
           />
-          {contractOrDeployerAddress && (
-            <div className={styles.result}>
-              <strong>Deployer Address:</strong>
-              <Trim className={styles.value} text={contractOrDeployerAddress} />
-              <CopyButton
-                text={contractOrDeployerAddress}
-                className={styles.copy}
-              />
-            </div>
-          )}
         </div>
+        <div className={styles.upload}>
+          <label htmlFor='contract_address' className={styles.label}>
+            Contract Address
+          </label>
+          <input
+            id='contract_address'
+            type='text'
+            className={styles.field}
+            autoComplete='off'
+            value={upgradeContractAddress}
+            onChange={(e) => setUpgradeContractAddress(e.target.value)}
+          />
+        </div>
+        {!upgradeContractAddress && (
+          <div className={styles.error}>
+            <span>Contract address is required</span>
+          </div>
+        )}
+
+        <div className={styles.buttons}>
+          <button
+            onClick={() =>
+              isLoggedIn
+                ? handleUpgrade()
+                : navigate(`/unlock?callbackUrl=${callbackRoute}`)
+            }
+            className={styles.button}
+            disabled={!wasmCode || !upgradeContractAddress}
+          >
+            Upgrade
+          </button>
+        </div>
+        <textarea
+          rows={10}
+          className={styles.field}
+          placeholder='.wasm code will be displayed here...'
+          value={wasmCode?.toString()}
+          readOnly={true}
+        />
+        {contractOrDeployerAddress && (
+          <div className={styles.result}>
+            <strong>Deployer Address:</strong>
+            <Trim className={styles.value} text={contractOrDeployerAddress} />
+            <CopyButton
+              text={contractOrDeployerAddress}
+              className={styles.copy}
+            />
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
