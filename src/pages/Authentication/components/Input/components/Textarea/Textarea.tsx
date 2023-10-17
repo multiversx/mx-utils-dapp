@@ -7,33 +7,23 @@ import {
   useRef
 } from 'react';
 import { Field } from 'formik';
-import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
-import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
-import { logout } from '@multiversx/sdk-dapp/utils/logout';
-import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import moment from 'moment';
-
 import { storage } from 'helpers/storage';
-
 import { TokenColorsEnum } from 'pages/Authentication/enum';
 import { emptyMetrics } from 'pages/Authentication';
-
 import { decodeToken } from './helpers/decodeToken';
 import { validateToken } from './helpers/validateToken';
-
 import type { TextareaDivisionType, TextareaPropsType } from './types';
-
 import styles from './styles.module.scss';
+import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
 
 /*
  * Handle the component declaration.
  */
 
 export const Textarea = (props: TextareaPropsType) => {
-  const { search } = useLocation();
-  const { tokenLogin, loginMethod } = useGetLoginInfo();
+  const nativeToken = useGetNativeAuthToken();
   const {
     values,
     chain,
@@ -45,7 +35,6 @@ export const Textarea = (props: TextareaPropsType) => {
 
   const nativeAuthToken = storage.getLocalItem('nativeAuthToken');
   const clone = useRef<HTMLDivElement>(null);
-  const isLoggedIn = useGetIsLoggedIn();
 
   const defaultColor = '#000000';
 
@@ -158,33 +147,13 @@ export const Textarea = (props: TextareaPropsType) => {
   );
 
   useEffect(() => {
-    if (nativeAuthToken) {
-      setFieldValue('token', nativeAuthToken, false);
-      storage.removeLocalItem('nativeAuthToken');
-      onChange(nativeAuthToken);
+    const token = nativeAuthToken ?? nativeToken;
+
+    if (token) {
+      setFieldValue('token', token, false);
+      onChange(token);
     }
-  }, [setFieldValue, onChange, nativeAuthToken]);
-
-  useEffect(() => {
-    if (isLoggedIn && tokenLogin && tokenLogin.nativeAuthToken) {
-      const token = tokenLogin.nativeAuthToken;
-      const route = search
-        ? `${window.location.origin}/auth${search}`
-        : `${window.location.origin}/auth`;
-
-      const isWallet = loginMethod === 'wallet';
-      const redirect = isWallet ? encodeURIComponent(route) : route;
-
-      if (!nativeAuthToken) {
-        logout(redirect);
-        storage.setLocalItem({
-          data: token,
-          key: 'nativeAuthToken',
-          expires: moment().add(1, 'minute').unix()
-        });
-      }
-    }
-  }, [isLoggedIn, nativeAuthToken, loginMethod, tokenLogin, search]);
+  }, [setFieldValue, onChange, nativeAuthToken, nativeToken]);
 
   /*
    * Return the rendered component.

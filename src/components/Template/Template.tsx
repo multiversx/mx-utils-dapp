@@ -173,11 +173,7 @@ export const Template = (props: PropsWithChildren) => {
                       {isLoggedIn ? 'Logout' : 'Login'}
                     </span>
                   </div>
-                  <div
-                    style={{
-                      marginTop: '0.5rem'
-                    }}
-                  >
+                  <div className={styles.address}>
                     <Trim text={address} className={styles.title} />
                   </div>
                 </Link>

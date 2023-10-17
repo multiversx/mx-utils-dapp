@@ -166,6 +166,10 @@
             display: flex;
             flex-direction: column;
             align-items: stretch;
+
+            .address {
+              margin-top: 0.5rem;
+            }
           }
         }
       }

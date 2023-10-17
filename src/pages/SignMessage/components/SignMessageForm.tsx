@@ -5,9 +5,9 @@ import { object, string } from 'yup';
 import classNames from 'classnames';
 
 import styles from '../styles.module.scss';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface SignFormProps {
-  setShow: (flag: boolean) => void;
   signature: string;
   setSignature: (signature: string) => void;
   setMessage: (message: string) => void;
@@ -16,13 +16,15 @@ interface SignFormProps {
 export const SignMessageForm = ({
   signature,
   setSignature,
-  setMessage,
-  setShow
+  setMessage
 }: SignFormProps) => {
   const initialValues = { message: '' };
 
+  const { search } = useLocation();
+  const navigate = useNavigate();
+
   const onSubmit = () => {
-    setShow(true);
+    navigate(`/sign-message?${search}&signature=${signature}`);
   };
 
   const schema = string().required('Required');

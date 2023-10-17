@@ -8,7 +8,6 @@ import { useGetSignMessageInfoStatus } from '@multiversx/sdk-dapp/hooks/signMess
 import { logout } from '@multiversx/sdk-dapp/utils/logout';
 
 import styles from './styles.module.scss';
-import { Generate } from 'pages/Authentication/components/Generate';
 import {
   SignMessageForm,
   VerifySignatureForm,
@@ -28,7 +27,6 @@ export const SignMessage = () => {
   const [messageToSign, setMessageToSign] = useState('');
   const [signatureFromSignedMessage, setSignatureFromSignedMessage] =
     useState('');
-  const [showProvidersModal, setShowProvidersModal] = useState(false);
   const [initialVerifyFormValues, setInitialVerifyFormValues] =
     useState<InitialVerifyFormValuesType>({
       message: '',
@@ -87,15 +85,8 @@ export const SignMessage = () => {
   return (
     <>
       <Template>
-        <Generate
-          chain={chain}
-          show={showProvidersModal}
-          setShow={setShowProvidersModal}
-          callbackAfterLogin={handleSignMessage}
-        />
         <div className={styles.container}>
           <SignMessageForm
-            setShow={setShowProvidersModal}
             signature={signatureFromSignedMessage}
             setSignature={setSignatureFromSignedMessage}
             setMessage={setMessageToSign}

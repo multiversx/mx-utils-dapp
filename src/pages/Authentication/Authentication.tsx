@@ -3,7 +3,6 @@ import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { Template } from 'components/Template';
 import { Input } from './components/Input';
 import { Metric } from './components/Metric';
-import { Generate } from './components/Generate';
 import { TokenColorsEnum } from './enum';
 import type { DefaultMetricType, MetricItemType, MetricType } from './types';
 import styles from './styles.module.scss';
@@ -130,13 +129,11 @@ export const Authentication = () => {
 
   return (
     <Template>
-      <Generate show={show} setShow={setShow} chain={chain} />
-
       <div className={styles.authentication}>
         <div className={styles.left}>
           <h2 className={styles.subtitle}>Encoded</h2>
 
-          <Input setMetrics={setMetrics} setShow={setShow} chain={chain} />
+          <Input setMetrics={setMetrics} />
         </div>
 
         <div className={styles.right}>
