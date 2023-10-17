@@ -8,15 +8,16 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
 import { useDeployments } from '../hooks/useDeployments';
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useNavigate } from 'react-router-dom';
+import { useChain } from 'hooks/useChain';
 
-export const UpgradeSection = ({ chain }: { chain: EnvironmentsEnum }) => {
+export const UpgradeSection = () => {
   const [sessionId, setSessionId] = useLocalStorage('upgradeSessionId', '');
   const [upgradeContractAddress, setUpgradeContractAddress] =
     useState<string>('');
 
+  const { chain } = useChain();
   const isLoggedIn = useGetIsLoggedIn();
   const { address } = useGetAccount();
 

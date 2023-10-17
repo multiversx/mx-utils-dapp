@@ -7,14 +7,15 @@ import { useDeployments } from '../hooks/useDeployments';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
 import { useGetDeployedContractAddress } from '../hooks/useGetDeployedContractAddress';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useNavigate } from 'react-router-dom';
+import { useChain } from 'hooks/useChain';
 
-export const DeploySection = ({ chain }: { chain: EnvironmentsEnum }) => {
+export const DeploySection = () => {
   const [sessionId, setSessionId] = useLocalStorage('deploySessionId', '');
 
+  const { chain } = useChain();
   const isLoggedIn = useGetIsLoggedIn();
   const { address } = useGetAccount();
 

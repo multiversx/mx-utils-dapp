@@ -81,7 +81,7 @@ export const Input = memo((props: InputPropsType) => {
             </div>
           </h3>
 
-          <Textarea {...props} setMetrics={setMetrics} chain={chain} />
+          <Textarea {...props} setMetrics={setMetrics} />
           <Status {...props} />
         </Form>
       )}

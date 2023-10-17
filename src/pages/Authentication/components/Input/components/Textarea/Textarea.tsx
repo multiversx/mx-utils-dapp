@@ -16,6 +16,7 @@ import { validateToken } from './helpers/validateToken';
 import type { TextareaDivisionType, TextareaPropsType } from './types';
 import styles from './styles.module.scss';
 import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
+import { useChain } from 'hooks/useChain';
 
 /*
  * Handle the component declaration.
@@ -23,15 +24,10 @@ import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
 
 export const Textarea = (props: TextareaPropsType) => {
   const nativeAuthToken = useGetNativeAuthToken();
-  const {
-    values,
-    chain,
-    setMetrics,
-    setFieldValue,
-    setFieldTouched,
-    setFieldError
-  } = props;
+  const { values, setMetrics, setFieldValue, setFieldTouched, setFieldError } =
+    props;
 
+  const { chain } = useChain();
   const clone = useRef<HTMLDivElement>(null);
 
   const defaultColor = '#000000';
