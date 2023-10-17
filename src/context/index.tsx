@@ -26,8 +26,6 @@ const ContextProvider = (props: PropsWithChildren) => {
     dappEnvironment: network as EnvironmentsEnum
   });
 
-  console.log('state', state);
-
   return (
     <Context.Provider value={state}>
       <DappProvider

@@ -117,10 +117,14 @@
         .value {
           max-width: 100%;
           word-break: break-all;
+          position: relative;
         }
 
         .copy {
           margin-left: 10px;
+          position: absolute;
+          bottom: 0.5rem;
+          right: 0.5rem;
 
           path {
             fill: var(--text);

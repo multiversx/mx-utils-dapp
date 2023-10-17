@@ -9,7 +9,6 @@ import {
 import { Field } from 'formik';
 import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
 import classNames from 'classnames';
-import { storage } from 'helpers/storage';
 import { TokenColorsEnum } from 'pages/Authentication/enum';
 import { emptyMetrics } from 'pages/Authentication';
 import { decodeToken } from './helpers/decodeToken';
@@ -23,7 +22,7 @@ import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
  */
 
 export const Textarea = (props: TextareaPropsType) => {
-  const nativeToken = useGetNativeAuthToken();
+  const nativeAuthToken = useGetNativeAuthToken();
   const {
     values,
     chain,
@@ -33,7 +32,6 @@ export const Textarea = (props: TextareaPropsType) => {
     setFieldError
   } = props;
 
-  const nativeAuthToken = storage.getLocalItem('nativeAuthToken');
   const clone = useRef<HTMLDivElement>(null);
 
   const defaultColor = '#000000';
@@ -147,13 +145,13 @@ export const Textarea = (props: TextareaPropsType) => {
   );
 
   useEffect(() => {
-    const token = nativeAuthToken ?? nativeToken;
+    const token = nativeAuthToken;
 
     if (token) {
-      setFieldValue('token', token, false);
+      setFieldValue('token', nativeAuthToken, false);
       onChange(token);
     }
-  }, [setFieldValue, onChange, nativeAuthToken, nativeToken]);
+  }, [setFieldValue, onChange, nativeAuthToken]);
 
   /*
    * Return the rendered component.

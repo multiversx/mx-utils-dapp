@@ -70,13 +70,11 @@ export const SignMessageForm = ({
                 <div className={styles.code}>
                   <pre className={styles.value}>
                     {signedMessagePayload}
-                    {/*<code className={styles.value}>{signedMessagePayload}</code>*/}
+                    <CopyButton
+                      text={signedMessagePayload}
+                      className={styles.copy}
+                    />
                   </pre>
-
-                  <CopyButton
-                    text={signedMessagePayload}
-                    className={styles.copy}
-                  />
                 </div>
               </div>
             )}

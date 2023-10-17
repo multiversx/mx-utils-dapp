@@ -2,8 +2,5 @@ import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginI
 
 export const useGetNativeAuthToken = () => {
   const { tokenLogin } = useGetLoginInfo();
-
-  console.log('nativeAuthToken = ', tokenLogin?.nativeAuthToken);
-
   return tokenLogin?.nativeAuthToken;
 };
