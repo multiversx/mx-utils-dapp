@@ -60,8 +60,6 @@ export const defaultMetrics: DefaultMetricType = {
 
 export const Authentication = () => {
   const { chain } = useChain();
-
-  const [show, setShow] = useState(false);
   const [metrics, setMetrics] = useState<MetricType>(defaultMetrics[chain]);
 
   const metricItems: MetricItemType[] = [

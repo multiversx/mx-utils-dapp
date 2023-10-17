@@ -13,6 +13,7 @@ import styles from './styles.module.scss';
 import { ActionTypeEnum } from 'context/reducer';
 import { useDispatch } from 'context';
 import { NETWORK } from 'constants/environment';
+import { useChain } from '../../../../hooks/useChain';
 
 const customComponents = {
   Control: (props: any) => (
@@ -45,11 +46,12 @@ const customComponents = {
   IndicatorSeparator: null
 };
 
-export const Environment = ({ chain }: EnvironmentPropsType) => {
+export const Environment = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
   const { pathname } = useLocation();
 
+  const { chain } = useChain();
   const dispatch = useDispatch();
 
   const options: OptionType[] = Object.values(EnvironmentsEnum).map(

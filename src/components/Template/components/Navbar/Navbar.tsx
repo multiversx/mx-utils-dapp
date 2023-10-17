@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { MultiversXLogo } from 'assets/img/MultiversXLogo';
 import styles from './styles.module.scss';
 import type { NavbarPropsType } from './types';
-import { useChain } from '../../../../hooks/useChain';
 import { Environment } from '../Environment';
 
 /*
@@ -13,8 +12,6 @@ import { Environment } from '../Environment';
 
 export const Navbar = (props: NavbarPropsType) => {
   const { setToggleMenu, toggleMenu } = props;
-
-  const { chain } = useChain();
 
   /*
    * On menu triggering, update the passed along state to the opposite of the current boolean value.
@@ -42,7 +39,7 @@ export const Navbar = (props: NavbarPropsType) => {
         </Link>
 
         <div className={styles.right}>
-          <Environment chain={chain} />
+          <Environment />
           <div
             onClick={onMenuTrigger}
             data-testid='navbar-burger'
