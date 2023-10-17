@@ -103,6 +103,52 @@
           }
         }
       }
+
+      .resultPayload {
+        color: var(--text);
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+
+        strong {
+          margin-right: 5px;
+        }
+
+        .value {
+          max-width: 100%;
+          word-break: break-all;
+        }
+
+        .copy {
+          margin-left: 10px;
+
+          path {
+            fill: var(--text);
+          }
+        }
+
+        .code {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+
+          pre {
+            width: 100%;
+            border: 1px solid black;
+            background-color: var(--body);
+            border-radius: 8px;
+            float: left;
+            justify-content: center;
+            box-sizing: border-box;
+            overflow: auto;
+            padding: 5px;
+          }
+          code {
+            display: inline-block;
+          }
+        }
+      }
     
       .buttons {
         display: flex;
