@@ -48,7 +48,6 @@ const customComponents = {
 
 export const Environment = () => {
   const navigate = useNavigate();
-  const { search } = useLocation();
   const { pathname } = useLocation();
 
   const { chain } = useChain();
@@ -69,13 +68,19 @@ export const Environment = () => {
           dappEnvironment: option.value as EnvironmentsEnum
         });
 
-        const params = new URLSearchParams(search);
+        const params = new URLSearchParams(window.location.search);
         params.set(NETWORK, option.value);
 
-        navigate(`${pathname}?${params.toString()}`);
+        navigate(
+          {
+            pathname,
+            search: params.toString()
+          },
+          { replace: true }
+        );
       }
     },
-    [pathname, navigate, search, dispatch, chain]
+    [pathname, navigate, dispatch]
   );
 
   return (
