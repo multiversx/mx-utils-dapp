@@ -11,11 +11,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { CloseIcon } from 'assets/img/CloseIcon';
 import styles from './styles.module.scss';
-import {
-  useGetAccountProvider,
-  useGetIsLoggedIn
-} from '@multiversx/sdk-dapp/hooks';
-import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
+import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import { routeNames } from 'routes';
 
 enum LoginContainersTypesEnum {
   walletConnect = 'walletConnect',
@@ -24,13 +21,14 @@ enum LoginContainersTypesEnum {
 }
 
 export const Unlock = () => {
-  const { providerType } = useGetAccountProvider();
   const { search } = useLocation();
   const isLoggedIn = useGetIsLoggedIn();
 
   const searchParams = new URLSearchParams(search);
-  const callbackUrl = searchParams.get('callbackUrl');
-  const route = callbackUrl ?? `/${search}`;
+  const previousRoute = searchParams.get('callbackUrl') ?? `/${search}`;
+
+  const callbackURL = searchParams.get('callbackUrl');
+  const callbackRoute = callbackURL ?? routeNames.home.concat(search);
 
   const [openedLoginContainerType, setOpenedContainerType] = useState(
     LoginContainersTypesEnum.none
@@ -78,7 +76,7 @@ export const Unlock = () => {
 
   const navigate = useNavigate();
   const onClose = () => {
-    navigate(route);
+    navigate(previousRoute);
     setOpenedContainerType(LoginContainersTypesEnum.none);
   };
 
@@ -122,9 +120,7 @@ export const Unlock = () => {
             renderLoginButton(
               <button.component
                 key={button.name}
-                callbackRoute={
-                  providerType === LoginMethodsEnum.wallet ? route : undefined
-                }
+                callbackRoute={callbackRoute}
                 className={styles.button}
                 wrapContentInsideModal={false}
                 hideButtonWhenModalOpens={true}

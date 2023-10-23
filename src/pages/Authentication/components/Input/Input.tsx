@@ -5,8 +5,6 @@ import { Textarea } from './components/Textarea';
 import { Status } from './components/Status';
 import type { FormValuesType, InputPropsType } from './types';
 import styles from './styles.module.scss';
-import { useDispatch } from 'context';
-import { ActionTypeEnum } from 'context/reducer';
 import { useChain } from 'hooks/useChain';
 import { logout } from '@multiversx/sdk-dapp/utils/logout';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
@@ -25,8 +23,6 @@ export const Input = memo((props: InputPropsType) => {
   const { loginMethod } = useGetLoginInfo();
   const callbackRoute = useCallbackRoute();
 
-  const dispatch = useDispatch();
-
   const initialValues = {
     [EnvironmentsEnum.mainnet]: {
       token:
@@ -43,11 +39,6 @@ export const Input = memo((props: InputPropsType) => {
   }[chain];
 
   const handleGenerateClick = async () => {
-    dispatch({
-      type: ActionTypeEnum.switchDappEnvironment,
-      dappEnvironment: chain
-    });
-
     const route = search
       ? `${window.location.origin}${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
       : `${window.location.origin}${routeNames.unlock}?callbackUrl=${callbackRoute}`;
