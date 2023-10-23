@@ -50,8 +50,6 @@ export const ExplainForm = () => {
   }, [eventSource]);
 
   useEffect(() => {
-    console.log('useEffect', eventSource);
-
     if (eventSource) {
       eventSource.addEventListener(
         AssistantApiSSETypes.error,
