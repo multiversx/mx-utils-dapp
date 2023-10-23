@@ -12,6 +12,7 @@ import { logout } from '@multiversx/sdk-dapp/utils/logout';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useLocation } from 'react-router-dom';
+import { routeNames } from 'routes';
 
 /*
  * Handle the component declaration.
@@ -48,8 +49,8 @@ export const Input = memo((props: InputPropsType) => {
     });
 
     const route = search
-      ? `${window.location.origin}/unlock${search}&callbackUrl=${callbackRoute}`
-      : `${window.location.origin}/unlock?callbackUrl=${callbackRoute}`;
+      ? `${window.location.origin}${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
+      : `${window.location.origin}${routeNames.unlock}?callbackUrl=${callbackRoute}`;
     const isWallet = loginMethod === 'wallet';
     const redirect = isWallet ? encodeURIComponent(route) : route;
 
