@@ -3,6 +3,7 @@
   z-index: 1;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   font-size: 1rem;
 
   .control {
@@ -11,6 +12,8 @@
     min-height: auto;
     cursor: pointer;
     box-shadow: none;
+    display: flex;
+    flex-wrap: nowrap;
 
     &:hover,
     &:focus,

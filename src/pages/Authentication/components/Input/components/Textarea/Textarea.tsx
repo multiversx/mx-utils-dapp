@@ -7,56 +7,30 @@ import {
   useRef
 } from 'react';
 import { Field } from 'formik';
-import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
-import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
-import { logout } from '@multiversx/sdk-dapp/utils/logout';
-import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import moment from 'moment';
-
-import { ThemeEnumType } from 'helpers/enum';
-import { useTheme } from 'helpers/useTheme';
-import { storage } from 'helpers/storage';
-
-import {
-  TokenColorsEnum,
-  TokenDefaultColorsEnum
-} from 'pages/Authentication/enum';
+import { TokenColorsEnum } from 'pages/Authentication/enum';
 import { emptyMetrics } from 'pages/Authentication';
-
 import { decodeToken } from './helpers/decodeToken';
 import { validateToken } from './helpers/validateToken';
-
 import type { TextareaDivisionType, TextareaPropsType } from './types';
-
 import styles from './styles.module.scss';
+import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
+import { useChain } from 'hooks/useChain';
 
 /*
  * Handle the component declaration.
  */
 
 export const Textarea = (props: TextareaPropsType) => {
-  const { theme } = useTheme();
-  const { search } = useLocation();
-  const { tokenLogin, loginMethod } = useGetLoginInfo();
-  const {
-    values,
-    chain,
-    setMetrics,
-    setFieldValue,
-    setFieldTouched,
-    setFieldError
-  } = props;
+  const nativeAuthToken = useGetNativeAuthToken();
+  const { values, setMetrics, setFieldValue, setFieldTouched, setFieldError } =
+    props;
 
-  const nativeAuthToken = storage.getLocalItem('nativeAuthToken');
+  const { chain } = useChain();
   const clone = useRef<HTMLDivElement>(null);
-  const isLoggedIn = useGetIsLoggedIn();
 
-  const defaultColor =
-    theme === ThemeEnumType.dark
-      ? TokenDefaultColorsEnum.lightDefault
-      : TokenDefaultColorsEnum.darkDefault;
+  const defaultColor = '#000000';
 
   const mirror = useMemo(() => {
     const parts = values.token.split('.');
@@ -167,33 +141,13 @@ export const Textarea = (props: TextareaPropsType) => {
   );
 
   useEffect(() => {
-    if (nativeAuthToken) {
+    const token = nativeAuthToken;
+
+    if (token) {
       setFieldValue('token', nativeAuthToken, false);
-      storage.removeLocalItem('nativeAuthToken');
-      onChange(nativeAuthToken);
+      onChange(token);
     }
   }, [setFieldValue, onChange, nativeAuthToken]);
-
-  useEffect(() => {
-    if (isLoggedIn && tokenLogin && tokenLogin.nativeAuthToken) {
-      const token = tokenLogin.nativeAuthToken;
-      const route = search
-        ? `${window.location.origin}/auth${search}`
-        : `${window.location.origin}/auth`;
-
-      const isWallet = loginMethod === 'wallet';
-      const redirect = isWallet ? encodeURIComponent(route) : route;
-
-      if (!nativeAuthToken) {
-        logout(redirect);
-        storage.setLocalItem({
-          data: token,
-          key: 'nativeAuthToken',
-          expires: moment().add(1, 'minute').unix()
-        });
-      }
-    }
-  }, [isLoggedIn, nativeAuthToken, loginMethod, tokenLogin, search]);
 
   /*
    * Return the rendered component.

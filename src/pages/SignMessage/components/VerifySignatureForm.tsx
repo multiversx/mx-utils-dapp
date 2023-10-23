@@ -2,16 +2,11 @@ import { useState } from 'react';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
 import classNames from 'classnames';
-
-import { useGlobalContext } from 'context';
-
 import styles from '../styles.module.scss';
 import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
 import { verifyMessage } from '@multiversx/sdk-dapp/hooks/signMessage/verifyMessage';
 
 export const VerifySignatureForm = () => {
-  const { theme } = useGlobalContext();
-
   const [verifiedMessage, setVerifiedMessage] = useState<string>();
   const [signerAddress, setSignerAddress] = useState<string>();
   const [verifySuccess, setVerifySuccess] = useState<boolean>();
@@ -46,7 +41,7 @@ export const VerifySignatureForm = () => {
   const validationSchema = object().shape({
     signedMessage: string()
       .required('Required')
-      .test('messageIsValid', 'Invalid message', (value) => {
+      .test('messageIsValid', 'Invalid signature payload', (value) => {
         try {
           const messageObj = JSON.parse(`${value}`);
           messageSchema.validateSync(messageObj);
@@ -68,7 +63,7 @@ export const VerifySignatureForm = () => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>
-        Paste in the signature you would like to verify
+        Paste in the signature payload you would like to verify
       </h3>
 
       <Formik {...formikProps}>
@@ -124,9 +119,7 @@ export const VerifySignatureForm = () => {
             <div className={styles.buttons}>
               <button
                 type='submit'
-                className={classNames(styles.button, styles.active, {
-                  [styles.white]: theme === 'light'
-                })}
+                className={classNames(styles.button, styles.active)}
               >
                 Verify
               </button>
@@ -134,9 +127,7 @@ export const VerifySignatureForm = () => {
               {verifiedMessage && (
                 <button
                   type='button'
-                  className={classNames(styles.button, {
-                    [styles.white]: theme === 'light'
-                  })}
+                  className={classNames(styles.button)}
                   onClick={() => {
                     resetForm();
                     resetVerifyFormResults();

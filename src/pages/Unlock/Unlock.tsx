@@ -5,18 +5,17 @@ import {
   WalletConnectLoginButton,
   WebWalletLoginButton
 } from '@multiversx/sdk-dapp/UI';
-import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants/network';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
-
 import { CloseIcon } from 'assets/img/CloseIcon';
-
-import type { GeneratePropsType } from './types';
-
 import styles from './styles.module.scss';
-import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import {
+  useGetAccountProvider,
+  useGetIsLoggedIn
+} from '@multiversx/sdk-dapp/hooks';
+import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
 
 enum LoginContainersTypesEnum {
   walletConnect = 'walletConnect',
@@ -24,26 +23,22 @@ enum LoginContainersTypesEnum {
   none = 'none'
 }
 
-export const Generate = (props: GeneratePropsType) => {
-  const { chain, show, setShow, callbackAfterLogin } = props;
-
+export const Unlock = () => {
+  const { providerType } = useGetAccountProvider();
+  const { search } = useLocation();
   const isLoggedIn = useGetIsLoggedIn();
-  const { search, pathname } = useLocation();
-  const { network } = Object.fromEntries(new URLSearchParams(search));
 
-  const apiAddress = fallbackNetworkConfigurations[chain].apiAddress;
-  const route = network ? `${pathname}?network=${network}` : pathname;
+  const searchParams = new URLSearchParams(search);
+  const callbackUrl = searchParams.get('callbackUrl');
+  const route = callbackUrl ?? `/${search}`;
 
   const [openedLoginContainerType, setOpenedContainerType] = useState(
     LoginContainersTypesEnum.none
   );
 
-  useEffect(() => {
-    if (isLoggedIn && callbackAfterLogin) {
-      callbackAfterLogin();
-      onClose();
-    }
-  }, [isLoggedIn]);
+  const onLoginRedirect = () => {
+    onClose();
+  };
 
   function renderLoginButton(
     content: ReactNode,
@@ -77,15 +72,13 @@ export const Generate = (props: GeneratePropsType) => {
     },
     {
       name: 'MultiversX Web Wallet',
-      component: WebWalletLoginButton,
-      disableDefaultBehavior: Boolean(callbackAfterLogin)
+      component: WebWalletLoginButton
     }
   ];
 
   const navigate = useNavigate();
   const onClose = () => {
     navigate(route);
-    setShow(false);
     setOpenedContainerType(LoginContainersTypesEnum.none);
   };
 
@@ -95,9 +88,15 @@ export const Generate = (props: GeneratePropsType) => {
     [LoginContainersTypesEnum.walletConnect]: 'Login with xPortal'
   };
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      onClose();
+    }
+  }, [isLoggedIn]);
+
   return (
     <Modal
-      show={show}
+      show={true}
       onHide={onClose}
       keyboard={false}
       backdrop='static'
@@ -121,36 +120,22 @@ export const Generate = (props: GeneratePropsType) => {
         <div className={styles.buttons}>
           {buttons.map((button) =>
             renderLoginButton(
-              button.disableDefaultBehavior ? (
-                <button
-                  onClick={callbackAfterLogin}
-                  className={styles.button}
-                  key={button.name}
-                >
-                  <span className={styles.name}>{button.name}</span>
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    className={styles.arrow}
-                  />
-                </button>
-              ) : (
-                <button.component
-                  key={button.name}
-                  callbackRoute={route}
-                  className={styles.button}
-                  wrapContentInsideModal={false}
-                  hideButtonWhenModalOpens={true}
-                  nativeAuth={{ apiAddress, expirySeconds: 7200 }}
-                  {...button}
-                >
-                  <span className={styles.name}>{button.name}</span>
+              <button.component
+                key={button.name}
+                callbackRoute={
+                  providerType === LoginMethodsEnum.wallet ? route : undefined
+                }
+                className={styles.button}
+                wrapContentInsideModal={false}
+                hideButtonWhenModalOpens={true}
+                nativeAuth={{ expirySeconds: 7200 }}
+                onLoginRedirect={onLoginRedirect}
+                {...button}
+              >
+                <span className={styles.name}>{button.name}</span>
 
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    className={styles.arrow}
-                  />
-                </button.component>
-              ),
+                <FontAwesomeIcon icon={faArrowRight} className={styles.arrow} />
+              </button.component>,
               button.id
             )
           )}

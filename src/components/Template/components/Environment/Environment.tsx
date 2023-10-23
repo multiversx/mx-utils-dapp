@@ -8,12 +8,12 @@ import {
   faArrowUpLong
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
-
-import { defaultMetrics } from 'pages/Authentication/Authentication';
-
 import type { EnvironmentPropsType, OptionType } from './types';
-
 import styles from './styles.module.scss';
+import { ActionTypeEnum } from 'context/reducer';
+import { useDispatch } from 'context';
+import { NETWORK } from 'constants/environment';
+import { useChain } from '../../../../hooks/useChain';
 
 const customComponents = {
   Control: (props: any) => (
@@ -46,15 +46,13 @@ const customComponents = {
   IndicatorSeparator: null
 };
 
-/*
- * Handle the component declaration.
- */
-
-export const Environment = (props: EnvironmentPropsType) => {
+export const Environment = () => {
   const navigate = useNavigate();
-
-  const { chain, setChain, setMetrics } = props;
+  const { search } = useLocation();
   const { pathname } = useLocation();
+
+  const { chain } = useChain();
+  const dispatch = useDispatch();
 
   const options: OptionType[] = Object.values(EnvironmentsEnum).map(
     (chain) => ({
@@ -64,25 +62,27 @@ export const Environment = (props: EnvironmentPropsType) => {
   );
 
   const onChange = useCallback(
-    (option: SingleValue<OptionType>) => {
+    async (option: SingleValue<OptionType>) => {
       if (option) {
-        setChain(option.value as EnvironmentsEnum);
-        navigate(`${pathname}?network=${option.value}`);
-        setMetrics(defaultMetrics[option.value]);
+        dispatch({
+          type: ActionTypeEnum.switchDappEnvironment,
+          dappEnvironment: option.value as EnvironmentsEnum
+        });
+
+        const params = new URLSearchParams(search);
+        params.set(NETWORK, option.value);
+
+        navigate(`${pathname}?${params.toString()}`);
       }
     },
-    [setChain, pathname, navigate, setMetrics]
+    [pathname, navigate, search, dispatch, chain]
   );
-
-  /*
-   * Return the rendered component.
-   */
 
   return (
     <div className={styles.environment}>
       <Select
         options={options.reverse()}
-        defaultValue={{ label: chain, value: chain }}
+        value={{ label: chain, value: chain }}
         onChange={onChange}
         isSearchable={false}
         components={customComponents}

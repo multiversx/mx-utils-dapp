@@ -12,27 +12,14 @@ body {
   overflow: hidden;
   background-color: var(--body);
   --white: #ffffff;
-
-  &.light {
-    --body: #e7ebf7;
-    --navigation: #ffffff;
-    --header: #333;
-    --text: #000000;
-    --dark: #000000;
-    --link: #23f7dd;
-    --background: #ffffff;
-  }
-
-  &.dark {
-    --body: #18191a;
-    --navigation: #242526;
-    --header: #333;
-    --text: #e4e6eb;
-    --dark: #b0b3b8;
-    --link: #23f7dd;
-    --background: #2a2a2b;
-    --black: #000000;
-  }
+  --body: #18191a;
+  --navigation: #242526;
+  --header: #333;
+  --text: #e4e6eb;
+  --dark: #b0b3b8;
+  --link: #23f7dd;
+  --background: #2a2a2b;
+  --black: #000000;
 }
 
 .modal {

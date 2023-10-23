@@ -3,31 +3,22 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import { object, string } from 'yup';
 import classNames from 'classnames';
-
-import { useGlobalContext } from 'context';
-
 import styles from '../styles.module.scss';
 
 interface SignFormProps {
-  setShow: (flag: boolean) => void;
-  signature: string;
+  signedMessagePayload: string;
   setSignature: (signature: string) => void;
   setMessage: (message: string) => void;
+  onSubmit: () => void;
 }
 
 export const SignMessageForm = ({
-  signature,
+  signedMessagePayload,
   setSignature,
   setMessage,
-  setShow
+  onSubmit
 }: SignFormProps) => {
-  const { theme } = useGlobalContext();
-
   const initialValues = { message: '' };
-
-  const onSubmit = () => {
-    setShow(true);
-  };
 
   const schema = string().required('Required');
   const validationSchema = object().shape({
@@ -72,32 +63,34 @@ export const SignMessageForm = ({
               />
             </div>
 
-            {signature && (
-              <div className={styles.result}>
-                <strong>Signature:</strong>
+            {signedMessagePayload && (
+              <div className={styles.resultPayload}>
+                <strong>Signature payload:</strong>
 
-                <span className={styles.value}>{signature}</span>
-
-                <CopyButton text={signature} className={styles.copy} />
+                <div className={styles.code}>
+                  <pre className={styles.value}>
+                    {signedMessagePayload}
+                    <CopyButton
+                      text={signedMessagePayload}
+                      className={styles.copy}
+                    />
+                  </pre>
+                </div>
               </div>
             )}
 
             <div className={styles.buttons}>
               <button
                 type='submit'
-                className={classNames(styles.button, styles.active, {
-                  [styles.white]: theme === 'light'
-                })}
+                className={classNames(styles.button, styles.active)}
               >
                 Sign
               </button>
 
-              {signature && (
+              {signedMessagePayload && (
                 <button
                   type='button'
-                  className={classNames(styles.button, {
-                    [styles.white]: theme === 'light'
-                  })}
+                  className={classNames(styles.button)}
                   onClick={() => {
                     setSignature('');
                     resetForm();
