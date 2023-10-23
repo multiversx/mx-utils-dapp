@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Template } from 'components/Template';
-import { useSearchParams } from 'react-router-dom';
-
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useSignMessage } from '@multiversx/sdk-dapp/hooks/signMessage/useSignMessage';
-import { useGetSignMessageInfoStatus } from '@multiversx/sdk-dapp/hooks/signMessage/useGetSignedMessageStatus';
-
-import { logout } from '@multiversx/sdk-dapp/utils/logout';
-
 import styles from './styles.module.scss';
-import { Generate } from 'pages/Authentication/components/Generate';
 import {
   SignMessageForm,
   VerifySignatureForm,
@@ -19,16 +13,16 @@ import {
   InitialVerifyFormValuesType,
   SignedMessageStatusesEnum
 } from './types';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
+import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
+import { useCallbackRoute } from 'hooks/useCallbackRoute';
+import { routeNames } from 'routes';
 
 export const SignMessage = () => {
   const { signMessage } = useSignMessage();
-  const { isPending } = useGetSignMessageInfoStatus();
 
   const [messageToSign, setMessageToSign] = useState('');
-  const [signatureFromSignedMessage, setSignatureFromSignedMessage] =
-    useState('');
-  const [showProvidersModal, setShowProvidersModal] = useState(false);
+  const [signedMessagePayload, setSignedMessagePayload] = useState('');
   const [initialVerifyFormValues, setInitialVerifyFormValues] =
     useState<InitialVerifyFormValuesType>({
       message: '',
@@ -37,24 +31,31 @@ export const SignMessage = () => {
     });
 
   const [searchParams] = useSearchParams();
+  const { search } = useLocation();
+  const { loginMethod } = useGetLoginInfo();
+  const isLoggedIn = useGetIsLoggedIn();
+  const navigate = useNavigate();
+  const callbackRoute = useCallbackRoute();
 
   const handleSignMessage = async () => {
+    if (!isLoggedIn) {
+      const route = search
+        ? `${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
+        : `${routeNames.unlock}?callbackUrl=${callbackRoute}`;
+      const isWallet = loginMethod === 'wallet';
+
+      navigate(isWallet ? encodeURIComponent(route) : route);
+    }
+
     const signableMessage = await signMessage({
       message: messageToSign
     });
 
     if (!signableMessage) {
-      logout();
       return;
     }
 
-    const hexSignature = signableMessage.getSignature().toString('hex');
-
-    setSignatureFromSignedMessage(hexSignature);
-
-    if (!isPending) {
-      logout();
-    }
+    setSignedMessagePayload(JSON.stringify(signableMessage.toJSON(), null, 2));
   };
 
   const populateInitialVerifyFormFields = () => {
@@ -77,7 +78,7 @@ export const SignMessage = () => {
 
     // This will set the signature in SignMessageForm after signing the message with web wallet
     if (signatureParam && isMessageSigned) {
-      setSignatureFromSignedMessage(signatureParam);
+      setSignedMessagePayload(signatureParam);
     }
   };
 
@@ -86,18 +87,12 @@ export const SignMessage = () => {
   return (
     <>
       <Template>
-        <Generate
-          chain={EnvironmentsEnum.mainnet}
-          show={showProvidersModal}
-          setShow={setShowProvidersModal}
-          callbackAfterLogin={handleSignMessage}
-        />
         <div className={styles.container}>
           <SignMessageForm
-            setShow={setShowProvidersModal}
-            signature={signatureFromSignedMessage}
-            setSignature={setSignatureFromSignedMessage}
+            signedMessagePayload={signedMessagePayload}
+            setSignature={setSignedMessagePayload}
             setMessage={setMessageToSign}
+            onSubmit={handleSignMessage}
           />
 
           <VerifySignatureForm />

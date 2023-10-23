@@ -1,22 +1,20 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import {
   ExtensionLoginButton,
   LedgerLoginButton,
   WalletConnectLoginButton,
   WebWalletLoginButton
 } from '@multiversx/sdk-dapp/UI';
-import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants/network';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
-
 import { CloseIcon } from 'assets/img/CloseIcon';
-
-import type { LoginModalPropsType } from './types';
-
 import styles from './styles.module.scss';
-import { useGetAccountProvider } from '@multiversx/sdk-dapp/hooks';
+import {
+  useGetAccountProvider,
+  useGetIsLoggedIn
+} from '@multiversx/sdk-dapp/hooks';
 import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
 
 enum LoginContainersTypesEnum {
@@ -25,14 +23,14 @@ enum LoginContainersTypesEnum {
   none = 'none'
 }
 
-export const LoginModal = (props: LoginModalPropsType) => {
-  const { chain, show, setShow } = props;
-
+export const Unlock = () => {
   const { providerType } = useGetAccountProvider();
-  const { search, pathname } = useLocation();
+  const { search } = useLocation();
+  const isLoggedIn = useGetIsLoggedIn();
 
-  const apiAddress = fallbackNetworkConfigurations[chain].apiAddress;
-  const route = `${pathname}${search}`;
+  const searchParams = new URLSearchParams(search);
+  const callbackUrl = searchParams.get('callbackUrl');
+  const route = callbackUrl ?? `/${search}`;
 
   const [openedLoginContainerType, setOpenedContainerType] = useState(
     LoginContainersTypesEnum.none
@@ -81,7 +79,6 @@ export const LoginModal = (props: LoginModalPropsType) => {
   const navigate = useNavigate();
   const onClose = () => {
     navigate(route);
-    setShow(false);
     setOpenedContainerType(LoginContainersTypesEnum.none);
   };
 
@@ -91,9 +88,15 @@ export const LoginModal = (props: LoginModalPropsType) => {
     [LoginContainersTypesEnum.walletConnect]: 'Login with xPortal'
   };
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      onClose();
+    }
+  }, [isLoggedIn]);
+
   return (
     <Modal
-      show={show}
+      show={true}
       onHide={onClose}
       keyboard={false}
       backdrop='static'
@@ -125,7 +128,7 @@ export const LoginModal = (props: LoginModalPropsType) => {
                 className={styles.button}
                 wrapContentInsideModal={false}
                 hideButtonWhenModalOpens={true}
-                nativeAuth={{ apiAddress, expirySeconds: 7200 }}
+                nativeAuth={{ expirySeconds: 7200 }}
                 onLoginRedirect={onLoginRedirect}
                 {...button}
               >

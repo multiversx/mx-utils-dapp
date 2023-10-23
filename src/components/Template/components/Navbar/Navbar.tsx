@@ -1,12 +1,10 @@
-import { MouseEvent, useCallback } from 'react';
+import React, { MouseEvent, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-
 import { MultiversXLogo } from 'assets/img/MultiversXLogo';
-
 import styles from './styles.module.scss';
-
 import type { NavbarPropsType } from './types';
+import { Environment } from '../Environment';
 
 /*
  * Handle the component declaration.
@@ -41,6 +39,7 @@ export const Navbar = (props: NavbarPropsType) => {
         </Link>
 
         <div className={styles.right}>
+          <Environment />
           <div
             onClick={onMenuTrigger}
             data-testid='navbar-burger'

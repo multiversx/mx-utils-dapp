@@ -8,12 +8,12 @@ import {
   faArrowUpLong
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
-import type { EnvironmentPropsType, OptionType } from './types';
+import type { OptionType } from './types';
 import styles from './styles.module.scss';
 import { ActionTypeEnum } from 'context/reducer';
 import { useDispatch } from 'context';
-import { NETWORK } from '../../constants';
-import { logout } from '@multiversx/sdk-dapp/utils/logout';
+import { NETWORK } from 'constants/environment';
+import { useChain } from 'hooks/useChain';
 
 const customComponents = {
   Control: (props: any) => (
@@ -46,11 +46,12 @@ const customComponents = {
   IndicatorSeparator: null
 };
 
-export const Environment = ({ chain, setChain }: EnvironmentPropsType) => {
+export const Environment = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
   const { pathname } = useLocation();
 
+  const { chain } = useChain();
   const dispatch = useDispatch();
 
   const options: OptionType[] = Object.values(EnvironmentsEnum).map(
@@ -68,12 +69,9 @@ export const Environment = ({ chain, setChain }: EnvironmentPropsType) => {
           dappEnvironment: option.value as EnvironmentsEnum
         });
 
-        setChain(option.value as EnvironmentsEnum);
-
         const params = new URLSearchParams(search);
         params.set(NETWORK, option.value);
 
-        await logout();
         navigate(`${pathname}?${params.toString()}`);
       }
     },
