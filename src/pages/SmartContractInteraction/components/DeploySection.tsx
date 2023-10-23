@@ -11,6 +11,7 @@ import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useNavigate } from 'react-router-dom';
 import { useChain } from 'hooks/useChain';
+import { routeNames } from 'routes';
 
 export const DeploySection = () => {
   const [sessionId, setSessionId] = useLocalStorage('deploySessionId', '');
@@ -43,6 +44,14 @@ export const DeploySection = () => {
     setSessionId(response.sessionId ?? '');
   }, [wasmCode, isLoggedIn, address, deploy]);
 
+  const submitDeploy = () => {
+    if (isLoggedIn) {
+      handleDeploy();
+    } else {
+      navigate(`${routeNames.unlock}?callbackUrl=${callbackRoute}`);
+    }
+  };
+
   useEffect(() => {
     if (isLoggedIn && Boolean(address)) {
       handleDeploy();
@@ -66,11 +75,7 @@ export const DeploySection = () => {
         </div>
         <div className={styles.buttons}>
           <button
-            onClick={() =>
-              isLoggedIn
-                ? handleDeploy()
-                : navigate(`/unlock?callbackUrl=${callbackRoute}`)
-            }
+            onClick={submitDeploy}
             className={styles.button}
             disabled={!wasmCode}
           >

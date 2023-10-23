@@ -18,34 +18,43 @@ export interface RouteType {
   component: ComponentType;
 }
 
+export const routeNames = {
+  home: '/',
+  converters: '/converters',
+  auth: '/auth',
+  signMessage: '/sign-message',
+  smartContract: '/smart-contract',
+  unlock: '/unlock'
+};
+
 const pages: RouteType[] = [
   {
-    path: '/',
+    path: routeNames.home,
     title: 'Home',
     component: Home
   },
   {
-    path: '/converters',
+    path: routeNames.converters,
     title: 'Converters',
     component: Converters
   },
   {
-    path: '/auth',
+    path: routeNames.auth,
     title: 'Native Auth',
     component: Authentication
   },
   {
-    path: '/sign-message',
+    path: routeNames.signMessage,
     title: 'Sign Message',
     component: SignMessage
   },
   {
-    path: '/smart-contract',
+    path: routeNames.smartContract,
     title: 'SC Interaction',
     component: SmartContractInteraction
   },
   {
-    path: '/unlock',
+    path: routeNames.unlock,
     title: 'Unlock',
     component: Unlock
   },

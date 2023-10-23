@@ -1,4 +1,10 @@
-import { useCallback, useState, useEffect, PropsWithChildren } from 'react';
+import {
+  useCallback,
+  useState,
+  useEffect,
+  PropsWithChildren,
+  useMemo
+} from 'react';
 import {
   faCaretDown,
   faSignIn,
@@ -8,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { routes, RouteType } from 'routes';
+import { routeNames, routes, RouteType } from 'routes';
 
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -49,6 +55,11 @@ export const Template = (props: PropsWithChildren) => {
       Object.assign(route, navigation.get(route.path))
   );
 
+  const menuItems = useMemo(
+    () => items.filter((x) => x.path !== routeNames.unlock),
+    [items]
+  );
+
   /*
    * On mobile, when clicking an item, first close the menu and then switch the active state to the new item.
    */
@@ -58,6 +69,14 @@ export const Template = (props: PropsWithChildren) => {
       setToggleMenu(false);
     }
   }, []);
+
+  const onUnlockItemClick = useCallback(async () => {
+    if (isLoggedIn) {
+      await logout();
+      return;
+    }
+    onItemClick();
+  }, [onItemClick, isLoggedIn]);
 
   /*
    * Look for a potentially available hash parameter and scroll to the specific section, if found.
@@ -99,63 +118,59 @@ export const Template = (props: PropsWithChildren) => {
           <h6 className={styles.menu}>Menu</h6>
 
           <ul className={styles.pages}>
-            {items
-              .filter((x) => x.path !== '/unlock')
-              .map((item) => (
-                <li
-                  key={item.path}
-                  data-testid={`navigation-page-${item.path}`}
-                  className={classNames(styles.page, {
-                    [styles.active]:
-                      item.path === activePage || item.path === pathname
-                  })}
-                >
-                  <div className={styles.item}>
-                    <Link
-                      to={item.path}
-                      className={styles.path}
-                      onClick={onItemClick}
-                    >
-                      <FontAwesomeIcon
-                        icon={item.icon}
-                        className={styles.icon}
-                      />
-                      <span className={styles.title}>{item.title}</span>
-                    </Link>
+            {menuItems.map((item) => (
+              <li
+                key={item.path}
+                data-testid={`navigation-page-${item.path}`}
+                className={classNames(styles.page, {
+                  [styles.active]:
+                    item.path === activePage || item.path === pathname
+                })}
+              >
+                <div className={styles.item}>
+                  <Link
+                    to={item.path}
+                    className={styles.path}
+                    onClick={onItemClick}
+                  >
+                    <FontAwesomeIcon icon={item.icon} className={styles.icon} />
+                    <span className={styles.title}>{item.title}</span>
+                  </Link>
 
-                    {item.categories && (
-                      <div
-                        className={styles.trigger}
-                        onClick={() =>
-                          setActivePage(activePage === '' ? item.path : '')
-                        }
+                  {item.categories && (
+                    <div
+                      className={styles.trigger}
+                      onClick={() =>
+                        setActivePage(activePage === '' ? item.path : '')
+                      }
+                    >
+                      <span
+                        data-testid={`navigation-caret-${item.path}`}
+                        className={classNames(styles.caret, {
+                          [styles.active]: item.path === activePage
+                        })}
                       >
-                        <span
-                          data-testid={`navigation-caret-${item.path}`}
-                          className={classNames(styles.caret, {
-                            [styles.active]: item.path === activePage
-                          })}
-                        >
-                          <FontAwesomeIcon icon={faCaretDown} />
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </li>
-              ))}
+                        <FontAwesomeIcon icon={faCaretDown} />
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </li>
+            ))}
             <li
-              key={'unlock'}
-              data-testid={`navigation-page-unlock`}
+              key='unlock'
+              data-testid='navigation-page-unlock'
               className={classNames(styles.page, {
                 [styles.active]:
-                  '/unlock' === activePage || '/unlock' === pathname
+                  routeNames.unlock === activePage ||
+                  routeNames.unlock === pathname
               })}
             >
               <div className={styles.item} style={{ display: 'inherit' }}>
                 <Link
-                  to={isLoggedIn ? '' : '/unlock'}
+                  to={isLoggedIn ? '' : routeNames.unlock}
                   className={classNames(styles.path, styles.unlock)}
-                  onClick={isLoggedIn ? () => logout() : onItemClick}
+                  onClick={onUnlockItemClick}
                 >
                   <div className={styles.title}>
                     {isLoggedIn ? (

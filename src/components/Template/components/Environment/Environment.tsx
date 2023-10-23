@@ -8,12 +8,12 @@ import {
   faArrowUpLong
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
-import type { EnvironmentPropsType, OptionType } from './types';
+import type { OptionType } from './types';
 import styles from './styles.module.scss';
 import { ActionTypeEnum } from 'context/reducer';
 import { useDispatch } from 'context';
 import { NETWORK } from 'constants/environment';
-import { useChain } from '../../../../hooks/useChain';
+import { useChain } from 'hooks/useChain';
 
 const customComponents = {
   Control: (props: any) => (

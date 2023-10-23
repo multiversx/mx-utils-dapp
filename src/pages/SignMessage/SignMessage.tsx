@@ -15,7 +15,8 @@ import {
 } from './types';
 import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
-import { useCallbackRoute } from '../../hooks/useCallbackRoute';
+import { useCallbackRoute } from 'hooks/useCallbackRoute';
+import { routeNames } from 'routes';
 
 export const SignMessage = () => {
   const { signMessage } = useSignMessage();
@@ -39,12 +40,11 @@ export const SignMessage = () => {
   const handleSignMessage = async () => {
     if (!isLoggedIn) {
       const route = search
-        ? `/unlock${search}&callbackUrl=${callbackRoute}`
-        : `/unlock?callbackUrl=${callbackRoute}`;
+        ? `${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
+        : `${routeNames.unlock}?callbackUrl=${callbackRoute}`;
       const isWallet = loginMethod === 'wallet';
 
       navigate(isWallet ? encodeURIComponent(route) : route);
-      return;
     }
 
     const signableMessage = await signMessage({

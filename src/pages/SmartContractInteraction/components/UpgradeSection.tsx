@@ -11,6 +11,7 @@ import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useNavigate } from 'react-router-dom';
 import { useChain } from 'hooks/useChain';
+import { routeNames } from 'routes';
 
 export const UpgradeSection = () => {
   const [sessionId, setSessionId] = useLocalStorage('upgradeSessionId', '');
@@ -44,6 +45,14 @@ export const UpgradeSection = () => {
     const response = await upgrade(params);
     setSessionId(response.sessionId ?? '');
   }, [address, isLoggedIn, upgrade, upgradeContractAddress, wasmCode]);
+
+  const submitUpgrade = () => {
+    if (isLoggedIn) {
+      handleUpgrade();
+    } else {
+      navigate(`${routeNames.unlock}?callbackUrl=${callbackRoute}`);
+    }
+  };
 
   useEffect(() => {
     if (isLoggedIn && Boolean(address)) {
@@ -87,11 +96,7 @@ export const UpgradeSection = () => {
 
         <div className={styles.buttons}>
           <button
-            onClick={() =>
-              isLoggedIn
-                ? handleUpgrade()
-                : navigate(`/unlock?callbackUrl=${callbackRoute}`)
-            }
+            onClick={submitUpgrade}
             className={styles.button}
             disabled={!wasmCode || !upgradeContractAddress}
           >
