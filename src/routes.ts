@@ -49,7 +49,7 @@ const pages: RouteType[] = [
   },
   {
     path: routeNames.smartContract,
-    title: 'SC Interaction',
+    title: 'SC Interaction (BETA)',
     component: SmartContractInteraction
   },
   {
