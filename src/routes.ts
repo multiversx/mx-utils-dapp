@@ -24,7 +24,8 @@ export const routeNames = {
   auth: '/auth',
   signMessage: '/sign-message',
   smartContract: '/smart-contract',
-  unlock: '/unlock'
+  unlock: '/unlock',
+  explainer: '/explainer'
 };
 
 const pages: RouteType[] = [
@@ -59,7 +60,7 @@ const pages: RouteType[] = [
     component: Unlock
   },
   {
-    path: '/explainer',
+    path: routeNames.explainer,
     title: 'Explainer',
     component: Explainer
   }
