@@ -165,16 +165,18 @@ export const Textarea = (props: TextareaPropsType) => {
         })}
       />
 
-      <div className={styles.clone} contentEditable='true'>
-        {mirror.map((word: TextareaDivisionType, index: number) => (
-          <span
-            style={{ color: word.color }}
-            className={styles.word}
-            key={`word-${word.text}-${index}`}
-          >
-            {word.text}
-          </span>
-        ))}
+      <div className={styles.clone}>
+        <div className={styles.mirror} ref={clone}>
+          {mirror.map((word: any, index: any) => (
+            <span
+              style={{ color: word.color }}
+              className={styles.word}
+              key={`word-${word.text}-${index}`}
+            >
+              {word.text}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
