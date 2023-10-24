@@ -24,7 +24,9 @@ export const ExplainForm = () => {
   const handleEventSourceError = useCallback(() => {
     eventSource?.close();
     setShowLoader(false);
-    setErrorMessage('Explainer encounterd an unknown error. Please try again.');
+    setErrorMessage(
+      'Explainer encountered an unknown error. Please try again.'
+    );
   }, [eventSource]);
 
   const handleCodeExplanationStreamFailed = useCallback(
