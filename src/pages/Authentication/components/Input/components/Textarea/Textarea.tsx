@@ -146,23 +146,14 @@ export const Textarea = (props: TextareaPropsType) => {
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
-      console.log(e.shiftKey, e.key, e.metaKey, e.ctrlKey, e.altKey, e.code);
-
       const commonKey = e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
-      const allowedKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+      const allowedCombinationKeys = ['a', 'c', 'v', 'x'];
+      const arrowKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+
       const allowedCombinations =
-        (commonKey && e.key === 'a') ||
-        (commonKey && e.key === 'c') ||
-        (commonKey && e.key === 'v') ||
-        (e.shiftKey && e.key === 'ArrowLeft') ||
-        (e.shiftKey && e.key === 'ArrowRight') ||
-        (e.shiftKey && e.key === 'ArrowUp') ||
-        (e.shiftKey && e.key === 'ArrowDown');
-
-      console.log(commonKey, allowedKeys.includes(e.key), allowedCombinations);
-
+        commonKey && allowedCombinationKeys.includes(e.key);
       const allowed =
-        commonKey || allowedKeys.includes(e.key) || allowedCombinations;
+        commonKey || arrowKeys.includes(e.key) || allowedCombinations;
 
       if (!allowed) {
         onPreventDefault(e);
@@ -176,11 +167,9 @@ export const Textarea = (props: TextareaPropsType) => {
       onPreventDefault(e);
 
       const token = e.nativeEvent?.clipboardData?.getData('text');
-
       if (!token) {
         return;
       }
-
       onChange(token);
     },
     [onChange, onPreventDefault]
