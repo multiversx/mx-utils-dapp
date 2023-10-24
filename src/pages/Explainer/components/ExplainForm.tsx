@@ -8,6 +8,7 @@ import styles from '../styles.module.scss';
 import { AssistantApiSSETypes, assistantApi } from 'helpers/assistantApi';
 import { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useChain } from 'hooks/useChain';
 
 export const ExplainForm = () => {
   const [explainerResponse, setExplainerResponse] = useState<string | null>(
@@ -16,6 +17,7 @@ export const ExplainForm = () => {
   const [showLoader, setShowLoader] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [eventSource, setEventSource] = useState<EventSource | null>(null);
+  const { chain } = useChain();
 
   const initialValues = { repositoryUrl: '' };
 
@@ -103,6 +105,7 @@ export const ExplainForm = () => {
     setErrorMessage(null);
 
     const newEventSource = assistantApi.getCodeExplanationEventSource({
+      chain,
       repositoryUrl
     });
 
@@ -126,14 +129,17 @@ export const ExplainForm = () => {
     <>
       <div className={styles.wrapper}>
         <h3 className={styles.title}>
-          Paste in the URL of the smart contract repository
+          Paste the URL that directly points to the Smart Contract on GitHub
         </h3>
 
         <Formik {...formikProps}>
           {({ setFieldValue }) => (
             <Form className={styles.sign}>
               <div className={styles.form}>
-                <label className={styles.label}>Repository URL</label>
+                <label className={styles.label}>
+                  Please provide the complete GitHub URL that directly points to
+                  the directory containing your smart contract
+                </label>
 
                 <Field
                   name='repositoryUrl'
