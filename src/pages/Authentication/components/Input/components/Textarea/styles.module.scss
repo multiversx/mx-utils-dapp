@@ -44,21 +44,20 @@
   }
 
   .clone {
-    padding: 1rem;
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
-    display: flex;
-    position: absolute;
-    pointer-events: none;
-
-    .mirror {
-      line-height: 1.25;
-      flex: 1;
-      font-weight: 300;
-      word-break: break-word;
-      overflow-y: scroll;
-    }
+    border-radius: 0.5rem;
+    background-color: var(--body);
+    border: none;
+    padding: 1rem;
+    line-height: 1.25;
+    resize: none;
+    color: transparent;
+    caret-color: var(--text);
+    font-weight: 300;
+    min-height: calc(100% - 2rem);
   }
 }
