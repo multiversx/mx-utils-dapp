@@ -2,7 +2,7 @@ import { Input } from './components/Input';
 import { Metric } from './components/Metric';
 import styles from './styles.module.scss';
 import { useChain } from 'hooks/useChain';
-import { useAuthenticationContext } from './context/AuthenticationContext';
+import { useAuthenticationContext } from './context';
 
 /*
  * Handle the component declaration.

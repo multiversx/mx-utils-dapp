@@ -1,7 +1,6 @@
 import { Template } from 'components/Template';
 import { AuthenticationContent } from './AuthenticationContent';
-import { useAuthenticationValue } from './context/AuthenticationContext';
-import { AuthenticationProvider } from './context/AuthenticationProvider';
+import { AuthenticationProvider, useAuthenticationValue } from './context';
 
 export const Authentication = () => {
   return (

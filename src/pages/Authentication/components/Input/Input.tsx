@@ -4,10 +4,6 @@ import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { useChain } from 'hooks/useChain';
 import { InputForm } from './InputForm';
 
-/*
- * Handle the component declaration.
- */
-
 export const Input = memo(() => {
   const { chain } = useChain();
 
@@ -25,10 +21,6 @@ export const Input = memo(() => {
         'ZXJkMXdqeXRmbjZ6aHFmY3NlanZod3Y3cTR1c2F6czVyeWMzajhoYzc4ZmxkZ2pueWN0OHdlanFrYXN1bmM.Ykc5allXeG9iM04wLjdkNzQxODI3OTM0NWZiZjFiM2UwMDU0MDMyZDFjM2UzYjIzMjRiOTgyMjNjYzZhODI1ZTc2ZjRmYmZkNGE3ZGQuOTAwLmV5SjBhVzFsYzNSaGJYQWlPakUyTnpNNU56TTVNRFo5.6912c4dddb58fbc8aa3ee210c9a6e6e66847abcd6eebe72fe5b5df02632598c9b568c3b3499eea3d62f321db7aab3e5e7fef293f8ae17aaa6042141bd6a23208'
     }
   }[chain];
-
-  /*
-   * Return the rendered component.
-   */
 
   return (
     <Formik

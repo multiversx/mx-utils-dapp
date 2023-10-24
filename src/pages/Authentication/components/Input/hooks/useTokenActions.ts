@@ -1,12 +1,12 @@
 import { ChangeEvent, FormEvent, useCallback } from 'react';
+import { useFormikContext } from 'formik';
 import { emptyMetrics } from 'pages/Authentication/constants/metrics.contants';
+import { useAuthenticationContext } from 'pages/Authentication/context';
 import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
+import { useChain } from 'hooks/useChain';
 import { decodeToken } from '../components/Textarea/helpers/decodeToken';
 import { validateToken } from '../components/Textarea/helpers/validateToken';
-import { useFormikContext } from 'formik';
 import { FormValuesType } from '../types';
-import { useChain } from 'hooks/useChain';
-import { useAuthenticationContext } from '../../../context/AuthenticationContext';
 
 export const useTokenActions = () => {
   const { setMetrics } = useAuthenticationContext();
