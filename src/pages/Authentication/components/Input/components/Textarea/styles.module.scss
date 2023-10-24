@@ -59,5 +59,16 @@
     caret-color: var(--text);
     font-weight: 300;
     min-height: calc(100% - 2rem);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--link);
+      border-radius: 5px;
+    }
   }
 }
