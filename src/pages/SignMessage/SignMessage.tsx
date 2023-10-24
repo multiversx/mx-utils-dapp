@@ -45,6 +45,7 @@ export const SignMessage = () => {
       const isWallet = loginMethod === 'wallet';
 
       navigate(isWallet ? encodeURIComponent(route) : route);
+      return;
     }
 
     const signableMessage = await signMessage({
