@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
 import { FormValuesType } from '../../types';
 import { useTokenActions } from '../../hooks/useTokenActions';
+import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 
 const DEFAULT_COLOR = '#000000';
 
@@ -96,6 +97,10 @@ export const Textarea = () => {
             </span>
           ))}
         </div>
+      </div>
+
+      <div className={styles.buttons}>
+        <CopyButton text={values.token} className={styles.copy} />
       </div>
     </div>
   );

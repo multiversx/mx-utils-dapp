@@ -15,9 +15,13 @@ export const InputForm = () => {
         <span>Paste a token here</span>
 
         <div className={styles.wrapper}>
-          <button onClick={handlePasteToken} className={styles.paste}>
+          <div
+            onClick={handlePasteToken}
+            className={styles.paste}
+            title='Paste'
+          >
             <FontAwesomeIcon icon={faPaste} size='lg' />
-          </button>
+          </div>
           <button onClick={handleGenerateToken} className={styles.generate}>
             Generate
           </button>
