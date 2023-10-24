@@ -109,6 +109,7 @@ export const VerifySignatureFormFields = ({
                 className={styles.field}
                 key={initialVerifyFormValues.toString()}
                 autoComplete='off'
+                placeholder='Insert or paste the message that was signed.'
                 onChange={handleChange}
               />
 
@@ -128,6 +129,7 @@ export const VerifySignatureFormFields = ({
                 className={styles.field}
                 key={initialVerifyFormValues.toString()}
                 autoComplete='off'
+                placeholder="Insert or paste the signature. You don't have to add '0x' prefix."
                 onChange={handleChange}
               />
 
