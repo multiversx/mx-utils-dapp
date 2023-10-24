@@ -46,6 +46,24 @@
           background-color: var(--link);
         }
       }
+
+      .paste {
+        border: 1px solid var(--dark);
+        color: var(--dark);
+        font-size: 0.75rem;
+        padding: 0.5rem 0.7rem;
+        border-radius: 0.25rem;
+        background-color: transparent;
+        outline: none;
+        transition: all 400ms ease;
+        cursor: pointer;
+        margin-left: 1rem;
+
+        &:hover {
+          color: var(--black);
+          background-color: var(--dark);
+        }
+      }
     }
   }
 }

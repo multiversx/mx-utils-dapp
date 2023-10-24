@@ -1,36 +1,28 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef
-} from 'react';
-import { Field } from 'formik';
-import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
+import { useEffect, useMemo, useRef } from 'react';
+import { Field, useFormikContext } from 'formik';
 import classNames from 'classnames';
 import { TokenColorsEnum } from 'pages/Authentication/enum';
-import { emptyMetrics } from 'pages/Authentication';
-import { decodeToken } from './helpers/decodeToken';
-import { validateToken } from './helpers/validateToken';
-import type { TextareaDivisionType, TextareaPropsType } from './types';
+import type { TextareaDivisionType } from './types';
 import styles from './styles.module.scss';
 import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
-import { useChain } from 'hooks/useChain';
+import { FormValuesType } from '../../types';
+import { useTokenActions } from '../../hooks/useTokenActions';
 
-/*
- * Handle the component declaration.
- */
+const DEFAULT_COLOR = '#000000';
 
-export const Textarea = (props: TextareaPropsType) => {
+export const Textarea = () => {
+  const {
+    handleInput,
+    handleChange,
+    handleKeyDown,
+    handlePaste,
+    handlePreventDefault
+  } = useTokenActions();
+
   const nativeAuthToken = useGetNativeAuthToken();
-  const { values, setMetrics, setFieldValue, setFieldTouched, setFieldError } =
-    props;
+  const { values, setFieldValue } = useFormikContext<FormValuesType>();
 
-  const { chain } = useChain();
   const clone = useRef<HTMLDivElement>(null);
-
-  const defaultColor = '#000000';
 
   const mirror = useMemo(() => {
     const parts = values.token.split('.');
@@ -39,12 +31,12 @@ export const Textarea = (props: TextareaPropsType) => {
     const words = parts.reduce(
       (total: TextareaDivisionType[], word: string, index: number) => {
         const part: TextareaDivisionType = {
-          color: colors[index] ? colors[index] : defaultColor,
+          color: colors[index] ? colors[index] : DEFAULT_COLOR,
           text: word
         };
 
         const dot: TextareaDivisionType = {
-          color: defaultColor,
+          color: DEFAULT_COLOR,
           text: '.'
         };
 
@@ -58,131 +50,15 @@ export const Textarea = (props: TextareaPropsType) => {
     );
 
     return words;
-  }, [values.token, defaultColor]);
-
-  const onInput = useCallback((event: FormEvent<HTMLFormElement>) => {
-    const padding = parseInt(getComputedStyle(event.currentTarget).fontSize);
-    const style = event.currentTarget.style;
-
-    Object.assign(style, { height: '1px' });
-    Object.assign(style, {
-      height: `${event.currentTarget.scrollHeight - padding * 2}px`
-    });
-  }, []);
-
-  const onChange = useCallback(
-    async (event: ChangeEvent<HTMLFormElement> | string) => {
-      const token = typeof event === 'string' ? event : event.target.value;
-
-      setFieldValue('token', token, false);
-      setFieldTouched('token', true, false);
-
-      if (!Boolean(token)) {
-        setFieldError('token', 'Token Undecodable');
-        setFieldError(
-          'message',
-          'The provided token is not a NativeAuth token.'
-        );
-        setMetrics(emptyMetrics);
-        return;
-      }
-
-      try {
-        const config = {
-          apiUrl: fallbackNetworkConfigurations[chain].apiAddress
-        };
-
-        const promises = [
-          decodeToken(token, config),
-          validateToken(token, config)
-        ];
-
-        const [decoded, valid] = await Promise.allSettled(promises);
-
-        const decodedValue = decoded as any;
-        const tokenExpired =
-          valid.status === 'rejected' &&
-          valid.reason.message === 'Token expired';
-
-        if (decoded.status === 'rejected') {
-          setFieldError('token', 'Token Undecodable');
-          setFieldError(
-            'message',
-            'The provided token is not a NativeAuth token.'
-          );
-          setMetrics(emptyMetrics);
-          return;
-        } else {
-          setMetrics(decodedValue.value);
-        }
-
-        if (tokenExpired) {
-          setFieldError('token', 'Token Expired');
-          setFieldError('message', undefined);
-          return;
-        }
-
-        if (valid.status === 'rejected') {
-          setFieldError('token', 'Token Invalid');
-          setFieldError('message', "Signature doesn't match.");
-          return;
-        }
-
-        setFieldError('token', undefined);
-        setFieldError('message', undefined);
-      } catch (error) {
-        if (error instanceof Error) {
-          console.error(error);
-          setMetrics(emptyMetrics);
-        }
-      }
-    },
-    [setFieldError, chain, setFieldValue, setFieldTouched, setMetrics]
-  );
-
-  const onPreventDefault = useCallback((event: FormEvent<HTMLDivElement>) => {
-    event.preventDefault();
-  }, []);
-
-  const onKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      const commonKey = e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
-      const allowedCombinationKeys = ['a', 'c', 'v', 'x'];
-      const arrowKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
-
-      const allowedCombinations =
-        commonKey && allowedCombinationKeys.includes(e.key);
-      const allowed =
-        commonKey || arrowKeys.includes(e.key) || allowedCombinations;
-
-      if (!allowed) {
-        onPreventDefault(e);
-      }
-    },
-    [onPreventDefault]
-  );
-
-  const onPaste = useCallback(
-    (e: React.ClipboardEvent<HTMLDivElement>) => {
-      onPreventDefault(e);
-
-      const token = e.nativeEvent?.clipboardData?.getData('text');
-      if (!token) {
-        return;
-      }
-      onChange(token);
-    },
-    [onChange, onPreventDefault]
-  );
+  }, [values.token]);
 
   useEffect(() => {
     const token = nativeAuthToken;
 
     if (token) {
-      setFieldValue('token', nativeAuthToken, false);
-      onChange(token);
+      handleChange(token);
     }
-  }, [setFieldValue, onChange, nativeAuthToken]);
+  }, [setFieldValue, handleChange, nativeAuthToken]);
 
   /*
    * Return the rendered component.
@@ -193,8 +69,8 @@ export const Textarea = (props: TextareaPropsType) => {
       <Field
         component='textarea'
         name='token'
-        onInput={onInput}
-        onChange={onChange}
+        onInput={handleInput}
+        onChange={handleChange}
         className={classNames(styles.field, {
           [styles.large]: Boolean(nativeAuthToken)
         })}
@@ -205,9 +81,9 @@ export const Textarea = (props: TextareaPropsType) => {
         ref={clone}
         contentEditable='true'
         suppressContentEditableWarning={true}
-        onChange={onPreventDefault}
-        onKeyDown={onKeyDown}
-        onPaste={onPaste}
+        onChange={handlePreventDefault}
+        onKeyDown={handleKeyDown}
+        onPaste={handlePaste}
       >
         <div className={styles.mirror}>
           {mirror.map((word: TextareaDivisionType, index: number) => (

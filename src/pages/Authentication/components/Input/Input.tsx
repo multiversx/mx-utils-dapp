@@ -1,27 +1,15 @@
 import { memo } from 'react';
-import { Formik, Form, FormikProps } from 'formik';
+import { Formik } from 'formik';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
-import { Textarea } from './components/Textarea';
-import { Status } from './components/Status';
-import type { FormValuesType, InputPropsType } from './types';
-import styles from './styles.module.scss';
 import { useChain } from 'hooks/useChain';
-import { logout } from '@multiversx/sdk-dapp/utils/logout';
-import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
-import { useCallbackRoute } from 'hooks/useCallbackRoute';
-import { useLocation } from 'react-router-dom';
-import { routeNames } from 'routes';
+import { InputForm } from './InputForm';
 
 /*
  * Handle the component declaration.
  */
 
-export const Input = memo((props: InputPropsType) => {
-  const { setMetrics } = props;
+export const Input = memo(() => {
   const { chain } = useChain();
-  const { search } = useLocation();
-  const { loginMethod } = useGetLoginInfo();
-  const callbackRoute = useCallbackRoute();
 
   const initialValues = {
     [EnvironmentsEnum.mainnet]: {
@@ -38,16 +26,6 @@ export const Input = memo((props: InputPropsType) => {
     }
   }[chain];
 
-  const handleGenerateClick = async () => {
-    const route = search
-      ? `${window.location.origin}${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
-      : `${window.location.origin}${routeNames.unlock}?callbackUrl=${callbackRoute}`;
-    const isWallet = loginMethod === 'wallet';
-    const redirect = isWallet ? encodeURIComponent(route) : route;
-
-    await logout(redirect);
-  };
-
   /*
    * Return the rendered component.
    */
@@ -61,22 +39,7 @@ export const Input = memo((props: InputPropsType) => {
       enableReinitialize={true}
       initialErrors={{ token: 'Token Expired' }}
     >
-      {(props: FormikProps<FormValuesType>) => (
-        <Form className={styles.form}>
-          <h3 className={styles.subtitle}>
-            <span>Paste a token here</span>
-
-            <div className={styles.wrapper}>
-              <button onClick={handleGenerateClick} className={styles.generate}>
-                Generate
-              </button>
-            </div>
-          </h3>
-
-          <Textarea {...props} setMetrics={setMetrics} />
-          <Status {...props} />
-        </Form>
-      )}
+      <InputForm />
     </Formik>
   );
 });
