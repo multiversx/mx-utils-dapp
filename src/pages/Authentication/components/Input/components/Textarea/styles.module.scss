@@ -19,6 +19,7 @@
     caret-color: var(--text);
     font-weight: 300;
     min-height: 19rem;
+    pointer-events: all;
 
     @media (min-width: 576px) {
       min-height: 10rem;
@@ -61,6 +62,9 @@
     min-height: calc(100% - 2rem);
     overflow-y: scroll;
 
+    pointer-events: all;
+    outline: none;
+
     &::-webkit-scrollbar {
       width: 3px;
       height: 3px;
@@ -69,6 +73,25 @@
     &::-webkit-scrollbar-thumb {
       background: var(--link);
       border-radius: 5px;
+    }
+
+    .mirror {
+      line-height: 1.25;
+      flex: 1;
+      font-weight: 300;
+      word-break: break-word;
+      overflow-y: scroll;
+      pointer-events: none;
+
+      &::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--link);
+        border-radius: 5px;
+      }
     }
   }
 }

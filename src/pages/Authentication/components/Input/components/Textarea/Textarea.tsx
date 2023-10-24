@@ -140,6 +140,52 @@ export const Textarea = (props: TextareaPropsType) => {
     [setFieldError, chain, setFieldValue, setFieldTouched, setMetrics]
   );
 
+  const onPreventDefault = useCallback((event: FormEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  }, []);
+
+  const onKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      console.log(e.shiftKey, e.key, e.metaKey, e.ctrlKey, e.altKey, e.code);
+
+      const commonKey = e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
+      const allowedKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+      const allowedCombinations =
+        (commonKey && e.key === 'a') ||
+        (commonKey && e.key === 'c') ||
+        (commonKey && e.key === 'v') ||
+        (e.shiftKey && e.key === 'ArrowLeft') ||
+        (e.shiftKey && e.key === 'ArrowRight') ||
+        (e.shiftKey && e.key === 'ArrowUp') ||
+        (e.shiftKey && e.key === 'ArrowDown');
+
+      console.log(commonKey, allowedKeys.includes(e.key), allowedCombinations);
+
+      const allowed =
+        commonKey || allowedKeys.includes(e.key) || allowedCombinations;
+
+      if (!allowed) {
+        onPreventDefault(e);
+      }
+    },
+    [onPreventDefault]
+  );
+
+  const onPaste = useCallback(
+    (e: React.ClipboardEvent<HTMLDivElement>) => {
+      onPreventDefault(e);
+
+      const token = e.nativeEvent?.clipboardData?.getData('text');
+
+      if (!token) {
+        return;
+      }
+
+      onChange(token);
+    },
+    [onChange, onPreventDefault]
+  );
+
   useEffect(() => {
     const token = nativeAuthToken;
 
@@ -165,16 +211,26 @@ export const Textarea = (props: TextareaPropsType) => {
         })}
       />
 
-      <div className={styles.clone} contentEditable='true'>
-        {mirror.map((word: TextareaDivisionType, index: number) => (
-          <span
-            style={{ color: word.color }}
-            className={styles.word}
-            key={`word-${word.text}-${index}`}
-          >
-            {word.text}
-          </span>
-        ))}
+      <div
+        className={styles.clone}
+        ref={clone}
+        contentEditable='true'
+        suppressContentEditableWarning={true}
+        onChange={onPreventDefault}
+        onKeyDown={onKeyDown}
+        onPaste={onPaste}
+      >
+        <div className={styles.mirror}>
+          {mirror.map((word: TextareaDivisionType, index: number) => (
+            <span
+              style={{ color: word.color }}
+              className={styles.word}
+              key={`word-${word.text}-${index}`}
+            >
+              {word.text}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
