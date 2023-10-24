@@ -6,7 +6,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles.module.scss';
 import { AssistantApiSSETypes, assistantApi } from 'helpers/assistantApi';
-import { useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useChain } from 'hooks/useChain';
 
@@ -148,7 +148,7 @@ export const ExplainForm = () => {
                   type='text'
                   className={styles.field}
                   autoComplete='off'
-                  onChange={(e: any) => {
+                  onChange={(e: ChangeEvent<HTMLFormElement>) => {
                     setFieldValue('repositoryUrl', e.target.value);
                   }}
                 />
