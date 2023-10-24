@@ -10,6 +10,7 @@ import { SmartContractInteraction } from 'pages/SmartContractInteraction/SmartCo
 import { Unlock } from 'pages/Unlock/Unlock';
 
 import { withPageTitle } from './components/PageTitle';
+import { Explainer } from 'pages/Explainer';
 
 export interface RouteType {
   path: string;
@@ -23,7 +24,8 @@ export const routeNames = {
   auth: '/auth',
   signMessage: '/sign-message',
   smartContract: '/smart-contract',
-  unlock: '/unlock'
+  unlock: '/unlock',
+  explainer: '/explainer'
 };
 
 const pages: RouteType[] = [
@@ -56,6 +58,11 @@ const pages: RouteType[] = [
     path: routeNames.unlock,
     title: 'Unlock',
     component: Unlock
+  },
+  {
+    path: routeNames.explainer,
+    title: 'Explainer',
+    component: Explainer
   }
 ];
 
