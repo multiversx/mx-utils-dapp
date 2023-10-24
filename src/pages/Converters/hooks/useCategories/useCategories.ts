@@ -116,8 +116,12 @@ export const useCategories = () => {
         {
           title: 'Convert base64 to a decimal',
           label: 'Base64 value',
-          compute: (value: string) =>
-            Buffer.from(value, 'base64').toString('ascii'),
+          compute: (value: string) => {
+            const hex = Buffer.from(value, 'base64').toString('hex');
+            const paddedHex = hex.length % 2 ? `0${hex}` : hex;
+
+            return BigNumber(paddedHex, 16).toString(10);
+          },
           identifier: 'base64-to-decimal',
           validate: {
             required: 'Base64 required.',
@@ -127,11 +131,7 @@ export const useCategories = () => {
                 if (!value) return false;
 
                 try {
-                  const parsed = atob(value);
-
-                  if (!stringIsFloat(parsed) || !stringIsInteger(parsed)) {
-                    return false;
-                  }
+                  atob(value);
 
                   return true;
                 } catch {
