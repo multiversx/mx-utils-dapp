@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
 import classNames from 'classnames';
@@ -79,7 +79,7 @@ export const VerifySignatureForm = () => {
                 value={values.signedMessage}
                 className={styles.field}
                 autoComplete='off'
-                onChange={(e: any) => {
+                onChange={(e: ChangeEvent<HTMLFormElement>) => {
                   handleChange(e);
                   resetVerifyFormResults();
                 }}
