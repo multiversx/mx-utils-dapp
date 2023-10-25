@@ -1,15 +1,16 @@
 import { useTokenActions } from './useTokenActions';
 import { routeNames } from 'routes';
-import { logout } from '@multiversx/sdk-dapp/utils/logout';
 import { useLocation } from 'react-router-dom';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
+import { useLogout } from 'hooks/useLogout';
 
 export const useInputActions = () => {
   const { search } = useLocation();
   const { loginMethod } = useGetLoginInfo();
   const callbackRoute = useCallbackRoute();
+  const logout = useLogout();
 
   const { handleChange } = useTokenActions();
 

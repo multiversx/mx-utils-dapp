@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ErrorMessage, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
 import classNames from 'classnames';
 import styles from '../styles.module.scss';
@@ -72,12 +72,14 @@ export const VerifySignatureForm = () => {
             <div className={styles.form}>
               <label className={styles.label}>Verify signature</label>
 
-              <textarea
+              <Field
+                component='textarea'
+                rows={10}
                 name='signedMessage'
                 value={values.signedMessage}
                 className={styles.field}
                 autoComplete='off'
-                onChange={(e) => {
+                onChange={(e: any) => {
                   handleChange(e);
                   resetVerifyFormResults();
                 }}

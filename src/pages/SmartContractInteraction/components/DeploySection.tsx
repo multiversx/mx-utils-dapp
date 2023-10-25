@@ -4,7 +4,7 @@ import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import React, { useCallback, useEffect } from 'react';
 import useUploadWasmCode from '../hooks/useUploadWasmCode';
 import { useDeployments } from '../hooks/useDeployments';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useStorage } from 'hooks/useStorage';
 import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
 import { useGetDeployedContractAddress } from '../hooks/useGetDeployedContractAddress';
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
@@ -14,7 +14,11 @@ import { useChain } from 'hooks/useChain';
 import { routeNames } from 'routes';
 
 export const DeploySection = () => {
-  const [sessionId, setSessionId] = useLocalStorage('deploySessionId', '');
+  const [sessionId, setSessionId] = useStorage(
+    localStorage,
+    'deploySessionId',
+    ''
+  );
 
   const { chain } = useChain();
   const isLoggedIn = useGetIsLoggedIn();

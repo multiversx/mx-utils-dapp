@@ -4,7 +4,7 @@ import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import React, { useCallback, useEffect, useState } from 'react';
 import useUploadWasmCode from '../hooks/useUploadWasmCode';
 import { useGetDeployedContractAddress } from '../hooks/useGetDeployedContractAddress';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useStorage } from 'hooks/useStorage';
 import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
 import { useDeployments } from '../hooks/useDeployments';
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
@@ -14,7 +14,11 @@ import { useChain } from 'hooks/useChain';
 import { routeNames } from 'routes';
 
 export const UpgradeSection = () => {
-  const [sessionId, setSessionId] = useLocalStorage('upgradeSessionId', '');
+  const [sessionId, setSessionId] = useStorage(
+    localStorage,
+    'upgradeSessionId',
+    ''
+  );
   const [upgradeContractAddress, setUpgradeContractAddress] =
     useState<string>('');
 

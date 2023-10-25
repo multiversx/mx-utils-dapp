@@ -28,7 +28,7 @@ import {
   useGetAccountInfo,
   useGetIsLoggedIn
 } from '@multiversx/sdk-dapp/hooks';
-import { logout } from '@multiversx/sdk-dapp/utils/logout';
+import { useLogout } from 'hooks/useLogout';
 import { Trim } from '@multiversx/sdk-dapp/UI';
 
 /*
@@ -45,6 +45,7 @@ export const Template = (props: PropsWithChildren) => {
 
   const isLoggedIn = useGetIsLoggedIn();
   const { address } = useGetAccountInfo();
+  const logout = useLogout();
 
   /*
    * Assign each route the icon and categories for enhanced mapping.
@@ -76,7 +77,7 @@ export const Template = (props: PropsWithChildren) => {
       return;
     }
     onItemClick();
-  }, [onItemClick, isLoggedIn]);
+  }, [isLoggedIn, onItemClick, logout]);
 
   /*
    * Look for a potentially available hash parameter and scroll to the specific section, if found.
