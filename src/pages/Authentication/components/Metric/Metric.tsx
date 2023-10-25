@@ -4,13 +4,18 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import classNames from 'classnames';
-
 import type { MetricItemType } from 'pages/Authentication/types';
-
 import styles from './styles.module.scss';
 
-export const Metric = (props: MetricItemType) => {
-  const { subItem, name, colors, data, explorer, identifier, chain } = props;
+export const Metric = ({
+  subItem,
+  name,
+  colors,
+  data,
+  explorer,
+  identifier,
+  chain
+}: MetricItemType) => {
   const [color] = colors;
 
   const code = colors.length > 1 ? String(data).split('.') : [String(data)];
