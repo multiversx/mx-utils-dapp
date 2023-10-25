@@ -19,8 +19,6 @@ export const useSignMessageSectionActions = () => {
   const navigate = useNavigate();
   const callbackRoute = useCallbackRoute();
 
-  console.log('MessageToSign = ', messageToSign);
-
   const handleSignMessage = useCallback(async () => {
     if (!isLoggedIn) {
       const route = search
@@ -35,8 +33,6 @@ export const useSignMessageSectionActions = () => {
       );
       return;
     }
-
-    console.log('MessageToSign on handle = ', messageToSign);
 
     const signableMessage = await signMessage({
       message: messageToSign,
