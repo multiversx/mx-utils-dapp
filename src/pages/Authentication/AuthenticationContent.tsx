@@ -4,10 +4,6 @@ import styles from './styles.module.scss';
 import { useChain } from 'hooks/useChain';
 import { useAuthenticationContext } from './context';
 
-/*
- * Handle the component declaration.
- */
-
 export const AuthenticationContent = () => {
   const { chain } = useChain();
   const { metrics, metricItems } = useAuthenticationContext();
