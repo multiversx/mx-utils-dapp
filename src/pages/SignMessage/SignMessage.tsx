@@ -17,6 +17,7 @@ import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { routeNames } from 'routes';
+import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
 
 export const SignMessage = () => {
   const { signMessage } = useSignMessage();
@@ -42,7 +43,7 @@ export const SignMessage = () => {
       const route = search
         ? `${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
         : `${routeNames.unlock}?callbackUrl=${callbackRoute}`;
-      const isWallet = loginMethod === 'wallet';
+      const isWallet = loginMethod === LoginMethodsEnum.wallet;
 
       navigate(isWallet ? encodeURIComponent(route) : route);
       return;

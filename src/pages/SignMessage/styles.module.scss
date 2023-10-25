@@ -109,6 +109,7 @@
         margin-top: 10px;
         display: flex;
         flex-direction: column;
+        max-width: 70vw;
 
         strong {
           margin-right: 5px;
@@ -123,7 +124,7 @@
         .copy {
           margin-left: 10px;
           position: absolute;
-          bottom: 0.5rem;
+          bottom: 1.5rem;
           right: 0.5rem;
 
           path {
@@ -135,6 +136,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          position: relative;
 
 
           pre {
@@ -147,6 +149,18 @@
             box-sizing: border-box;
             overflow: auto;
             padding: 5px;
+            font-size: small;
+            min-height: 4rem;
+
+            &::-webkit-scrollbar {
+              width: 3px;
+              height: 3px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background: var(--link);
+              border-radius: 5px;
+            }
           }
           code {
             display: inline-block;

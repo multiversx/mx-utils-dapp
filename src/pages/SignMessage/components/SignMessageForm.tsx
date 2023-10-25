@@ -68,13 +68,11 @@ export const SignMessageForm = ({
                 <strong>Signature payload:</strong>
 
                 <div className={styles.code}>
-                  <pre className={styles.value}>
-                    {signedMessagePayload}
-                    <CopyButton
-                      text={signedMessagePayload}
-                      className={styles.copy}
-                    />
-                  </pre>
+                  <pre className={styles.value}>{signedMessagePayload}</pre>
+                  <CopyButton
+                    text={signedMessagePayload}
+                    className={styles.copy}
+                  />
                 </div>
               </div>
             )}

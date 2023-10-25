@@ -19,6 +19,7 @@
     caret-color: var(--text);
     font-weight: 300;
     min-height: 19rem;
+    pointer-events: all;
 
     @media (min-width: 576px) {
       min-height: 10rem;
@@ -44,14 +45,35 @@
   }
 
   .clone {
-    padding: 1rem;
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
-    display: flex;
-    position: absolute;
-    pointer-events: none;
+    border-radius: 0.5rem;
+    background-color: var(--body);
+    border: none;
+    padding: 1rem;
+    line-height: 1.25;
+    resize: none;
+    color: transparent;
+    caret-color: var(--text);
+    font-weight: 300;
+    min-height: calc(100% - 2rem);
+    overflow-y: scroll;
+
+    pointer-events: all;
+    outline: none;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--link);
+      border-radius: 5px;
+    }
 
     .mirror {
       line-height: 1.25;
@@ -59,6 +81,39 @@
       font-weight: 300;
       word-break: break-word;
       overflow-y: scroll;
+      pointer-events: none;
+
+      &::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--link);
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .buttons {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    right: 1rem;
+    transform: translateY(-50%);
+
+    .copy {
+      margin-left: 1rem;
+
+      &:hover path {
+        fill: var(--white);
+      }
+    }
+
+    path {
+      fill: var(--text);
+      transition: all 400ms ease;
     }
   }
 }
