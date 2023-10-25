@@ -4,7 +4,7 @@ import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { useChain } from 'hooks/useChain';
 import { InputForm } from './InputForm';
 
-export const Input = memo(() => {
+export const Input = () => {
   const { chain } = useChain();
 
   const initialValues = {
@@ -28,10 +28,10 @@ export const Input = memo(() => {
       initialValues={initialValues}
       validateOnBlur={false}
       validateOnChange={false}
-      enableReinitialize={true}
+      enableReinitialize
       initialErrors={{ token: 'Token Expired' }}
     >
       <InputForm />
     </Formik>
   );
-});
+};

@@ -7,6 +7,7 @@ import { useChain } from 'hooks/useChain';
 import { decodeToken } from '../components/Textarea/helpers/decodeToken';
 import { validateToken } from '../components/Textarea/helpers/validateToken';
 import { FormValuesType } from '../types';
+import { MetricType } from '../../../types';
 
 export const useTokenActions = () => {
   const { setMetrics } = useAuthenticationContext();
@@ -32,7 +33,7 @@ export const useTokenActions = () => {
       setFieldValue('token', token, false);
       setFieldTouched('token', true, false);
 
-      if (!Boolean(token)) {
+      if (!token) {
         setFieldError('token', 'Token Undecodable');
         setFieldError(
           'message',
@@ -54,7 +55,6 @@ export const useTokenActions = () => {
 
         const [decoded, valid] = await Promise.allSettled(promises);
 
-        const decodedValue = decoded as any;
         const tokenExpired =
           valid.status === 'rejected' &&
           valid.reason.message === 'Token expired';
@@ -67,8 +67,8 @@ export const useTokenActions = () => {
           );
           setMetrics(emptyMetrics);
           return;
-        } else {
-          setMetrics(decodedValue.value);
+        } else if (decoded.value) {
+          setMetrics(decoded.value as MetricType);
         }
 
         if (tokenExpired) {
