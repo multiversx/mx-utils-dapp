@@ -12,11 +12,12 @@ import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useNavigate } from 'react-router-dom';
 import { useChain } from 'hooks/useChain';
 import { routeNames } from 'routes';
+import { DEPLOY_SESSION_ID } from 'constants/storage';
 
 export const DeploySection = () => {
   const [sessionId, setSessionId] = useStorage(
     localStorage,
-    'deploySessionId',
+    DEPLOY_SESSION_ID,
     ''
   );
 

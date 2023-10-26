@@ -12,11 +12,12 @@ import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useNavigate } from 'react-router-dom';
 import { useChain } from 'hooks/useChain';
 import { routeNames } from 'routes';
+import { UPGRADE_SESSION_ID } from 'constants/storage';
 
 export const UpgradeSection = () => {
   const [sessionId, setSessionId] = useStorage(
     localStorage,
-    'upgradeSessionId',
+    UPGRADE_SESSION_ID,
     ''
   );
   const [upgradeContractAddress, setUpgradeContractAddress] =
