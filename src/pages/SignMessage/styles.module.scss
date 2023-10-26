@@ -72,6 +72,11 @@
           flex: none;
           min-height: 45px;
           overflow-y: hidden;
+          display: block;
+          font-family: monospace;
+          text-wrap: none;
+          margin: 1em 0;
+          font-size: 12px;
         }
     
         .error {
