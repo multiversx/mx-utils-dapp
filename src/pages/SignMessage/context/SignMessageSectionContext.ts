@@ -6,7 +6,7 @@ import {
   useContext,
   useState
 } from 'react';
-import { useStorage } from 'hooks/useStorage';
+import { usePersistedState } from 'hooks/usePersistedState';
 import { MESSAGE_TO_SIGN_KEY } from 'constants/storage';
 
 export type SignMessageSectionContextType = {
@@ -33,11 +33,11 @@ export const useSignMessageSectionContext = () => {
 };
 
 export const useSignMessageSectionValue = () => {
-  const [persistedMessageToSign, persistMessageToSign] = useStorage(
-    sessionStorage,
-    MESSAGE_TO_SIGN_KEY,
-    ''
-  );
+  const [persistedMessageToSign, persistMessageToSign] = usePersistedState({
+    storage: sessionStorage,
+    key: MESSAGE_TO_SIGN_KEY,
+    initialValue: ''
+  });
 
   const [signedMessagePayload, setSignedMessagePayload] = useState('');
   const [messageToSign, setMessage] = useState('');

@@ -1,7 +1,7 @@
 import { routeNames } from 'routes';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
-import { SignedMessageStatusesEnum } from '../../../types';
+import { SignedMessageStatusesEnum } from 'pages/SignMessage/types';
 import { Address, SignableMessage } from '@multiversx/sdk-core';
 import { useFormikContext } from 'formik';
 import { SignMessageFormValues } from '../types';

@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 import classNames from 'classnames';
 
-import styles from '../styles.module.scss';
+import styles from 'pages/SignMessage/styles.module.scss';
 import { verifyMessage } from '@multiversx/sdk-dapp/hooks/signMessage/verifyMessage';
 import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
 import { InitialVerifyFormValuesType } from '../types';

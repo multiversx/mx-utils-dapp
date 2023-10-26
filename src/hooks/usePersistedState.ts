@@ -1,10 +1,14 @@
 import { useCallback, useState } from 'react';
 
-export const useStorage = <T>(
-  storage: Storage,
-  key: string,
-  initialValue: T
-) => {
+export const usePersistedState = <T>({
+  storage,
+  key,
+  initialValue
+}: {
+  storage: Storage;
+  key: string;
+  initialValue: T;
+}) => {
   const [storedValue, setStoredValue] = useState(() => {
     const item = storage.getItem(key);
 

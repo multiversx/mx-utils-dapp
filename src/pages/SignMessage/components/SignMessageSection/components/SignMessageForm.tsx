@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import { useSignMessageForm } from '../hooks/useSignMessageForm';
 import { SignMessageFormValues } from '../types';
-import styles from '../../../styles.module.scss';
-import { useSignMessageSectionContext } from '../../../context';
+import { useSignMessageSectionContext } from 'pages/SignMessage/context';
+import styles from 'pages/SignMessage/styles.module.scss';
 
 export const SignMessageForm = () => {
   const { setFieldValue } = useFormikContext<SignMessageFormValues>();
