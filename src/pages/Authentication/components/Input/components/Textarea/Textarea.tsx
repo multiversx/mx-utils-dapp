@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, KeyboardEvent } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Field, useFormikContext } from 'formik';
 import classNames from 'classnames';
 import { TokenColorsEnum } from 'pages/Authentication/enum';
@@ -17,14 +17,13 @@ export const Textarea = () => {
     handleChange,
     handleKeyDown,
     handlePaste,
-    handlePreventDefault,
     mirrorRef,
     moveCursorToEnd,
     cache
   } = useTokenActions();
 
   const nativeAuthToken = useGetNativeAuthToken();
-  const { values, setFieldValue } = useFormikContext<FormValuesType>();
+  const { values } = useFormikContext<FormValuesType>();
 
   const mirror = useMemo(() => {
     const parts = values.token.split('.');
@@ -54,19 +53,6 @@ export const Textarea = () => {
     return words;
   }, [values.token]);
 
-  // const debouncedHandleChange = useMemo(
-  //   () => debounce(handleChange, 500),
-  //   [handleChange]
-  // );
-
-  // useEffect(() => {
-  //   if (nativeAuthToken) {
-  //     debouncedHandleChange(nativeAuthToken, moveCursorToEnd);
-  //   }
-  //
-  //   return () => debouncedHandleChange.cancel();
-  // }, [debouncedHandleChange, nativeAuthToken]);
-
   useEffect(() => {
     if (nativeAuthToken) {
       cache.append(nativeAuthToken);
@@ -83,8 +69,6 @@ export const Textarea = () => {
       <Field
         component='textarea'
         name='token'
-        // onInput={handleInput}
-        // onChange={handleChange}
         className={classNames(styles.field, {
           [styles.large]: Boolean(nativeAuthToken)
         })}

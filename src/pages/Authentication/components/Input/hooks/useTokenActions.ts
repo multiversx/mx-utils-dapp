@@ -3,7 +3,6 @@ import {
   FormEvent,
   KeyboardEvent,
   useCallback,
-  useEffect,
   useMemo,
   useRef
 } from 'react';
@@ -21,50 +20,14 @@ import { UndoRedoCache } from 'helpers/undoRedoCache';
 
 const cache = UndoRedoCache();
 
-// const cache = {
-//   _cache: [] as string[],
-//   position: 0,
-//
-//   append: function (value: string) {
-//     if (this._cache.length >= CACHE_LIMIT) {
-//       this._cache = this._cache.slice(1);
-//     }
-//
-//     this._cache.push(value);
-//     this.position++;
-//   },
-//   undo: function () {
-//     if (this._cache[this.position - 1]) {
-//       this.position--;
-//       return this._cache[this.position];
-//     }
-//   },
-//   redo: function () {
-//     if (this._cache[this.position + 1]) {
-//       this.position++;
-//       return this._cache[this.position];
-//     }
-//   }
-// };
-
 export const useTokenActions = () => {
   const { setMetrics } = useAuthenticationContext();
   const { chain } = useChain();
+  const fieldRef = useRef<HTMLTextAreaElement>();
   const mirrorRef = useRef<HTMLDivElement>(null);
-  const currentInputRef = useRef<string | null>();
 
-  const { setFieldValue, setFieldTouched, setFieldError, values } =
+  const { setFieldValue, setFieldTouched, setFieldError } =
     useFormikContext<FormValuesType>();
-
-  // const handleInput = useCallback((event: FormEvent<HTMLFormElement>) => {
-  // const padding = parseInt(getComputedStyle(event.currentTarget).fontSize);
-  // const style = event.currentTarget.style;
-  //
-  // Object.assign(style, { height: '1px' });
-  // Object.assign(style, {
-  //   height: `${event.currentTarget.scrollHeight - padding * 2}px`
-  // });
-  // }, []);
 
   const decodeAndValidateToken = useCallback(
     async (token: string) => {
@@ -127,7 +90,7 @@ export const useTokenActions = () => {
 
   const moveCursorToEnd = useCallback(() => {
     const range = document.createRange();
-    const selection = window.getSelection();
+    const selection = document.getSelection();
 
     if (!mirrorRef.current || !selection || !range) {
       return;
@@ -147,7 +110,6 @@ export const useTokenActions = () => {
       onAfterContentChange?: (value: string) => void
     ) => {
       const token = typeof event === 'string' ? event : event.target.value;
-      console.log('handleChange - token', token);
 
       setFieldValue('token', token, false);
       setFieldTouched('token', true, false);
@@ -182,6 +144,11 @@ export const useTokenActions = () => {
     []
   );
 
+  const debouncedHandleChange = useMemo(
+    () => debounce(handleChange, 500),
+    [handleChange]
+  );
+
   const handleInput = useCallback(
     (e: FormEvent<HTMLDivElement>) => {
       console.log('onInput', (e.target as HTMLDivElement).textContent);
@@ -192,9 +159,10 @@ export const useTokenActions = () => {
       }
 
       cache.append(textContent);
-      handleChange(textContent, moveCursorToEnd);
+      debouncedHandleChange(textContent, moveCursorToEnd);
+      // handleChange(textContent, moveCursorToEnd);
     },
-    [handleChange, moveCursorToEnd]
+    [debouncedHandleChange, moveCursorToEnd]
   );
 
   const handleKeyDown = useCallback(
@@ -227,24 +195,6 @@ export const useTokenActions = () => {
     [handleChange, moveCursorToEnd]
   );
 
-  // const handleKeyDown = useCallback(
-  //   (e: React.KeyboardEvent<HTMLDivElement>) => {
-  //     const commonKey = e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
-  //     const allowedCombinationKeys = ['a', 'c', 'v', 'x'];
-  //     const arrowKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
-  //
-  //     const allowedCombinations =
-  //       commonKey && allowedCombinationKeys.includes(e.key);
-  //     const allowed =
-  //       commonKey || arrowKeys.includes(e.key) || allowedCombinations;
-  //
-  //     if (!allowed) {
-  //       handlePreventDefault(e);
-  //     }
-  //   },
-  //   [handlePreventDefault]
-  // );
-
   const handlePaste = useCallback(
     (e: React.ClipboardEvent<HTMLDivElement>) => {
       handlePreventDefault(e);
@@ -260,11 +210,6 @@ export const useTokenActions = () => {
     [handleChange, handlePreventDefault]
   );
 
-  // useEffect(() => {
-  //   const token = values.token;
-  //   handleChange(token);
-  // }, []);
-
   return {
     handleInput,
     handleChange,
@@ -272,6 +217,7 @@ export const useTokenActions = () => {
     handlePaste,
     handlePreventDefault,
     mirrorRef,
+    fieldRef,
     moveCursorToEnd,
     cache
   };
