@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, KeyboardEvent } from 'react';
 import { Field, useFormikContext } from 'formik';
 import classNames from 'classnames';
 import { TokenColorsEnum } from 'pages/Authentication/enum';
@@ -17,13 +17,14 @@ export const Textarea = () => {
     handleChange,
     handleKeyDown,
     handlePaste,
-    handlePreventDefault
+    handlePreventDefault,
+    mirrorRef,
+    moveCursorToEnd,
+    cache
   } = useTokenActions();
 
   const nativeAuthToken = useGetNativeAuthToken();
   const { values, setFieldValue } = useFormikContext<FormValuesType>();
-
-  const clone = useRef<HTMLDivElement>(null);
 
   const mirror = useMemo(() => {
     const parts = values.token.split('.');
@@ -53,13 +54,25 @@ export const Textarea = () => {
     return words;
   }, [values.token]);
 
-  useEffect(() => {
-    const token = nativeAuthToken;
+  // const debouncedHandleChange = useMemo(
+  //   () => debounce(handleChange, 500),
+  //   [handleChange]
+  // );
 
-    if (token) {
-      handleChange(token);
+  // useEffect(() => {
+  //   if (nativeAuthToken) {
+  //     debouncedHandleChange(nativeAuthToken, moveCursorToEnd);
+  //   }
+  //
+  //   return () => debouncedHandleChange.cancel();
+  // }, [debouncedHandleChange, nativeAuthToken]);
+
+  useEffect(() => {
+    if (nativeAuthToken) {
+      cache.append(nativeAuthToken);
+      handleChange(nativeAuthToken, moveCursorToEnd);
     }
-  }, [setFieldValue, handleChange, nativeAuthToken]);
+  }, [handleChange, moveCursorToEnd, nativeAuthToken]);
 
   /*
    * Return the rendered component.
@@ -70,8 +83,8 @@ export const Textarea = () => {
       <Field
         component='textarea'
         name='token'
-        onInput={handleInput}
-        onChange={handleChange}
+        // onInput={handleInput}
+        // onChange={handleChange}
         className={classNames(styles.field, {
           [styles.large]: Boolean(nativeAuthToken)
         })}
@@ -79,12 +92,13 @@ export const Textarea = () => {
 
       <div
         className={styles.clone}
-        ref={clone}
+        ref={mirrorRef}
         contentEditable='true'
         suppressContentEditableWarning={true}
-        onChange={handlePreventDefault}
+        onInput={handleInput}
         onKeyDown={handleKeyDown}
         onPaste={handlePaste}
+        autoFocus={true}
       >
         <div className={styles.mirror}>
           {mirror.map((word: TextareaDivisionType, index: number) => (

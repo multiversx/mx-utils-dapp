@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { Formik } from 'formik';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { useChain } from 'hooks/useChain';
