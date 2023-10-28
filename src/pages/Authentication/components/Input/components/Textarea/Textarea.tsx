@@ -8,8 +8,8 @@ import { useTokenActions } from '../../hooks/useTokenActions';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import rehypePrism from 'rehype-prism-plus';
-// import rehypeRewrite from 'rehype-rewrite';
-import { Element, RootContent } from 'hast';
+import rehypeRewrite from 'rehype-rewrite';
+import { Element } from 'hast';
 
 export const Textarea = () => {
   const { handleInput, handleChange, moveCursorToEnd } = useTokenActions();
@@ -49,73 +49,31 @@ export const Textarea = () => {
         }}
         rehypePlugins={[
           [rehypePrism, { ignoreMissing: true }],
-          // [
-          //   // @ts-ignore
-          //   rehypeRewrite,
-          //   {
-          //     rewrite: (node: Element) => {
-          //       if (
-          //         (node.properties?.className as string)?.includes('code-line')
-          //       ) {
-          //         const children = node.children as Element[];
-          //
-          //         children.forEach((child: Element, i: number) => {
-          //           if (
-          //             child.tagName === 'span' &&
-          //             child.properties?.className &&
-          //             (child.properties?.className as string)?.includes('token')
-          //           ) {
-          //             child.properties.className = 'token';
-          //             child.properties.style = `color: ${
-          //               colors[i] ?? TokenColorsEnum.default
-          //             }`;
-          //           }
-          //         });
-          //       }
-          //     }
-          //   }
-          // ]
-
           [
-            () => {
-              return (tree: RootContent) => {
-                console.log('~~~', tree);
+            // Unfortunately, we have to use @ts-ignore and some casts here because the type definitions for rehype-rewrite are wrong
+            // @ts-ignore
+            rehypeRewrite,
+            {
+              rewrite: (node: Element) => {
+                if (
+                  (node.properties?.className as string)?.includes('code-line')
+                ) {
+                  const children = node.children as Element[];
 
-                const children = (tree as Element).children as Element[];
-
-                if (!children) return;
-
-                for (const child of children) {
-                  console.log('~~~', child);
-                  if (child.tagName === 'pre' && child.properties) {
-                    const code = child.children[0] as Element;
-
-                    if (!code) return;
-
-                    const tokensContainer = code.children[0] as Element;
-                    if (!tokensContainer) return;
-
-                    const tokens = tokensContainer.children as Element[];
-                    if (!tokens) return;
-
-                    tokens.forEach((token, index) => {
-                      if (
-                        token.tagName === 'span' &&
-                        token.properties?.className &&
-                        (token.properties?.className as string)?.includes(
-                          'token'
-                        )
-                      ) {
-                        token.properties.className = 'token';
-                        token.properties.style = `color: ${
-                          colors[index] ?? TokenColorsEnum.default
-                        }`;
-                      }
-                    });
-                    return;
-                  }
+                  children.forEach((child: Element, i: number) => {
+                    if (
+                      child.tagName === 'span' &&
+                      child.properties?.className &&
+                      (child.properties?.className as string)?.includes('token')
+                    ) {
+                      child.properties.className = 'token';
+                      child.properties.style = `color: ${
+                        colors[i] ?? TokenColorsEnum.default
+                      }`;
+                    }
+                  });
                 }
-              };
+              }
             }
           ]
         ]}
