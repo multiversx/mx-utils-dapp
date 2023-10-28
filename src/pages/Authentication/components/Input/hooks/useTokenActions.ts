@@ -105,10 +105,7 @@ export const useTokenActions = () => {
   }, []);
 
   const handleChange = useCallback(
-    async (
-      event: ChangeEvent<HTMLFormElement> | string,
-      onAfterContentChange?: (value: string) => void
-    ) => {
+    async (event: ChangeEvent<HTMLTextAreaElement> | string) => {
       const token = typeof event === 'string' ? event : event.target.value;
 
       setFieldValue('token', token, false);
@@ -150,16 +147,16 @@ export const useTokenActions = () => {
   );
 
   const handleInput = useCallback(
-    (e: FormEvent<HTMLDivElement>) => {
-      console.log('onInput', (e.target as HTMLDivElement).textContent);
-      const textContent = (e.target as HTMLDivElement).textContent;
-
-      if (!textContent) {
-        return;
-      }
-
-      cache.append(textContent);
-      debouncedHandleChange(textContent, moveCursorToEnd);
+    (e: FormEvent<HTMLTextAreaElement>) => {
+      console.log('onInput', (e.target as HTMLTextAreaElement).textContent);
+      // const textContent = (e.target as HTMLTextAreaElement).textContent;
+      //
+      // if (!textContent) {
+      //   return;
+      // }
+      //
+      // cache.append(textContent);
+      // debouncedHandleChange(textContent);
       // handleChange(textContent, moveCursorToEnd);
     },
     [debouncedHandleChange, moveCursorToEnd]
@@ -179,7 +176,7 @@ export const useTokenActions = () => {
           return;
         }
 
-        handleChange(textContent, moveCursorToEnd);
+        handleChange(textContent);
       } else if (ctrl && e.key === 'y') {
         e.preventDefault();
         e.stopPropagation();
@@ -189,10 +186,10 @@ export const useTokenActions = () => {
           return;
         }
 
-        handleChange(textContent, moveCursorToEnd);
+        handleChange(textContent);
       }
     },
-    [handleChange, moveCursorToEnd]
+    [handleChange]
   );
 
   const handlePaste = useCallback(

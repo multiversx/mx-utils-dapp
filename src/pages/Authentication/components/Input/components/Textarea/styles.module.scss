@@ -9,39 +9,7 @@
   }
 
   .field {
-    border-radius: 0.5rem;
-    background-color: var(--body);
-    border: none;
-    padding: 1rem;
-    line-height: 1.25;
-    resize: none;
-    color: transparent;
-    caret-color: var(--text);
-    font-weight: 300;
-    min-height: 19rem;
-    pointer-events: all;
-
-    @media (min-width: 576px) {
-      min-height: 10rem;
-    }
-
-    @media (min-width: 768px) {
-      flex: 1;
-      min-height: calc(100% - 2rem);
-    }
-
-    &:hover,
-    &:active,
-    &:focus {
-      outline: none;
-      border: none;
-    }
-
-    &.large {
-      @media (max-width: 575px) {
-        min-height: 18.75rem;
-      }
-    }
+    display: none;
   }
 
   .clone {
@@ -104,7 +72,9 @@
     transform: translateY(-50%);
 
     .copy {
-      margin-left: 1rem;
+      position: absolute;
+      bottom: 45px;
+      right: 0;
 
       &:hover path {
         fill: var(--white);
