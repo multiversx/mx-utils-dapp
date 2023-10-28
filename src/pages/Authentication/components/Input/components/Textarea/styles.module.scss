@@ -12,7 +12,7 @@
     display: none;
   }
 
-  .clone {
+  .editor {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -33,6 +33,9 @@
     pointer-events: all;
     outline: none;
 
+    font-size: 16px;
+    font-family: ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace;
+
     &::-webkit-scrollbar {
       width: 3px;
       height: 3px;
@@ -42,33 +45,14 @@
       background: var(--link);
       border-radius: 5px;
     }
-
-    .mirror {
-      line-height: 1.25;
-      flex: 1;
-      font-weight: 300;
-      word-break: break-word;
-      overflow-y: scroll;
-      pointer-events: none;
-
-      &::-webkit-scrollbar {
-        width: 3px;
-        height: 3px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: var(--link);
-        border-radius: 5px;
-      }
-    }
   }
 
   .buttons {
     position: absolute;
-    bottom: 0;
+    bottom: 0 !important;
     display: flex;
     align-items: center;
-    right: 1rem;
+    right: 1rem !important;
     transform: translateY(-50%);
 
     .copy {

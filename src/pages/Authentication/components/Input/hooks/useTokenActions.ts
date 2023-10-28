@@ -16,9 +16,9 @@ import { validateToken } from '../components/Textarea/helpers/validateToken';
 import { FormValuesType } from '../types';
 import { MetricType } from '../../../types';
 import debounce from 'lodash.debounce';
-import { UndoRedoCache } from 'helpers/undoRedoCache';
+// import { UndoRedoCache } from 'helpers/undoRedoCache';
 
-const cache = UndoRedoCache();
+// const cache = UndoRedoCache();
 
 export const useTokenActions = () => {
   const { setMetrics } = useAuthenticationContext();
@@ -164,30 +164,30 @@ export const useTokenActions = () => {
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLDivElement>) => {
-      let textContent = null;
-
-      const ctrl = e.ctrlKey || e.metaKey;
-      if (ctrl && e.key === 'z') {
-        e.preventDefault();
-        e.stopPropagation();
-        textContent = cache.undo();
-
-        if (!textContent) {
-          return;
-        }
-
-        handleChange(textContent);
-      } else if (ctrl && e.key === 'y') {
-        e.preventDefault();
-        e.stopPropagation();
-        textContent = cache.redo();
-
-        if (!textContent) {
-          return;
-        }
-
-        handleChange(textContent);
-      }
+      // let textContent = null;
+      //
+      // const ctrl = e.ctrlKey || e.metaKey;
+      // if (ctrl && e.key === 'z') {
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      //   textContent = cache.undo();
+      //
+      //   if (!textContent) {
+      //     return;
+      //   }
+      //
+      //   handleChange(textContent);
+      // } else if (ctrl && e.key === 'y') {
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      //   textContent = cache.redo();
+      //
+      //   if (!textContent) {
+      //     return;
+      //   }
+      //
+      //   handleChange(textContent);
+      // }
     },
     [handleChange]
   );
@@ -201,7 +201,7 @@ export const useTokenActions = () => {
         return;
       }
 
-      cache.append(token);
+      // cache.append(token);
       handleChange(token);
     },
     [handleChange, handlePreventDefault]
@@ -215,7 +215,6 @@ export const useTokenActions = () => {
     handlePreventDefault,
     mirrorRef,
     fieldRef,
-    moveCursorToEnd,
-    cache
+    moveCursorToEnd
   };
 };
