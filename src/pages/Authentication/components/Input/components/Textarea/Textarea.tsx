@@ -10,7 +10,8 @@ import { applyTokenColors } from './plugins/applyTokenColors';
 import styles from './styles.module.scss';
 
 export const Textarea = () => {
-  const { handleInput, handleChange, moveCursorToEnd } = useTokenActions();
+  const { handleInput, handleChange, moveCursorToEnd, handleKeyDown } =
+    useTokenActions();
 
   const nativeAuthToken = useGetNativeAuthToken();
   const { values } = useFormikContext<FormValuesType>();
@@ -31,8 +32,10 @@ export const Textarea = () => {
         language='js'
         onChange={handleChange}
         onInput={handleInput}
+        onKeyDown={handleKeyDown}
         padding={15}
         rehypePlugins={[[splitToken], [applyTokenColors]]}
+        aria-multiline={false}
       />
 
       <div className={styles.buttons}>

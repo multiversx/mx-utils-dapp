@@ -26,7 +26,7 @@ export const useTokenActions = () => {
   const fieldRef = useRef<HTMLTextAreaElement>();
   const mirrorRef = useRef<HTMLDivElement>(null);
 
-  const { setFieldValue, setFieldTouched, setFieldError } =
+  const { setFieldValue, setFieldTouched, setFieldError, values } =
     useFormikContext<FormValuesType>();
 
   const decodeAndValidateToken = useCallback(
@@ -163,7 +163,30 @@ export const useTokenActions = () => {
   );
 
   const handleKeyDown = useCallback(
-    (e: KeyboardEvent<HTMLDivElement>) => {
+    (e: KeyboardEvent<HTMLTextAreaElement>) => {
+      // if (e.keyCode === 13) {
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      //   // handleChange(values.token);
+      //   return;
+      // }
+
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        const textContent = (e.target as HTMLTextAreaElement).value;
+        console.log(
+          'onKeyDown',
+          textContent.replaceAll('\n', ' ').replaceAll(/ /g, '')
+        );
+        handleChange(
+          (e.target as HTMLTextAreaElement).value
+            .replaceAll('\n', ' ')
+            .replaceAll(/ /g, '')
+        );
+        return;
+      }
+
       // let textContent = null;
       //
       // const ctrl = e.ctrlKey || e.metaKey;
