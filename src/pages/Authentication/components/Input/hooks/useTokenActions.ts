@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useCallback, useMemo, useRef } from 'react';
+import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo } from 'react';
 import { useFormikContext } from 'formik';
 import { emptyMetrics } from 'pages/Authentication/constants/metrics.contants';
 import { useAuthenticationContext } from 'pages/Authentication/context';
@@ -13,7 +13,8 @@ import debounce from 'lodash.debounce';
 const TOKEN_REGEX = /\w+[\w.]+\w/g;
 
 export const useTokenActions = () => {
-  const { setMetrics } = useAuthenticationContext();
+  const { setMetrics, initialTokens, setIsValidating } =
+    useAuthenticationContext();
   const { chain } = useChain();
 
   const { setFieldValue, setFieldTouched, setFieldError } =
@@ -31,7 +32,9 @@ export const useTokenActions = () => {
           validateToken(token, config)
         ];
 
+        setIsValidating(true);
         const [decoded, valid] = await Promise.allSettled(promises);
+        setIsValidating(false);
 
         const tokenExpired =
           valid.status === 'rejected' &&
@@ -68,9 +71,11 @@ export const useTokenActions = () => {
           console.error(error);
           setMetrics(emptyMetrics);
         }
+
+        setIsValidating(false);
       }
     },
-    [chain, setFieldError, setMetrics]
+    [chain, setFieldError, setIsValidating, setMetrics]
   );
 
   const debouncedDecodeAndValidateToken = useMemo(
@@ -85,8 +90,10 @@ export const useTokenActions = () => {
       setFieldValue('token', token, false);
       setFieldTouched('token', true, false);
 
-      if (!token || !token.match(TOKEN_REGEX)) {
-        //  token.match(/[\r\n]/gm) || token.match(/\s+/g)) {
+      const hasUnrelatedTokenCharacters =
+        token.replace(TOKEN_REGEX, '').length > 0;
+
+      if (!token || hasUnrelatedTokenCharacters) {
         setFieldError('token', 'Token Undecodable');
         setFieldError(
           'message',
@@ -127,6 +134,12 @@ export const useTokenActions = () => {
     },
     [handleChange, handlePreventDefault]
   );
+
+  useEffect(() => {
+    if (!initialTokens) return;
+
+    handleChange(initialTokens[chain]);
+  }, [chain, handleChange, initialTokens]);
 
   return {
     handleChange,
