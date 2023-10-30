@@ -25,7 +25,7 @@
     line-height: 1.25;
     resize: none;
     font-weight: 300;
-    min-height: 50vh;
+    min-height: calc(100% - 2rem);
     overflow-y: scroll;
 
     pointer-events: all;
