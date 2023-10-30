@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  KeyboardEvent,
-  useCallback,
-  useMemo,
-  useRef
-} from 'react';
+import { ChangeEvent, FormEvent, useCallback, useMemo, useRef } from 'react';
 import { useFormikContext } from 'formik';
 import { emptyMetrics } from 'pages/Authentication/constants/metrics.contants';
 import { useAuthenticationContext } from 'pages/Authentication/context';
@@ -14,11 +7,8 @@ import { useChain } from 'hooks/useChain';
 import { decodeToken } from '../components/Textarea/helpers/decodeToken';
 import { validateToken } from '../components/Textarea/helpers/validateToken';
 import { FormValuesType } from '../types';
-import { MetricType } from '../../../types';
+import { MetricType } from 'pages/Authentication/types';
 import debounce from 'lodash.debounce';
-// import { UndoRedoCache } from 'helpers/undoRedoCache';
-
-// const cache = UndoRedoCache();
 
 export const useTokenActions = () => {
   const { setMetrics } = useAuthenticationContext();
@@ -84,29 +74,15 @@ export const useTokenActions = () => {
   );
 
   const debouncedDecodeAndValidateToken = useMemo(
-    () => debounce(decodeAndValidateToken, 500),
+    () => debounce(decodeAndValidateToken, 200),
     [decodeAndValidateToken]
   );
-
-  const moveCursorToEnd = useCallback(() => {
-    const range = document.createRange();
-    const selection = document.getSelection();
-
-    if (!mirrorRef.current || !selection || !range) {
-      return;
-    }
-
-    range.setStart(mirrorRef.current, mirrorRef.current.childNodes.length);
-    range.collapse(true);
-    selection.removeAllRanges();
-    selection.addRange(range);
-
-    mirrorRef.current.focus();
-  }, []);
 
   const handleChange = useCallback(
     async (event: ChangeEvent<HTMLTextAreaElement> | string) => {
       const token = typeof event === 'string' ? event : event.target.value;
+
+      console.log('handleChange', token);
 
       setFieldValue('token', token, false);
       setFieldTouched('token', true, false);
@@ -121,7 +97,16 @@ export const useTokenActions = () => {
         return;
       }
 
-      moveCursorToEnd();
+      if (token.match(/[\r\n]/gm) || token.match(/\s+/g)) {
+        setFieldError('token', 'Token Undecodable');
+        setFieldError(
+          'message',
+          'The provided token is not a NativeAuth token.'
+        );
+        setMetrics(emptyMetrics);
+        return;
+      }
+
       await debouncedDecodeAndValidateToken(token);
     },
     [
@@ -129,8 +114,7 @@ export const useTokenActions = () => {
       setFieldTouched,
       debouncedDecodeAndValidateToken,
       setFieldError,
-      setMetrics,
-      moveCursorToEnd
+      setMetrics
     ]
   );
 
@@ -139,80 +123,6 @@ export const useTokenActions = () => {
       event.preventDefault();
     },
     []
-  );
-
-  const debouncedHandleChange = useMemo(
-    () => debounce(handleChange, 500),
-    [handleChange]
-  );
-
-  const handleInput = useCallback(
-    (e: FormEvent<HTMLTextAreaElement>) => {
-      console.log('onInput', (e.target as HTMLTextAreaElement).textContent);
-      // const textContent = (e.target as HTMLTextAreaElement).textContent;
-      //
-      // if (!textContent) {
-      //   return;
-      // }
-      //
-      // cache.append(textContent);
-      // debouncedHandleChange(textContent);
-      // handleChange(textContent, moveCursorToEnd);
-    },
-    [debouncedHandleChange, moveCursorToEnd]
-  );
-
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent<HTMLTextAreaElement>) => {
-      // if (e.keyCode === 13) {
-      //   e.preventDefault();
-      //   e.stopPropagation();
-      //   // handleChange(values.token);
-      //   return;
-      // }
-
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        e.stopPropagation();
-        const textContent = (e.target as HTMLTextAreaElement).value;
-        console.log(
-          'onKeyDown',
-          textContent.replaceAll('\n', ' ').replaceAll(/ /g, '')
-        );
-        handleChange(
-          (e.target as HTMLTextAreaElement).value
-            .replaceAll('\n', ' ')
-            .replaceAll(/ /g, '')
-        );
-        return;
-      }
-
-      // let textContent = null;
-      //
-      // const ctrl = e.ctrlKey || e.metaKey;
-      // if (ctrl && e.key === 'z') {
-      //   e.preventDefault();
-      //   e.stopPropagation();
-      //   textContent = cache.undo();
-      //
-      //   if (!textContent) {
-      //     return;
-      //   }
-      //
-      //   handleChange(textContent);
-      // } else if (ctrl && e.key === 'y') {
-      //   e.preventDefault();
-      //   e.stopPropagation();
-      //   textContent = cache.redo();
-      //
-      //   if (!textContent) {
-      //     return;
-      //   }
-      //
-      //   handleChange(textContent);
-      // }
-    },
-    [handleChange]
   );
 
   const handlePaste = useCallback(
@@ -231,13 +141,10 @@ export const useTokenActions = () => {
   );
 
   return {
-    handleInput,
     handleChange,
-    handleKeyDown,
     handlePaste,
     handlePreventDefault,
     mirrorRef,
-    fieldRef,
-    moveCursorToEnd
+    fieldRef
   };
 };
