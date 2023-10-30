@@ -16,7 +16,7 @@ export const useTokenActions = () => {
   const fieldRef = useRef<HTMLTextAreaElement>();
   const mirrorRef = useRef<HTMLDivElement>(null);
 
-  const { setFieldValue, setFieldTouched, setFieldError, values } =
+  const { setFieldValue, setFieldTouched, setFieldError } =
     useFormikContext<FormValuesType>();
 
   const decodeAndValidateToken = useCallback(
@@ -82,22 +82,10 @@ export const useTokenActions = () => {
     async (event: ChangeEvent<HTMLTextAreaElement> | string) => {
       const token = typeof event === 'string' ? event : event.target.value;
 
-      console.log('handleChange', token);
-
       setFieldValue('token', token, false);
       setFieldTouched('token', true, false);
 
-      if (!token) {
-        setFieldError('token', 'Token Undecodable');
-        setFieldError(
-          'message',
-          'The provided token is not a NativeAuth token.'
-        );
-        setMetrics(emptyMetrics);
-        return;
-      }
-
-      if (token.match(/[\r\n]/gm) || token.match(/\s+/g)) {
+      if (!token || token.match(/[\r\n]/gm) || token.match(/\s+/g)) {
         setFieldError('token', 'Token Undecodable');
         setFieldError(
           'message',
@@ -134,7 +122,6 @@ export const useTokenActions = () => {
         return;
       }
 
-      // cache.append(token);
       handleChange(token);
     },
     [handleChange, handlePreventDefault]
