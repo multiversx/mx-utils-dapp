@@ -13,7 +13,7 @@ export const splitToken = () => {
     for (const child of children) {
       if (child.tagName === 'pre' && child.properties) {
         const code = child.children[0] as Element;
-        if (!code) return;
+        if (!code || !code.children || code.children.length === 0) return;
 
         const token = (code.children[0] as Literal).value;
         if (!token) return;

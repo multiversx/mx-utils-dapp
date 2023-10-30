@@ -10,6 +10,8 @@ import { FormValuesType } from '../types';
 import { MetricType } from 'pages/Authentication/types';
 import debounce from 'lodash.debounce';
 
+const TOKEN_REGEX = /\w+[\w.]+\w/g;
+
 export const useTokenActions = () => {
   const { setMetrics } = useAuthenticationContext();
   const { chain } = useChain();
@@ -83,7 +85,8 @@ export const useTokenActions = () => {
       setFieldValue('token', token, false);
       setFieldTouched('token', true, false);
 
-      if (!token || token.match(/[\r\n]/gm) || token.match(/\s+/g)) {
+      if (!token || !token.match(TOKEN_REGEX)) {
+        //  token.match(/[\r\n]/gm) || token.match(/\s+/g)) {
         setFieldError('token', 'Token Undecodable');
         setFieldError(
           'message',
