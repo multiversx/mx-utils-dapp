@@ -122,6 +122,7 @@ export const useAuthenticationValue = () => {
       );
 
       setInitialTokens(data);
+      setFetchingInitialTokens(false);
     } catch (err) {
       console.error(err);
       setFetchingInitialTokens(false);
