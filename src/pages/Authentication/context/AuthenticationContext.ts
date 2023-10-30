@@ -115,29 +115,21 @@ export const useAuthenticationValue = () => {
   );
 
   const fetchInitialTokens = async () => {
+    setFetchingInitialTokens(true);
     try {
       const { data } = await axios.get<InitialTokensType>(
         `${miscApi}/utils-native-auth`
       );
 
-      return data;
+      setInitialTokens(data);
     } catch (err) {
       console.error(err);
+      setFetchingInitialTokens(false);
     }
   };
 
   useEffect(() => {
-    setFetchingInitialTokens(true);
-
-    fetchInitialTokens()
-      .then((value) => {
-        setInitialTokens(value);
-        setFetchingInitialTokens(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setFetchingInitialTokens(false);
-      });
+    fetchInitialTokens();
   }, []);
 
   return {
