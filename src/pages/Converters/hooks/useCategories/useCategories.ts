@@ -101,8 +101,12 @@ export const useCategories = () => {
         {
           title: 'Convert a decimal to base64',
           label: 'Decimal value',
-          compute: (value: string) =>
-            Buffer.from(value, 'ascii').toString('base64'),
+          compute: (value: string) => {
+            const hex = new BigNumber(value).toString(16);
+            const paddedHex = hex.length % 2 ? `0${hex}` : hex;
+
+            return Buffer.from(paddedHex, 'hex').toString('base64');
+          },
           identifier: 'decimal-to-base64',
           validate: {
             required: 'Decimal required.',
