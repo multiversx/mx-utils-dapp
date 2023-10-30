@@ -9,8 +9,6 @@ export const Input = () => {
       validateOnBlur={false}
       validateOnChange={false}
       enableReinitialize
-      validateOnMount={false}
-      initialErrors={{ token: '...' }}
     >
       <InputForm />
     </Formik>
