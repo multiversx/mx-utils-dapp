@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useCallback } from 'react';
+import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo } from 'react';
 import { useFormikContext } from 'formik';
 import { emptyMetrics } from 'pages/Authentication/constants/metrics.contants';
 import { useAuthenticationContext } from 'pages/Authentication/context';
@@ -7,42 +7,21 @@ import { useChain } from 'hooks/useChain';
 import { decodeToken } from '../components/Textarea/helpers/decodeToken';
 import { validateToken } from '../components/Textarea/helpers/validateToken';
 import { FormValuesType } from '../types';
-import { MetricType } from '../../../types';
+import { MetricType } from 'pages/Authentication/types';
+import debounce from 'lodash.debounce';
+
+const TOKEN_REGEX = /\w+[\w.]+\w/g;
 
 export const useTokenActions = () => {
-  const { setMetrics } = useAuthenticationContext();
+  const { setMetrics, initialTokens, setIsValidating } =
+    useAuthenticationContext();
   const { chain } = useChain();
 
   const { setFieldValue, setFieldTouched, setFieldError } =
     useFormikContext<FormValuesType>();
 
-  const handleInput = useCallback((event: FormEvent<HTMLFormElement>) => {
-    const padding = parseInt(getComputedStyle(event.currentTarget).fontSize);
-    const style = event.currentTarget.style;
-
-    Object.assign(style, { height: '1px' });
-    Object.assign(style, {
-      height: `${event.currentTarget.scrollHeight - padding * 2}px`
-    });
-  }, []);
-
-  const handleChange = useCallback(
-    async (event: ChangeEvent<HTMLFormElement> | string) => {
-      const token = typeof event === 'string' ? event : event.target.value;
-
-      setFieldValue('token', token, false);
-      setFieldTouched('token', true, false);
-
-      if (!token) {
-        setFieldError('token', 'Token Undecodable');
-        setFieldError(
-          'message',
-          'The provided token is not a NativeAuth token.'
-        );
-        setMetrics(emptyMetrics);
-        return;
-      }
-
+  const decodeAndValidateToken = useCallback(
+    async (token: string) => {
       try {
         const config = {
           apiUrl: fallbackNetworkConfigurations[chain].apiAddress
@@ -53,7 +32,9 @@ export const useTokenActions = () => {
           validateToken(token, config)
         ];
 
+        setIsValidating(true);
         const [decoded, valid] = await Promise.allSettled(promises);
+        setIsValidating(false);
 
         const tokenExpired =
           valid.status === 'rejected' &&
@@ -90,9 +71,47 @@ export const useTokenActions = () => {
           console.error(error);
           setMetrics(emptyMetrics);
         }
+
+        setIsValidating(false);
       }
     },
-    [setFieldError, chain, setFieldValue, setFieldTouched, setMetrics]
+    [chain, setFieldError, setIsValidating, setMetrics]
+  );
+
+  const debouncedDecodeAndValidateToken = useMemo(
+    () => debounce(decodeAndValidateToken, 200),
+    [decodeAndValidateToken]
+  );
+
+  const handleChange = useCallback(
+    async (event: ChangeEvent<HTMLTextAreaElement> | string) => {
+      const token = typeof event === 'string' ? event : event.target.value;
+
+      setFieldValue('token', token, false);
+      setFieldTouched('token', true, false);
+
+      const hasUnrelatedTokenCharacters =
+        token.replace(TOKEN_REGEX, '').length > 0;
+
+      if (!token || hasUnrelatedTokenCharacters) {
+        setFieldError('token', 'Token Undecodable');
+        setFieldError(
+          'message',
+          'The provided token is not a NativeAuth token.'
+        );
+        setMetrics(emptyMetrics);
+        return;
+      }
+
+      await debouncedDecodeAndValidateToken(token);
+    },
+    [
+      setFieldValue,
+      setFieldTouched,
+      debouncedDecodeAndValidateToken,
+      setFieldError,
+      setMetrics
+    ]
   );
 
   const handlePreventDefault = useCallback(
@@ -100,24 +119,6 @@ export const useTokenActions = () => {
       event.preventDefault();
     },
     []
-  );
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      const commonKey = e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
-      const allowedCombinationKeys = ['a', 'c', 'v', 'x'];
-      const arrowKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
-
-      const allowedCombinations =
-        commonKey && allowedCombinationKeys.includes(e.key);
-      const allowed =
-        commonKey || arrowKeys.includes(e.key) || allowedCombinations;
-
-      if (!allowed) {
-        handlePreventDefault(e);
-      }
-    },
-    [handlePreventDefault]
   );
 
   const handlePaste = useCallback(
@@ -128,15 +129,20 @@ export const useTokenActions = () => {
       if (!token) {
         return;
       }
+
       handleChange(token);
     },
     [handleChange, handlePreventDefault]
   );
 
+  useEffect(() => {
+    if (!initialTokens) return;
+
+    handleChange(initialTokens[chain]);
+  }, [chain, handleChange, initialTokens]);
+
   return {
-    handleInput,
     handleChange,
-    handleKeyDown,
     handlePaste,
     handlePreventDefault
   };

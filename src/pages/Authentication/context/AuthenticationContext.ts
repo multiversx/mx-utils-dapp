@@ -3,18 +3,31 @@ import {
   Dispatch,
   SetStateAction,
   useContext,
+  useEffect,
   useMemo,
   useState
 } from 'react';
 import { MetricItemType, MetricType } from '../types';
 import { useChain } from 'hooks/useChain';
 import { TokenColorsEnum } from '../enum';
-import { DEFAULT_METRICS } from '../constants/metrics.contants';
+import { DEFAULT_METRICS } from '../constants';
+import axios from 'axios';
+import { miscApi } from 'config';
+
+export type InitialTokensType = {
+  mainnet: string;
+  devnet: string;
+  testnet: string;
+};
 
 export type AuthenticationContextType = {
   metrics: MetricType;
   setMetrics: Dispatch<SetStateAction<MetricType>>;
   metricItems: MetricItemType[];
+  initialTokens?: InitialTokensType;
+  fetchingInitialTokens?: boolean;
+  isValidating?: boolean;
+  setIsValidating: Dispatch<SetStateAction<boolean | undefined>>;
 };
 
 export const AuthenticationContext =
@@ -35,6 +48,9 @@ export const useAuthenticationContext = () => {
 export const useAuthenticationValue = () => {
   const { chain } = useChain();
   const [metrics, setMetrics] = useState<MetricType>(DEFAULT_METRICS[chain]);
+  const [initialTokens, setInitialTokens] = useState<InitialTokensType>();
+  const [fetchingInitialTokens, setFetchingInitialTokens] = useState<boolean>();
+  const [isValidating, setIsValidating] = useState<boolean>();
 
   const metricItems: MetricItemType[] = useMemo(
     () => [
@@ -98,5 +114,32 @@ export const useAuthenticationValue = () => {
     [metrics]
   );
 
-  return { metrics, setMetrics, metricItems };
+  const fetchInitialTokens = async () => {
+    setFetchingInitialTokens(true);
+    try {
+      const { data } = await axios.get<InitialTokensType>(
+        `${miscApi}/utils-native-auth`
+      );
+
+      setInitialTokens(data);
+      setFetchingInitialTokens(false);
+    } catch (err) {
+      console.error(err);
+      setFetchingInitialTokens(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchInitialTokens();
+  }, []);
+
+  return {
+    metrics,
+    setMetrics,
+    metricItems,
+    initialTokens,
+    fetchingInitialTokens,
+    isValidating,
+    setIsValidating
+  };
 };
