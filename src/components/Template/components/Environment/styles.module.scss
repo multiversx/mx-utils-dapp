@@ -1,5 +1,6 @@
 .environment {
   margin-left: 0.5rem;
+  margin-right: 1rem;
   z-index: 1;
   display: flex;
   align-items: center;
@@ -28,7 +29,7 @@
       padding: 0.5rem;
       border-radius: 0.25rem;
       font-size: 1rem;
-      min-width: 5rem;
+      min-width: 3rem;
       text-align: center;
 
       .value {
@@ -40,7 +41,6 @@
 
     .indicator {
       font-size: 1rem;
-      margin-left: 0.25rem;
     }
   }
 

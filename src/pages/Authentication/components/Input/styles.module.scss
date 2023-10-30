@@ -46,6 +46,21 @@
           background-color: var(--link);
         }
       }
+
+      .paste {
+        padding: 0.5rem 0.7rem;
+        cursor: pointer;
+        margin-left: 1rem;
+
+        &:hover path {
+          fill: var(--white);
+        }
+      }
+
+      path {
+        fill: var(--dark);
+        transition: all 400ms ease;
+      }
     }
   }
 }

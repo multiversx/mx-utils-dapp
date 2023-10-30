@@ -4,12 +4,6 @@ export interface InitialVerifyFormValuesType {
   signature: string;
 }
 
-export enum InitialVerifyFormValuesEnum {
-  address = 'address',
-  message = 'message',
-  signature = 'signature'
-}
-
 export enum SignedMessageStatusesEnum {
   pending = 'pending',
   failed = 'failed',

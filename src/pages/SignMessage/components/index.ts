@@ -1,3 +1,3 @@
-export * from './SignMessageForm';
+export * from './SignMessageSection/SignMessageSection';
 export * from './VerifySignatureForm';
 export * from './VerifySignatureFormFields';

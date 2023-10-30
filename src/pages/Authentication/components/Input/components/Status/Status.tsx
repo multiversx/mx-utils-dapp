@@ -1,15 +1,13 @@
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { TokenColorsEnum } from 'pages/Authentication/enum';
-
-import type { FormikProps } from 'formik';
 import type { FormValuesType } from '../../types';
 
 import styles from './styles.module.scss';
+import { useFormikContext } from 'formik';
 
-export const Status = (props: FormikProps<FormValuesType>) => {
-  const { errors, values } = props;
+export const Status = () => {
+  const { errors, values } = useFormikContext<FormValuesType>();
 
   const isTokenError = Boolean(errors.token) || !Boolean(values.token);
 

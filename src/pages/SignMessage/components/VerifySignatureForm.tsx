@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { ErrorMessage, Form, Formik } from 'formik';
+import { ChangeEvent, useState } from 'react';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
 import classNames from 'classnames';
-import styles from '../styles.module.scss';
+import styles from 'pages/SignMessage/styles.module.scss';
 import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
 import { verifyMessage } from '@multiversx/sdk-dapp/hooks/signMessage/verifyMessage';
 
@@ -72,12 +72,14 @@ export const VerifySignatureForm = () => {
             <div className={styles.form}>
               <label className={styles.label}>Verify signature</label>
 
-              <textarea
+              <Field
+                component='textarea'
+                rows={10}
                 name='signedMessage'
                 value={values.signedMessage}
                 className={styles.field}
                 autoComplete='off'
-                onChange={(e) => {
+                onChange={(e: ChangeEvent<HTMLFormElement>) => {
                   handleChange(e);
                   resetVerifyFormResults();
                 }}

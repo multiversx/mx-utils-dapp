@@ -4,7 +4,7 @@ import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import React, { useCallback, useEffect } from 'react';
 import useUploadWasmCode from '../hooks/useUploadWasmCode';
 import { useDeployments } from '../hooks/useDeployments';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { usePersistedState } from 'hooks/usePersistedState';
 import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
 import { useGetDeployedContractAddress } from '../hooks/useGetDeployedContractAddress';
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
@@ -12,9 +12,14 @@ import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useNavigate } from 'react-router-dom';
 import { useChain } from 'hooks/useChain';
 import { routeNames } from 'routes';
+import { DEPLOY_SESSION_ID } from 'constants/storage';
 
 export const DeploySection = () => {
-  const [sessionId, setSessionId] = useLocalStorage('deploySessionId', '');
+  const [sessionId, setSessionId] = usePersistedState({
+    storage: localStorage,
+    key: DEPLOY_SESSION_ID,
+    initialValue: ''
+  });
 
   const { chain } = useChain();
   const isLoggedIn = useGetIsLoggedIn();

@@ -3,10 +3,12 @@ import {
   faHome,
   faUser,
   faMessage,
-  faFile
+  faFile,
+  faRobot
 } from '@fortawesome/free-solid-svg-icons';
 
 import type { NavigationType } from './types';
+import { routeNames } from 'routes';
 
 /*
  * Handle the custom hook declaration.
@@ -33,6 +35,10 @@ export const useNavigation = () => {
     {
       path: '/smart-contract',
       icon: faFile
+    },
+    {
+      path: routeNames.explainer,
+      icon: faRobot
     }
   ];
 

@@ -1,20 +1,14 @@
 import { useState } from 'react';
-import { ErrorMessage, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 import classNames from 'classnames';
 
-import styles from '../styles.module.scss';
+import styles from 'pages/SignMessage/styles.module.scss';
 import { verifyMessage } from '@multiversx/sdk-dapp/hooks/signMessage/verifyMessage';
 import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
 import { InitialVerifyFormValuesType } from '../types';
 
-interface VerifyValuesFormProps {
-  initialVerifyFormValues: InitialVerifyFormValuesType;
-}
-
-export const VerifySignatureFormFields = ({
-  initialVerifyFormValues
-}: VerifyValuesFormProps) => {
+export const VerifySignatureFormFields = () => {
   const [verifySuccess, setVerifySuccess] = useState<boolean>();
 
   const getSignedMessage = (values: InitialVerifyFormValuesType) => {
@@ -65,7 +59,11 @@ export const VerifySignatureFormFields = ({
   });
 
   const formikProps = {
-    initialValues: initialVerifyFormValues,
+    initialValues: {
+      message: '',
+      signature: '',
+      address: ''
+    },
     onSubmit,
     validationSchema,
     validateOnBlur: false,
@@ -84,11 +82,10 @@ export const VerifySignatureFormFields = ({
             <div className={styles.form} style={{ marginBottom: '12px' }}>
               <label className={styles.label}>Signer address</label>
 
-              <input
+              <Field
                 name='address'
                 value={values.address}
                 className={styles.field}
-                key={initialVerifyFormValues.toString()}
                 autoComplete='off'
                 onChange={handleChange}
               />
@@ -103,12 +100,12 @@ export const VerifySignatureFormFields = ({
             <div className={styles.form} style={{ marginBottom: '12px' }}>
               <label className={styles.label}>Signed message</label>
 
-              <input
+              <Field
                 name='message'
                 value={values.message}
                 className={styles.field}
-                key={initialVerifyFormValues.toString()}
                 autoComplete='off'
+                placeholder='Insert or paste the message that was signed.'
                 onChange={handleChange}
               />
 
@@ -122,12 +119,12 @@ export const VerifySignatureFormFields = ({
             <div className={styles.form}>
               <label className={styles.label}>Signature</label>
 
-              <input
+              <Field
                 name='signature'
                 value={values.signature}
                 className={styles.field}
-                key={initialVerifyFormValues.toString()}
                 autoComplete='off'
+                placeholder="Insert or paste the signature. You don't have to add '0x' prefix."
                 onChange={handleChange}
               />
 
