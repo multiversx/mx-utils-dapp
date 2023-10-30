@@ -1,29 +1,36 @@
+import { SignatureEnum } from './enums';
+import { signHandler } from './helpers';
+
 describe('Sign Message', () => {
+  let payload;
   beforeEach(() => {
     cy.visit('/');
+    cy.get('a[href="/sign-message"]').click();
   });
-  it('should return the signature', () => {
-    cy.get('input[name="message"]').type('MVX Signature');
-    cy.get('button[type="submit"]').eq(0).click();
-    cy.contains('msg');
+  it.only('should validate the signature', () => {
+    signHandler();
+    cy.get('.styles_code__HFHh6')
+      .then((txt) => {
+        payload = txt.text();
+      })
+      .then(() => {
+        //Paste the signature payload and verify
+        cy.get('textarea[name="signedMessage"]').type(payload);
+        cy.contains('button', 'Verify').click();
+        cy.contains('Valid');
+      });
   });
 
-  it('should verify the signature', () => {
-    cy.get('textarea[name="signedMessage"]').type('?');
-    cy.get('button[type="submit"]').eq(1).click();
-    cy.contains('msg');
+  it('should return Invalid signature payload', () => {
+    cy.get('textarea[name="signedMessage"]').type('Invalid#');
+    cy.contains('Invalid signature payload');
   });
 
   it('should complete the fields below to verify the signature', () => {
-    cy.get('input[name="address"]').type('MVX Signature');
-    cy.get('input[name="message"]').type('MVX Signature');
-    cy.get('input[name="address"]').type('MVX Signature');
-    cy.get('button[type="submit"]').eq(1).click();
-  });
-
-  it('should return error message for invalid scenario', () => {
-    cy.get('textarea[name="signedMessage"]').type('Invalid err');
-    cy.get('button[type="submit"]').eq(1).click();
-    cy.contains('error');
+    cy.get('input[name="address"]').type(SignatureEnum.address);
+    cy.get('input[name="message"]').last().type(SignatureEnum.message);
+    cy.get('input[name="signature"]').last().type(SignatureEnum.signature);
+    cy.get('button[type="submit"]').last().click();
+    cy.contains('Valid');
   });
 });

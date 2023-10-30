@@ -4,7 +4,7 @@ export const dataConverters = [
   '1',
   '01',
   '1',
-  'MQ==',
+  'AQ==',
   '1',
   '1000000000000000000',
   'Test',

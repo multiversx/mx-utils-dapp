@@ -9,7 +9,6 @@ export default defineConfig({
     baseUrl: 'https://localhost:3001/',
     screenshotOnRunFailure: false,
     video: false,
-    testIsolation: false,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     }

@@ -71,6 +71,7 @@ export const Converter = (props: ConverterType) => {
               className={styles.field}
               autoComplete='off'
               data-testid={`${identifier}-field`}
+              data-cy='input-converter'
             />
 
             <ErrorMessage
@@ -87,6 +88,7 @@ export const Converter = (props: ConverterType) => {
 
               <span
                 data-testid={`${identifier}-value`}
+                data-cy='converter-result'
                 className={styles.value}
               >
                 {value}
