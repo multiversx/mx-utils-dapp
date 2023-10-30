@@ -13,8 +13,6 @@ import debounce from 'lodash.debounce';
 export const useTokenActions = () => {
   const { setMetrics } = useAuthenticationContext();
   const { chain } = useChain();
-  const fieldRef = useRef<HTMLTextAreaElement>();
-  const mirrorRef = useRef<HTMLDivElement>(null);
 
   const { setFieldValue, setFieldTouched, setFieldError } =
     useFormikContext<FormValuesType>();
@@ -130,8 +128,6 @@ export const useTokenActions = () => {
   return {
     handleChange,
     handlePaste,
-    handlePreventDefault,
-    mirrorRef,
-    fieldRef
+    handlePreventDefault
   };
 };
