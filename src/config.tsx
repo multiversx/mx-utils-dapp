@@ -10,3 +10,5 @@ export const ApiBaseUrls = {
   [EnvironmentsEnum.devnet]: 'https://devnet-tools.multiversx.com',
   [EnvironmentsEnum.testnet]: 'https://testnet-tools.multiversx.com'
 };
+
+export const miscApi = 'https://misc-api.multiversx.com';

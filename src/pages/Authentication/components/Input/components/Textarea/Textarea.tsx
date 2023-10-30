@@ -1,103 +1,38 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect } from 'react';
 import { Field, useFormikContext } from 'formik';
-import classNames from 'classnames';
-import { TokenColorsEnum } from 'pages/Authentication/enum';
-import type { TextareaDivisionType } from './types';
-import styles from './styles.module.scss';
 import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
 import { FormValuesType } from '../../types';
 import { useTokenActions } from '../../hooks/useTokenActions';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
-
-const DEFAULT_COLOR = '#000000';
+import CodeEditor from '@uiw/react-textarea-code-editor';
+import { splitToken } from './plugins/splitToken';
+import { applyTokenColors } from './plugins/applyTokenColors';
+import styles from './styles.module.scss';
 
 export const Textarea = () => {
-  const {
-    handleInput,
-    handleChange,
-    handleKeyDown,
-    handlePaste,
-    handlePreventDefault
-  } = useTokenActions();
+  const { handleChange } = useTokenActions();
 
   const nativeAuthToken = useGetNativeAuthToken();
-  const { values, setFieldValue } = useFormikContext<FormValuesType>();
-
-  const clone = useRef<HTMLDivElement>(null);
-
-  const mirror = useMemo(() => {
-    const parts = values.token.split('.');
-    const colors = Object.values(TokenColorsEnum);
-
-    const words = parts.reduce(
-      (total: TextareaDivisionType[], word: string, index: number) => {
-        const part: TextareaDivisionType = {
-          color: colors[index] ? colors[index] : DEFAULT_COLOR,
-          text: word
-        };
-
-        const dot: TextareaDivisionType = {
-          color: DEFAULT_COLOR,
-          text: '.'
-        };
-
-        if (parts.length - 1 === index) {
-          return total.concat([part]);
-        }
-
-        return total.concat([part, dot]);
-      },
-      []
-    );
-
-    return words;
-  }, [values.token]);
+  const { values } = useFormikContext<FormValuesType>();
 
   useEffect(() => {
-    const token = nativeAuthToken;
-
-    if (token) {
-      handleChange(token);
+    if (nativeAuthToken) {
+      handleChange(nativeAuthToken);
     }
-  }, [setFieldValue, handleChange, nativeAuthToken]);
-
-  /*
-   * Return the rendered component.
-   */
+  }, [handleChange, nativeAuthToken]);
 
   return (
     <div className={styles.textarea}>
-      <Field
-        component='textarea'
-        name='token'
-        onInput={handleInput}
-        onChange={handleChange}
-        className={classNames(styles.field, {
-          [styles.large]: Boolean(nativeAuthToken)
-        })}
-      />
+      <Field component='textarea' name='token' className={styles.field} />
 
-      <div
-        className={styles.clone}
-        ref={clone}
-        contentEditable='true'
-        suppressContentEditableWarning={true}
-        onChange={handlePreventDefault}
-        onKeyDown={handleKeyDown}
-        onPaste={handlePaste}
-      >
-        <div className={styles.mirror}>
-          {mirror.map((word: TextareaDivisionType, index: number) => (
-            <span
-              style={{ color: word.color }}
-              className={styles.word}
-              key={`word-${word.text}-${index}`}
-            >
-              {word.text}
-            </span>
-          ))}
-        </div>
-      </div>
+      <CodeEditor
+        value={values.token}
+        language='js'
+        padding={15}
+        className={styles.editor}
+        rehypePlugins={[[splitToken], [applyTokenColors]]}
+        onChange={handleChange}
+      />
 
       <div className={styles.buttons}>
         <CopyButton text={values.token} className={styles.copy} />
