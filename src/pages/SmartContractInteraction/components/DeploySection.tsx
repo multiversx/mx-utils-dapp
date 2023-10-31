@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useChain } from 'hooks/useChain';
 import { routeNames } from 'routes';
 import { DEPLOY_SESSION_ID } from 'constants/storage';
+import { CodeMetadata } from './CodeMetadata';
 
 export const DeploySection = () => {
   const [sessionId, setSessionId] = usePersistedState({
@@ -78,6 +79,7 @@ export const DeploySection = () => {
             accept='.wasm'
           />
         </div>
+        <CodeMetadata />
         <div className={styles.buttons}>
           <button
             onClick={submitDeploy}
