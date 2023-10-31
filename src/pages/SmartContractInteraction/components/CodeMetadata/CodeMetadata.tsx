@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import styles from './styles.module.scss';
+import { CodeMetadataType } from '../../types/deployOrUpgradeParams';
 
 const metadataOptions = [
   {
@@ -28,7 +29,11 @@ const metadataOptions = [
   }
 ];
 
-export const CodeMetadata = () => {
+export const CodeMetadata = ({
+  onMetadataChange
+}: {
+  onMetadataChange: (metadata: CodeMetadataType) => void;
+}) => {
   const [metadata, setMetadata] = useState(metadataOptions);
 
   const handleMetadataChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +45,11 @@ export const CodeMetadata = () => {
       return item;
     });
     setMetadata(updatedMetadata);
+    onMetadataChange(
+      Object.fromEntries(
+        updatedMetadata.map((item) => [item.value, item.checked])
+      )
+    );
   };
 
   return (

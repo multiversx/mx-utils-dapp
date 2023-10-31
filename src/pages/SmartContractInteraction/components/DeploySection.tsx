@@ -1,11 +1,14 @@
 import styles from '../styles.module.scss';
 import { Trim } from '@multiversx/sdk-dapp/UI';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useUploadWasmCode from '../hooks/useUploadWasmCode';
 import { useDeployments } from '../hooks/useDeployments';
 import { usePersistedState } from 'hooks/usePersistedState';
-import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
+import {
+  CodeMetadataType,
+  DeployOrUpgradeParamsType
+} from '../types/deployOrUpgradeParams';
 import { useGetDeployedContractAddress } from '../hooks/useGetDeployedContractAddress';
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
@@ -20,6 +23,12 @@ export const DeploySection = () => {
     storage: localStorage,
     key: DEPLOY_SESSION_ID,
     initialValue: ''
+  });
+  const [metadata, setMetadata] = useState<CodeMetadataType>({
+    readable: true,
+    upgradeable: true,
+    payable: false,
+    payableBySc: false
   });
 
   const { chain } = useChain();
@@ -43,12 +52,13 @@ export const DeploySection = () => {
     const params: DeployOrUpgradeParamsType = {
       code: wasmCode,
       args: [],
-      gasLimit: 60000000
+      gasLimit: 60000000,
+      ...metadata
     };
 
     const response = await deploy(params);
     setSessionId(response.sessionId ?? '');
-  }, [wasmCode, isLoggedIn, address, deploy]);
+  }, [wasmCode, isLoggedIn, address, deploy, metadata]);
 
   const submitDeploy = () => {
     if (isLoggedIn) {
@@ -79,7 +89,7 @@ export const DeploySection = () => {
             accept='.wasm'
           />
         </div>
-        <CodeMetadata />
+        <CodeMetadata onMetadataChange={setMetadata} />
         <div className={styles.buttons}>
           <button
             onClick={submitDeploy}
