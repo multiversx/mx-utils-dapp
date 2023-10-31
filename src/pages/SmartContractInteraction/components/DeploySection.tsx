@@ -28,7 +28,7 @@ export const DeploySection = () => {
     readable: true,
     upgradeable: true,
     payable: false,
-    payableBySc: false
+    payableBySc: true
   });
 
   const { chain } = useChain();
@@ -89,7 +89,7 @@ export const DeploySection = () => {
             accept='.wasm'
           />
         </div>
-        <CodeMetadata onMetadataChange={setMetadata} />
+        <CodeMetadata codeMetadata={metadata} onMetadataChange={setMetadata} />
         <div className={styles.buttons}>
           <button
             onClick={submitDeploy}
@@ -99,13 +99,15 @@ export const DeploySection = () => {
             Deploy
           </button>
         </div>
-        <textarea
-          rows={10}
-          className={styles.field}
-          placeholder='.wasm code will be displayed here...'
-          value={wasmCode?.toString()}
-          readOnly={true}
-        />
+        {wasmCode && (
+          <textarea
+            rows={10}
+            className={styles.field}
+            placeholder='.wasm code will be displayed here...'
+            value={wasmCode?.toString()}
+            readOnly={true}
+          />
+        )}
         {contractOrDeployerAddress && (
           <div className={styles.result}>
             <strong>Contract Address:</strong>

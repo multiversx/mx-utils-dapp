@@ -1,19 +1,24 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useMemo } from 'react';
 import styles from './styles.module.scss';
 import { CodeMetadataType } from '../../types/deployOrUpgradeParams';
 
-const metadataOptions = [
+const metadataOptions: {
+  id: string;
+  label: string;
+  value: keyof CodeMetadataType;
+  checked: boolean;
+}[] = [
   {
     id: 'upgradeable',
     label: 'Upgradeable',
     value: 'upgradeable',
-    checked: false
+    checked: true
   },
   {
     id: 'readable',
     label: 'Readable',
     value: 'readable',
-    checked: false
+    checked: true
   },
   {
     id: 'payable',
@@ -25,16 +30,25 @@ const metadataOptions = [
     id: 'payableBySc',
     label: 'Payable By Smart Contract',
     value: 'payableBySc',
-    checked: false
+    checked: true
   }
 ];
 
 export const CodeMetadata = ({
+  codeMetadata,
   onMetadataChange
 }: {
+  codeMetadata: CodeMetadataType;
   onMetadataChange: (metadata: CodeMetadataType) => void;
 }) => {
-  const [metadata, setMetadata] = useState(metadataOptions);
+  const metadata = useMemo(() => {
+    return metadataOptions.map((item) => {
+      if (codeMetadata[item.value] != null) {
+        item.checked = Boolean(codeMetadata[item.value]);
+      }
+      return item;
+    });
+  }, [codeMetadata]);
 
   const handleMetadataChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
@@ -44,7 +58,6 @@ export const CodeMetadata = ({
       }
       return item;
     });
-    setMetadata(updatedMetadata);
     onMetadataChange(
       Object.fromEntries(
         updatedMetadata.map((item) => [item.value, item.checked])
