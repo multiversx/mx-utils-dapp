@@ -1,13 +1,21 @@
 .codeMetadata {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
   color: var(--text);
   padding: 0.5rem 0.25rem;
+
+
+  @media (min-width: 576px) {
+    flex-direction: row;
+    gap: 1rem;
+  }
 
   .container {
     display: block;
     position: relative;
-    padding-left: 35px;
+    padding-left: 25px;
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 16px;
