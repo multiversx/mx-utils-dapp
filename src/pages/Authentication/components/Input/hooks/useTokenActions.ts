@@ -9,6 +9,7 @@ import { validateToken } from '../components/Textarea/helpers/validateToken';
 import { FormValuesType } from '../types';
 import { MetricType } from 'pages/Authentication/types';
 import debounce from 'lodash.debounce';
+import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks/account/useGetIsLoggedIn';
 
 const TOKEN_REGEX = /\w+[\w.]+\w/g;
 
@@ -16,6 +17,7 @@ export const useTokenActions = () => {
   const { setMetrics, initialTokens, setIsValidating } =
     useAuthenticationContext();
   const { chain } = useChain();
+  const isLoggedIn = useGetIsLoggedIn();
 
   const { setFieldValue, setFieldTouched, setFieldError } =
     useFormikContext<FormValuesType>();
@@ -136,10 +138,10 @@ export const useTokenActions = () => {
   );
 
   useEffect(() => {
-    if (!initialTokens) return;
+    if (!initialTokens || isLoggedIn) return;
 
     handleChange(initialTokens[chain]);
-  }, [chain, handleChange, initialTokens]);
+  }, [chain, handleChange, initialTokens, isLoggedIn]);
 
   return {
     handleChange,
