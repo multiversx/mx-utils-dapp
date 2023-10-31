@@ -1,11 +1,14 @@
 import styles from '../styles.module.scss';
 import { Trim } from '@multiversx/sdk-dapp/UI';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useUploadWasmCode from '../hooks/useUploadWasmCode';
 import { useDeployments } from '../hooks/useDeployments';
 import { usePersistedState } from 'hooks/usePersistedState';
-import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
+import {
+  CodeMetadataType,
+  DeployOrUpgradeParamsType
+} from '../types/deployOrUpgradeParams';
 import { useGetDeployedContractAddress } from '../hooks/useGetDeployedContractAddress';
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
@@ -13,12 +16,19 @@ import { useNavigate } from 'react-router-dom';
 import { useChain } from 'hooks/useChain';
 import { routeNames } from 'routes';
 import { DEPLOY_SESSION_ID } from 'constants/storage';
+import { CodeMetadata } from './CodeMetadata';
 
 export const DeploySection = () => {
   const [sessionId, setSessionId] = usePersistedState({
     storage: localStorage,
     key: DEPLOY_SESSION_ID,
     initialValue: ''
+  });
+  const [metadata, setMetadata] = useState<CodeMetadataType>({
+    readable: true,
+    upgradeable: true,
+    payable: false,
+    payableBySc: true
   });
 
   const { chain } = useChain();
@@ -42,12 +52,13 @@ export const DeploySection = () => {
     const params: DeployOrUpgradeParamsType = {
       code: wasmCode,
       args: [],
-      gasLimit: 60000000
+      gasLimit: 60000000,
+      ...metadata
     };
 
     const response = await deploy(params);
     setSessionId(response.sessionId ?? '');
-  }, [wasmCode, isLoggedIn, address, deploy]);
+  }, [wasmCode, isLoggedIn, address, deploy, metadata]);
 
   const submitDeploy = () => {
     if (isLoggedIn) {
@@ -78,6 +89,7 @@ export const DeploySection = () => {
             accept='.wasm'
           />
         </div>
+        <CodeMetadata codeMetadata={metadata} onMetadataChange={setMetadata} />
         <div className={styles.buttons}>
           <button
             onClick={submitDeploy}
@@ -87,13 +99,15 @@ export const DeploySection = () => {
             Deploy
           </button>
         </div>
-        <textarea
-          rows={10}
-          className={styles.field}
-          placeholder='.wasm code will be displayed here...'
-          value={wasmCode?.toString()}
-          readOnly={true}
-        />
+        {wasmCode && (
+          <textarea
+            rows={10}
+            className={styles.field}
+            placeholder='.wasm code will be displayed here...'
+            value={wasmCode?.toString()}
+            readOnly={true}
+          />
+        )}
         {contractOrDeployerAddress && (
           <div className={styles.result}>
             <strong>Contract Address:</strong>

@@ -51,7 +51,7 @@ const pages: RouteType[] = [
   },
   {
     path: routeNames.smartContract,
-    title: 'SC Interaction (BETA)',
+    title: 'SC Deploy (BETA)',
     component: SmartContractInteraction
   },
   {

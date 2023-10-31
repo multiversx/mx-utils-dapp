@@ -108,13 +108,15 @@ export const UpgradeSection = () => {
             Upgrade
           </button>
         </div>
-        <textarea
-          rows={10}
-          className={styles.field}
-          placeholder='.wasm code will be displayed here...'
-          value={wasmCode?.toString()}
-          readOnly={true}
-        />
+        {wasmCode && (
+          <textarea
+            rows={10}
+            className={styles.field}
+            placeholder='.wasm code will be displayed here...'
+            value={wasmCode?.toString()}
+            readOnly={true}
+          />
+        )}
         {contractOrDeployerAddress && (
           <div className={styles.result}>
             <strong>Deployer Address:</strong>
