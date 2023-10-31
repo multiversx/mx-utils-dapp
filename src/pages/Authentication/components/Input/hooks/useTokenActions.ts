@@ -10,6 +10,7 @@ import { FormValuesType } from '../types';
 import { MetricType } from 'pages/Authentication/types';
 import debounce from 'lodash.debounce';
 import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks/account/useGetIsLoggedIn';
+import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
 
 const TOKEN_REGEX = /\w+[\w.]+\w/g;
 
@@ -18,6 +19,7 @@ export const useTokenActions = () => {
     useAuthenticationContext();
   const { chain } = useChain();
   const isLoggedIn = useGetIsLoggedIn();
+  const nativeAuthToken = useGetNativeAuthToken();
 
   const { setFieldValue, setFieldTouched, setFieldError } =
     useFormikContext<FormValuesType>();
@@ -138,10 +140,15 @@ export const useTokenActions = () => {
   );
 
   useEffect(() => {
-    if (!initialTokens || isLoggedIn) return;
+    if (isLoggedIn && nativeAuthToken) {
+      handleChange(nativeAuthToken);
+      return;
+    }
+
+    if (!initialTokens) return;
 
     handleChange(initialTokens[chain]);
-  }, [chain, handleChange, initialTokens, isLoggedIn]);
+  }, [chain, handleChange, initialTokens, isLoggedIn, nativeAuthToken]);
 
   return {
     handleChange,
