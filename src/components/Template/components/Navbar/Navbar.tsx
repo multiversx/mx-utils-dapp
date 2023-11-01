@@ -1,4 +1,4 @@
-import React, { MouseEvent, useCallback, useState } from 'react';
+import { MouseEvent, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { MultiversXLogo } from 'assets/img/MultiversXLogo';
@@ -48,7 +48,7 @@ export const Navbar = (props: NavbarPropsType) => {
             })}
           >
             <div className={styles.bars}>
-              {Array.from({ length: 3 }).map((item, index) => (
+              {Array.from({ length: 3 }).map((_item, index) => (
                 <span className={styles.bar} key={`bar-${index}`}></span>
               ))}
             </div>

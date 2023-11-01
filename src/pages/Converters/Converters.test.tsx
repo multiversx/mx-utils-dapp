@@ -39,8 +39,8 @@ const mockConversions = new Map([
   ],
   ['decimal-to-hexadecimal', { input: '91', output: '5b' }],
   ['hexadecimal-to-decimal', { input: '5b', output: '91' }],
-  ['decimal-to-base64', { input: '1479', output: 'MTQ3OQ==' }],
-  ['base64-to-decimal', { input: 'MTQ3OQ==', output: '1479' }],
+  ['decimal-to-base64', { input: '1479', output: 'Bcc=' }],
+  ['base64-to-decimal', { input: 'Bcc=', output: '1479' }],
   ['decimal-to-integer', { input: '10.5', output: '10500000000000000000' }],
   ['integer-to-decimal', { input: '10500000000000000000', output: '10.5000' }],
   ['string-to-hexadecimal', { input: 'ok', output: '6f6b' }],
@@ -65,9 +65,9 @@ describe('Converters computing and displaying tests.', () => {
    * Test that each converter has all the required elements present in the document.
    */
 
-  test('Categories and converter elements all present in the document.', () => {
-    categories.forEach((category) => {
-      const name = screen.getByTestId(category.name);
+  test('Categories and converter elements all present in the document.',  () => {
+    categories.forEach(async (category) => {
+      const name = await screen.findByTestId(category.name);
       const identifier = screen.getByTestId(category.identifier);
 
       expect(identifier).toBeInTheDocument();

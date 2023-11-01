@@ -1,5 +1,4 @@
 import { Template } from 'components/Template';
-import React from 'react';
 import styles from './styles.module.scss';
 import { DeploySection } from './components/DeploySection';
 import { UpgradeSection } from './components/UpgradeSection';

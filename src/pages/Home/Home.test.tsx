@@ -21,10 +21,10 @@ const MockHome = () => (
  * Test if the required element are present on the page.
  */
 
-test('Home elements present in the document.', () => {
+test('Home elements present in the document.', async () => {
   render(<MockHome />);
 
-  const title = screen.getByTestId('home-title');
+  const title = await screen.findByTestId('home-title');
   const descriptions = screen.getAllByTestId('home-description');
 
   expect(title).toBeInTheDocument();

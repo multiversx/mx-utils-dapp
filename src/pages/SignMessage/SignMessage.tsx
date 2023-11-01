@@ -1,4 +1,3 @@
-import React from 'react';
 import { Template } from 'components/Template';
 import styles from './styles.module.scss';
 import {
