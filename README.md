@@ -10,7 +10,7 @@
 
 <p align="center">
 
-<h3 align="center">MultiversX Utils</h3>
+  <h3 align="center">MultiversX Utils</h3>
 
   <p align="center">
 This page offers an easy to use pack of utilities necessary for interacting with the MultiversX Blockchain.
