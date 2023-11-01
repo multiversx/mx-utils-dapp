@@ -1,92 +1,27 @@
-<div style="text-align:center">
-  <img
-  src="https://github.com/multiversx/mx-utils-dapp/blob/main/public/preview.jpg"
-  alt="MultiversX Network">
-</div>
-<br>
+# React + TypeScript + Vite
 
-[![](https://img.shields.io/badge/made%20by-MultiversX-blue.svg)](http://multiversx.com/)
-<br />
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-<p align="center">
+Currently, two official plugins are available:
 
- <h3 align="center">MultiversX Utils</h3>
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-  <p align="center">
-This page offers an easy to use pack of utilities necessary for interacting with the MultiversX Blockchain.
-    <br />
-    <br />
-    <br />
-    ·
-    <a href="https://github.com/multiversx/mx-utils-dapp/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/multiversx/mx-utils-dapp/issues">Request Feature</a>
-  </p>
-</p>
+## Expanding the ESLint configuration
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#built-with">Built With</a>    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-  </ol>
-</details>
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-### Built With
+- Configure the top-level `parserOptions` property like this:
 
-- [React](https://reactjs.org/)
-- [Typescript](https://www.typescriptlang.org/)
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
 
-<!-- GETTING STARTED -->
-
-## Getting Started
-
-The dapp is a client side only poject and is built using the Create React App scripts.
-
-Follow the next step to start using this dapp.
-
-### Prerequisites
-
-For _development_ you will need to have the following:
-
-- node version 14.17.6
-- npm
-
-### Instalation and running
-
-### Step 1. Install modules
-
-From a terminal, navigate to the project folder and run `yarn install`
-
-### Step 2. Run the dashboard
-
-To run the project locally run `yarn start` from the project folder. Open http://localhost:3001 to view it in the browser.
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-See the [open issues](https://github.com/multiversx/mx-utils-dapp/issues) for a list of proposed features (and known issues).
-
-<!-- CONTRIBUTING -->
-
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-One can contribute by creating _pull requests_, or by opening _issues_ for discovered bugs or desired features.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

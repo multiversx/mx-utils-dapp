@@ -1,7 +1,7 @@
 import styles from '../styles.module.scss';
 import { Trim } from '@multiversx/sdk-dapp/UI';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useUploadWasmCode from '../hooks/useUploadWasmCode';
 import { useGetDeployedContractAddress } from '../hooks/useGetDeployedContractAddress';
 import { usePersistedState } from 'hooks/usePersistedState';
@@ -10,9 +10,8 @@ import { useDeployments } from '../hooks/useDeployments';
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useNavigate } from 'react-router-dom';
-import { useChain } from 'hooks/useChain';
 import { routeNames } from 'routes';
-import { UPGRADE_SESSION_ID } from 'constants/storage';
+import { UPGRADE_SESSION_ID } from 'localConstants/storage';
 
 export const UpgradeSection = () => {
   const [sessionId, setSessionId] = usePersistedState({
@@ -23,20 +22,19 @@ export const UpgradeSection = () => {
   const [upgradeContractAddress, setUpgradeContractAddress] =
     useState<string>('');
 
-  const { chain } = useChain();
   const isLoggedIn = useGetIsLoggedIn();
   const { address } = useGetAccount();
 
   const { wasmCode, onUpload } = useUploadWasmCode();
   const { contractOrDeployerAddress } =
     useGetDeployedContractAddress(sessionId);
-  const { upgrade } = useDeployments({ chain });
+  const { upgrade } = useDeployments();
 
   const callbackRoute = useCallbackRoute();
   const navigate = useNavigate();
 
   const handleUpgrade = useCallback(async () => {
-    if (!wasmCode || !isLoggedIn || !Boolean(address)) {
+    if (!wasmCode || !isLoggedIn || !address) {
       return;
     }
 

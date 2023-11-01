@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import Select, { components, SingleValue } from 'react-select';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ import type { OptionType } from './types';
 import styles from './styles.module.scss';
 import { ActionTypeEnum } from 'context/reducer';
 import { useDispatch } from 'context';
-import { NETWORK } from 'constants/environment';
+import { NETWORK } from 'localConstants/environment';
 import { useChain } from 'hooks/useChain';
 
 const customComponents = {

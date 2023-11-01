@@ -4,7 +4,7 @@ import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
 import { FormValuesType } from '../../types';
 import { useTokenActions } from '../../hooks/useTokenActions';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
-import CodeEditor from '@uiw/react-textarea-code-editor';
+import CodeEditor from '@uiw/react-textarea-code-editor/esm';
 import { splitToken } from './plugins/splitToken';
 import { applyTokenColors } from './plugins/applyTokenColors';
 import styles from './styles.module.scss';

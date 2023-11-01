@@ -20,11 +20,11 @@ const MockPage404 = () => (
  * Test if the required element are present on the page.
  */
 
-test('Page 404 elements present in the document.', () => {
+test('Page 404 elements present in the document.', async () => {
   render(<MockPage404 />);
 
-  const title = screen.getByTestId('page404-title');
-  const descriptions = screen.getAllByTestId('page404-description');
+  const title = await screen.findByTestId('page404-title');
+  const descriptions = await screen.findAllByTestId('page404-description');
 
   expect(title).toBeInTheDocument();
   expect(descriptions.length).toBe(2);

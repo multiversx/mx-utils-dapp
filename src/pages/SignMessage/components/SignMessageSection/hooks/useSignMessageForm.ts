@@ -9,7 +9,7 @@ import { useSignMessageSectionContext } from 'pages/SignMessage/context';
 import { useCallback } from 'react';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
-import { MESSAGE_KEY, SIGNATURE_KEY } from 'constants/storage';
+import { MESSAGE_KEY, SIGNATURE_KEY } from 'localConstants/storage';
 
 export const useSignMessageForm = () => {
   const { setFieldValue } = useFormikContext<SignMessageFormValues>();
