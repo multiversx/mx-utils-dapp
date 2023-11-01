@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { routeNames } from 'routes';
 import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
 import { signMessage } from '@multiversx/sdk-dapp/utils';
-import { MESSAGE_KEY } from 'constants/storage';
+import { MESSAGE_KEY } from 'localConstants/storage';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';

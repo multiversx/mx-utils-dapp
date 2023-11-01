@@ -10,9 +10,8 @@ import { sendTransactions } from '@multiversx/sdk-dapp/services';
 import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
 import { DeployOrUpgradeParamsType } from '../types/deployOrUpgradeParams';
 import { useCallback } from 'react';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
-export const useDeployments = ({ chain }: { chain: EnvironmentsEnum }) => {
+export const useDeployments = () => {
   const { account } = useGetAccountInfo();
 
   const sendTransaction = async (

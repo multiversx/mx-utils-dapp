@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useGetNetworkConfig } from '@multiversx/sdk-dapp/hooks';
-import { NETWORK } from '../constants';
+import { NETWORK } from '../localConstants';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { useMemo } from 'react';
 import { getEnvironmentForChainId } from '@multiversx/sdk-dapp/apiCalls/configuration/getEnvironmentForChainId';

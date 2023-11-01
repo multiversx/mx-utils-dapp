@@ -46,7 +46,7 @@ test('Successful input conversion and input clearance integration tests.', async
   })();
 
   const identifier = converter.identifier;
-  const field = screen.getByTestId(`${identifier}-field`);
+  const field = await screen.findByTestId(`${identifier}-field`);
   const submit = screen.getByTestId(`${identifier}-submit-button`);
   const clear = screen.queryByTestId(`${identifier}-clear-button`);
   const value = screen.queryByTestId(`${identifier}-value`);
@@ -110,7 +110,7 @@ test('Successful error handling due to lack of input.', async () => {
   })();
 
   const identifier = converter.identifier;
-  const submit = screen.getByTestId(`${identifier}-submit-button`);
+  const submit = await screen.findByTestId(`${identifier}-submit-button`);
 
   await waitFor(async () => {
     await act(async () => {
@@ -143,7 +143,7 @@ test('Successful error handling due to wrong input.', async () => {
   })();
 
   const identifier = converter.identifier;
-  const field = screen.getByTestId(`${identifier}-field`);
+  const field = await screen.findByTestId(`${identifier}-field`);
   const submit = screen.getByTestId(`${identifier}-submit-button`);
 
   fireEvent.change(field, {

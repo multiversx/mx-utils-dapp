@@ -1,6 +1,5 @@
-import React from 'react';
-import { TransactionsToastList } from '@multiversx/sdk-dapp/UI/TransactionsToastList';
 import { SignTransactionsModals } from '@multiversx/sdk-dapp/UI/SignTransactionsModals/SignTransactionsModals';
+import { TransactionsToastList } from '@multiversx/sdk-dapp/UI/TransactionsToastList';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import { ContextProvider } from 'context';
@@ -28,7 +27,6 @@ export const App = () => (
             element={<route.component />}
           />
         ))}
-
         <Route path='*' element={<Page404 />} />
       </Routes>
     </ContextProvider>

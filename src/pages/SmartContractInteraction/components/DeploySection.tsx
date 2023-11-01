@@ -1,7 +1,7 @@
 import styles from '../styles.module.scss';
 import { Trim } from '@multiversx/sdk-dapp/UI';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useUploadWasmCode from '../hooks/useUploadWasmCode';
 import { useDeployments } from '../hooks/useDeployments';
 import { usePersistedState } from 'hooks/usePersistedState';
@@ -13,9 +13,8 @@ import { useGetDeployedContractAddress } from '../hooks/useGetDeployedContractAd
 import { useGetAccount, useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useNavigate } from 'react-router-dom';
-import { useChain } from 'hooks/useChain';
 import { routeNames } from 'routes';
-import { DEPLOY_SESSION_ID } from 'constants/storage';
+import { DEPLOY_SESSION_ID } from 'localConstants/storage';
 import { CodeMetadata } from './CodeMetadata';
 
 export const DeploySection = () => {
@@ -31,20 +30,19 @@ export const DeploySection = () => {
     payableBySc: true
   });
 
-  const { chain } = useChain();
   const isLoggedIn = useGetIsLoggedIn();
   const { address } = useGetAccount();
 
   const { wasmCode, onUpload } = useUploadWasmCode();
   const { contractOrDeployerAddress, setContractOrDeployerAddress } =
     useGetDeployedContractAddress(sessionId);
-  const { deploy } = useDeployments({ chain });
+  const { deploy } = useDeployments();
 
   const callbackRoute = useCallbackRoute();
   const navigate = useNavigate();
 
   const handleDeploy = useCallback(async () => {
-    if (!wasmCode || !isLoggedIn || !Boolean(address)) {
+    if (!wasmCode || !isLoggedIn || !address) {
       return;
     }
     setContractOrDeployerAddress('');

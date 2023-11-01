@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 type ExpiresType = number | false;
 type LocalKeyType = 'nativeAuthToken';
 
@@ -30,7 +28,7 @@ export const storage = {
       return null;
     }
 
-    if (item.expires !== false && moment().unix() > item.expires) {
+    if (item.expires !== false && Date.now() > item.expires) {
       localStorage.removeItem(key);
 
       return null;

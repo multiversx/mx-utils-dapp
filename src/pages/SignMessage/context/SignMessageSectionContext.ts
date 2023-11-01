@@ -7,7 +7,7 @@ import {
   useState
 } from 'react';
 import { usePersistedState } from 'hooks/usePersistedState';
-import { MESSAGE_TO_SIGN_KEY } from 'constants/storage';
+import { MESSAGE_TO_SIGN_KEY } from 'localConstants/storage';
 
 export type SignMessageSectionContextType = {
   signedMessagePayload: string;
