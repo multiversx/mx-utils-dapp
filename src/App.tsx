@@ -1,5 +1,5 @@
-import { TransactionsToastList } from '@multiversx/sdk-dapp/UI/TransactionsToastList';
 import { SignTransactionsModals } from '@multiversx/sdk-dapp/UI/SignTransactionsModals/SignTransactionsModals';
+import { TransactionsToastList } from '@multiversx/sdk-dapp/UI/TransactionsToastList';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import { ContextProvider } from 'context';
@@ -15,21 +15,20 @@ import 'assets/sass/theme.scss';
  */
 
 export const App = () => (
-    <BrowserRouter>
-        <ContextProvider>
-            <TransactionsToastList />
-            <SignTransactionsModals />
-            <Routes>
-                {routes.map((route: RouteType) => (
-                    <Route
-                        path={route.path}
-                        key={route.path}
-                        element={<route.component />}
-                    />
-                ))}
-
-                <Route path='*' element={<Page404 />} />
-            </Routes>
-        </ContextProvider>
-    </BrowserRouter>
+  <BrowserRouter>
+    <ContextProvider>
+      <TransactionsToastList />
+      <SignTransactionsModals />
+      <Routes>
+        {routes.map((route: RouteType) => (
+          <Route
+            path={route.path}
+            key={route.path}
+            element={<route.component />}
+          />
+        ))}
+        <Route path='*' element={<Page404 />} />
+      </Routes>
+    </ContextProvider>
+  </BrowserRouter>
 );
