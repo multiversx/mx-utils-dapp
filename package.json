@@ -1,8 +1,10 @@
 {
-  "name": "new-mx-utils-dapp",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "@multiversx/mx-utils-dapp",
+  "description": "MultiversX Utils",
+  "version": "2.0.0",
+  "author": "MultiversX",
+  "license": "GPL-3.0-or-later",
+  "repository": "@multiversx/mx-utils-dapp",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
