@@ -15,7 +15,7 @@ jobs:
       #     cmd: install --ignore-optional # will run `yarn install` command
       # - run: yarn start  
       - name: Cypress run
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v6
         with:
-          start: yarn start
-          wait-on: "http://localhost:3001"
+         build: npm run build
+         start: npm start
