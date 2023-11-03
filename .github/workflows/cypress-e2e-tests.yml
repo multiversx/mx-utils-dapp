@@ -1,15 +1,21 @@
 name: Cypress Tests
 on:
-  pull_request:
-    branches: [main]
+  push
+  # pull_request:
+  #   branches: [main]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install --ignore-optional # will run `yarn install` command
+      - run: yarn start  
       - name: Cypress run
         uses: cypress-io/github-action@v4
-        with:
-          start: yarn start
-          wait-on: "http://localhost:3001"
+        # with:
+        #   start: yarn start
+          # wait-on: "http://localhost:3001"
