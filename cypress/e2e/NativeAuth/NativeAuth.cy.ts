@@ -12,4 +12,8 @@ describe('Native Auth', () => {
     cy.login(walletIDEnum.unguardedWallet1);
     cy.contains('Token Valid');
   });
+  afterEach(()=>{
+    cy.getSelector('navigation-page-unlock').click();
+    cy.contains('Login')
+  })
 });

@@ -9,11 +9,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      # - name: Run install
-      #   uses: borales/actions-yarn@v4
-      #   with:
-      #     cmd: install --ignore-optional # will run `yarn install` command
-      # - run: yarn start  
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:

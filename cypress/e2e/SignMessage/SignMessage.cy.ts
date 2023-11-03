@@ -7,9 +7,9 @@ describe('Sign Message', () => {
     cy.visit('/');
     cy.get('a[href="/sign-message"]').click();
   });
-  it.only('should validate the signature', () => {
+  it('should validate the signature', () => {
     signHandler();
-    cy.get('.styles_code__HFHh6')
+    cy.getSelector('signaturePayload')
       .then((txt) => {
         payload = txt.text();
       })
@@ -23,6 +23,7 @@ describe('Sign Message', () => {
 
   it('should return Invalid signature payload', () => {
     cy.get('textarea[name="signedMessage"]').type('Invalid#');
+    cy.contains('button', 'Verify').click();
     cy.contains('Invalid signature payload');
   });
 
