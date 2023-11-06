@@ -4,7 +4,7 @@ import type { NativeAuthServerConfig } from '@multiversx/sdk-native-auth-server/
 
 export const validateToken = async (
   token: string,
-  config: Partial<NativeAuthServerConfig>
+  config: NativeAuthServerConfig,
 ) => {
   try {
     const server = new NativeAuthServer(config);

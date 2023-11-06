@@ -1,23 +1,24 @@
 import { ReactNode, useEffect, useState } from 'react';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import {
   ExtensionLoginButton,
   LedgerLoginButton,
   WalletConnectLoginButton,
-  WebWalletLoginButton
+  WebWalletLoginButton,
 } from '@multiversx/sdk-dapp/UI';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { CloseIcon } from 'assets/img/CloseIcon';
-import styles from './styles.module.scss';
-import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import { EXPIRY_SECONDS } from 'localConstants/nativeAuth';
 import { routeNames } from 'routes';
+import styles from './styles.module.scss';
 
 enum LoginContainersTypesEnum {
   walletConnect = 'walletConnect',
   ledger = 'ledger',
-  none = 'none'
+  none = 'none',
 }
 
 export const Unlock = () => {
@@ -31,7 +32,7 @@ export const Unlock = () => {
   const callbackRoute = callbackURL ?? routeNames.home.concat(search);
 
   const [openedLoginContainerType, setOpenedContainerType] = useState(
-    LoginContainersTypesEnum.none
+    LoginContainersTypesEnum.none,
   );
 
   const onLoginRedirect = () => {
@@ -40,7 +41,7 @@ export const Unlock = () => {
 
   function renderLoginButton(
     content: ReactNode,
-    containerType = LoginContainersTypesEnum.none
+    containerType = LoginContainersTypesEnum.none,
   ) {
     const shouldRender =
       openedLoginContainerType === LoginContainersTypesEnum.none ||
@@ -51,7 +52,7 @@ export const Unlock = () => {
   const buttons = [
     {
       name: 'MultiversX DeFi Wallet',
-      component: ExtensionLoginButton
+      component: ExtensionLoginButton,
     },
     {
       name: 'xPortal Mobile Wallet',
@@ -59,19 +60,19 @@ export const Unlock = () => {
       id: LoginContainersTypesEnum.walletConnect,
       isWalletConnectV2: true,
       onModalOpens: () =>
-        setOpenedContainerType(LoginContainersTypesEnum.walletConnect)
+        setOpenedContainerType(LoginContainersTypesEnum.walletConnect),
     },
     {
       name: 'Ledger',
       id: LoginContainersTypesEnum.ledger,
       component: LedgerLoginButton,
       onModalOpens: () =>
-        setOpenedContainerType(LoginContainersTypesEnum.ledger)
+        setOpenedContainerType(LoginContainersTypesEnum.ledger),
     },
     {
       name: 'MultiversX Web Wallet',
-      component: WebWalletLoginButton
-    }
+      component: WebWalletLoginButton,
+    },
   ];
 
   const navigate = useNavigate();
@@ -83,7 +84,7 @@ export const Unlock = () => {
   const titles = {
     [LoginContainersTypesEnum.none]: 'Select Provider',
     [LoginContainersTypesEnum.ledger]: 'Login with Ledger',
-    [LoginContainersTypesEnum.walletConnect]: 'Login with xPortal'
+    [LoginContainersTypesEnum.walletConnect]: 'Login with xPortal',
   };
 
   useEffect(() => {
@@ -124,7 +125,7 @@ export const Unlock = () => {
                 className={styles.button}
                 wrapContentInsideModal={false}
                 hideButtonWhenModalOpens={true}
-                nativeAuth={{ expirySeconds: 7200 }}
+                nativeAuth={{ expirySeconds: EXPIRY_SECONDS }}
                 onLoginRedirect={onLoginRedirect}
                 {...button}
               >
@@ -132,8 +133,8 @@ export const Unlock = () => {
 
                 <FontAwesomeIcon icon={faArrowRight} className={styles.arrow} />
               </button.component>,
-              button.id
-            )
+              button.id,
+            ),
           )}
         </div>
       </div>
