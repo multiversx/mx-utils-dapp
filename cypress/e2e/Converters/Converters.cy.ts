@@ -30,9 +30,9 @@ describe('Converters', () => {
   it('should be display the required error message', () => {
     cy.get('input').then((selectors) => {
       selectors.each((index) => {
-        cy.get('button[type="submit"]').eq(index).click();
+        cy.get('button[type="submit"]').eq(index-1).click();
         cy.get('[data-cy="error"]')
-          .eq(index)
+          .eq(index-1)
           .should(AssertionEnum.contain, 'required');
       });
     });

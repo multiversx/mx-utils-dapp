@@ -1,10 +1,10 @@
 import { ChangeEvent, useState } from 'react';
+import { verifyMessage } from '@multiversx/sdk-dapp/hooks/signMessage/verifyMessage';
+import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
+import classNames from 'classnames';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
-import classNames from 'classnames';
 import styles from 'pages/SignMessage/styles.module.scss';
-import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
-import { verifyMessage } from '@multiversx/sdk-dapp/hooks/signMessage/verifyMessage';
 
 export const VerifySignatureForm = () => {
   const [verifiedMessage, setVerifiedMessage] = useState<string>();
@@ -73,6 +73,7 @@ export const VerifySignatureForm = () => {
               <label className={styles.label}>Verify signature</label>
 
               <Field
+                data-testid='verifySignature'
                 component='textarea'
                 rows={10}
                 name='signedMessage'

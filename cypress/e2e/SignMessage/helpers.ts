@@ -9,6 +9,7 @@ export const signHandler = () => {
   cy.get('button[type="submit"]').eq(0).click();
   cy.get('button[type="submit"]').eq(0).click();
   cy.getSelector('keystoreBtn').click();
+  
   cy.get('input[type=file]').selectFile('./cypress/assets/testKeystore.json', {
     force: true
   });

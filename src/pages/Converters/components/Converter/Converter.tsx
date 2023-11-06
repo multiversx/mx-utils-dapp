@@ -1,12 +1,12 @@
 import { useCallback, useState } from 'react';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
-import { object, string } from 'yup';
 import classNames from 'classnames';
-
-import type { ConverterType, SubmitType } from './types';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { object, string } from 'yup';
 
 import styles from './styles.module.scss';
+import type { ConverterType, SubmitType } from './types';
+
 
 /*
  * Handle the component declaration.
@@ -76,6 +76,7 @@ export const Converter = (props: ConverterType) => {
 
             <ErrorMessage
               data-testid={`${identifier}-error`}
+              data-cy='error'
               name='converter'
               className={styles.error}
               component='div'

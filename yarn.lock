@@ -1745,10 +1745,10 @@
   resolved "https://registry.yarnpkg.com/@multiversx/sdk-bls-wasm/-/sdk-bls-wasm-0.3.5.tgz#2e83308fdc7a0928c6d5a7f910d796fd8eb2d90b"
   integrity sha512-c0tIdQUnbBLSt6NYU+OpeGPYdL0+GV547HeHT8Xc0BKQ7Cj0v82QUoA2QRtWrR1G4MNZmLsIacZSsf6DrIS2Bw==
 
-"@multiversx/sdk-core@12.2.0":
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.2.0.tgz#76d9871e6df4639e7d761a9964d2182c86d91234"
-  integrity sha512-PbHLlG9+UWiYY71NGPZ5bjrvaxFvwYU6NQxeU2Pnp99Csm1O42pySq5NVqaKhcZh3F6JDkUiNhvcjnKI3Lt+EQ==
+"@multiversx/sdk-core@12.12.0":
+  version "12.12.0"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.12.0.tgz#02e7db8acf38b006bb5f77174a5bd8455a8bc41f"
+  integrity sha512-2bHn45Qp1scTONK2AShLeRfw1sl7/o6HUXKnFPO4qpAKvWunOhv6LjEm093Pf/HE9X48uHsDaq+KpqGGTS4NgA==
   dependencies:
     "@multiversx/sdk-transaction-decoder" "1.0.2"
     bech32 "1.1.4"
@@ -1757,7 +1757,7 @@
     buffer "6.0.3"
     json-duplicate-key-handle "1.0.0"
     keccak "3.0.2"
-    protobufjs "6.11.3"
+    protobufjs "7.2.4"
 
 "@multiversx/sdk-core@12.6.0":
   version "12.6.0"
@@ -1772,20 +1772,6 @@
     json-duplicate-key-handle "1.0.0"
     keccak "3.0.2"
     protobufjs "7.2.4"
-
-"@multiversx/sdk-core@^11.2.0":
-  version "11.6.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-11.6.0.tgz#31dff80f7734e57f0af62aa92027f248da5ec4f7"
-  integrity sha512-bP1fmp84iEAJEdaprvw8M9FeqJVOWTmv8vhhiaYW6YTV/ztlB+niv1CFsYk0dWFWIfKzn+eT4CvQjl8OTwBC/A==
-  dependencies:
-    "@multiversx/sdk-transaction-decoder" "1.0.2"
-    bech32 "1.1.4"
-    bignumber.js "9.0.1"
-    blake2b "2.1.3"
-    buffer "6.0.3"
-    json-duplicate-key-handle "1.0.0"
-    keccak "3.0.2"
-    protobufjs "6.11.3"
 
 "@multiversx/sdk-dapp@2.23.0":
   version "2.23.0"
@@ -1853,12 +1839,11 @@
   dependencies:
     axios "0.24.0"
 
-"@multiversx/sdk-native-auth-server@0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-native-auth-server/-/sdk-native-auth-server-0.2.6.tgz#ffb385c4327a20ccc248f83ea899edf1f427a4c2"
-  integrity sha512-7n/GH1dxbxsQ1uC+EOWNMtA7e5BM8hLc8Iuf4zYyEkRwqerAx61GBQoABRxrOBfTDF3GikQFtFtBq+CP+8uwBg==
+"@multiversx/sdk-native-auth-server@1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-native-auth-server/-/sdk-native-auth-server-1.0.10.tgz#c6b9653938a55206276f55b776523c9a5d1cf553"
+  integrity sha512-mWC1F9saQ9fpZTy7ND9Ahkrgup+CHu6yoTp5S1SpYn2eOzpg8fpyBiYuMdENzsI9a/oGf/fkWHdz7OgduHFRLw==
   dependencies:
-    "@multiversx/sdk-core" "^11.2.0"
     "@multiversx/sdk-wallet" "^2.1.1"
     axios "^0.27.2"
     bech32 "^2.0.0"
@@ -2634,11 +2619,6 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.200.tgz#435b6035c7eba9cdf1e039af8212c9e9281e7149"
   integrity sha512-YI/M/4HRImtNf3pJgbF+W6FrXovqj+T+/HpENLTooK9PnkacBsDpeP3IpHab40CClUfhNmdM2WTNP2sa2dni5Q==
 
-"@types/long@^4.0.1":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.2.tgz#b74129719fc8d11c01868010082d483b7545591a"
-  integrity sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==
-
 "@types/mdast@^3.0.0":
   version "3.0.14"
   resolved "https://registry.yarnpkg.com/@types/mdast/-/mdast-3.0.14.tgz#0735473a5b35be032b9f2685b7413cbab1b8a639"
@@ -2704,7 +2684,16 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@18.2.33", "@types/react@>=16.9.11":
+"@types/react@*", "@types/react@>=16.9.11":
+  version "18.2.34"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.34.tgz#aed20f19473721ba328feb99d1ec3307ebc1a8dd"
+  integrity sha512-U6eW/alrRk37FU/MS2RYMjx0Va2JGIVXELTODaTIYgvWGCV4Y4TfTUzG8DdmpDNIT0Xpj/R7GfyHOJJrDttcvg==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@18.2.33":
   version "18.2.33"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.33.tgz#055356243dc4350a9ee6c6a2c07c5cae12e38877"
   integrity sha512-v+I7S+hu3PIBoVkKGpSYYpiBT1ijqEzWpzQD62/jm4K74hPpSP7FF9BnKG6+fg2+62weJYkkBWDJlZt5JO/9hg==
@@ -4662,9 +4651,9 @@ ed2curve@0.3.0:
     tweetnacl "1.x.x"
 
 electron-to-chromium@^1.4.535:
-  version "1.4.572"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.572.tgz#ed9876658998138fe9e3aa47ecfa0bf914192a86"
-  integrity sha512-RlFobl4D3ieetbnR+2EpxdzFl9h0RAJkPK3pfiwMug2nhBin2ZCsGIAJWdpNniLz43sgXam/CgipOmvTA+rUiA==
+  version "1.4.575"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.575.tgz#7c0b87eb2c6214a993699792abd704de41255c39"
+  integrity sha512-kY2BGyvgAHiX899oF6xLXSIf99bAvvdPhDoJwG77nxCSyWYuRH6e9a9a3gpXBvCs6lj4dQZJkfnW2hdKWHEISg==
 
 elliptic@^6.5.3, elliptic@^6.5.4:
   version "6.5.4"
@@ -6934,11 +6923,6 @@ log-update@^4.0.0:
     slice-ansi "^4.0.0"
     wrap-ansi "^6.2.0"
 
-long@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/long/-/long-4.0.0.tgz#9a7b71cfb7d361a194ea555241c92f7468d5bf28"
-  integrity sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==
-
 long@^5.0.0:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/long/-/long-5.2.3.tgz#a3ba97f3877cf1d778eccbcb048525ebb77499e1"
@@ -7993,25 +7977,6 @@ property-information@^6.0.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/property-information/-/property-information-6.4.0.tgz#6bc4c618b0c2d68b3bb8b552cbb97f8e300a0f82"
   integrity sha512-9t5qARVofg2xQqKtytzt+lZ4d1Qvj8t5B8fEwXK6qOfgRLgH/b13QlgEyDh033NOS31nXeFbYv7CLUDG1CeifQ==
-
-protobufjs@6.11.3:
-  version "6.11.3"
-  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.11.3.tgz#637a527205a35caa4f3e2a9a4a13ddffe0e7af74"
-  integrity sha512-xL96WDdCZYdU7Slin569tFX712BxsxslWwAfAhCYjQKGTq7dAU91Lomy6nLLhh/dyGhk/YH4TwTSRxTzhuHyZg==
-  dependencies:
-    "@protobufjs/aspromise" "^1.1.2"
-    "@protobufjs/base64" "^1.1.2"
-    "@protobufjs/codegen" "^2.0.4"
-    "@protobufjs/eventemitter" "^1.1.0"
-    "@protobufjs/fetch" "^1.1.0"
-    "@protobufjs/float" "^1.0.2"
-    "@protobufjs/inquire" "^1.1.0"
-    "@protobufjs/path" "^1.1.2"
-    "@protobufjs/pool" "^1.1.0"
-    "@protobufjs/utf8" "^1.1.0"
-    "@types/long" "^4.0.1"
-    "@types/node" ">=13.7.0"
-    long "^4.0.0"
 
 protobufjs@7.2.4:
   version "7.2.4"
@@ -9532,9 +9497,9 @@ universalify@^0.2.0:
   integrity sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==
 
 universalify@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
-  integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"
+  integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
 
 untildify@^4.0.0:
   version "4.0.0"

@@ -1,12 +1,12 @@
 import { ChangeEvent, useEffect } from 'react';
-import { ErrorMessage, Field, Form, useFormikContext } from 'formik';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import classNames from 'classnames';
+import { ErrorMessage, Field, Form, useFormikContext } from 'formik';
 import { useSearchParams } from 'react-router-dom';
-import { useSignMessageForm } from '../hooks/useSignMessageForm';
-import { SignMessageFormValues } from '../types';
 import { useSignMessageSectionContext } from 'pages/SignMessage/context';
 import styles from 'pages/SignMessage/styles.module.scss';
+import { useSignMessageForm } from '../hooks/useSignMessageForm';
+import { SignMessageFormValues } from '../types';
 
 export const SignMessageForm = () => {
   const { setFieldValue } = useFormikContext<SignMessageFormValues>();
@@ -44,7 +44,7 @@ export const SignMessageForm = () => {
           <strong>Signature payload:</strong>
 
           <div className={styles.code}>
-            <pre className={styles.value}>{signedMessagePayload}</pre>
+            <pre data-testid='signaturePayload' className={styles.value}>{signedMessagePayload}</pre>
             <CopyButton text={signedMessagePayload} className={styles.copy} />
           </div>
         </div>
