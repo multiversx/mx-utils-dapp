@@ -6,16 +6,21 @@ export const verifySignature = (
   messageString: string,
   signature: Uint8Array,
 ) => {
-  const verifier = UserVerifier.fromAddress(Address.fromBech32(address));
+  const bech32Address = Address.fromBech32(address);
+  const verifier = UserVerifier.fromAddress(bech32Address);
+
   const signableMessage = new SignableMessage({
-    address: Address.fromBech32(address),
+    address: bech32Address,
     message: Buffer.from(messageString, 'utf8'),
   });
 
-  const cryptoMessage = Buffer.from(signableMessage.serializeForSigning());
+  const cryptoMessageBuffer = Buffer.from(
+    signableMessage.serializeForSigning(),
+  );
+  const signatureBuffer = Buffer.from(signature);
 
   try {
-    return verifier.verify(cryptoMessage, Buffer.from(signature));
+    return verifier.verify(cryptoMessageBuffer, signatureBuffer);
   } catch (error) {
     console.error('Error verifying signature:', error);
     return false;
