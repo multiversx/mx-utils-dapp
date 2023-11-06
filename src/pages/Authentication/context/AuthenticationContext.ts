@@ -9,8 +9,6 @@ import {
 } from 'react';
 import axios from 'axios';
 import { miscApi } from 'config';
-import { useChain } from 'hooks/useChain';
-import { DEFAULT_METRICS } from '../constants';
 import { TokenColorsEnum } from '../enum';
 import { MetricItemType, MetricType } from '../types';
 
@@ -46,8 +44,7 @@ export const useAuthenticationContext = () => {
 };
 
 export const useAuthenticationValue = () => {
-  const { chain } = useChain();
-  const [metrics, setMetrics] = useState<MetricType>(DEFAULT_METRICS[chain]);
+  const [metrics, setMetrics] = useState<MetricType>();
   const [initialTokens, setInitialTokens] = useState<InitialTokensType>();
   const [fetchingInitialTokens, setFetchingInitialTokens] = useState<boolean>();
   const [isValidating, setIsValidating] = useState<boolean>();
@@ -58,7 +55,7 @@ export const useAuthenticationValue = () => {
         name: 'Address',
         identifier: 'address',
         colors: [TokenColorsEnum.address],
-        data: metrics ? metrics.address : undefined,
+        data: metrics?.address,
       },
       {
         name: 'Body',
@@ -69,20 +66,20 @@ export const useAuthenticationValue = () => {
           TokenColorsEnum.ttl,
           TokenColorsEnum.extra,
         ],
-        data: metrics ? metrics.body : undefined,
+        data: metrics?.body,
       },
       {
         name: 'Origin',
         identifier: 'origin',
         colors: [TokenColorsEnum.origin],
-        data: metrics ? metrics.origin : undefined,
+        data: metrics?.origin,
         subItem: true,
       },
       {
         name: 'Block Hash',
         identifier: 'blockHash',
         colors: [TokenColorsEnum.blockHash],
-        data: metrics ? metrics.blockHash : undefined,
+        data: metrics?.blockHash,
         explorer: metrics ? `/blocks/${metrics.blockHash}` : '',
         subItem: true,
       },
@@ -91,7 +88,7 @@ export const useAuthenticationValue = () => {
         name: 'Time to live (seconds)',
         identifier: 'ttl',
         colors: [TokenColorsEnum.ttl],
-        data: metrics ? metrics.ttl : undefined,
+        data: metrics?.ttl,
         subItem: true,
       },
       {
@@ -108,7 +105,7 @@ export const useAuthenticationValue = () => {
         name: 'Signature',
         identifier: 'signature',
         colors: [TokenColorsEnum.signature],
-        data: metrics ? metrics.signature : undefined,
+        data: metrics?.signature,
       },
     ],
     [metrics],

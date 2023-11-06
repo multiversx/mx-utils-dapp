@@ -1,12 +1,12 @@
+import { useChain } from 'hooks/useChain';
 import { Input } from './components/Input';
 import { Metric } from './components/Metric';
-import styles from './styles.module.scss';
-import { useChain } from 'hooks/useChain';
 import { useAuthenticationContext } from './context';
+import styles from './styles.module.scss';
 
 export const AuthenticationContent = () => {
   const { chain } = useChain();
-  const { metrics, metricItems } = useAuthenticationContext();
+  const { metricItems } = useAuthenticationContext();
 
   return (
     <div className={styles.authentication}>
@@ -21,13 +21,11 @@ export const AuthenticationContent = () => {
           <span>Decoded</span>
         </h2>
 
-        {metrics && (
-          <div className={styles.metrics}>
-            {metricItems.map((metric) => (
-              <Metric key={metric.identifier} chain={chain} {...metric} />
-            ))}
-          </div>
-        )}
+        <div className={styles.metrics}>
+          {metricItems.map((metric) => (
+            <Metric key={metric.identifier} chain={chain} {...metric} />
+          ))}
+        </div>
       </div>
     </div>
   );
