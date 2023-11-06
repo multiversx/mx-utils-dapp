@@ -50,18 +50,6 @@ export const useTokenActions = () => {
         const [decoded, valid] = await Promise.allSettled(promises);
         setIsValidating(false);
 
-        const tokenExpired =
-          valid.status === 'rejected' &&
-          ['Token expired', 'maxExpirySeconds'].some((x) =>
-            valid.reason.message.includes(x),
-          );
-
-        if (tokenExpired) {
-          setFieldError('token', 'Token Expired');
-          setFieldError('message', undefined);
-          return;
-        }
-
         if (decoded.status === 'rejected') {
           setFieldError('token', 'Token Undecodable');
           setFieldError(
@@ -75,8 +63,8 @@ export const useTokenActions = () => {
         }
 
         if (valid.status === 'rejected') {
-          setFieldError('token', 'Token Invalid');
-          setFieldError('message', "Signature doesn't match.");
+          setFieldError('token', valid.reason.message ?? 'Token Invalid');
+          setFieldError('message', undefined);
           return;
         }
 
