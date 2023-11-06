@@ -5,14 +5,14 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState
+  useState,
 } from 'react';
-import { MetricItemType, MetricType } from '../types';
-import { useChain } from 'hooks/useChain';
-import { TokenColorsEnum } from '../enum';
-import { DEFAULT_METRICS } from '../constants';
 import axios from 'axios';
 import { miscApi } from 'config';
+import { useChain } from 'hooks/useChain';
+import { DEFAULT_METRICS } from '../constants';
+import { TokenColorsEnum } from '../enum';
+import { MetricItemType, MetricType } from '../types';
 
 export type InitialTokensType = {
   mainnet: string;
@@ -38,7 +38,7 @@ export const useAuthenticationContext = () => {
 
   if (context === null) {
     throw new Error(
-      'useAuthenticationContext must be used within a AuthenticationProvider'
+      'useAuthenticationContext must be used within a AuthenticationProvider',
     );
   }
 
@@ -58,25 +58,25 @@ export const useAuthenticationValue = () => {
         name: 'Address',
         identifier: 'address',
         colors: [TokenColorsEnum.address],
-        data: metrics ? metrics.address : undefined
+        data: metrics ? metrics.address : undefined,
       },
       {
         name: 'Body',
         identifier: 'body',
         colors: [
-          TokenColorsEnum.host,
+          TokenColorsEnum.origin,
           TokenColorsEnum.blockHash,
           TokenColorsEnum.ttl,
-          TokenColorsEnum.extra
+          TokenColorsEnum.extra,
         ],
-        data: metrics ? metrics.body : undefined
+        data: metrics ? metrics.body : undefined,
       },
       {
-        name: 'Host',
-        identifier: 'host',
-        colors: [TokenColorsEnum.host],
-        data: metrics ? metrics.host : undefined,
-        subItem: true
+        name: 'Origin',
+        identifier: 'origin',
+        colors: [TokenColorsEnum.origin],
+        data: metrics ? metrics.origin : undefined,
+        subItem: true,
       },
       {
         name: 'Block Hash',
@@ -84,7 +84,7 @@ export const useAuthenticationValue = () => {
         colors: [TokenColorsEnum.blockHash],
         data: metrics ? metrics.blockHash : undefined,
         explorer: metrics ? `/blocks/${metrics.blockHash}` : '',
-        subItem: true
+        subItem: true,
       },
 
       {
@@ -92,7 +92,7 @@ export const useAuthenticationValue = () => {
         identifier: 'ttl',
         colors: [TokenColorsEnum.ttl],
         data: metrics ? metrics.ttl : undefined,
-        subItem: true
+        subItem: true,
       },
       {
         name: 'Extra Info',
@@ -102,23 +102,23 @@ export const useAuthenticationValue = () => {
         data:
           metrics && Object.keys(metrics.extraInfo || []).length > 0
             ? JSON.stringify(metrics.extraInfo, null, 2)
-            : undefined
+            : undefined,
       },
       {
         name: 'Signature',
         identifier: 'signature',
         colors: [TokenColorsEnum.signature],
-        data: metrics ? metrics.signature : undefined
-      }
+        data: metrics ? metrics.signature : undefined,
+      },
     ],
-    [metrics]
+    [metrics],
   );
 
   const fetchInitialTokens = async () => {
     setFetchingInitialTokens(true);
     try {
       const { data } = await axios.get<InitialTokensType>(
-        `${miscApi}/utils-native-auth`
+        `${miscApi}/utils-native-auth`,
       );
 
       setInitialTokens(data);
@@ -140,6 +140,6 @@ export const useAuthenticationValue = () => {
     initialTokens,
     fetchingInitialTokens,
     isValidating,
-    setIsValidating
+    setIsValidating,
   };
 };

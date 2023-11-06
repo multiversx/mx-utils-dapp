@@ -3,8 +3,8 @@ export enum TokenColorsEnum {
   default = '#b0b3b8',
   signature = '#00B9F1',
   body = '#FB015B',
-  host = '#a86532',
+  origin = '#a86532',
   blockHash = '#77a832',
   ttl = '#a8329a',
-  extra = '#3298a8'
+  extra = '#3298a8',
 }
