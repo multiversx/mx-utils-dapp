@@ -3,12 +3,12 @@ import {
   useState,
   useEffect,
   PropsWithChildren,
-  useMemo
+  useMemo,
 } from 'react';
 import {
   faCaretDown,
   faSignIn,
-  faSignOut
+  faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useLocation } from 'react-router-dom';
@@ -23,10 +23,10 @@ import { useNavigation } from './hooks/useNavigation';
 
 import styles from './styles.module.scss';
 
-import type { ItemType } from './types';
+import type { ItemType, TemplateType } from './types';
 import {
   useGetAccountInfo,
-  useGetIsLoggedIn
+  useGetIsLoggedIn,
 } from '@multiversx/sdk-dapp/hooks';
 import { useLogout } from 'hooks/useLogout';
 import { Trim } from '@multiversx/sdk-dapp/UI';
@@ -35,8 +35,8 @@ import { Trim } from '@multiversx/sdk-dapp/UI';
  * Handle the component declaration.
  */
 
-export const Template = (props: PropsWithChildren) => {
-  const { children } = props;
+export const Template = (props: TemplateType) => {
+  const { children, fullWidth = false } = props;
   const { navigation } = useNavigation();
   const { pathname, hash } = useLocation();
 
@@ -53,12 +53,12 @@ export const Template = (props: PropsWithChildren) => {
 
   const items = routes.map(
     (route: RouteType): ItemType =>
-      Object.assign(route, navigation.get(route.path))
+      Object.assign(route, navigation.get(route.path)),
   );
 
   const menuItems = useMemo(
     () => items.filter((x) => x.path !== routeNames.unlock),
-    [items]
+    [items],
   );
 
   /*
@@ -113,7 +113,7 @@ export const Template = (props: PropsWithChildren) => {
           id='navigation'
           data-testid='navigation'
           className={classNames(styles.navigation, {
-            [styles.active]: window.innerWidth < 992 ? toggleMenu : true
+            [styles.active]: window.innerWidth < 992 ? toggleMenu : true,
           })}
         >
           <h6 className={styles.menu}>Menu</h6>
@@ -125,7 +125,7 @@ export const Template = (props: PropsWithChildren) => {
                 data-testid={`navigation-page-${item.path}`}
                 className={classNames(styles.page, {
                   [styles.active]:
-                    item.path === activePage || item.path === pathname
+                    item.path === activePage || item.path === pathname,
                 })}
               >
                 <div className={styles.item}>
@@ -148,7 +148,7 @@ export const Template = (props: PropsWithChildren) => {
                       <span
                         data-testid={`navigation-caret-${item.path}`}
                         className={classNames(styles.caret, {
-                          [styles.active]: item.path === activePage
+                          [styles.active]: item.path === activePage,
                         })}
                       >
                         <FontAwesomeIcon icon={faCaretDown} />
@@ -164,7 +164,7 @@ export const Template = (props: PropsWithChildren) => {
               className={classNames(styles.page, {
                 [styles.active]:
                   routeNames.unlock === activePage ||
-                  routeNames.unlock === pathname
+                  routeNames.unlock === pathname,
               })}
             >
               <div className={styles.item} style={{ display: 'inherit' }}>
@@ -199,7 +199,11 @@ export const Template = (props: PropsWithChildren) => {
         </div>
 
         <div className={styles.content}>
-          <div className={styles.wrapper}>
+          <div
+            className={classNames(styles.wrapper, {
+              [styles.fill]: fullWidth,
+            })}
+          >
             {children}
             <Footer />
           </div>

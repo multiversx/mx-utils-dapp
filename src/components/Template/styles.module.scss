@@ -175,7 +175,7 @@
       }
     }
 
-    @media(min-width:992px) {
+    @media (min-width: 992px) {
       li:last-child {
         position: absolute;
         bottom: 0;
@@ -202,9 +202,14 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-
       @media (min-width: 1440px) {
         max-width: 75%;
+      }
+      &.fill {
+        flex-grow: 1;
+        @media (min-width: 1440px) {
+          max-width: 100%;
+        }
       }
     }
   }

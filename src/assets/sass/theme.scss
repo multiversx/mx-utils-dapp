@@ -11,15 +11,57 @@ body {
   line-height: 1;
   overflow: hidden;
   background-color: var(--body);
+
+  // Neutral Colors
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  --neutral-950: #121212;
+  // Primary Colors
+  --primary-100: #ccfbf1;
+  --primary-200: #99f6e4;
+  --primary-300: #5eead4;
+  --primary-400: #23f7dd;
+  --primary-500: #0ac2ae;
+  --primary-600: #099887;
+  --primary-700: #0d786c;
+  --primary-800: #115e55;
+  --primary-900: #134e48;
+
   --white: #ffffff;
   --body: #18191a;
   --navigation: #242526;
   --header: #333;
   --text: #e4e6eb;
   --dark: #b0b3b8;
-  --link: #23f7dd;
+  --link: var(--primary-400);
   --background: #2a2a2b;
   --black: #000000;
+  --danger: #d9534f;
+
+  // Temporary in order to avoid interferences from other pacages
+  --primary: var(--primary-400);
+  --primary-light: var(--primary-300);
+  --border-color: #dee2e6;
+  --light: #fafafa;
+  --secondary: #6c757d;
+  --card-bg: #ffffff;
+  --warning: #ffc107;
+  --btn-blue: #163aa0;
+  --brown: #212529;
+  --link-hover-color: var(--priumary-700);
+}
+
+.dapp-core-component__trim-styles__trim.overflow {
+  .dapp-core-component__trim-styles__ellipsis {
+    display: unset;
+  }
 }
 
 .modal {
@@ -121,3 +163,5 @@ body {
     }
   }
 }
+
+@import './plugins/sdk-sc-explorer.scss';
