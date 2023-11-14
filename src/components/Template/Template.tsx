@@ -3,33 +3,36 @@ import {
   useState,
   useEffect,
   PropsWithChildren,
-  useMemo
+  useMemo,
 } from 'react';
 import {
   faCaretDown,
   faSignIn,
-  faSignOut
+  faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, useLocation } from 'react-router-dom';
+import {
+  useGetAccountInfo,
+  useGetIsLoggedIn,
+} from '@multiversx/sdk-dapp/hooks';
+import { Trim } from '@multiversx/sdk-dapp/UI';
 import classNames from 'classnames';
+import { Link, useLocation } from 'react-router-dom';
 
+import { useCallbackRoute } from 'hooks/useCallbackRoute';
+import { useLogout } from 'hooks/useLogout';
 import { routeNames, routes, RouteType } from 'routes';
 
-import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { Navbar } from './components/Navbar';
 
 import { useNavigation } from './hooks/useNavigation';
 
 import styles from './styles.module.scss';
 
 import type { ItemType } from './types';
-import {
-  useGetAccountInfo,
-  useGetIsLoggedIn
-} from '@multiversx/sdk-dapp/hooks';
-import { useLogout } from 'hooks/useLogout';
-import { Trim } from '@multiversx/sdk-dapp/UI';
+
+const MEDIUM_SCREEN_WIDTH = 992;
 
 /*
  * Handle the component declaration.
@@ -38,7 +41,7 @@ import { Trim } from '@multiversx/sdk-dapp/UI';
 export const Template = (props: PropsWithChildren) => {
   const { children } = props;
   const { navigation } = useNavigation();
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, search } = useLocation();
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [activePage, setActivePage] = useState(hash ? pathname : '');
@@ -46,6 +49,14 @@ export const Template = (props: PropsWithChildren) => {
   const isLoggedIn = useGetIsLoggedIn();
   const { address } = useGetAccountInfo();
   const logout = useLogout();
+  const callbackRoute = useCallbackRoute();
+
+  const unlockRoute = useMemo(() => {
+    const route = search
+      ? `${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
+      : `${routeNames.unlock}?callbackUrl=${callbackRoute}`;
+    return route;
+  }, [callbackRoute, search]);
 
   /*
    * Assign each route the icon and categories for enhanced mapping.
@@ -53,12 +64,12 @@ export const Template = (props: PropsWithChildren) => {
 
   const items = routes.map(
     (route: RouteType): ItemType =>
-      Object.assign(route, navigation.get(route.path))
+      Object.assign(route, navigation.get(route.path)),
   );
 
   const menuItems = useMemo(
     () => items.filter((x) => x.path !== routeNames.unlock),
-    [items]
+    [items],
   );
 
   /*
@@ -66,7 +77,7 @@ export const Template = (props: PropsWithChildren) => {
    */
 
   const onItemClick = useCallback(() => {
-    if (window.innerWidth < 992) {
+    if (window.innerWidth < MEDIUM_SCREEN_WIDTH) {
       setToggleMenu(false);
     }
   }, []);
@@ -113,7 +124,8 @@ export const Template = (props: PropsWithChildren) => {
           id='navigation'
           data-testid='navigation'
           className={classNames(styles.navigation, {
-            [styles.active]: window.innerWidth < 992 ? toggleMenu : true
+            [styles.active]:
+              window.innerWidth < MEDIUM_SCREEN_WIDTH ? toggleMenu : true,
           })}
         >
           <h6 className={styles.menu}>Menu</h6>
@@ -125,7 +137,7 @@ export const Template = (props: PropsWithChildren) => {
                 data-testid={`navigation-page-${item.path}`}
                 className={classNames(styles.page, {
                   [styles.active]:
-                    item.path === activePage || item.path === pathname
+                    item.path === activePage || item.path === pathname,
                 })}
               >
                 <div className={styles.item}>
@@ -148,7 +160,7 @@ export const Template = (props: PropsWithChildren) => {
                       <span
                         data-testid={`navigation-caret-${item.path}`}
                         className={classNames(styles.caret, {
-                          [styles.active]: item.path === activePage
+                          [styles.active]: item.path === activePage,
                         })}
                       >
                         <FontAwesomeIcon icon={faCaretDown} />
@@ -164,12 +176,12 @@ export const Template = (props: PropsWithChildren) => {
               className={classNames(styles.page, {
                 [styles.active]:
                   routeNames.unlock === activePage ||
-                  routeNames.unlock === pathname
+                  routeNames.unlock === pathname,
               })}
             >
               <div className={styles.item} style={{ display: 'inherit' }}>
                 <Link
-                  to={isLoggedIn ? '' : routeNames.unlock}
+                  to={isLoggedIn ? '' : unlockRoute}
                   className={classNames(styles.path, styles.unlock)}
                   onClick={onUnlockItemClick}
                 >

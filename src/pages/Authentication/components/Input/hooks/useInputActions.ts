@@ -1,10 +1,10 @@
-import { useTokenActions } from './useTokenActions';
-import { routeNames } from 'routes';
-import { useLocation } from 'react-router-dom';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
-import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
+import { useLocation } from 'react-router-dom';
+import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useLogout } from 'hooks/useLogout';
+import { routeNames } from 'routes';
+import { useTokenActions } from './useTokenActions';
 
 export const useInputActions = () => {
   const { search } = useLocation();
@@ -32,6 +32,6 @@ export const useInputActions = () => {
 
   return {
     handleGenerateToken,
-    handlePasteToken
+    handlePasteToken,
   };
 };
