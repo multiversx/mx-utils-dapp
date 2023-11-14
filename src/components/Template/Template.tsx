@@ -19,6 +19,7 @@ import { Trim } from '@multiversx/sdk-dapp/UI';
 import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
+import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useLogout } from 'hooks/useLogout';
 import { routeNames, routes, RouteType } from 'routes';
 
@@ -30,7 +31,8 @@ import { useNavigation } from './hooks/useNavigation';
 import styles from './styles.module.scss';
 
 import type { ItemType } from './types';
-import { useCallbackRoute } from '../../hooks/useCallbackRoute.ts';
+
+const MEDIUM_SCREEN_WIDTH = 992;
 
 /*
  * Handle the component declaration.
@@ -75,7 +77,7 @@ export const Template = (props: PropsWithChildren) => {
    */
 
   const onItemClick = useCallback(() => {
-    if (window.innerWidth < 992) {
+    if (window.innerWidth < MEDIUM_SCREEN_WIDTH) {
       setToggleMenu(false);
     }
   }, []);
@@ -122,7 +124,8 @@ export const Template = (props: PropsWithChildren) => {
           id='navigation'
           data-testid='navigation'
           className={classNames(styles.navigation, {
-            [styles.active]: window.innerWidth < 992 ? toggleMenu : true,
+            [styles.active]:
+              window.innerWidth < MEDIUM_SCREEN_WIDTH ? toggleMenu : true,
           })}
         >
           <h6 className={styles.menu}>Menu</h6>
