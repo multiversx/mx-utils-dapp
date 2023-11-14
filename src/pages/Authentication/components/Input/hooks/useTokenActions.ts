@@ -1,11 +1,12 @@
 import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo } from 'react';
 import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
-import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks/account/useGetIsLoggedIn';
 import { NativeAuthServerConfig } from '@multiversx/sdk-native-auth-server/lib/src/entities/native.auth.server.config';
 import { useFormikContext } from 'formik';
 import debounce from 'lodash.debounce';
 import { useChain } from 'hooks/useChain';
 import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
+import { usePersistedState } from 'hooks/usePersistedState';
+import { NATIVE_TOKEN_CHAIN } from 'localConstants';
 import { EXPIRY_SECONDS } from 'localConstants/nativeAuth';
 import { emptyMetrics } from 'pages/Authentication/constants/metrics.contants';
 import { useAuthenticationContext } from 'pages/Authentication/context';
@@ -21,8 +22,12 @@ export const useTokenActions = () => {
   const { setMetrics, initialTokens, setIsValidating } =
     useAuthenticationContext();
   const { chain } = useChain();
-  const isLoggedIn = useGetIsLoggedIn();
   const nativeAuthToken = useGetNativeAuthToken();
+  const [nativeTokenChain] = usePersistedState({
+    storage: sessionStorage,
+    key: NATIVE_TOKEN_CHAIN,
+    initialValue: '',
+  });
 
   const { setFieldValue, setFieldTouched, setFieldError } =
     useFormikContext<FormValuesType>();
@@ -140,15 +145,16 @@ export const useTokenActions = () => {
   );
 
   useEffect(() => {
-    if (isLoggedIn && nativeAuthToken) {
-      handleChange(nativeAuthToken);
-      return;
-    }
-
     if (!initialTokens) return;
 
     handleChange(initialTokens[chain]);
-  }, [chain, handleChange, initialTokens, isLoggedIn, nativeAuthToken]);
+  }, [chain, handleChange, initialTokens]);
+
+  useEffect(() => {
+    if (!nativeAuthToken || nativeTokenChain !== chain) return;
+
+    handleChange(nativeAuthToken);
+  }, [chain, handleChange, nativeAuthToken, nativeTokenChain]);
 
   return {
     handleChange,
