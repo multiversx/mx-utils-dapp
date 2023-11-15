@@ -2,6 +2,7 @@ import {
   createContext,
   Dispatch,
   SetStateAction,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -9,6 +10,8 @@ import {
 } from 'react';
 import axios from 'axios';
 import { miscApi } from 'config';
+import { useChain } from 'hooks/useChain';
+import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
 import { TokenColorsEnum } from '../enum';
 import { MetricItemType, MetricType } from '../types';
 
@@ -44,10 +47,13 @@ export const useAuthenticationContext = () => {
 };
 
 export const useAuthenticationValue = () => {
+  const { chain } = useChain();
   const [metrics, setMetrics] = useState<MetricType>();
   const [initialTokens, setInitialTokens] = useState<InitialTokensType>();
   const [fetchingInitialTokens, setFetchingInitialTokens] = useState<boolean>();
   const [isValidating, setIsValidating] = useState<boolean>();
+
+  const nativeAuthToken = useGetNativeAuthToken();
 
   const metricItems: MetricItemType[] = useMemo(
     () => [
@@ -111,12 +117,16 @@ export const useAuthenticationValue = () => {
     [metrics],
   );
 
-  const fetchInitialTokens = async () => {
+  const fetchInitialTokens = useCallback(async () => {
     setFetchingInitialTokens(true);
     try {
       const { data } = await axios.get<InitialTokensType>(
         `${miscApi}/utils-native-auth`,
       );
+
+      if (nativeAuthToken) {
+        data[chain] = nativeAuthToken;
+      }
 
       setInitialTokens(data);
       setFetchingInitialTokens(false);
@@ -124,11 +134,11 @@ export const useAuthenticationValue = () => {
       console.error(err);
       setFetchingInitialTokens(false);
     }
-  };
+  }, [chain, nativeAuthToken]);
 
   useEffect(() => {
     fetchInitialTokens();
-  }, []);
+  }, [nativeAuthToken]);
 
   return {
     metrics,

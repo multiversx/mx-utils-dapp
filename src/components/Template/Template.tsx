@@ -5,25 +5,28 @@ import {
   faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, useLocation } from 'react-router-dom';
+import {
+  useGetAccountInfo,
+  useGetIsLoggedIn,
+} from '@multiversx/sdk-dapp/hooks';
+import { Trim } from '@multiversx/sdk-dapp/UI';
 import classNames from 'classnames';
+import { Link, useLocation } from 'react-router-dom';
 
+import { useCallbackRoute } from 'hooks/useCallbackRoute';
+import { useLogout } from 'hooks/useLogout';
 import { routeNames, routes, RouteType } from 'routes';
 
-import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { Navbar } from './components/Navbar';
 
 import { useNavigation } from './hooks/useNavigation';
 
 import styles from './styles.module.scss';
 
 import type { ItemType, TemplateType } from './types';
-import {
-  useGetAccountInfo,
-  useGetIsLoggedIn,
-} from '@multiversx/sdk-dapp/hooks';
-import { useLogout } from 'hooks/useLogout';
-import { Trim } from '@multiversx/sdk-dapp/UI';
+
+const MEDIUM_SCREEN_WIDTH = 992;
 
 /*
  * Handle the component declaration.
@@ -32,7 +35,7 @@ import { Trim } from '@multiversx/sdk-dapp/UI';
 export const Template = (props: TemplateType) => {
   const { children, fullWidth = false } = props;
   const { navigation } = useNavigation();
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, search } = useLocation();
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [activePage, setActivePage] = useState(hash ? pathname : '');
@@ -40,6 +43,14 @@ export const Template = (props: TemplateType) => {
   const isLoggedIn = useGetIsLoggedIn();
   const { address } = useGetAccountInfo();
   const logout = useLogout();
+  const callbackRoute = useCallbackRoute();
+
+  const unlockRoute = useMemo(() => {
+    const route = search
+      ? `${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
+      : `${routeNames.unlock}?callbackUrl=${callbackRoute}`;
+    return route;
+  }, [callbackRoute, search]);
 
   /*
    * Assign each route the icon and categories for enhanced mapping.
@@ -60,7 +71,7 @@ export const Template = (props: TemplateType) => {
    */
 
   const onItemClick = useCallback(() => {
-    if (window.innerWidth < 992) {
+    if (window.innerWidth < MEDIUM_SCREEN_WIDTH) {
       setToggleMenu(false);
     }
   }, []);
@@ -107,7 +118,8 @@ export const Template = (props: TemplateType) => {
           id='navigation'
           data-testid='navigation'
           className={classNames(styles.navigation, {
-            [styles.active]: window.innerWidth < 992 ? toggleMenu : true,
+            [styles.active]:
+              window.innerWidth < MEDIUM_SCREEN_WIDTH ? toggleMenu : true,
           })}
         >
           <h6 className={styles.menu}>Menu</h6>
@@ -163,7 +175,7 @@ export const Template = (props: TemplateType) => {
             >
               <div className={styles.item} style={{ display: 'inherit' }}>
                 <Link
-                  to={isLoggedIn ? '' : routeNames.unlock}
+                  to={isLoggedIn ? '' : unlockRoute}
                   className={classNames(styles.path, styles.unlock)}
                   onClick={onUnlockItemClick}
                 >
