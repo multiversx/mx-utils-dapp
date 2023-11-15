@@ -57,6 +57,8 @@ export const SmartContractInteraction = () => {
           smartContract={{
             canMutate: true,
             canLoadAbi: true,
+            canDeploy: true,
+            canUpgrade: true,
           }}
           accountConsumerHandlers={{
             useGetLoginInfo,

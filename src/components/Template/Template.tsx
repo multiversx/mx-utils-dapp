@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useState,
-  useEffect,
-  PropsWithChildren,
-  useMemo,
-} from 'react';
+import { useCallback, useState, useEffect, useMemo } from 'react';
 import {
   faCaretDown,
   faSignIn,

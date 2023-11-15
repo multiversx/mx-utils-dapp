@@ -7,8 +7,7 @@ import { Converters } from 'pages/Converters';
 import { Explainer } from 'pages/Explainer';
 import { Home } from 'pages/Home';
 import { SignMessage } from 'pages/SignMessage';
-import { SmartContractInteraction } from 'pages/SmartContractInteraction/SmartContractInteraction';
-import { SmartContractInteraction as SmartContractInteractionNew } from 'pages/SmartContractInteractionNew/SmartContractInteraction';
+import { SmartContractInteraction } from 'pages/SmartContractInteractionNew/SmartContractInteraction';
 import { Unlock } from 'pages/Unlock/Unlock';
 
 import { withPageTitle } from './components/PageTitle';
@@ -25,7 +24,6 @@ export const routeNames = {
   auth: '/auth',
   signMessage: '/sign-message',
   smartContract: '/smart-contract',
-  smartContractNew: '/smart-contract-new',
   unlock: '/unlock',
   explainer: '/explainer',
 };
@@ -42,11 +40,6 @@ const pages: RouteType[] = [
     component: Converters,
   },
   {
-    path: routeNames.smartContractNew,
-    title: 'SC Interaction (BETA)',
-    component: SmartContractInteractionNew,
-  },
-  {
     path: routeNames.auth,
     title: 'Native Auth',
     component: Authentication,
@@ -58,7 +51,7 @@ const pages: RouteType[] = [
   },
   {
     path: routeNames.smartContract,
-    title: 'SC Deploy (BETA)',
+    title: 'SC Interaction (BETA)',
     component: SmartContractInteraction,
   },
   {
