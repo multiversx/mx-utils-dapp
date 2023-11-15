@@ -1,0 +1,52 @@
+@import './variables';
+
+/* ----------------- Card ----------------- */
+
+.#{$package-name} {
+  &-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: var(--card-height);
+    word-wrap: break-word;
+    background-color: var(--card-bg);
+    background-clip: border-box;
+    border: var(--card-border-width) solid var(--card-border-color);
+    border-radius: var(--card-border-radius);
+
+    &-header {
+      padding: var(--card-cap-padding-y) var(--card-cap-padding-x);
+      margin-bottom: 0;
+      color: var(--card-cap-color);
+      background-color: var(--card-cap-bg);
+      border-bottom: var(--card-border-width) solid var(--card-border-color);
+
+      &-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+    &-body {
+      flex: 1 1 auto;
+      padding: var(--card-spacer-y) var(--card-spacer-x);
+      color: var(--card-color);
+    }
+  }
+  &-card-container {
+    margin-bottom: 1rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    &-title {
+      font-family: var(--headings-font-family);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      background-color: var(--table-header);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      margin-top: 0;
+    }
+  }
+}

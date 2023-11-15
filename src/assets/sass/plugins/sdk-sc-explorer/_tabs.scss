@@ -1,0 +1,33 @@
+@import './variables';
+
+/* ----------------- Tabs ----------------- */
+
+.#{$package-name} {
+  &-tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--headings-font-family);
+    border-radius: 0.5rem;
+    padding: var(--nav-link-padding-y) var(--nav-link-padding-x);
+    font-size: var(--nav-link-font-size);
+    font-weight: var(--nav-link-font-weight);
+    color: var(--nav-link-color);
+    text-decoration: none;
+    transition:
+      color 0.15s ease-in-out,
+      background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out;
+    &:hover,
+    &-active {
+      background: var(--black);
+      color: var(--nav-link-hover-color);
+    }
+    &-load-abi-icon {
+      color: var(--primary);
+    }
+  }
+  .tab-content > .active {
+    display: block;
+  }
+}

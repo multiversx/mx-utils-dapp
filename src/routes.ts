@@ -1,13 +1,12 @@
 import type { ComponentType } from 'react';
 
 import { applicationName } from 'config';
-
 import { Authentication } from 'pages/Authentication';
 import { Converters } from 'pages/Converters';
 import { Explainer } from 'pages/Explainer';
 import { Home } from 'pages/Home';
 import { SignMessage } from 'pages/SignMessage';
-import { SmartContractInteraction } from 'pages/SmartContractInteractionNew/SmartContractInteraction';
+import { SmartContractInteraction } from 'pages/SmartContractInteraction';
 import { Unlock } from 'pages/Unlock/Unlock';
 
 import { withPageTitle } from './components/PageTitle';
