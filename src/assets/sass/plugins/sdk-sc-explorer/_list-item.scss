@@ -1,0 +1,30 @@
+@import './variables';
+
+/* ----------------- List Item ----------------- */
+
+.#{$package-name} {
+  &-list-item {
+    border: 1px solid var(--black);
+    &.open {
+      border-color: var(--background);
+    }
+    & > .#{$package-name}-card-header + div > .#{$package-name}-card-body {
+      padding-top: 0;
+      @media (max-width: 767px) {
+        --card-spacer-y: 0.5rem;
+      }
+    }
+    &.#{$package-name}-card > .#{$package-name}-card-header {
+      @media (max-width: 767px) {
+        --card-cap-padding-x: 0.5rem;
+        --card-cap-padding-y: 0.75rem;
+      }
+    }
+    .#{$package-name}-card-header,
+    .#{$package-name}-card-body {
+      @media (max-width: 767px) {
+        --card-spacer-x: 0.5rem;
+      }
+    }
+  }
+}

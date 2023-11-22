@@ -1,0 +1,113 @@
+@import './variables';
+
+/* ----------------- Inputs ----------------- */
+
+.#{$package-name} {
+  &-input {
+    height: 1.5rem;
+    padding: 0.5rem 0.75rem;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: var(--neutral-950);
+      color: var(--neutral-700);
+    }
+    &-invalid {
+      border-color: var(--danger);
+    }
+    &-invalid-feedback {
+      width: 100%;
+      font-size: 10px;
+      color: var(--danger);
+    }
+  }
+  &-input-group {
+    .#{$package-name}-field {
+      background-color: var(--neutral-950);
+    }
+    .#{$package-name}-input-invalid + .#{$package-name}-input-group-append {
+      border: 1px solid var(--danger);
+      border-left: 0;
+    }
+    &-append-icon {
+      svg {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+      }
+      color: var(--primary);
+    }
+  }
+  &-input-group-append.input-group-text {
+    top: 0;
+    padding: 0.438rem;
+    &:first-of-type:not(:last-of-type) {
+      right: 0;
+    }
+  }
+  &-label {
+    margin-bottom: 0.25rem;
+    font-size: 10px;
+    color: var(--dark);
+    font-weight: 300;
+    line-height: 1;
+    display: inline-block;
+  }
+  &-general-error {
+    color: var(--danger);
+    margin-top: 1rem;
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  &-amount-select-input-group {
+    margin-top: 2rem;
+
+    &.dapp-core-component__amountSelect-module__amount {
+      .dapp-core-component__amountSelect-module__label {
+        margin-bottom: 0.25rem;
+        font-size: 10px;
+        color: var(--dark);
+        font-weight: 300;
+        line-height: 1;
+
+        .dapp-core-component__globals-module__label {
+          font-size: 10px;
+          color: var(--dark);
+          font-weight: 300;
+          line-height: 1;
+        }
+        .dapp-core-component__tokenBalance-module__balance {
+          font-size: 10px;
+          span {
+            color: var(--neutral-400);
+          }
+        }
+      }
+      .dapp-core-component__tokenSelect-module__select
+        .dapp-core-component__tokenSelect-module__control {
+        .dapp-core-component__tokenSelect-module__container {
+          height: 3.125rem;
+        }
+        .dapp-core-component__tokenSelect-module__payload
+          .dapp-core-component__tokenSelect-module__wrapper {
+          flex-direction: row;
+        }
+      }
+      .dapp-core-component__amountInput-module__amount-input {
+        padding: 1rem 0.5rem;
+        font-weight: 400;
+      }
+      .dapp-core-component__globals-module__error {
+        padding-top: 0;
+        margin-top: 0.25rem;
+        font-size: 0.875em;
+      }
+      .dapp-core-component__tokenSelect-module__control {
+        &:hover {
+          box-shadow: 0 0 0 1px var(--primary);
+          border-color: var(--primary);
+        }
+      }
+    }
+  }
+}

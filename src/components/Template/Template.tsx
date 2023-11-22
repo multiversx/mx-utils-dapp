@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useState,
-  useEffect,
-  PropsWithChildren,
-  useMemo,
-} from 'react';
+import { useCallback, useState, useEffect, useMemo } from 'react';
 import {
   faCaretDown,
   faSignIn,
@@ -30,7 +24,7 @@ import { useNavigation } from './hooks/useNavigation';
 
 import styles from './styles.module.scss';
 
-import type { ItemType } from './types';
+import type { ItemType, TemplateType } from './types';
 
 const MEDIUM_SCREEN_WIDTH = 992;
 
@@ -38,8 +32,8 @@ const MEDIUM_SCREEN_WIDTH = 992;
  * Handle the component declaration.
  */
 
-export const Template = (props: PropsWithChildren) => {
-  const { children } = props;
+export const Template = (props: TemplateType) => {
+  const { children, fullWidth = false } = props;
   const { navigation } = useNavigation();
   const { pathname, hash, search } = useLocation();
 
@@ -211,7 +205,11 @@ export const Template = (props: PropsWithChildren) => {
         </div>
 
         <div className={styles.content}>
-          <div className={styles.wrapper}>
+          <div
+            className={classNames(styles.wrapper, {
+              [styles.fill]: fullWidth,
+            })}
+          >
             {children}
             <Footer />
           </div>
