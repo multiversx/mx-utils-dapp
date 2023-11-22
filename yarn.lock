@@ -1778,20 +1778,6 @@
   resolved "https://registry.yarnpkg.com/@multiversx/sdk-bls-wasm/-/sdk-bls-wasm-0.3.5.tgz#2e83308fdc7a0928c6d5a7f910d796fd8eb2d90b"
   integrity sha512-c0tIdQUnbBLSt6NYU+OpeGPYdL0+GV547HeHT8Xc0BKQ7Cj0v82QUoA2QRtWrR1G4MNZmLsIacZSsf6DrIS2Bw==
 
-"@multiversx/sdk-core@12.12.0":
-  version "12.12.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.12.0.tgz#02e7db8acf38b006bb5f77174a5bd8455a8bc41f"
-  integrity sha512-2bHn45Qp1scTONK2AShLeRfw1sl7/o6HUXKnFPO4qpAKvWunOhv6LjEm093Pf/HE9X48uHsDaq+KpqGGTS4NgA==
-  dependencies:
-    "@multiversx/sdk-transaction-decoder" "1.0.2"
-    bech32 "1.1.4"
-    bignumber.js "9.0.1"
-    blake2b "2.1.3"
-    buffer "6.0.3"
-    json-duplicate-key-handle "1.0.0"
-    keccak "3.0.2"
-    protobufjs "7.2.4"
-
 "@multiversx/sdk-core@12.14.0":
   version "12.14.0"
   resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.14.0.tgz#16f2440c2d92ebf09e97ef119b854f78b957b0f6"
@@ -1842,19 +1828,18 @@
     classnames "2.3.1"
     react-select "5.4.0"
 
-"@multiversx/sdk-dapp-sc-explorer@0.0.1-alpha.5":
-  version "0.0.1-alpha.5"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp-sc-explorer/-/sdk-dapp-sc-explorer-0.0.1-alpha.5.tgz#e0de313fbe9f49387c3afc95994765ebdf3d94b3"
-  integrity sha512-vZPqyp7DzvxGxPiR3Ymje8ePAvMpfhVSzSzNAC0+ByV677zj/t2aaJE+FMBl7MHXRHwHzSMFpprWVqS6t/cg0w==
+"@multiversx/sdk-dapp-sc-explorer@0.0.1-beta.0":
+  version "0.0.1-beta.0"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp-sc-explorer/-/sdk-dapp-sc-explorer-0.0.1-beta.0.tgz#c4b3cbf067fb4eff582b4db50574f44727500ca2"
+  integrity sha512-Fuo0oCJJhycOw1ommBfUn7FgMre/bQ4uQYWIh16qUCbQJ6pVLEwduhfGbTn/7SHkU3M52nMhiy5KkfJT8WkAnA==
   dependencies:
     "@multiversx/sdk-core" "12.14.0"
     "@multiversx/sdk-dapp" "2.23.0"
     "@multiversx/sdk-dapp-form" "0.8.20"
-    "@multiversx/sdk-network-providers" "2.1.0"
-    axios "1.5.0"
+    "@multiversx/sdk-network-providers" "2.2.0"
+    axios "1.6.2"
     bignumber.js "9.x"
     formik "2.4.4"
-    lodash "4.17.21"
     react-bootstrap "2.8.0"
     react-dropzone "11.5.1"
     react-syntax-highlighter "15.5.0"
@@ -1952,12 +1937,12 @@
     buffer "6.0.3"
     json-bigint "1.0.0"
 
-"@multiversx/sdk-network-providers@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-network-providers/-/sdk-network-providers-2.1.0.tgz#09972282da05fbdf34b023f4ef669f9a64b9e8d6"
-  integrity sha512-BiU2R9nu7OKKZckxZ7jjjUbFIyHM9Z6Qera224s9xIel+FjYDDkNCm1qtnvZ5Pc7ftQggFUZ7W/WnEgFhqEZGA==
+"@multiversx/sdk-network-providers@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-network-providers/-/sdk-network-providers-2.2.0.tgz#2b8d5fbbc848dbeba38950db2f02340908dfcfd3"
+  integrity sha512-2n/+7Ap6S9rJGTiX38GCZ2TmY9zQ1U7o1DwnWpHNRJRxArSN/xzLrbcSKy8InMyc+4A+VHf5pV0Pk8NdPV6++w==
   dependencies:
-    axios "0.24.0"
+    axios "1.6.1"
     bech32 "1.1.4"
     bignumber.js "9.0.1"
     buffer "6.0.3"
@@ -3540,10 +3525,19 @@ axios@1.2.2:
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
-axios@1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.5.0.tgz#f02e4af823e2e46a9768cfc74691fdd0517ea267"
-  integrity sha512-D4DdjDo5CY50Qms0qGQTTw6Q44jl7zRwY7bthds06pUGfChBCTcQs+N743eFWGEd6pRTMd6A+I87aWyFV5wiZQ==
+axios@1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.1.tgz#76550d644bf0a2d469a01f9244db6753208397d7"
+  integrity sha512-vfBmhDpKafglh0EldBEbVuoe7DyAavGSLWhuSm5ZSEKQnHhBf0xAAwybbNH1IkrJNGnS/VG4I5yxig1pCEXE4g==
+  dependencies:
+    follow-redirects "^1.15.0"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.2.tgz#de67d42c755b571d3e698df1b6504cde9b0ee9f2"
+  integrity sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==
   dependencies:
     follow-redirects "^1.15.0"
     form-data "^4.0.0"

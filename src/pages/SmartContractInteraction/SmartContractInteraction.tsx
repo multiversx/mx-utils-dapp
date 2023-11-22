@@ -1,7 +1,7 @@
 import { useGetLoginInfo, useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
 import { ScExplorerContainer } from '@multiversx/sdk-dapp-sc-explorer/containers/ScExplorerContainer';
 import { VerifiedContractTabsEnum } from '@multiversx/sdk-dapp-sc-explorer/types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Template } from 'components/Template';
 import { useGlobalContext } from 'context';
@@ -25,12 +25,15 @@ export const SmartContractInteraction = () => {
   const { isLoggedIn } = useGetLoginInfo();
   const callbackRoute = useCallbackRoute();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onLoginClick = () => {
     if (isLoggedIn) {
       return;
     } else {
-      navigate(`${routeNames.unlock}?callbackUrl=${callbackRoute}`);
+      navigate(`${routeNames.unlock}?callbackUrl=${callbackRoute}`, {
+        state: { previousLocation: location },
+      });
     }
   };
 
