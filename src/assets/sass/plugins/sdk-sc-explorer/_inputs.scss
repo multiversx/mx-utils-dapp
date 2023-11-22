@@ -28,6 +28,13 @@
       border: 1px solid var(--danger);
       border-left: 0;
     }
+    &-append-icon {
+      svg {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+      }
+      color: var(--primary);
+    }
   }
   &-input-group-append.input-group-text {
     top: 0;

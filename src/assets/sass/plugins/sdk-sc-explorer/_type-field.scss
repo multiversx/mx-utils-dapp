@@ -17,5 +17,12 @@
     &-value {
       color: var(--neutral-400);
     }
+    .#{$package-name}-field-wrapper {
+      background-color: var(--neutral-950);
+      row-gap: 0.125rem;
+      padding: 0.25rem;
+      border-radius: 1rem;
+      margin-left: 0.5rem;
+    }
   }
 }

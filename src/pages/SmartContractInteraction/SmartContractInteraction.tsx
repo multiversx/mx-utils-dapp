@@ -10,30 +10,14 @@ import { routeNames } from 'routes';
 import styles from './styles.module.scss';
 
 const customClassNames = {
-  wrapperClassName: '',
-  cardClassName: '',
-  cardHeaderClassName: '',
-  cardBodyClassName: '',
-  listClassName: '',
-  listItemClassName: '',
-  badgeClassName: '',
   badgePrimaryClassName: 'badge-outline badge-outline-primary-alt',
   badgeSecondaryClassName: 'badge-outline badge-outline-grey',
-  badgeIconClassName: '',
-  cardItemClassName: '',
-  cardItemIconClassName: '',
-  cardItemTitleClassName: '',
-  cardItemValueClassName: '',
-  cardItemContainerClassName: '',
   buttonClassName: styles?.button,
-  buttonPrimaryClassName: '',
   buttonSecondaryClassName: styles?.buttonSecondary,
   inputClassName: styles?.field,
-  inputInvalidClassName: '',
-  inputInvalidFeedbackClassName: '',
   inputGroupClassName: styles?.fieldgroup,
   inputGroupAppendClassName: styles?.fieldgroupappend,
-  inputGroupPrependClassName: '',
+  selectClassName: styles?.field,
 };
 
 export const SmartContractInteraction = () => {

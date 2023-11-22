@@ -64,6 +64,7 @@
   }
   &-about-panel {
     margin-top: 1rem;
+    margin-bottom: 1rem;
   }
   &-about-panel-content {
     padding: 0.625rem 1rem;
@@ -80,11 +81,6 @@
     &-fields {
       margin-top: 1.5rem;
       margin-bottom: 1.5rem;
-      .#{$package-name}-input-group-append {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        color: var(--primary);
-      }
     }
     &-code-container {
       margin-top: 1.5rem;
