@@ -23,17 +23,18 @@ const AssistantApiEndpoints = {
 
 const getBaseAssistantApiUrl = (chain: EnvironmentsEnum) => {
   // temporarily use only devnet until mainnet issues are fixed
-  return ApiBaseUrls.devnet;
-  // switch (chain) {
-  //   case EnvironmentsEnum.mainnet:
-  //     return ApiBaseUrls.mainnet;
-  //   case EnvironmentsEnum.devnet:
-  //     return ApiBaseUrls.devnet;
-  //   case EnvironmentsEnum.testnet:
-  //     return ApiBaseUrls.testnet;
-  //   default:
-  //     return ApiBaseUrls.mainnet;
-  // }
+  switch (chain) {
+    case EnvironmentsEnum.mainnet:
+      return ApiBaseUrls.devnet;
+    // return ApiBaseUrls.mainnet;
+    case EnvironmentsEnum.devnet:
+      return ApiBaseUrls.devnet;
+    case EnvironmentsEnum.testnet:
+      return ApiBaseUrls.devnet;
+    // return ApiBaseUrls.testnet;
+    default:
+      return ApiBaseUrls.devnet;
+  }
 };
 
 export const assistantApi = {
