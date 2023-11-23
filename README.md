@@ -60,7 +60,7 @@ Follow the next step to start using this dApp.
 
 For _development_ you will need to have the following:
 
-- node version >=16.20.0
+- node version >=18.18.2
 - npm
 
 ### Installation and running
@@ -74,9 +74,11 @@ From a terminal, navigate to the project folder and run `npm install` or `yarn i
 To run the project locally run `npm run start` or `yarn start` from the project folder. Open http://localhost:3001 to view it in the browser.
 
 ### Step 3. Build for testing and production use
+
 To build the project run `npm run build` or `yarn build` from the project folder.
 
 ### Step 4. Preview the build locally
+
 To serve the build run `npm run preview` or `yarn preview` from the project folder.
 
 <!-- ROADMAP -->
@@ -98,5 +100,3 @@ One can contribute by creating _pull requests_, or by opening _issues_ for disco
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-

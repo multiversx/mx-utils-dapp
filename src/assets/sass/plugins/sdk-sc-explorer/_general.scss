@@ -1,0 +1,59 @@
+@import './variables';
+
+/* ----------------- General Layout ----------------- */
+
+.#{$package-name} {
+  // CSS Variables
+  --headings-font-family: #{$headings-font-family};
+  --border-radius: 0.5rem;
+  --table-header: #{$table-header};
+
+  // Card
+  --card-spacer-y: 1.5rem;
+  --card-spacer-x: 1.5rem;
+  --card-title-spacer-y: 1.5rem;
+  --card-border-width: 0;
+  --card-border-color: var(--black);
+  --card-border-radius: 1rem;
+  --card-box-shadow: ;
+  --card-inner-border-radius: 1.5rem;
+  --card-cap-padding-y: 1.5rem;
+  --card-cap-padding-x: 1.5rem;
+  --card-cap-bg: transparent;
+  --card-cap-color: var(--white);
+  --card-height: auto;
+  --card-color: var(--white);
+  --card-bg: var(--black);
+  --card-img-overlay-padding: 1rem;
+  --card-group-margin: 0.75rem;
+
+  // Nav
+  --nav-link-font-size: 1rem;
+  --nav-link-padding-y: 0.75rem;
+  --nav-link-padding-x: 1rem;
+  --nav-link-color: var(--primary-200);
+  --nav-link-hover-color: var(--neutral-100);
+
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--white);
+  text-align: left;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  @media (max-width: 767px) {
+    --card-spacer-x: 0.5rem;
+  }
+
+  p {
+    margin-top: 0;
+  }
+  code {
+    font-family: $font-family-monospace;
+    font-size: 0.875em;
+    word-wrap: break-word;
+  }
+  &-code {
+    background: var(--table-header) !important;
+  }
+}

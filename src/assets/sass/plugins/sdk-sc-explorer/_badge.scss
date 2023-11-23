@@ -1,0 +1,58 @@
+@import './variables';
+
+/* ----------------- Badge ----------------- */
+
+.#{$package-name} {
+  &-badge {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    &.badge-outline {
+      border: 0;
+      position: relative;
+      line-height: 1rem;
+      &:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 0.5rem;
+        padding: 1px;
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+      &-grey {
+        color: var(--neutral-500);
+        background: linear-gradient(
+          90deg,
+          rgba(117, 127, 154, 0.06) 0%,
+          rgba(215, 221, 232, 0.06) 100%
+        );
+        &:before {
+          background: linear-gradient(
+            90deg,
+            rgba(117, 127, 154, 0.3),
+            rgba(215, 221, 232, 0.3)
+          );
+        }
+      }
+
+      &-primary-alt {
+        color: var(--primary-200);
+        &:before {
+          background: linear-gradient(
+            90deg,
+            rgba(0, 245, 160, 0.4) 0%,
+            rgba(0, 217, 245, 0.4) 100%
+          );
+        }
+      }
+    }
+  }
+}

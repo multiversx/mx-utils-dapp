@@ -1,0 +1,277 @@
+@import './variables';
+
+/* ----------------- Modals ----------------- */
+
+.#{$package-name} {
+  &-modal {
+    --modal-zindex: 1055;
+    --modal-width: 580px;
+    --modal-padding: 1rem;
+    --modal-margin: 0.5rem;
+    --modal-color: var(--white);
+    --modal-bg: var(--black);
+    --modal-border-color: var(--black);
+    --modal-border-width: 0;
+    --modal-border-radius: 0.75rem;
+    --modal-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --modal-inner-border-radius: calc(0.5rem - 1px);
+    --modal-header-padding-x: 1rem;
+    --modal-header-padding-y: 1rem;
+    --modal-header-padding: 1rem 1rem 0.5 1rem;
+    --modal-header-border-color: var(--modal-bg);
+    --modal-header-border-width: 0;
+    --modal-title-line-height: 1.5;
+    --modal-footer-gap: 0.5rem;
+    --modal-footer-bg: ;
+    --modal-footer-border-color: var(--modal-bg);
+    --modal-footer-border-width: 0;
+    font-size: 0.875rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--modal-zindex);
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+    .modal-dialog {
+      position: relative;
+      width: auto;
+      margin: var(--modal-margin);
+      pointer-events: none;
+    }
+    .modal.fade .modal-dialog {
+      transition: transform 0.3s ease-out;
+      transform: translateY(-50px);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .modal.fade .modal-dialog {
+        transition: none;
+      }
+    }
+    .modal.show .modal-dialog {
+      transform: none;
+    }
+    .modal.modal-static .modal-dialog {
+      transform: scale(1.02);
+    }
+    .modal-dialog-scrollable {
+      height: calc(100% - var(--modal-margin) * 2);
+    }
+    .modal-dialog-scrollable .modal-content {
+      max-height: 100%;
+      overflow: hidden;
+    }
+    .modal-dialog-scrollable .modal-body {
+      overflow-y: auto;
+    }
+    .modal-dialog-centered {
+      display: flex;
+      align-items: center;
+      min-height: calc(100% - var(--modal-margin) * 2);
+    }
+    .modal-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      color: var(--modal-color);
+      pointer-events: auto;
+      background-color: var(--modal-bg);
+      background-clip: padding-box;
+      border: var(--modal-border-width) solid var(--modal-border-color);
+      border-radius: var(--modal-border-radius);
+      outline: 0;
+    }
+    .modal-header {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.5rem;
+      font-family: $headings-font-family;
+      padding: var(--modal-header-padding);
+      border-bottom: var(--modal-header-border-width) solid
+        var(--modal-header-border-color);
+      border-top-left-radius: var(--modal-inner-border-radius);
+      border-top-right-radius: var(--modal-inner-border-radius);
+      @media (min-width: 576px) {
+        padding: $spacer-val $spacer-val 1rem $spacer-val;
+      }
+      .i-icon,
+      .btn-close {
+        font-size: $font-size-base;
+      }
+      .i-icon {
+        margin-left: 0.5rem;
+        margin-top: 0.25rem;
+        color: var(--neutral-500);
+      }
+      .btn-close {
+        order: -1;
+        box-sizing: content-box;
+        width: 1em;
+        height: 1em;
+        padding: calc(var(--modal-header-padding-y) * 0.5)
+          calc(var(--modal-header-padding-x) * 0.5);
+        margin: calc(-0.5 * var(--modal-header-padding-y))
+          calc(-0.5 * var(--modal-header-padding-x))
+          calc(-0.5 * var(--modal-header-padding-y)) auto;
+        color: #000;
+        background: transparent
+          url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")
+          center/1em auto no-repeat;
+        border: 0;
+        border-radius: 0.5rem;
+        opacity: 0.5;
+      }
+      .btn-close:hover {
+        color: #000;
+        text-decoration: none;
+        opacity: 0.75;
+      }
+      .btn-close:focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem #0d6efd40;
+        opacity: 1;
+      }
+      .btn-close:disabled,
+      .btn-close.disabled {
+        pointer-events: none;
+        -webkit-user-select: none;
+        user-select: none;
+        opacity: 0.25;
+      }
+      .btn-close-white {
+        filter: invert(1) grayscale(100%) brightness(200%);
+      }
+    }
+
+    .modal-title {
+      margin-bottom: 0;
+      line-height: var(--modal-title-line-height);
+    }
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 10rem;
+      position: relative;
+      flex: 1 1 auto;
+      padding: var(--modal-padding);
+    }
+    .modal-footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      padding: calc(var(--modal-padding) - var(--modal-footer-gap) * 0.5);
+      background-color: var(--modal-footer-bg);
+      border-top: var(--modal-footer-border-width) solid
+        var(--modal-footer-border-color);
+      border-bottom-right-radius: var(--modal-inner-border-radius);
+      border-bottom-left-radius: var(--modal-inner-border-radius);
+    }
+    .modal-footer > * {
+      margin: calc(var(--modal-footer-gap) * 0.5);
+    }
+    @media (min-width: 576px) {
+      .modal {
+        --modal-margin: 1.75rem;
+        --modal-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      }
+      .modal-dialog {
+        max-width: var(--modal-width);
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+  }
+
+  &-login-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  &-unlock-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &-mutate-modal,
+  &-deploy-modal,
+  &-upgrade-modal {
+    // dapp-form
+    --dapp-form-bg: var(--neutral-950);
+    --dapp-form-label-color: var(--neutral-400);
+    --dapp-form-input-bg: var(--body);
+    --dapp-form-placeholder-color: var(--neutral-500);
+    --dapp-form-input-color: var(--neutral-300);
+    --dapp-form-error-color: var(--danger);
+    --dapp-form-max-btn-bg: var(--neutral-950);
+    --dapp-form-max-hover-btn-bg: var(--black);
+    --dapp-form-max-btn-color: var(--neutral-200);
+    --dapp-form-input-border-radius: 1rem;
+    --dapp-form-input-border-color: var(--body);
+    --dapp-form-input-border-focus: var(--primary);
+    --dapp-form-select-input-color: var(--neutral-200);
+    --dapp-form-select-input-color-hover: var(--neutral-400);
+    --dapp-form-select-icon-border: transparent;
+    --dapp-form-select-icon-bg: var(--neutral-950);
+    --dapp-form-select-indicator-fill: var(--neutral-200);
+    --dapp-form-select-indicator-fill-hover: var(--neutral-400);
+    --dapp-form-select-menu-bg: var(--body);
+    --dapp-form-select-menu-border: transparent;
+    --dapp-form-select-menu-scroll-track: transparent;
+    --dapp-form-select-option-bg: var(--body);
+    --dapp-form-select-option-bg-hover: var(--neutral-700);
+    --dapp-form-select-option-bg-selected: var(--black);
+    --dapp-form-select-option-color: var(--neutral-200);
+    --dapp-form-btn-bg: var(--primary);
+    --dapp-form-nftsft-preview-bg: var(--black);
+
+    &-form-fields {
+      label {
+        font-size: 10px;
+        color: var(--neutral-400);
+      }
+    }
+    &-form-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.modal-backdrop {
+  --backdrop-zindex: 1050;
+  --backdrop-bg: var(--neutral-900);
+  --backdrop-opacity: 0.75;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--backdrop-zindex);
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--backdrop-bg);
+}
+.modal-backdrop.fade {
+  opacity: 0;
+}
+.modal-backdrop.show {
+  opacity: var(--backdrop-opacity);
+}

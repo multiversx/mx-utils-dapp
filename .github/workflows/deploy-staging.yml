@@ -1,10 +1,10 @@
-name: deploy
+name: deploy-staging
 
 on:
   push:
-    branches: [main]
+    branches: [development]
   repository_dispatch:
-    types: deploy
+    types: deploy-staging
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: main
+          ref: development
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -29,12 +29,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - run: aws s3 sync ./build/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
+      - run: aws s3 sync ./build/ s3://${{ secrets.AWS_S3_BUCKET_STAGING }} --delete
       - uses: rtCamp/action-slack-notify@master
         env:
           SLACK_ICON_EMOJI: ':hammer_and_wrench:'
-          SLACK_USERNAME: ${{ secrets.AWS_S3_BUCKET }}
-          SLACK_MESSAGE: ${{ secrets.AWS_S3_BUCKET }}
+          SLACK_USERNAME: ${{ secrets.AWS_S3_BUCKET_STAGING }}
+          SLACK_MESSAGE: ${{ secrets.AWS_S3_BUCKET_STAGING }}
           SLACK_FOOTER: ''
           MSG_MINIMAL: true
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
