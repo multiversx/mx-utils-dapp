@@ -11,42 +11,44 @@ export const AssistantApiSSETypes = {
   codeExplanation: {
     streamChunk: 'code-explanation-stream-chunk',
     chunkFinished: 'code-explanation-chunk-finished',
-    streamFailed: 'code-explanation-stream-failed'
-  }
+    streamFailed: 'code-explanation-stream-failed',
+  },
 };
 
 const AssistantApiEndpoints = {
   utils: {
-    smartContractExplanation: '/utils/smart_contract_explanation/'
-  }
+    smartContractExplanation: '/utils/smart_contract_explanation/',
+  },
 };
 
 const getBaseAssistantApiUrl = (chain: EnvironmentsEnum) => {
-  switch (chain) {
-    case EnvironmentsEnum.mainnet:
-      return ApiBaseUrls.mainnet;
-    case EnvironmentsEnum.devnet:
-      return ApiBaseUrls.devnet;
-    case EnvironmentsEnum.testnet:
-      return ApiBaseUrls.testnet;
-    default:
-      return ApiBaseUrls.mainnet;
-  }
+  // temporarily use only devnet until mainnet issues are fixed
+  return ApiBaseUrls.devnet;
+  // switch (chain) {
+  //   case EnvironmentsEnum.mainnet:
+  //     return ApiBaseUrls.mainnet;
+  //   case EnvironmentsEnum.devnet:
+  //     return ApiBaseUrls.devnet;
+  //   case EnvironmentsEnum.testnet:
+  //     return ApiBaseUrls.testnet;
+  //   default:
+  //     return ApiBaseUrls.mainnet;
+  // }
 };
 
 export const assistantApi = {
   getCodeExplanationEventSource: (
-    parameters: GetExplanationEventSourceParameters
+    parameters: GetExplanationEventSourceParameters,
   ) => {
     const { repositoryUrl } = parameters;
     const getExplanationEndpointUrl = `${getBaseAssistantApiUrl(
-      parameters.chain
+      parameters.chain,
     )}${explainerApiUrl}${
       AssistantApiEndpoints.utils.smartContractExplanation
     }`;
 
     return new EventSource(
-      `${getExplanationEndpointUrl}?repository_url=${repositoryUrl}`
+      `${getExplanationEndpointUrl}?repository_url=${repositoryUrl}`,
     );
-  }
+  },
 };
