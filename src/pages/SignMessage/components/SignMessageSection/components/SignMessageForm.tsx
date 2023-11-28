@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect } from 'react';
 import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import classNames from 'classnames';
 import { ErrorMessage, Field, Form, useFormikContext } from 'formik';
-import { useSearchParams } from 'react-router-dom';
+import { useExecuteOnce } from 'hooks/useExecuteOnce';
 import { useSignMessageSectionContext } from 'pages/SignMessage/context';
 import styles from 'pages/SignMessage/styles.module.scss';
 import { useSignMessageForm } from '../hooks/useSignMessageForm';
@@ -10,15 +10,16 @@ import { SignMessageFormValues } from '../types';
 
 export const SignMessageForm = () => {
   const { setFieldValue } = useFormikContext<SignMessageFormValues>();
-  const { messageToSign, setMessageToSign } = useSignMessageSectionContext();
-  const { signedMessagePayload, handleClear } = useSignMessageForm();
+  const { messageToSign, setMessageToSign, signedMessagePayload } =
+    useSignMessageSectionContext();
+  const { handleClear } = useSignMessageForm();
 
-  const [searchParams] = useSearchParams();
+  const executeOnce = useExecuteOnce();
   const { buildSignaturePayloadFromWebWalletResponse } = useSignMessageForm();
 
   useEffect(() => {
-    buildSignaturePayloadFromWebWalletResponse();
-  }, [buildSignaturePayloadFromWebWalletResponse, searchParams]);
+    executeOnce(buildSignaturePayloadFromWebWalletResponse);
+  }, []);
 
   return (
     <Form className={styles.sign}>
@@ -44,7 +45,9 @@ export const SignMessageForm = () => {
           <strong>Signature payload:</strong>
 
           <div className={styles.code}>
-            <pre data-testid='signaturePayload' className={styles.value}>{signedMessagePayload}</pre>
+            <pre data-testid='signaturePayload' className={styles.value}>
+              {signedMessagePayload}
+            </pre>
             <CopyButton text={signedMessagePayload} className={styles.copy} />
           </div>
         </div>
