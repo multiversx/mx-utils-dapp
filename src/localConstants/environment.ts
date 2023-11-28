@@ -1,1 +1,1 @@
-export const NETWORK_KEY = 'network';
+export const PERSISTED_NETWORK_KEY = 'persisted-network';

@@ -5,4 +5,3 @@ export const STATUS_KEY = 'status';
 
 export const DEPLOY_SESSION_ID = 'deploySessionId';
 export const UPGRADE_SESSION_ID = 'upgradeSessionId';
-export const NATIVE_TOKEN_CHAIN = 'nativeTokenChain';

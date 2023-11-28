@@ -2,8 +2,6 @@ import { useGetLoginInfo, useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
 import { ScExplorerContainer } from '@multiversx/sdk-dapp-sc-explorer/containers/ScExplorerContainer';
 import { VerifiedContractTabsEnum } from '@multiversx/sdk-dapp-sc-explorer/types';
 import { useNavigate, useLocation } from 'react-router-dom';
-
-import { Template } from 'components/Template';
 import { useGlobalContext } from 'context';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { routeNames } from 'routes';
@@ -38,26 +36,24 @@ export const SmartContractInteraction = () => {
   };
 
   return (
-    <Template fullWidth={true}>
-      <div className={styles?.container}>
-        <ScExplorerContainer
-          smartContract={{
-            canMutate: true,
-            canLoadAbi: true,
-            canDeploy: true,
-            canUpgrade: true,
-          }}
-          accountConsumerHandlers={{
-            useGetLoginInfo,
-            useGetAccountInfo,
-            onLoginClick,
-          }}
-          networkConfig={{ environment: dappEnvironment }}
-          customClassNames={customClassNames}
-          className='mx-sdk-sc'
-          activeSection={VerifiedContractTabsEnum.loadAbi}
-        />
-      </div>
-    </Template>
+    <div className={styles?.container}>
+      <ScExplorerContainer
+        smartContract={{
+          canMutate: true,
+          canLoadAbi: true,
+          canDeploy: true,
+          canUpgrade: true,
+        }}
+        accountConsumerHandlers={{
+          useGetLoginInfo,
+          useGetAccountInfo,
+          onLoginClick,
+        }}
+        networkConfig={{ environment: dappEnvironment }}
+        customClassNames={customClassNames}
+        className='mx-sdk-sc'
+        activeSection={VerifiedContractTabsEnum.loadAbi}
+      />
+    </div>
   );
 };

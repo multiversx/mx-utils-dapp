@@ -1,25 +1,22 @@
-import { Template } from 'components/Template';
-import styles from './styles.module.scss';
 import {
   SignMessageSection,
   VerifySignatureForm,
-  VerifySignatureFormFields
+  VerifySignatureFormFields,
 } from './components';
 import {
   SignMessageSectionProvider,
-  useSignMessageSectionValue
+  useSignMessageSectionValue,
 } from './context';
+import styles from './styles.module.scss';
 
 export const SignMessage = () => {
   return (
-    <Template>
-      <div className={styles.container}>
-        <SignMessageSectionProvider value={useSignMessageSectionValue()}>
-          <SignMessageSection />
-        </SignMessageSectionProvider>
-        <VerifySignatureForm />
-        <VerifySignatureFormFields />
-      </div>
-    </Template>
+    <div className={styles.container}>
+      <SignMessageSectionProvider value={useSignMessageSectionValue()}>
+        <SignMessageSection />
+      </SignMessageSectionProvider>
+      <VerifySignatureForm />
+      <VerifySignatureFormFields />
+    </div>
   );
 };

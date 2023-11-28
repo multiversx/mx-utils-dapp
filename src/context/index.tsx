@@ -3,12 +3,12 @@ import {
   useReducer,
   useContext,
   PropsWithChildren,
+  useEffect,
 } from 'react';
-
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { DappProvider } from '@multiversx/sdk-dapp/wrappers';
-import { useLocation } from 'react-router-dom';
-import { NETWORK_KEY } from 'localConstants';
+import { usePersistedState } from 'hooks/usePersistedState';
+import { PERSISTED_NETWORK_KEY } from 'localConstants';
 import { DispatchType, reducer } from './reducer';
 import { StateType, initializer } from './state';
 
@@ -17,15 +17,27 @@ const Dispatch = createContext<DispatchType | undefined>(undefined);
 
 const ContextProvider = (props: PropsWithChildren) => {
   const { children } = props;
-
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
-  const network = params.get(NETWORK_KEY) ?? initializer.dappEnvironment;
+  const [network, setNetwork] = usePersistedState<EnvironmentsEnum>({
+    key: PERSISTED_NETWORK_KEY,
+    storage: sessionStorage,
+    initialValue:
+      (sessionStorage.getItem(PERSISTED_NETWORK_KEY) as EnvironmentsEnum) ??
+      initializer.dappEnvironment,
+  });
 
   const [state, dispatch] = useReducer(reducer, {
     ...initializer,
-    dappEnvironment: network as EnvironmentsEnum,
+    dappEnvironment: network,
   });
+
+  useEffect(() => {
+    console.log('network changing...', {
+      network,
+      'state.dappEnvironment': state.dappEnvironment,
+    });
+
+    setNetwork?.(state.dappEnvironment);
+  }, [state.dappEnvironment]);
 
   return (
     <Context.Provider value={state}>

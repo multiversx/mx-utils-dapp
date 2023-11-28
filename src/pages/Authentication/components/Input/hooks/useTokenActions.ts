@@ -5,8 +5,6 @@ import { useFormikContext } from 'formik';
 import debounce from 'lodash.debounce';
 import { useChain } from 'hooks/useChain';
 import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
-import { usePersistedState } from 'hooks/usePersistedState';
-import { NATIVE_TOKEN_CHAIN } from 'localConstants';
 import { EXPIRY_SECONDS } from 'localConstants/nativeAuth';
 import { emptyMetrics } from 'pages/Authentication/constants/metrics.contants';
 import { useAuthenticationContext } from 'pages/Authentication/context';
@@ -23,11 +21,6 @@ export const useTokenActions = () => {
     useAuthenticationContext();
   const { chain } = useChain();
   const nativeAuthToken = useGetNativeAuthToken();
-  const [nativeTokenChain] = usePersistedState({
-    storage: sessionStorage,
-    key: NATIVE_TOKEN_CHAIN,
-    initialValue: '',
-  });
 
   const { setFieldValue, setFieldTouched, setFieldError } =
     useFormikContext<FormValuesType>();
@@ -151,10 +144,10 @@ export const useTokenActions = () => {
   }, [chain, handleChange, initialTokens]);
 
   useEffect(() => {
-    if (!nativeAuthToken || nativeTokenChain !== chain) return;
+    if (!nativeAuthToken) return;
 
     handleChange(nativeAuthToken);
-  }, [chain, handleChange, nativeAuthToken, nativeTokenChain]);
+  }, [chain, handleChange, nativeAuthToken]);
 
   return {
     handleChange,
