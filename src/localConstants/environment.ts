@@ -1,1 +1,1 @@
-export const NETWORK = 'network';
+export const NETWORK_KEY = 'network';

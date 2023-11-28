@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
-import { routeNames } from 'routes';
+import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
 import { signMessage } from '@multiversx/sdk-dapp/utils';
-import { MESSAGE_KEY } from 'localConstants/storage';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
-import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
+import { MESSAGE_KEY, SIGNATURE_KEY, STATUS_KEY } from 'localConstants/storage';
 import { useSignMessageSectionContext } from 'pages/SignMessage/context';
+import { routeNames } from 'routes';
 
 export const useSignMessageSectionActions = () => {
   const { setSignedMessagePayload, messageToSign } =
@@ -19,7 +19,12 @@ export const useSignMessageSectionActions = () => {
   const navigate = useNavigate();
   const callbackRoute = useCallbackRoute();
 
+  const [searchParams] = useSearchParams();
+
   const handleSignMessage = useCallback(async () => {
+    searchParams.delete(SIGNATURE_KEY);
+    searchParams.delete(STATUS_KEY);
+
     if (!isLoggedIn) {
       const route = search
         ? `${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
@@ -29,14 +34,14 @@ export const useSignMessageSectionActions = () => {
       navigate(
         isWallet
           ? encodeURIComponent(route)
-          : `${route}?${MESSAGE_KEY}=${messageToSign}`
+          : `${route}?${MESSAGE_KEY}=${messageToSign}`,
       );
       return;
     }
 
     const signableMessage = await signMessage({
       message: messageToSign,
-      callbackRoute: routeNames.signMessage
+      callbackRoute: `${routeNames.signMessage}${search}`,
     });
 
     if (!signableMessage) {
@@ -51,10 +56,10 @@ export const useSignMessageSectionActions = () => {
     messageToSign,
     navigate,
     search,
-    setSignedMessagePayload
+    setSignedMessagePayload,
   ]);
 
   return {
-    handleSignMessage
+    handleSignMessage,
   };
 };
