@@ -35,7 +35,7 @@ const MEDIUM_SCREEN_WIDTH = 992;
 export const Template = (props: TemplateType) => {
   const { children, fullWidth = false } = props;
   const { navigation } = useNavigation();
-  const { pathname, hash, search } = useLocation();
+  const { pathname, hash } = useLocation();
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [activePage, setActivePage] = useState(hash ? pathname : '');
@@ -45,12 +45,10 @@ export const Template = (props: TemplateType) => {
   const logout = useLogout();
   const callbackRoute = useCallbackRoute();
 
-  const unlockRoute = useMemo(() => {
-    const route = search
-      ? `${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
-      : `${routeNames.unlock}?callbackUrl=${callbackRoute}`;
-    return route;
-  }, [callbackRoute, search]);
+  const unlockRoute = useMemo(
+    () => `${routeNames.unlock}?callbackUrl=${callbackRoute}`,
+    [callbackRoute],
+  );
 
   /*
    * Assign each route the icon and categories for enhanced mapping.
