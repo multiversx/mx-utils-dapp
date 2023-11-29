@@ -3,7 +3,6 @@ import { logout } from '@multiversx/sdk-dapp/utils/logout';
 
 export const useLogout = () => {
   const safeClearSessionStorage = useCallback(() => {
-    // keep all the values that starts with 'utils:' from sessionStorage and remove the rest of the values
     const utilsKeys = Object.keys(sessionStorage).filter((key) =>
       key.startsWith('utils:'),
     );
