@@ -29,7 +29,7 @@ export const RoutedApp = () => {
         <Route
           path='/'
           element={
-            <Template fullWidth={true}>
+            <Template fullWidth>
               <Outlet />
             </Template>
           }
