@@ -54,9 +54,13 @@ export const Template = (props: TemplateType) => {
    * Assign each route the icon and categories for enhanced mapping.
    */
 
-  const items = routes.map(
-    (route: RouteType): ItemType =>
-      Object.assign(route, navigation.get(route.path)),
+  const items = useMemo(
+    () =>
+      routes.map(
+        (route: RouteType): ItemType =>
+          Object.assign(route, navigation.get(route.path)),
+      ),
+    [navigation],
   );
 
   const menuItems = useMemo(

@@ -7,12 +7,11 @@ import {
   Outlet,
   useLocation,
 } from 'react-router-dom';
-
+import { Template } from 'components/Template';
 import { ContextProvider } from 'context';
 import { Page404 } from 'pages/Page404';
 import { Unlock } from 'pages/Unlock/Unlock';
 import { routes, routeNames } from 'routes';
-
 import 'assets/sass/theme.scss';
 
 /*
@@ -27,7 +26,14 @@ export const RoutedApp = () => {
       <TransactionsToastList />
       <SignTransactionsModals />
       <Routes location={previousLocation || location}>
-        <Route path='/' element={<Outlet />}>
+        <Route
+          path='/'
+          element={
+            <Template fullWidth>
+              <Outlet />
+            </Template>
+          }
+        >
           {routes.map((route) => (
             <Route
               key={`route-key-${route.path}`}

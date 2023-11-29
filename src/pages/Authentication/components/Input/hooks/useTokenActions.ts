@@ -4,9 +4,6 @@ import { NativeAuthServerConfig } from '@multiversx/sdk-native-auth-server/lib/s
 import { useFormikContext } from 'formik';
 import debounce from 'lodash.debounce';
 import { useChain } from 'hooks/useChain';
-import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
-import { usePersistedState } from 'hooks/usePersistedState';
-import { NATIVE_TOKEN_CHAIN } from 'localConstants';
 import { EXPIRY_SECONDS } from 'localConstants/nativeAuth';
 import { emptyMetrics } from 'pages/Authentication/constants/metrics.contants';
 import { useAuthenticationContext } from 'pages/Authentication/context';
@@ -22,12 +19,6 @@ export const useTokenActions = () => {
   const { setMetrics, initialTokens, setIsValidating } =
     useAuthenticationContext();
   const { chain } = useChain();
-  const nativeAuthToken = useGetNativeAuthToken();
-  const [nativeTokenChain] = usePersistedState({
-    storage: sessionStorage,
-    key: NATIVE_TOKEN_CHAIN,
-    initialValue: '',
-  });
 
   const { setFieldValue, setFieldTouched, setFieldError } =
     useFormikContext<FormValuesType>();
@@ -149,12 +140,6 @@ export const useTokenActions = () => {
 
     handleChange(initialTokens[chain]);
   }, [chain, handleChange, initialTokens]);
-
-  useEffect(() => {
-    if (!nativeAuthToken || nativeTokenChain !== chain) return;
-
-    handleChange(nativeAuthToken);
-  }, [chain, handleChange, nativeAuthToken, nativeTokenChain]);
 
   return {
     handleChange,
