@@ -11,7 +11,7 @@ import Select, { components, SingleValue } from 'react-select';
 import { useDispatch } from 'context';
 import { ActionTypeEnum } from 'context/reducer';
 import { useChain } from 'hooks/useChain';
-import { NETWORK_KEY } from 'localConstants/environment';
+import { PERSISTED_NETWORK_KEY } from 'localConstants';
 import styles from './styles.module.scss';
 import type { OptionType } from './types';
 
@@ -67,17 +67,11 @@ export const Environment = () => {
           type: ActionTypeEnum.switchDappEnvironment,
           dappEnvironment: option.value as EnvironmentsEnum,
         });
-
-        const params = new URLSearchParams(window.location.search);
-        params.set(NETWORK_KEY, option.value);
-
-        navigate(
-          {
-            pathname,
-            search: params.toString(),
-          },
-          { replace: true },
+        sessionStorage.setItem(
+          PERSISTED_NETWORK_KEY,
+          option.value as EnvironmentsEnum,
         );
+        navigate(pathname, { replace: true });
       }
     },
     [pathname, navigate, dispatch],

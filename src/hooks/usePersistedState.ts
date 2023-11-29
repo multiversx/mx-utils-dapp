@@ -3,13 +3,13 @@ import { useCallback, useState } from 'react';
 export const usePersistedState = <T>({
   storage,
   key,
-  initialValue
+  initialValue,
 }: {
   storage: Storage;
   key: string;
-  initialValue: T;
-}) => {
-  const [storedValue, setStoredValue] = useState(() => {
+  initialValue?: T;
+}): [T, (value: T) => void] => {
+  const [storedValue, setStoredValue] = useState<T>(() => {
     const item = storage.getItem(key);
 
     try {
@@ -31,7 +31,7 @@ export const usePersistedState = <T>({
         console.error(err);
       }
     },
-    [key, storage, storedValue]
+    [key, storage, storedValue],
   );
 
   return [storedValue, setValue];
