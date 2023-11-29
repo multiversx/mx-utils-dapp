@@ -3,12 +3,11 @@ import {
   useReducer,
   useContext,
   PropsWithChildren,
-  useEffect,
 } from 'react';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { DappProvider } from '@multiversx/sdk-dapp/wrappers';
 import { PERSISTED_NETWORK_KEY } from 'localConstants';
-import { ActionTypeEnum, DispatchType, reducer } from './reducer';
+import { DispatchType, reducer } from './reducer';
 import { StateType, initializer } from './state';
 
 const Context = createContext<StateType | undefined>(undefined);
@@ -23,15 +22,8 @@ const ContextProvider = (props: PropsWithChildren) => {
 
   const [state, dispatch] = useReducer(reducer, {
     ...initializer,
-    dappEnvironment: initializer.dappEnvironment,
+    dappEnvironment: env,
   });
-
-  useEffect(() => {
-    dispatch({
-      type: ActionTypeEnum.switchDappEnvironment,
-      dappEnvironment: env,
-    });
-  }, [env]);
 
   return (
     <Context.Provider value={state}>
