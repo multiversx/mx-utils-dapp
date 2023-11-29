@@ -8,10 +8,12 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import axios from 'axios';
 import { miscApi } from 'config';
 import { useChain } from 'hooks/useChain';
 import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
+import { GENERATED_TOKEN_CHAIN } from 'localConstants';
 import { TokenColorsEnum } from '../enum';
 import { MetricItemType, MetricType } from '../types';
 
@@ -125,7 +127,10 @@ export const useAuthenticationValue = () => {
       );
 
       if (nativeAuthToken) {
-        data[chain] = nativeAuthToken;
+        const generatedTokenChain = sessionStorage.getItem(
+          GENERATED_TOKEN_CHAIN,
+        ) as EnvironmentsEnum | null;
+        data[generatedTokenChain ?? chain] = nativeAuthToken;
       }
 
       setInitialTokens(data);

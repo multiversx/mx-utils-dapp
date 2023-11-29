@@ -11,6 +11,7 @@ import Select, { components, SingleValue } from 'react-select';
 import { useDispatch } from 'context';
 import { ActionTypeEnum } from 'context/reducer';
 import { useChain } from 'hooks/useChain';
+import { PERSISTED_NETWORK_KEY } from 'localConstants';
 import styles from './styles.module.scss';
 import type { OptionType } from './types';
 
@@ -66,6 +67,10 @@ export const Environment = () => {
           type: ActionTypeEnum.switchDappEnvironment,
           dappEnvironment: option.value as EnvironmentsEnum,
         });
+        sessionStorage.setItem(
+          PERSISTED_NETWORK_KEY,
+          option.value as EnvironmentsEnum,
+        );
         navigate(pathname, { replace: true });
       }
     },
