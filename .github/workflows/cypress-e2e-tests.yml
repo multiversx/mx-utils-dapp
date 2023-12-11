@@ -11,13 +11,11 @@ jobs:
         - uses: actions/setup-node@v3
           with:
             node-version: 20
+            run: npm buid
+            start : npm start
         - name: Install
           run: npm install
-        - name : Build  
-          run : npm run build 
         - name : Start 
-          run : npm start 
-        - name: Run Test
           run: npm run wdio
         - uses: actions/upload-artifact@v1
           if: failure()
