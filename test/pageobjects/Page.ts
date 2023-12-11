@@ -10,6 +10,6 @@ export default class Page {
    * @param path path of the sub page (e.g. /path/to/page.html)
    */
   public open(path: string) {
-    return browser.url(`https://localhost:3002/${path}`);
+    return browser.url(`https://localhost:3001/${path}`);
   }
 }
