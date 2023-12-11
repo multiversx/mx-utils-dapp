@@ -1,19 +1,19 @@
 import { useCallback } from 'react';
-import Select, { components, SingleValue } from 'react-select';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowDownLong,
-  faArrowUpLong
+  faArrowUpLong,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import classNames from 'classnames';
-import type { OptionType } from './types';
-import styles from './styles.module.scss';
-import { ActionTypeEnum } from 'context/reducer';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Select, { components, SingleValue } from 'react-select';
 import { useDispatch } from 'context';
-import { NETWORK } from 'localConstants/environment';
+import { ActionTypeEnum } from 'context/reducer';
 import { useChain } from 'hooks/useChain';
+import { PERSISTED_NETWORK_KEY } from 'localConstants';
+import styles from './styles.module.scss';
+import type { OptionType } from './types';
 
 const customComponents = {
   Control: (props: any) => (
@@ -39,11 +39,11 @@ const customComponents = {
     <components.Option
       {...props}
       className={classNames(styles.option, {
-        [styles.selected]: props.isSelected
+        [styles.selected]: props.isSelected,
       })}
     />
   ),
-  IndicatorSeparator: null
+  IndicatorSeparator: null,
 };
 
 export const Environment = () => {
@@ -56,8 +56,8 @@ export const Environment = () => {
   const options: OptionType[] = Object.values(EnvironmentsEnum).map(
     (chain) => ({
       label: chain,
-      value: chain
-    })
+      value: chain,
+    }),
   );
 
   const onChange = useCallback(
@@ -65,22 +65,16 @@ export const Environment = () => {
       if (option) {
         dispatch({
           type: ActionTypeEnum.switchDappEnvironment,
-          dappEnvironment: option.value as EnvironmentsEnum
+          dappEnvironment: option.value as EnvironmentsEnum,
         });
-
-        const params = new URLSearchParams(window.location.search);
-        params.set(NETWORK, option.value);
-
-        navigate(
-          {
-            pathname,
-            search: params.toString()
-          },
-          { replace: true }
+        sessionStorage.setItem(
+          PERSISTED_NETWORK_KEY,
+          option.value as EnvironmentsEnum,
         );
+        navigate(pathname, { replace: true });
       }
     },
-    [pathname, navigate, dispatch]
+    [pathname, navigate, dispatch],
   );
 
   return (
