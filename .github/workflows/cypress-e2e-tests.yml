@@ -16,8 +16,10 @@ jobs:
             uses: borales/actions-yarn@v4
             with:
                 cmd: install # will run `yarn install` command
-          - name: build extension
-            run: npm run build-extension 
+          - name: build 
+            run: npm run build 
+          - name: start 
+            run: npm run start   
           - name: Test
             run: npm run wdio
        
