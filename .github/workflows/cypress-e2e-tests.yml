@@ -3,28 +3,21 @@ name: E2E Tests
 on: push
   # pull_request:
   #   branches: [main]
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
-      - name: Start
-        run: npm start
-
-      - name: Run E2E Tests
-        run: npm run wdio
+    build:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout
+            uses: actions/checkout@v4
+          - uses: actions/setup-node@v3
+            with:
+              node-version: 16    
+          - name: Run install
+            uses: borales/actions-yarn@v4
+            with:
+                cmd: install # will run `yarn install` command
+          - name: build extension
+            run: npm run build-extension 
+          - name: Test
+            run: npm run wdio
+       
