@@ -60,6 +60,11 @@ export const config: Options.Testrunner = {
     {
       browserName: "chrome",
       browserVersion: "119.0.6045.105",
+      'goog:chromeOptions': {
+        args: [
+          '--headless=new'
+        ]
+      },
     },
   ],
 
