@@ -1,7 +1,7 @@
-import Page from "./Page";
-import { GlobalSelectorEnum } from "../utils/globalSelectorEnum";
-import { getSelector } from "../utils/helpers";
-import { GlobalDataEnum, RoutesEnum } from "../utils/globalDataEnum";
+import Page from './Page';
+import { GlobalDataEnum, RoutesEnum } from '../utils/globalDataEnum';
+import { GlobalSelectorEnum } from '../utils/globalSelectorEnum';
+import { getSelector } from '../utils/helpers';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -20,7 +20,7 @@ class HomePage extends Page {
 
     await expect(titlePage).toHaveText(GlobalDataEnum.homePageTitle);
     await expect(descriptionPage).toHaveText(
-      GlobalDataEnum.homePageDescription
+      GlobalDataEnum.homePageDescription,
     );
   }
 
@@ -47,13 +47,6 @@ class HomePage extends Page {
       await expect(browser).toHaveUrlContaining(routes[i]);
     }
   }
-
-  /**
-   * overwrite specific options to adapt it to page object
-   */
-  // public open () {
-  //     return super.open('login');
-  // }
 }
 
 export default new HomePage();
