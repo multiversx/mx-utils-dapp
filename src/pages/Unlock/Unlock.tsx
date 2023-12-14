@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import {
   ExtensionLoginButton,
-  LedgerLoginButton,
+  // LedgerLoginButton,
   WalletConnectLoginButton,
   WebWalletLoginButton,
 } from '@multiversx/sdk-dapp/UI';
@@ -64,13 +64,13 @@ export const Unlock = () => {
       onModalOpens: () =>
         setOpenedContainerType(LoginContainersTypesEnum.walletConnect),
     },
-    {
-      name: 'Ledger',
-      id: LoginContainersTypesEnum.ledger,
-      component: LedgerLoginButton,
-      onModalOpens: () =>
-        setOpenedContainerType(LoginContainersTypesEnum.ledger),
-    },
+    // {
+    //   name: 'Ledger',
+    //   id: LoginContainersTypesEnum.ledger,
+    //   component: LedgerLoginButton,
+    //   onModalOpens: () =>
+    //     setOpenedContainerType(LoginContainersTypesEnum.ledger),
+    // },
     {
       name: 'MultiversX Web Wallet',
       component: WebWalletLoginButton,
