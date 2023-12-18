@@ -3,22 +3,36 @@ on:
   pull_request:
     branches: [main]
 jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-          - name: Checkout
-            uses: actions/checkout@v4
-          - uses: actions/setup-node@v3
-            with:
-              node-version: 20    
-          - name: Run install
-            uses: borales/actions-yarn@v4
-            with:
-                cmd: install # will run `yarn install` command
-          - name: build 
-            run: npm run build 
-          - name: start 
-            run: npm run start   
-          - name: Test
-            run: npm run wdio
-       
+  Slack-Notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_ICON_EMOJI: ':robot_face:'
+          SLACK_USERNAME: Cypress Bot
+          SLACK_MESSAGE: E2E tests are now running. Stay tuned for updates!
+          SLACK_TITLE: 'Cypress'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+      - name: Build
+        run: npm run build 
+      - name: Start
+        run: npm run start
+      - name: Wait on Localhost
+        run: npx wait-on http://localhost:3000
+      - name: Test
+        run: npm run wdio
