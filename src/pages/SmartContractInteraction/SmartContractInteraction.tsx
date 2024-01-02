@@ -12,6 +12,7 @@ import styles from './styles.module.scss';
 const customClassNames = {
   badgePrimaryClassName: 'badge-outline badge-outline-primary-alt',
   badgeSecondaryClassName: 'badge-outline badge-outline-grey',
+  badgeFilledClassName: 'badge-filled',
   buttonClassName: styles?.button,
   buttonSecondaryClassName: styles?.buttonSecondary,
   inputClassName: styles?.field,
