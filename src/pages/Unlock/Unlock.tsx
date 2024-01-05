@@ -12,8 +12,6 @@ import { Modal } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CloseIcon } from 'assets/img/CloseIcon';
 import { useChain } from 'hooks/useChain';
-import { usePersistedState } from 'hooks/usePersistedState';
-import { NATIVE_TOKEN_CHAIN } from 'localConstants';
 import { EXPIRY_SECONDS } from 'localConstants/nativeAuth';
 import { routeNames } from 'routes';
 import styles from './styles.module.scss';
@@ -28,11 +26,6 @@ export const Unlock = () => {
   const { search } = useLocation();
   const isLoggedIn = useGetIsLoggedIn();
   const { chain } = useChain();
-  const [, setNativeTokenChain] = usePersistedState({
-    storage: sessionStorage,
-    key: NATIVE_TOKEN_CHAIN,
-    initialValue: '',
-  });
 
   const searchParams = new URLSearchParams(search);
   const previousRoute = searchParams.get('callbackUrl') ?? `/${search}`;
@@ -97,8 +90,6 @@ export const Unlock = () => {
   };
 
   useEffect(() => {
-    setNativeTokenChain(chain);
-
     if (isLoggedIn) {
       onClose();
     }
