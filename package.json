@@ -18,7 +18,7 @@
     "@fortawesome/react-fontawesome": "0.2.0",
     "@multiversx/sdk-core": "12.14.0",
     "@multiversx/sdk-dapp": "2.24.0",
-    "@multiversx/sdk-dapp-sc-explorer": "0.0.1-beta.2",
+    "@multiversx/sdk-dapp-sc-explorer": "0.0.1-beta.4",
     "@multiversx/sdk-native-auth-server": "1.0.10",
     "@multiversx/sdk-wallet": "4.2.0",
     "@uiw/react-textarea-code-editor": "2.1.9",
