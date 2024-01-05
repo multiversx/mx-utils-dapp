@@ -1916,6 +1916,34 @@
     keccak "3.0.2"
     protobufjs "7.2.4"
 
+"@multiversx/sdk-core@12.16.0":
+  version "12.16.0"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.16.0.tgz#100077580302d50868479fb0db3516f9f3802513"
+  integrity sha512-b2htlSeXVkZwrnEVAxoUgNe0oiiOheEjibEbxwNXqtWnsSI31fAtVXxXMersVgcliMJGjmtHkpFAItAucG3OSg==
+  dependencies:
+    "@multiversx/sdk-transaction-decoder" "1.0.2"
+    bech32 "1.1.4"
+    bignumber.js "9.0.1"
+    blake2b "2.1.3"
+    buffer "6.0.3"
+    json-duplicate-key-handle "1.0.0"
+    keccak "3.0.2"
+    protobufjs "7.2.4"
+
+"@multiversx/sdk-core@12.17.0":
+  version "12.17.0"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.17.0.tgz#7c9a837efe87cc2cabac37c1af372f90d517f386"
+  integrity sha512-SdIdUMT4hVgcmNF2uNOZusrxwEJXFtllJ9YOQMJ4V0f1Ajq4fYGWv88OfNGGNaH/I0BAvMZKFsfVL4zgtVekmQ==
+  dependencies:
+    "@multiversx/sdk-transaction-decoder" "1.0.2"
+    bech32 "1.1.4"
+    bignumber.js "9.0.1"
+    blake2b "2.1.3"
+    buffer "6.0.3"
+    json-duplicate-key-handle "1.0.0"
+    keccak "3.0.2"
+    protobufjs "7.2.4"
+
 "@multiversx/sdk-core@12.6.0":
   version "12.6.0"
   resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.6.0.tgz#10bd8f12f1449361b21aa2efd38861f45099b38b"
@@ -1930,13 +1958,14 @@
     keccak "3.0.2"
     protobufjs "7.2.4"
 
-"@multiversx/sdk-dapp-form@0.8.20":
-  version "0.8.20"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp-form/-/sdk-dapp-form-0.8.20.tgz#57274ce5df815ecf49675141c4d52e254a2b7a1a"
-  integrity sha512-V1a/hEZ7/4ez0kf4QX2R4RvGP9E33W4zErplsFSYNd0WfLplRj6zQHMHKnoW9sE4aiLrLTwNrxDMyyusGJ41fA==
+"@multiversx/sdk-dapp-form@0.9.4":
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp-form/-/sdk-dapp-form-0.9.4.tgz#42d2ebf06371526df2ff17e720313edb9643afcb"
+  integrity sha512-5FEX+tZp8cWB5RFeNai9+6TFAD4u3eJOceHfx+r89Tay+CrkCWG+4e2uqZ1yQpRXmBr8hc0+szm685fhJKs+8Q==
   dependencies:
+    "@multiversx/sdk-dapp" "2.26.2"
     anchorme "2.1.2"
-    axios "0.24.0"
+    axios "1.6.2"
     bech32 "2.0.0"
     bignumber.js "9.x"
     formik "2.2.9"
@@ -1952,14 +1981,14 @@
     classnames "2.3.1"
     react-select "5.4.0"
 
-"@multiversx/sdk-dapp-sc-explorer@0.0.1-beta.2":
-  version "0.0.1-beta.2"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp-sc-explorer/-/sdk-dapp-sc-explorer-0.0.1-beta.2.tgz#76f21672c5ffa48cfb9836ea9675da8fe99cc7a9"
-  integrity sha512-p0rL0NO5l/MrlGldm5rZjwOIzWJHvcVdEb219IkC36M0HhiaCVK27tNeXdVbXVt+YuuNq7TF9Yp3LBmEhzk8NQ==
+"@multiversx/sdk-dapp-sc-explorer@0.0.1-beta.4":
+  version "0.0.1-beta.4"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp-sc-explorer/-/sdk-dapp-sc-explorer-0.0.1-beta.4.tgz#0817d743ced884c559bfd418a8d3a5d720dfb66e"
+  integrity sha512-oUMHklYg/HeWgeEhfhdmG+VO96n7iO2Hjat0IsL+X+iG/WjvnKWPEssFAzVoU7usa1Ls/5XxqP9yZ8Fnccekkw==
   dependencies:
-    "@multiversx/sdk-core" "12.14.0"
-    "@multiversx/sdk-dapp" "2.23.0"
-    "@multiversx/sdk-dapp-form" "0.8.20"
+    "@multiversx/sdk-core" "12.17.0"
+    "@multiversx/sdk-dapp" "2.26.5"
+    "@multiversx/sdk-dapp-form" "0.9.4"
     "@multiversx/sdk-network-providers" "2.2.0"
     axios "1.6.2"
     bignumber.js "9.x"
@@ -1975,10 +2004,10 @@
     "@fortawesome/react-fontawesome" "0.2.0"
     classnames "2.3.2"
 
-"@multiversx/sdk-dapp@2.23.0":
-  version "2.23.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.23.0.tgz#8b901a3d11d1fab0dd4dc178e50f54fc69951412"
-  integrity sha512-prydWmVUzYF2JkHjAFCeQRGcRreBAt9l8oV8GcEWEegFNlNzIQ0O3CHeUx5FPCMdbGcvqPvlxFMsv+j9n9GETA==
+"@multiversx/sdk-dapp@2.24.0":
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.24.0.tgz#d78fd6ec52789a4b3113f87f739624396e5b956d"
+  integrity sha512-+SnHcKBWkUhzynigrkUeHYZCQUtEzb5k0lP2kXMn7xNmfHmVfryBDTf52zCACj6M+CJSFYkwrCcjNBJgblvqmw==
   dependencies:
     "@multiversx/sdk-core" "12.6.0"
     "@multiversx/sdk-extension-provider" "3.0.0"
@@ -2015,22 +2044,60 @@
     qrcode "1.5.0"
     swr "2.2.0"
 
-"@multiversx/sdk-dapp@2.24.0":
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.24.0.tgz#d78fd6ec52789a4b3113f87f739624396e5b956d"
-  integrity sha512-+SnHcKBWkUhzynigrkUeHYZCQUtEzb5k0lP2kXMn7xNmfHmVfryBDTf52zCACj6M+CJSFYkwrCcjNBJgblvqmw==
+"@multiversx/sdk-dapp@2.26.2":
+  version "2.26.2"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.26.2.tgz#eec7be64e735485dfa6fe9dfd5504055fae90d6b"
+  integrity sha512-vzHoIy9Sg+ptvcqH0S8amO9rmF8vB1K3tqBzhAk75ekHo4Nnrw/mmhqJClH7IwqTpp6/CFSXM/RBVaPVh1wiqA==
   dependencies:
-    "@multiversx/sdk-core" "12.6.0"
+    "@multiversx/sdk-core" "12.16.0"
     "@multiversx/sdk-extension-provider" "3.0.0"
     "@multiversx/sdk-hw-provider" "6.4.0"
-    "@multiversx/sdk-native-auth-client" "1.0.5"
-    "@multiversx/sdk-network-providers" "1.5.0"
+    "@multiversx/sdk-native-auth-client" "1.0.6"
     "@multiversx/sdk-opera-provider" "1.0.0-alpha.1"
     "@multiversx/sdk-wallet" "4.2.0"
     "@multiversx/sdk-wallet-connect-provider" "4.0.4"
     "@multiversx/sdk-web-wallet-provider" "3.1.0"
     "@reduxjs/toolkit" "1.8.2"
-    axios "0.24.0"
+    axios "1.6.2"
+    bignumber.js "9.x"
+    linkify-react "4.0.2"
+    linkifyjs "4.0.2"
+    lodash.debounce "4.0.8"
+    lodash.isequal "4.5.0"
+    lodash.omit "4.5.0"
+    lodash.throttle "4.1.1"
+    lodash.uniqby "4.7.0"
+    qs "6.10.3"
+    react-idle-timer "5.0.0"
+    react-redux "8.0.2"
+    redux-persist "6.0.0"
+    reselect "4.0.0"
+    shx "0.3.4"
+    socket.io-client "4.6.1"
+  optionalDependencies:
+    "@fortawesome/fontawesome-svg-core" "6.4.0"
+    "@fortawesome/free-solid-svg-icons" "6.4.0"
+    "@fortawesome/react-fontawesome" "0.2.0"
+    classnames "2.3.1"
+    platform "1.3.6"
+    qrcode "1.5.0"
+    swr "2.2.0"
+
+"@multiversx/sdk-dapp@2.26.5":
+  version "2.26.5"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.26.5.tgz#db65fabf4305fd429f5481ad73a9da6720d36466"
+  integrity sha512-lwt7gpCoomU3wusNN93fzN15li122lXxFph3qWuul+8qAygHCt+AmmG4YrQBT4Cf6SnMc2JaBG+suSBjalAiog==
+  dependencies:
+    "@multiversx/sdk-core" "12.16.0"
+    "@multiversx/sdk-extension-provider" "3.0.0"
+    "@multiversx/sdk-hw-provider" "6.4.0"
+    "@multiversx/sdk-native-auth-client" "1.0.6"
+    "@multiversx/sdk-opera-provider" "1.0.0-alpha.1"
+    "@multiversx/sdk-wallet" "4.2.0"
+    "@multiversx/sdk-wallet-connect-provider" "4.0.4"
+    "@multiversx/sdk-web-wallet-provider" "3.1.0"
+    "@reduxjs/toolkit" "1.8.2"
+    axios "1.6.2"
     bignumber.js "9.x"
     linkify-react "4.0.2"
     linkifyjs "4.0.2"
@@ -2080,6 +2147,13 @@
   integrity sha512-MA9KCNy2K0Irw+RMn01mxXB3Z+EcpMuUFBqr6ZhVQyxmXjujK+CHvlXH5TSADIm5Yw2SfGjFGdiqRu64lNVvuA==
   dependencies:
     axios "0.24.0"
+
+"@multiversx/sdk-native-auth-client@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-native-auth-client/-/sdk-native-auth-client-1.0.6.tgz#6e3a9e3aaeb48e1698998145e2b4a226894f6fb9"
+  integrity sha512-IGJZnanNYGv0CTA02qh402EJ5UbQ73J5tOjRenz2yQBNrqenJCfBJsEX5JJc5Quk/ppuZhl3GppQIBqsrGOidg==
+  dependencies:
+    axios "^1.6.2"
 
 "@multiversx/sdk-native-auth-server@1.0.10":
   version "1.0.10"
@@ -3868,6 +3942,15 @@ axios@^0.27.2:
   dependencies:
     follow-redirects "^1.14.9"
     form-data "^4.0.0"
+
+axios@^1.6.2:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.4.tgz#184ee1f63d412caffcf30d2c50982253c3ee86e0"
+  integrity sha512-heJnIs6N4aa1eSthhN9M5ioILu8Wi8vmQW9iHQ9NUvfkJb0lEEDUiIdQNAuBtfUt3FxReaKdpQA5DbmMOqzF/A==
+  dependencies:
+    follow-redirects "^1.15.4"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
 
 axobject-query@^3.1.1:
   version "3.2.1"
@@ -5830,6 +5913,11 @@ follow-redirects@^1.14.4, follow-redirects@^1.14.9, follow-redirects@^1.15.0:
   version "1.15.3"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.3.tgz#fe2f3ef2690afce7e82ed0b44db08165b207123a"
   integrity sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==
+
+follow-redirects@^1.15.4:
+  version "1.15.4"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.4.tgz#cdc7d308bf6493126b17ea2191ea0ccf3e535adf"
+  integrity sha512-Cr4D/5wlrb0z9dgERpUL3LrmPKVDsETIJhaCMeDfuFYcqa5bldGV6wBsAN6X/vxlXQtFBMrXdXxdL8CbDTGniw==
 
 for-each@^0.3.3:
   version "0.3.3"
