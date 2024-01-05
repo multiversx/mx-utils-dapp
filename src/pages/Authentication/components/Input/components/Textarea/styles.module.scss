@@ -32,7 +32,14 @@
     outline: none;
 
     font-size: 16px;
-    font-family: ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace;
+    font-family:
+      ui-monospace,
+      SFMono-Regular,
+      SF Mono,
+      Consolas,
+      Liberation Mono,
+      Menlo,
+      monospace;
 
     &::-webkit-scrollbar {
       width: 3px;
