@@ -11,14 +11,17 @@
   }
 
   .navigation {
+    display: flex;
+    flex-direction: column;
     position: fixed;
-    width: 100%;
+    overflow-y: scroll;
     transition: right 400ms ease;
-    right: 100%;
     background-color: var(--navigation);
     top: 60px;
-    overflow-y: scroll;
-    height: 100%;
+    right: 100%;
+    width: 100%;
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
     z-index: 1;
 
     @media (min-width: 992px) {
@@ -60,6 +63,9 @@
       margin: 0;
       padding: 0;
       list-style: none;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
 
       .page {
         transition: all 400ms ease;
@@ -177,9 +183,7 @@
 
     @media (min-width: 992px) {
       li:last-child {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
+        margin-top: auto;
       }
     }
   }
@@ -189,9 +193,41 @@
     display: flex;
     flex: 1;
 
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-track:hover,
+    &::-webkit-scrollbar-corner,
+    &::-webkit-scrollbar:horizontal {
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+    &::-webkit-scrollbar:horizontal {
+      height: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-thumb:horizontal {
+      border-radius: 0.5rem;
+      background-color: var(--header);
+      border: 2.5px solid transparent;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--navigation);
+      border: 2px solid transparent;
+    }
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+    &::-webkit-resizer {
+      background-color: transparent;
+    }
+
     @media (min-width: 992px) {
       height: 100%;
-      overflow: scroll;
+      overflow-x: auto;
+      overflow-y: scroll;
       display: flex;
       justify-content: center;
       margin-top: 0;
