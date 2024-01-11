@@ -23,7 +23,7 @@ jobs:
         run: |
           echo "version=$(node -v)" >> $GITHUB_OUTPUT
       - name: Get node_modules cache
-        uses: actions/cache@v3
+        uses: actions/cache@v3.2.2
         id: node_modules
         with:
           path: |
