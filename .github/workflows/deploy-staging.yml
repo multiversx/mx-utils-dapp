@@ -18,6 +18,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '18.x'
+      - name: Get node version
+        id: node
+        run: |
+          echo "version=$(node -v)" >> $GITHUB_OUTPUT
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: node_modules
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}-${{ steps.node.outputs.version }}
       - name: Setup yarn
         run: npm install -g yarn
       - run: yarn install
