@@ -22,6 +22,25 @@ enum LoginContainersTypesEnum {
   none = 'none',
 }
 
+const customStyles = {
+  ledgerProgressBarClassNames: {
+    ledgerProgressBarThumbClassName: styles.ledgerProgressbarThumb,
+    ledgerProgressBarTrackClassName: styles.ledgerProgressbarTrack
+  },
+  ledgerConnectClassNames: {
+    ledgerModalButtonClassName: styles.ledgerConnectButton,
+    ledgerModalIconClassName: styles.ledgerConnectIcon,
+    ledgerModalContentClassName: styles.ledgerConnectContent,
+    ledgerModalFooterLinkClassName: styles.ledgerConnectFooterLink,
+  },
+  addressTableClassNames: {
+    ledgerModalTableHeadClassName: styles.ledgerTableHead,
+    ledgerModalTableItemClassName: styles.ledgerTableItem,
+    ledgerModalButtonClassName: styles.ledgerTableButton,
+    ledgerModalTableNavigationButtonClassName: styles.ledgerTableNavigationButton
+  }
+}
+
 export const Unlock = () => {
   const { search } = useLocation();
   const isLoggedIn = useGetIsLoggedIn();
@@ -129,6 +148,7 @@ export const Unlock = () => {
                 hideButtonWhenModalOpens={true}
                 nativeAuth={{ expirySeconds: EXPIRY_SECONDS }}
                 onLoginRedirect={onLoginRedirect}
+                innerLedgerComponentsClasses={customStyles}
                 {...button}
               >
                 <span className={styles.name}>{button.name}</span>
