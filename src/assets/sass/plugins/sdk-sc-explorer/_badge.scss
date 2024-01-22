@@ -53,6 +53,22 @@
           );
         }
       }
+
+      &-yellow-alt {
+        color: var(--yellow-500);
+        background: linear-gradient(
+          90deg,
+          rgba(240, 77, 25, 0.05),
+          rgba(237, 136, 93, 0.05)
+        );
+        &:before {
+          background: linear-gradient(
+            90deg,
+            rgba(240, 77, 25, 0.4),
+            rgba(237, 136, 93, 0.4)
+          );
+        }
+      }
     }
     &.badge-filled {
       padding: 0 0.25rem;
@@ -63,6 +79,14 @@
       background: var(--neutral-700);
       color: var(--white, #fff);
       font-weight: 700;
+    }
+    &.badge-rounded {
+      line-height: 1rem;
+      border-radius: 6px;
+      padding: 0.125rem 0.5rem;
+      &:before {
+        border-radius: 6px;
+      }
     }
   }
 }
