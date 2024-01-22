@@ -60,6 +60,17 @@
         margin-left: 0.5rem;
         svg[data-icon='copy'] {
           color: var(--neutral-500);
+          &:hover {
+            color: var(--primary);
+          }
+        }
+      }
+      .dapp-explorer-link {
+        svg[data-icon='arrow-up-right-from-square'] {
+          color: var(--neutral-500);
+          &:hover {
+            color: var(--primary);
+          }
         }
       }
     }
