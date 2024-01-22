@@ -51,12 +51,19 @@
     line-height: 1;
     display: inline-block;
   }
+  &-general-warning,
   &-general-error {
     color: var(--danger);
     margin-top: 1rem;
     p {
       margin-bottom: 0;
     }
+  }
+  &-general-error {
+    color: var(--danger);
+  }
+  &-general-warning {
+    color: var(--warning);
   }
 
   &-amount-select-input-group {

@@ -10,6 +10,9 @@ import styles from './styles.module.scss';
 const customClassNames = {
   badgePrimaryClassName: 'badge-outline badge-outline-primary-alt',
   badgeSecondaryClassName: 'badge-outline badge-outline-grey',
+  badgeActiveClassName: 'badge-outline badge-rounded badge-outline-primary-alt',
+  badgeInactiveClassName:
+    'badge-outline badge-rounded badge-outline-yellow-alt',
   badgeFilledClassName: 'badge-filled',
   buttonClassName: styles?.button,
   buttonSecondaryClassName: styles?.buttonSecondary,
@@ -39,16 +42,17 @@ export const SmartContractInteraction = () => {
   return (
     <div className={styles?.container}>
       <ScExplorerContainer
-        smartContract={{
-          canMutate: true,
-          canLoadAbi: true,
-          canDeploy: true,
-          canUpgrade: true,
-        }}
         accountConsumerHandlers={{
           useGetLoginInfo,
           useGetAccountInfo,
           onLoginClick,
+        }}
+        config={{
+          canMutate: true,
+          canLoadAbi: true,
+          canDeploy: true,
+          canUpgrade: true,
+          canDisplayContractDetails: true,
         }}
         networkConfig={{ environment: dappEnvironment }}
         customClassNames={customClassNames}
