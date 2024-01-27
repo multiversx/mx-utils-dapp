@@ -6,21 +6,10 @@
     bottom: 2rem !important;
     color:#fff;
     position:fixed !important;
-    padding: 1rem !important;
-  
-    .dapp-core-component__styles__content {
+    
+    .dapp-core-component__transactionToast-styles__content {
+      padding-bottom: 1rem !important;
       color: #fff !important;
-    }
-  
-    .dapp-core-component__transactionStatusToastStyles__transactions-status-toast-icon {
-      width: 3rem !important;
-      min-width: 3rem !important;
-      height: 3rem !important;
-      padding: 0 !important;
-      margin-right: 0.25rem;
-      svg {
-        width: 25px !important;
-      }
     }
   
     .dapp-core-component__customToast-styles__close {
@@ -33,16 +22,5 @@
         color: red !important;
         fill: red !important;
       }
-    }
-  
-    .dapp-core-component__main__warning {
-      background-color: red !important;
-    }
-  }
-  
-  .toast-messages {
-    .dapp-core-component__transactionsToastList-styles__toasts {
-      left: 0 !important;
-      bottom: 0 !important;
     }
   }
