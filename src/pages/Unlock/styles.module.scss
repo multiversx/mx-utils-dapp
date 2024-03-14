@@ -141,9 +141,8 @@
         }
       }
 
-      
       .ledgerProgressbarThumb {
-        background-color: #1b46c2 ;
+        background-color: #1b46c2;
       }
 
       .ledgerConnectIcon {
@@ -161,16 +160,15 @@
         color: white;
 
         &:visited {
-          color: white
+          color: white;
         }
       }
 
       .ledgerTableHead {
-        background: var(--background)
+        background: var(--background);
       }
 
       .ledgerTableItem {
-
         @media (min-width: 768px) {
           div label div span {
             max-width: 112px;
@@ -185,14 +183,10 @@
       .ledgerTableNavigationButton {
         color: white;
       }
-      
+
       .dapp-ledger-address-table {
         background: red;
-        } 
-    }
-    .buttons > div:first-of-type {
-      width: 60vw;
-      max-width: 250px;
+      }
     }
 
     .buttons > div:nth-of-type(2) {
@@ -201,4 +195,3 @@
     }
   }
 }
-
