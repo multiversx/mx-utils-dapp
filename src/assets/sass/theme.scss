@@ -120,13 +120,11 @@ body {
   .dapp-modal-dialog-content {
     background-color: var(--body);
     box-shadow: 0.25rem 0.25rem 1rem 0.5rem var(--body);
-    padding: 1.5rem;
     border-radius: 1rem;
     position: relative;
     max-width: 30rem;
     color: var(--text);
     z-index: 2000;
-    margin: 0 auto;
     border: 1px solid var(--background);
 
     .dapp-modal-dialog-header {
@@ -168,6 +166,10 @@ body {
           height: 1rem;
         }
       }
+    }
+
+    .dapp-core-component__signWithDeviceModalStyles__spaced {
+      padding: 0 !important;
     }
 
     .dapp-modal-dialog-content-body {
