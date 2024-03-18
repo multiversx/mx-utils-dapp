@@ -25,7 +25,7 @@ enum LoginContainersTypesEnum {
 const customStyles = {
   ledgerProgressBarClassNames: {
     ledgerProgressBarThumbClassName: styles.ledgerProgressbarThumb,
-    ledgerProgressBarTrackClassName: styles.ledgerProgressbarTrack
+    ledgerProgressBarTrackClassName: styles.ledgerProgressbarTrack,
   },
   ledgerConnectClassNames: {
     ledgerModalButtonClassName: styles.ledgerConnectButton,
@@ -37,9 +37,10 @@ const customStyles = {
     ledgerModalTableHeadClassName: styles.ledgerTableHead,
     ledgerModalTableItemClassName: styles.ledgerTableItem,
     ledgerModalButtonClassName: styles.ledgerTableButton,
-    ledgerModalTableNavigationButtonClassName: styles.ledgerTableNavigationButton
-  }
-}
+    ledgerModalTableNavigationButtonClassName:
+      styles.ledgerTableNavigationButton,
+  },
+};
 
 export const Unlock = () => {
   const { search } = useLocation();
@@ -80,14 +81,14 @@ export const Unlock = () => {
       component: WalletConnectLoginButton,
       id: LoginContainersTypesEnum.walletConnect,
       isWalletConnectV2: true,
-      onModalOpens: () =>
+      onContentShow: () =>
         setOpenedContainerType(LoginContainersTypesEnum.walletConnect),
     },
     {
       name: 'Ledger',
       id: LoginContainersTypesEnum.ledger,
       component: LedgerLoginButton,
-      onModalOpens: () =>
+      onContentShow: () =>
         setOpenedContainerType(LoginContainersTypesEnum.ledger),
     },
     {
@@ -132,9 +133,9 @@ export const Unlock = () => {
               titles[LoginContainersTypesEnum.none]}
           </div>
 
-          <div className={styles.close} onClick={onClose}>
+          <button className={styles.close} onClick={onClose}>
             <CloseIcon />
-          </div>
+          </button>
         </div>
 
         <div className={styles.buttons}>

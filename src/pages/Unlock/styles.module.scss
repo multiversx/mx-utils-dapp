@@ -1,30 +1,23 @@
 .modal {
+  --modal-width: 530px;
   position: fixed;
-  left: 0;
   top: 0;
-  right: 0;
+  left: 0;
   z-index: 2022;
-  bottom: 0;
-  padding: 1.5rem;
-
-  &:before {
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    content: '';
-    opacity: 0.75;
-    position: absolute;
-    background-color: var(--background);
-  }
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
 
   .dialog {
-    height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    margin: 1.5rem auto;
+    width: 100%;
+    min-height: calc(100% - 3rem);
+    max-width: var(--modal-width);
   }
-
   .unlock {
     background-color: var(--body);
     box-shadow: 0.25rem 0.25rem 1rem 0.5rem var(--body);
@@ -34,7 +27,6 @@
     position: relative;
     max-width: 30rem;
     z-index: 2000;
-    margin: 0 auto;
     border: 1px solid var(--background);
 
     .heading {
@@ -63,6 +55,8 @@
         cursor: pointer;
         transition: all 400ms ease;
         box-sizing: border-box;
+        background-color: transparent;
+        color: var(--text);
 
         &:hover {
           background-color: var(--background);
@@ -141,9 +135,8 @@
         }
       }
 
-      
       .ledgerProgressbarThumb {
-        background-color: #1b46c2 ;
+        background-color: #1b46c2;
       }
 
       .ledgerConnectIcon {
@@ -161,16 +154,15 @@
         color: white;
 
         &:visited {
-          color: white
+          color: white;
         }
       }
 
       .ledgerTableHead {
-        background: var(--background)
+        background: var(--background);
       }
 
       .ledgerTableItem {
-
         @media (min-width: 768px) {
           div label div span {
             max-width: 112px;
@@ -185,14 +177,10 @@
       .ledgerTableNavigationButton {
         color: white;
       }
-      
+
       .dapp-ledger-address-table {
         background: red;
-        } 
-    }
-    .buttons > div:first-of-type {
-      width: 60vw;
-      max-width: 250px;
+      }
     }
 
     .buttons > div:nth-of-type(2) {
@@ -201,4 +189,3 @@
     }
   }
 }
-
