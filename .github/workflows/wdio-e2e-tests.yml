@@ -1,5 +1,5 @@
 name: E2E Tests
-on: 
+on:
   pull_request:
     branches: [main]
 jobs:
@@ -29,10 +29,10 @@ jobs:
         with:
           cmd: install # will run `yarn install` command
       - name: Build
-        run: npm run build 
+        run: npm run build
       - name: Start
         run: npm run start
       - name: Wait on Localhost
-        run: npx wait-on http://localhost:3000
+        run: npx wait-on http://localhost:3001
       - name: Test
         run: npm run wdio
