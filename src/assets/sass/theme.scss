@@ -76,6 +76,39 @@ body {
       padding: 0;
     }
   }
+
+  .dapp-core-component__progressBarStyles__ledger-progress-bar {
+    width: 250px;
+  }
+}
+
+.modal-backdrop {
+  --backdrop-zindex: 1050;
+  --backdrop-bg: var(--background);
+  --backdrop-opacity: 0.75;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--backdrop-zindex);
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--backdrop-bg);
+}
+.modal-backdrop.fade {
+  opacity: 0;
+}
+.modal-backdrop.show {
+  opacity: var(--backdrop-opacity);
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-clip: padding-box;
+  outline: 0;
 }
 
 #dapp-modal {
@@ -87,13 +120,11 @@ body {
   .dapp-modal-dialog-content {
     background-color: var(--body);
     box-shadow: 0.25rem 0.25rem 1rem 0.5rem var(--body);
-    padding: 1.5rem;
     border-radius: 1rem;
     position: relative;
     max-width: 30rem;
     color: var(--text);
     z-index: 2000;
-    margin: 0 auto;
     border: 1px solid var(--background);
 
     .dapp-modal-dialog-header {
@@ -135,6 +166,10 @@ body {
           height: 1rem;
         }
       }
+    }
+
+    .dapp-core-component__signWithDeviceModalStyles__spaced {
+      padding: 0 !important;
     }
 
     .dapp-modal-dialog-content-body {
