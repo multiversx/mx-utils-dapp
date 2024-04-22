@@ -1,26 +1,37 @@
 @import './variables';
 
 .dapp-core-component__transactionsToastList-styles__toasts {
-    border-radius: 0.45rem !important;
-    background-color: #242526 !important;
-    bottom: 2rem !important;
-    color:#fff;
-    position:fixed !important;
-    
-    .dapp-core-component__transactionToast-styles__content {
-      padding-bottom: 1rem !important;
-      color: #fff !important;
+  border-radius: 0.45rem !important;
+  background-color: #242526 !important;
+  bottom: 2rem !important;
+  color: #fff;
+  position: fixed !important;
+
+  .dapp-core-component__transactionToast-styles__content {
+    padding-bottom: 1rem !important;
+    color: #fff !important;
+  }
+
+  .dapp-core-component__customToast-styles__close {
+    opacity: 1;
+    margin-right: 0.675rem !important;
+    &:hover {
+      opacity: 0.75;
     }
-  
-    .dapp-core-component__customToast-styles__close {
-      opacity: 1;
-      margin-right: 0.675rem !important;
-      &:hover {
-        opacity: 0.75;
-      }
-      svg {
-        color: red !important;
-        fill: red !important;
-      }
+    svg {
+      color: red !important;
+      fill: red !important;
     }
   }
+}
+
+.dapp-core-component__transactionStatusToastStyles__transactions-status-toast-icon {
+  width: 3rem !important;
+  min-width: 3rem !important;
+  height: 3rem !important;
+  padding: 0 !important;
+  margin-right: 0.25rem;
+  svg {
+    width: 25px !important;
+  }
+}
