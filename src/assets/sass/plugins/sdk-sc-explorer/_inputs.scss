@@ -103,6 +103,9 @@
       .dapp-core-component__amountInput-module__amount-input {
         padding: 1rem 0.5rem;
         font-weight: 400;
+        &:focus {
+          border-color: transparent;
+        }
       }
       .dapp-core-component__globals-module__error {
         padding-top: 0;
