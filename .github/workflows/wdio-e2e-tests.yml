@@ -33,6 +33,6 @@ jobs:
       - name: Start
         run: npm run start
       - name: Wait on Localhost
-        run: npx wait-on http://localhost:3001
+        run: npx wait-on https://localhost:3001
       - name: Test
         run: npm run wdio
