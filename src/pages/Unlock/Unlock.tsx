@@ -6,7 +6,7 @@ import {
   ExtensionLoginButton,
   LedgerLoginButton,
   WalletConnectLoginButton,
-  WebWalletLoginButton,
+  CrossWindowLoginButton,
 } from '@multiversx/sdk-dapp/UI';
 import { Modal } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -93,7 +93,7 @@ export const Unlock = () => {
     },
     {
       name: 'MultiversX Web Wallet',
-      component: WebWalletLoginButton,
+      component: CrossWindowLoginButton,
     },
   ];
 
