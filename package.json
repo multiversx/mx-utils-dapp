@@ -19,7 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "6.5.1",
     "@fortawesome/react-fontawesome": "0.2.0",
     "@multiversx/sdk-core": "13.2.1",
-    "@multiversx/sdk-dapp": "2.33.2",
+    "@multiversx/sdk-dapp": "2.33.6",
     "@multiversx/sdk-dapp-sc-explorer": "0.0.1-beta.8",
     "@multiversx/sdk-native-auth-server": "1.0.17",
     "@multiversx/sdk-wallet": "4.5.0",
