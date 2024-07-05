@@ -26,15 +26,15 @@ const mockConversions = new Map([
   [
     'bech32-to-hexadecimal',
     {
-      input: 'erd1wh9c0sjr2xn8hzf02lwwcr4jk2s84tat9ud2kaq6zr7xzpvl9l5q8awmex',
-      output: '75cb87c24351a67b892f57dcec0eb2b2a07aafab2f1aab741a10fc61059f2fe8'
+      input: 'erd1axhx4kenjlae6sknq7zjg2g4fvzavv979r2fg425p62wkl84avtqsf7vvv',
+      output: 'e9ae6adb3397fb9d42d307852429154b05d630be28d49455540e94eb7cf5eb16'
     }
   ],
   [
     'hexadecimal-to-bech32',
     {
-      input: '75cb87c24351a67b892f57dcec0eb2b2a07aafab2f1aab741a10fc61059f2fe8',
-      output: 'erd1wh9c0sjr2xn8hzf02lwwcr4jk2s84tat9ud2kaq6zr7xzpvl9l5q8awmex'
+      input: 'e9ae6adb3397fb9d42d307852429154b05d630be28d49455540e94eb7cf5eb16',
+      output: 'erd1axhx4kenjlae6sknq7zjg2g4fvzavv979r2fg425p62wkl84avtqsf7vvv'
     }
   ],
   ['decimal-to-hexadecimal', { input: '91', output: '5b' }],
