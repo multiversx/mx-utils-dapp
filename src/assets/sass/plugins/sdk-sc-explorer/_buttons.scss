@@ -60,13 +60,13 @@
     }
   }
   &-deploy-upgrade-file-form-button,
-  &-interaction-modal-form-button,
+  &-interaction-form-button,
   &-transaction-panel-button {
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  &-interaction-modal-form-button,
+  &-interaction-form-button,
   &-transaction-panel-button {
     margin-left: auto;
     margin-right: auto;

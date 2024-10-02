@@ -130,7 +130,7 @@
     }
   }
 
-  &-interaction-modal-form {
+  &-interaction-form {
     &-code-metadata {
       display: flex;
       align-items: center;
@@ -155,15 +155,15 @@
         }
         &:hover
           input
-          ~ .#{$package-name}-interaction-modal-form-code-metadata-checkmark {
+          ~ .#{$package-name}-interaction-form-code-metadata-checkmark {
           background-color: var(--text);
         }
         input:checked
-          ~ .#{$package-name}-interaction-modal-form-code-metadata-checkmark {
+          ~ .#{$package-name}-interaction-form-code-metadata-checkmark {
           background-color: var(--link);
         }
         input:checked
-          ~ .#{$package-name}-interaction-modal-form-code-metadata-checkmark:after {
+          ~ .#{$package-name}-interaction-form-code-metadata-checkmark:after {
           display: block;
         }
       }
