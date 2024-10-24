@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: development
       - name: Use Node.js
@@ -23,7 +23,7 @@ jobs:
         run: |
           echo "version=$(node -v)" >> $GITHUB_OUTPUT
       - name: Get node_modules cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: node_modules
         with:
           path: |
@@ -37,7 +37,7 @@ jobs:
       - run: yarn build
         env:
           CI: false
-      - uses: aws-actions/configure-aws-credentials@v1
+      - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
