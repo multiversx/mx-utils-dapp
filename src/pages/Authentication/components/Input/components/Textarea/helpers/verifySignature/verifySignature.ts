@@ -1,21 +1,26 @@
-import { Address, SignableMessage } from '@multiversx/sdk-core';
-import { UserVerifier } from '@multiversx/sdk-wallet';
+import {
+  Address,
+  Message,
+  MessageComputer,
+  UserVerifier,
+} from '@multiversx/sdk-core';
 
 export const verifySignature = (
   address: string,
   messageString: string,
   signature: Uint8Array,
 ) => {
+  const messageComputer = new MessageComputer();
   const bech32Address = Address.fromBech32(address);
   const verifier = UserVerifier.fromAddress(bech32Address);
 
-  const signableMessage = new SignableMessage({
-    address: bech32Address,
-    message: Buffer.from(messageString, 'utf8'),
+  const message = new Message({
+    address: new Address(address),
+    data: Buffer.from(messageString, 'utf8'),
   });
 
   const cryptoMessageBuffer = Buffer.from(
-    signableMessage.serializeForSigning(),
+    messageComputer.computeBytesForVerifying(message),
   );
   const signatureBuffer = Buffer.from(signature);
 

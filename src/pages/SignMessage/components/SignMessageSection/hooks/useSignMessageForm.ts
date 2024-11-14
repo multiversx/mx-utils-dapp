@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Address, SignableMessage } from '@multiversx/sdk-core';
+import { Address, Message } from '@multiversx/sdk-core';
 import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
@@ -49,9 +49,9 @@ export const useSignMessageForm = () => {
 
     // If the user is using the web wallet, we need to get the signature from the url and compute the signed message payload to be consistent with the other providers
     if (signatureParam && isMessageSigned) {
-      const signedPayload = new SignableMessage({
+      const signedPayload = new Message({
         ...(address ? { address: new Address(address) } : {}),
-        message: Buffer.from(persistedMessageToSign),
+        data: Buffer.from(persistedMessageToSign),
       });
 
       const messageObj = JSON.parse(JSON.stringify(signedPayload));
