@@ -1,4 +1,6 @@
 import { useCallback } from 'react';
+import { MessageComputer } from '@multiversx/sdk-core';
+
 import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
 import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
 import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
@@ -24,6 +26,7 @@ export const useSignMessageSectionActions = () => {
   const handleSignMessage = useCallback(async () => {
     searchParams.delete(SIGNATURE_KEY);
     searchParams.delete(STATUS_KEY);
+    const messageComputer = new MessageComputer();
 
     if (!isLoggedIn) {
       const route = search
@@ -39,16 +42,18 @@ export const useSignMessageSectionActions = () => {
       return;
     }
 
-    const signableMessage = await signMessage({
+    const message = await signMessage({
       message: messageToSign,
       callbackRoute: `${routeNames.signMessage}${search}`,
     });
 
-    if (!signableMessage) {
+    if (!message) {
       return;
     }
 
-    setSignedMessagePayload(JSON.stringify(signableMessage.toJSON(), null, 2));
+    const packedMessage = messageComputer.packMessage(message);
+
+    setSignedMessagePayload(JSON.stringify(packedMessage, null, 2));
   }, [
     callbackRoute,
     isLoggedIn,
