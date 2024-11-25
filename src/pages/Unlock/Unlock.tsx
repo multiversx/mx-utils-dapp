@@ -2,18 +2,21 @@ import { ReactNode, useEffect, useState } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
+import { useIframeLogin } from '@multiversx/sdk-dapp/hooks/login/useIframeLogin';
 import {
   ExtensionLoginButton,
   LedgerLoginButton,
   WalletConnectLoginButton,
   CrossWindowLoginButton,
 } from '@multiversx/sdk-dapp/UI';
+import { IframeLoginTypes } from '@multiversx/sdk-web-wallet-iframe-provider/out/constants';
 import { Modal } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CloseIcon } from 'assets/img/CloseIcon';
 import { useChain } from 'hooks/useChain';
 import { EXPIRY_SECONDS } from 'localConstants/nativeAuth';
 import { routeNames } from 'routes';
+import { IframeButton } from './components';
 import styles from './styles.module.scss';
 
 enum LoginContainersTypesEnum {
@@ -61,6 +64,14 @@ export const Unlock = () => {
     onClose();
   };
 
+  const [onInitiateLogin, { isLoading }] = useIframeLogin({
+    callbackRoute,
+    onLoginRedirect,
+    nativeAuth: {
+      expirySeconds: EXPIRY_SECONDS,
+    },
+  });
+
   function renderLoginButton(
     content: ReactNode,
     containerType = LoginContainersTypesEnum.none,
@@ -94,6 +105,18 @@ export const Unlock = () => {
     {
       name: 'MultiversX Web Wallet',
       component: CrossWindowLoginButton,
+    },
+    {
+      name: 'Passkey Proxy',
+      component: IframeButton,
+      loginType: IframeLoginTypes.passkey,
+      onClick: () => onInitiateLogin(IframeLoginTypes.passkey),
+    },
+    {
+      name: 'Metamask Proxy',
+      component: IframeButton,
+      loginType: IframeLoginTypes.metamask,
+      onClick: () => onInitiateLogin(IframeLoginTypes.metamask),
     },
   ];
 
@@ -147,9 +170,12 @@ export const Unlock = () => {
                 className={styles.button}
                 wrapContentInsideModal={false}
                 hideButtonWhenModalOpens={true}
-                nativeAuth={{ expirySeconds: EXPIRY_SECONDS }}
+                nativeAuth={{
+                  expirySeconds: EXPIRY_SECONDS,
+                }}
                 onLoginRedirect={onLoginRedirect}
                 innerLedgerComponentsClasses={customStyles}
+                disabled={isLoading}
                 {...button}
               >
                 <span className={styles.name}>{button.name}</span>
