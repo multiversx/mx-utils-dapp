@@ -33,10 +33,6 @@ const ContextProvider = (props: PropsWithChildren) => {
           name: 'customConfig',
           apiTimeout: 6000,
           walletConnectV2ProjectId: '9b1a9564f91cb659ffe21b73d5c4e2d8',
-          metamaskSnapWalletAddress:
-            state.dappEnvironment === EnvironmentsEnum.mainnet
-              ? 'https://snap-wallet.multiversx.com'
-              : 'https://devnet-snap-wallet.multiversx.com',
         }}
         dappConfig={{ shouldUseWebViewProvider: true }}
       >
