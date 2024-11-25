@@ -14,6 +14,7 @@ import { Modal } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CloseIcon } from 'assets/img/CloseIcon';
 import { useChain } from 'hooks/useChain';
+import { useWindowSize } from 'hooks/useWindowSize';
 import { EXPIRY_SECONDS } from 'localConstants/nativeAuth';
 import { routeNames } from 'routes';
 import { IframeButton } from './components';
@@ -49,6 +50,7 @@ export const Unlock = () => {
   const { search } = useLocation();
   const isLoggedIn = useGetIsLoggedIn();
   const { chain } = useChain();
+  const { width } = useWindowSize();
 
   const searchParams = new URLSearchParams(search);
   const previousRoute = searchParams.get('callbackUrl') ?? `/${search}`;
@@ -111,6 +113,7 @@ export const Unlock = () => {
       component: IframeButton,
       loginType: IframeLoginTypes.passkey,
       onClick: () => onInitiateLogin(IframeLoginTypes.passkey),
+      showOnlyOnMobile: true,
     },
     {
       name: 'Metamask Proxy',
@@ -118,7 +121,7 @@ export const Unlock = () => {
       loginType: IframeLoginTypes.metamask,
       onClick: () => onInitiateLogin(IframeLoginTypes.metamask),
     },
-  ];
+  ].filter((button) => !button.showOnlyOnMobile || width <= 768);
 
   const navigate = useNavigate();
   const onClose = () => {
