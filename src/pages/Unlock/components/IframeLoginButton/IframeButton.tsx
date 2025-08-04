@@ -18,7 +18,7 @@ export const IframeButton = ({
   className,
   disabled,
   children,
-  onClick,
+  onClick
 }: IframeLoginButtonPropsType) => {
   return (
     <Button

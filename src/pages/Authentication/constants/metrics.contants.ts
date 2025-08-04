@@ -7,5 +7,5 @@ export const emptyMetrics: MetricType = {
   body: '',
   origin: '',
   ttl: 0,
-  extraInfo: {},
+  extraInfo: {}
 };

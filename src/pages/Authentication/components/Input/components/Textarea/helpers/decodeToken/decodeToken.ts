@@ -3,7 +3,7 @@ import type { NativeAuthServerConfig } from '@multiversx/sdk-native-auth-server/
 
 export const decodeToken = async (
   token: string,
-  config: NativeAuthServerConfig,
+  config: NativeAuthServerConfig
 ) => {
   try {
     const server = new NativeAuthServer(config);

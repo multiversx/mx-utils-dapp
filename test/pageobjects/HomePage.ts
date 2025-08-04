@@ -20,7 +20,7 @@ class HomePage extends Page {
 
     await expect(titlePage).toHaveText(GlobalDataEnum.homePageTitle);
     await expect(descriptionPage).toHaveText(
-      GlobalDataEnum.homePageDescription,
+      GlobalDataEnum.homePageDescription
     );
   }
 
@@ -31,7 +31,7 @@ class HomePage extends Page {
       GlobalSelectorEnum.nativeAuthLink,
       GlobalSelectorEnum.signMsgLink,
       GlobalSelectorEnum.scDeployLink,
-      GlobalSelectorEnum.loginLink,
+      GlobalSelectorEnum.loginLink
     ];
     const routes = [
       RoutesEnum.converters,
@@ -39,7 +39,7 @@ class HomePage extends Page {
       RoutesEnum.auth,
       RoutesEnum.signMsg,
       RoutesEnum.scDeploy,
-      RoutesEnum.login,
+      RoutesEnum.login
     ];
     for (let i = 0; i < linkArr.length; i++) {
       const linkElement = await getSelector(linkArr[i]);

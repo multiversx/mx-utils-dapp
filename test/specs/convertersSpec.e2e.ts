@@ -1,6 +1,6 @@
-import ConvertersPage from "../pageobjects/ConvertersPage";
+import ConvertersPage from '../pageobjects/ConvertersPage';
 
-describe("Converters Tests", () => {
+describe('Converters Tests', () => {
   beforeEach(async () => {
     ConvertersPage.open();
     await driver.waitUntil(
@@ -10,11 +10,11 @@ describe("Converters Tests", () => {
   afterEach(async () => {
     await browser.reloadSession();
   });
-  it("should accept valid values and return properly results", async () => {
+  it('should accept valid values and return properly results', async () => {
     await ConvertersPage.completeTheInputs();
   });
 
-  it("should return required message", async () => {
+  it('should return required message', async () => {
     await ConvertersPage.checkRequiredFields();
   });
 });
