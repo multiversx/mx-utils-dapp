@@ -26,6 +26,14 @@ export default () => {
         '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap')
       }
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          quietDeps: true,
+          silenceDeprecations: ['legacy-js-api', 'import']
+        }
+      }
+    },
     build: {
       outDir: 'build',
       cssMinify: true,
