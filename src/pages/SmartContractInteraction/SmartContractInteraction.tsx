@@ -1,9 +1,12 @@
-import { useGetLoginInfo, useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
-import { ScExplorerContainer } from '@multiversx/sdk-dapp-sc-explorer/containers/ScExplorerContainer';
-import { VerifiedContractTabsEnum } from '@multiversx/sdk-dapp-sc-explorer/types';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from 'context';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
+import {
+  ScExplorerContainer,
+  useGetAccountInfo,
+  useGetLoginInfo,
+  VerifiedContractTabsEnum
+} from 'lib';
 import { routeNames } from 'routes';
 import styles from './styles.module.scss';
 
@@ -19,7 +22,7 @@ const customClassNames = {
   inputClassName: styles?.field,
   inputGroupClassName: styles?.fieldgroup,
   inputGroupAppendClassName: styles?.fieldgroupappend,
-  selectClassName: styles?.field,
+  selectClassName: styles?.field
 };
 
 export const SmartContractInteraction = () => {
@@ -34,7 +37,7 @@ export const SmartContractInteraction = () => {
       return;
     } else {
       navigate(`${routeNames.unlock}?callbackUrl=${callbackRoute}`, {
-        state: { previousLocation: location },
+        state: { previousLocation: location }
       });
     }
   };
@@ -45,14 +48,14 @@ export const SmartContractInteraction = () => {
         accountConsumerHandlers={{
           useGetLoginInfo,
           useGetAccountInfo,
-          onLoginClick,
+          onLoginClick
         }}
         config={{
           canMutate: true,
           canLoadAbi: true,
           canDeploy: true,
           canUpgrade: true,
-          canDisplayContractDetails: true,
+          canDisplayContractDetails: true
         }}
         networkConfig={{ environment: dappEnvironment }}
         customClassNames={customClassNames}

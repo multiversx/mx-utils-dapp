@@ -1,16 +1,16 @@
 import { useCallback } from 'react';
 import {
   faArrowDownLong,
-  faArrowUpLong,
+  faArrowUpLong
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import classNames from 'classnames';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Select, { components, SingleValue } from 'react-select';
 import { useDispatch } from 'context';
 import { ActionTypeEnum } from 'context/reducer';
 import { useChain } from 'hooks/useChain';
+import { EnvironmentsEnum } from 'lib';
 import { PERSISTED_NETWORK_KEY } from 'localConstants';
 import styles from './styles.module.scss';
 import type { OptionType } from './types';
@@ -39,11 +39,11 @@ const customComponents = {
     <components.Option
       {...props}
       className={classNames(styles.option, {
-        [styles.selected]: props.isSelected,
+        [styles.selected]: props.isSelected
       })}
     />
   ),
-  IndicatorSeparator: null,
+  IndicatorSeparator: null
 };
 
 export const Environment = () => {
@@ -56,8 +56,8 @@ export const Environment = () => {
   const options: OptionType[] = Object.values(EnvironmentsEnum).map(
     (chain) => ({
       label: chain,
-      value: chain,
-    }),
+      value: chain
+    })
   );
 
   const onChange = useCallback(
@@ -65,16 +65,16 @@ export const Environment = () => {
       if (option) {
         dispatch({
           type: ActionTypeEnum.switchDappEnvironment,
-          dappEnvironment: option.value as EnvironmentsEnum,
+          dappEnvironment: option.value as EnvironmentsEnum
         });
         sessionStorage.setItem(
           PERSISTED_NETWORK_KEY,
-          option.value as EnvironmentsEnum,
+          option.value as EnvironmentsEnum
         );
         navigate(pathname, { replace: true });
       }
     },
-    [pathname, navigate, dispatch],
+    [pathname, navigate, dispatch]
   );
 
   return (

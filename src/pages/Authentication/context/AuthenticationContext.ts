@@ -6,22 +6,20 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
+  useState
 } from 'react';
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import axios from 'axios';
 import { miscApi } from 'config';
 import { useChain } from 'hooks/useChain';
 import { useGetNativeAuthToken } from 'hooks/useGetNativeAuthToken';
+import { EnvironmentsEnum } from 'lib';
 import { GENERATED_TOKEN_CHAIN } from 'localConstants';
+
 import { TokenColorsEnum } from '../enum';
 import { MetricItemType, MetricType } from '../types';
 
-export type InitialTokensType = {
-  mainnet: string;
-  devnet: string;
-  testnet: string;
-};
+export const AuthenticationContext =
+  createContext<AuthenticationContextType | null>(null);
 
 export type AuthenticationContextType = {
   metrics: MetricType;
@@ -33,15 +31,18 @@ export type AuthenticationContextType = {
   setIsValidating: Dispatch<SetStateAction<boolean | undefined>>;
 };
 
-export const AuthenticationContext =
-  createContext<AuthenticationContextType | null>(null);
+export type InitialTokensType = {
+  mainnet: string;
+  devnet: string;
+  testnet: string;
+};
 
 export const useAuthenticationContext = () => {
   const context = useContext(AuthenticationContext);
 
   if (context === null) {
     throw new Error(
-      'useAuthenticationContext must be used within a AuthenticationProvider',
+      'useAuthenticationContext must be used within a AuthenticationProvider'
     );
   }
 
@@ -63,7 +64,7 @@ export const useAuthenticationValue = () => {
         name: 'Address',
         identifier: 'address',
         colors: [TokenColorsEnum.address],
-        data: metrics?.address,
+        data: metrics?.address
       },
       {
         name: 'Body',
@@ -72,16 +73,16 @@ export const useAuthenticationValue = () => {
           TokenColorsEnum.origin,
           TokenColorsEnum.blockHash,
           TokenColorsEnum.ttl,
-          TokenColorsEnum.extra,
+          TokenColorsEnum.extra
         ],
-        data: metrics?.body,
+        data: metrics?.body
       },
       {
         name: 'Origin',
         identifier: 'origin',
         colors: [TokenColorsEnum.origin],
         data: metrics?.origin,
-        subItem: true,
+        subItem: true
       },
       {
         name: 'Block Hash',
@@ -89,7 +90,7 @@ export const useAuthenticationValue = () => {
         colors: [TokenColorsEnum.blockHash],
         data: metrics?.blockHash,
         explorer: metrics ? `/blocks/${metrics.blockHash}` : '',
-        subItem: true,
+        subItem: true
       },
 
       {
@@ -97,7 +98,7 @@ export const useAuthenticationValue = () => {
         identifier: 'ttl',
         colors: [TokenColorsEnum.ttl],
         data: metrics?.ttl,
-        subItem: true,
+        subItem: true
       },
       {
         name: 'Extra Info',
@@ -107,28 +108,28 @@ export const useAuthenticationValue = () => {
         data:
           metrics && Object.keys(metrics.extraInfo || []).length > 0
             ? JSON.stringify(metrics.extraInfo, null, 2)
-            : undefined,
+            : undefined
       },
       {
         name: 'Signature',
         identifier: 'signature',
         colors: [TokenColorsEnum.signature],
-        data: metrics?.signature,
-      },
+        data: metrics?.signature
+      }
     ],
-    [metrics],
+    [metrics]
   );
 
   const fetchInitialTokens = useCallback(async () => {
     setFetchingInitialTokens(true);
     try {
       const { data } = await axios.get<InitialTokensType>(
-        `${miscApi}/utils-native-auth`,
+        `${miscApi}/utils-native-auth`
       );
 
       if (nativeAuthToken) {
         const generatedTokenChain = sessionStorage.getItem(
-          GENERATED_TOKEN_CHAIN,
+          GENERATED_TOKEN_CHAIN
         ) as EnvironmentsEnum | null;
         data[generatedTokenChain ?? chain] = nativeAuthToken;
       }
@@ -152,6 +153,6 @@ export const useAuthenticationValue = () => {
     initialTokens,
     fetchingInitialTokens,
     isValidating,
-    setIsValidating,
+    setIsValidating
   };
 };

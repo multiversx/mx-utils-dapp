@@ -1,6 +1,8 @@
-import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import CodeEditor from '@uiw/react-textarea-code-editor/esm';
 import { Field, useFormikContext } from 'formik';
+
+import { MvxCopyButton } from 'lib';
+
 import { applyTokenColors } from './plugins/applyTokenColors';
 import { splitToken } from './plugins/splitToken';
 import styles from './styles.module.scss';
@@ -25,7 +27,7 @@ export const Textarea = () => {
       />
 
       <div className={styles.buttons}>
-        <CopyButton text={values.token} className={styles.copy} />
+        <MvxCopyButton text={values.token} className={styles.copy} />
       </div>
     </div>
   );

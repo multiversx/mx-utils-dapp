@@ -1,5 +1,3 @@
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
-
 export const applicationName = 'Utils';
 export const companyName = 'MultiversX';
 export const companyWebsite = 'https://multiversx.com/';
@@ -12,3 +10,20 @@ export const ApiBaseUrls = {
 };
 
 export const miscApi = 'https://misc-api.multiversx.com';
+
+import { EnvironmentsEnum, InitAppType } from './lib';
+
+(window as any).multiversx = {};
+
+export const config: InitAppType = {
+  storage: { getStorageCallback: () => sessionStorage },
+  dAppConfig: {
+    nativeAuth: true,
+    environment: EnvironmentsEnum.devnet,
+    providers: {
+      walletConnect: {
+        walletConnectV2ProjectId: '9b1a9564f91cb659ffe21b73d5c4e2d8'
+      }
+    }
+  }
+};

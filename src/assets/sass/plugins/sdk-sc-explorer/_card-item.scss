@@ -49,15 +49,16 @@
       color: var(--neutral-400);
     }
     &-value {
-      .dapp-trim {
+      align-items: center;
+      mvx-trim {
         display: flex;
         max-width: 100%;
         overflow: hidden;
         position: relative;
         white-space: nowrap;
       }
-      .dapp-copy-button {
-        margin-left: 0.5rem;
+      mvx-copy-button {
+        margin-left: 0.25rem;
         svg[data-icon='copy'] {
           color: var(--neutral-500);
           &:hover {
@@ -65,9 +66,11 @@
           }
         }
       }
-      .dapp-explorer-link {
+      mvx-explorer-link {
+        margin-left: 0.25rem;
         svg[data-icon='arrow-up-right-from-square'] {
-          color: var(--neutral-500);
+          width: 0.825rem;
+          color: var(--neutral-500) !important;
           &:hover {
             color: var(--primary);
           }

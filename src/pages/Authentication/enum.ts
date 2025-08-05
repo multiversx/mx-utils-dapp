@@ -6,5 +6,5 @@ export enum TokenColorsEnum {
   origin = '#a86532',
   blockHash = '#77a832',
   ttl = '#a8329a',
-  extra = '#3298a8',
+  extra = '#3298a8'
 }

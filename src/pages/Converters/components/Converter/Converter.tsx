@@ -1,12 +1,12 @@
 import { useCallback, useState } from 'react';
-import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import classNames from 'classnames';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 
+import { MvxCopyButton } from 'lib';
+
 import styles from './styles.module.scss';
 import type { ConverterType, SubmitType } from './types';
-
 
 /*
  * Handle the component declaration.
@@ -95,7 +95,7 @@ export const Converter = (props: ConverterType) => {
                 {value}
               </span>
 
-              <CopyButton text={value} className={styles.copy} />
+              <MvxCopyButton text={value} className={styles.copy} />
             </div>
           )}
 

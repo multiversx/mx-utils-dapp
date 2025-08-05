@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
-import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import classNames from 'classnames';
+
+import { fallbackNetworkConfigurations, MvxCopyButton } from 'lib';
 import type { MetricItemType } from 'pages/Authentication/types';
 import styles from './styles.module.scss';
 
@@ -58,7 +58,10 @@ export const Metric = ({
             ) : null}
 
             {data ? (
-              <CopyButton text={String(data) || ''} className={styles.copy} />
+              <MvxCopyButton
+                text={String(data) || ''}
+                className={styles.copy}
+              />
             ) : null}
           </div>
         ) : null}
