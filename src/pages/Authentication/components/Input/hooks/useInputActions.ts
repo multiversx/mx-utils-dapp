@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useChain } from 'hooks/useChain';
 import { useLogout } from 'hooks/useLogout';
@@ -8,7 +8,7 @@ import { useTokenActions } from './useTokenActions';
 
 export const useInputActions = () => {
   const { search } = useLocation();
-
+  const navigate = useNavigate();
   const callbackRoute = useCallbackRoute();
   const logout = useLogout();
   const { chain } = useChain();
@@ -19,10 +19,12 @@ export const useInputActions = () => {
     sessionStorage.setItem(GENERATED_TOKEN_CHAIN, chain);
 
     const route = search
-      ? `${window.location.origin}${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
-      : `${window.location.origin}${routeNames.unlock}?callbackUrl=${callbackRoute}`;
+      ? `${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
+      : `${routeNames.unlock}?callbackUrl=${callbackRoute}`;
 
-    await logout(route);
+    await logout();
+
+    navigate(route);
   };
 
   const handlePasteToken = () => {
