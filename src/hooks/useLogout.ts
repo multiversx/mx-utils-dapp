@@ -24,6 +24,8 @@ export const useLogout = () => {
 
   return useCallback(async () => {
     clearStorage();
-    await provider.logout();
+    if (provider.isInitialized()) {
+      await provider.logout();
+    }
   }, [clearStorage]);
 };
