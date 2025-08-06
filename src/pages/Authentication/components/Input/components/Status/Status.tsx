@@ -1,10 +1,11 @@
 import { faCheck, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useFormikContext } from 'formik';
+
 import { TokenColorsEnum } from 'pages/Authentication/enum';
+import { useAuthenticationContext } from 'pages/Authentication/context';
 import type { FormValuesType } from '../../types';
 import styles from './styles.module.scss';
-import { useFormikContext } from 'formik';
-import { useAuthenticationContext } from 'pages/Authentication/context';
 
 export const Status = () => {
   const { errors, values } = useFormikContext<FormValuesType>();

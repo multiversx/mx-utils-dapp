@@ -1,20 +1,16 @@
-import { useCallback, useState, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   faCaretDown,
   faSignIn,
-  faSignOut,
+  faSignOut
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  useGetAccountInfo,
-  useGetIsLoggedIn,
-} from '@multiversx/sdk-dapp/hooks';
-import { Trim } from '@multiversx/sdk-dapp/UI';
 import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useLogout } from 'hooks/useLogout';
+import { MvxTrim, useGetAccountInfo, useGetIsLoggedIn } from 'lib';
 import { routeNames, routes, RouteType } from 'routes';
 
 import { Footer } from './components/Footer';
@@ -47,7 +43,7 @@ export const Template = (props: TemplateType) => {
 
   const unlockRoute = useMemo(
     () => `${routeNames.unlock}?callbackUrl=${callbackRoute}`,
-    [callbackRoute],
+    [callbackRoute]
   );
 
   /*
@@ -58,14 +54,14 @@ export const Template = (props: TemplateType) => {
     () =>
       routes.map(
         (route: RouteType): ItemType =>
-          Object.assign(route, navigation.get(route.path)),
+          Object.assign(route, navigation.get(route.path))
       ),
-    [navigation],
+    [navigation]
   );
 
   const menuItems = useMemo(
     () => items.filter((x) => x.path !== routeNames.unlock),
-    [items],
+    [items]
   );
 
   /*
@@ -121,7 +117,7 @@ export const Template = (props: TemplateType) => {
           data-testid='navigation'
           className={classNames(styles.navigation, {
             [styles.active]:
-              window.innerWidth < MEDIUM_SCREEN_WIDTH ? toggleMenu : true,
+              window.innerWidth < MEDIUM_SCREEN_WIDTH ? toggleMenu : true
           })}
         >
           <h6 className={styles.menu}>Menu</h6>
@@ -133,7 +129,7 @@ export const Template = (props: TemplateType) => {
                 data-testid={`navigation-page-${item.path}`}
                 className={classNames(styles.page, {
                   [styles.active]:
-                    item.path === activePage || item.path === pathname,
+                    item.path === activePage || item.path === pathname
                 })}
               >
                 <div className={styles.item}>
@@ -147,7 +143,8 @@ export const Template = (props: TemplateType) => {
                   </Link>
 
                   {item.categories && (
-                    <div
+                    <button
+                      type='button'
                       className={styles.trigger}
                       onClick={() =>
                         setActivePage(activePage === '' ? item.path : '')
@@ -156,12 +153,12 @@ export const Template = (props: TemplateType) => {
                       <span
                         data-testid={`navigation-caret-${item.path}`}
                         className={classNames(styles.caret, {
-                          [styles.active]: item.path === activePage,
+                          [styles.active]: item.path === activePage
                         })}
                       >
                         <FontAwesomeIcon icon={faCaretDown} />
                       </span>
-                    </div>
+                    </button>
                   )}
                 </div>
               </li>
@@ -172,7 +169,7 @@ export const Template = (props: TemplateType) => {
               className={classNames(styles.page, {
                 [styles.active]:
                   routeNames.unlock === activePage ||
-                  routeNames.unlock === pathname,
+                  routeNames.unlock === pathname
               })}
             >
               <div className={styles.item} style={{ display: 'inherit' }}>
@@ -198,7 +195,7 @@ export const Template = (props: TemplateType) => {
                     </span>
                   </div>
                   <div className={styles.address}>
-                    <Trim text={address} className={styles.title} />
+                    <MvxTrim text={address} className={styles.title} />
                   </div>
                 </Link>
               </div>
@@ -209,7 +206,7 @@ export const Template = (props: TemplateType) => {
         <div className={styles.content}>
           <div
             className={classNames(styles.wrapper, {
-              [styles.fill]: fullWidth,
+              [styles.fill]: fullWidth
             })}
           >
             {children}

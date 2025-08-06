@@ -24,45 +24,45 @@ export const routeNames = {
   signMessage: '/sign-message',
   smartContract: '/smart-contract',
   unlock: '/unlock',
-  explainer: '/explainer',
+  explainer: '/explainer'
 };
 
 const pages: RouteType[] = [
   {
     path: routeNames.home,
     title: 'Home',
-    component: Home,
+    component: Home
   },
   {
     path: routeNames.converters,
     title: 'Converters',
-    component: Converters,
+    component: Converters
   },
   {
     path: routeNames.auth,
     title: 'Native Auth',
-    component: Authentication,
+    component: Authentication
   },
   {
     path: routeNames.signMessage,
     title: 'Sign Message',
-    component: SignMessage,
+    component: SignMessage
   },
   {
     path: routeNames.smartContract,
     title: 'SC Interaction (BETA)',
-    component: SmartContractInteraction,
+    component: SmartContractInteraction
   },
   {
     path: routeNames.unlock,
     title: 'Unlock',
-    component: Unlock,
+    component: Unlock
   },
   {
     path: routeNames.explainer,
     title: 'Explainer',
-    component: Explainer,
-  },
+    component: Explainer
+  }
 ];
 
 export const routes = pages.map((page) => {
@@ -71,6 +71,6 @@ export const routes = pages.map((page) => {
     : `MultiversX ${applicationName}`;
 
   return Object.assign(page, {
-    component: withPageTitle(title, page.component),
+    component: withPageTitle(title, page.component)
   });
 });

@@ -1,10 +1,12 @@
-import { stringIsFloat } from '@multiversx/sdk-dapp/utils/validation/stringIsFloat';
-import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
-import { stringIsInteger } from '@multiversx/sdk-dapp/utils/validation/stringIsInteger';
-import { formatAmount } from '@multiversx/sdk-dapp/utils/operations/formatAmount';
-import { parseAmount } from '@multiversx/sdk-dapp/utils/operations/parseAmount';
-import { Address } from '@multiversx/sdk-core/out';
 import BigNumber from 'bignumber.js';
+import {
+  Address,
+  addressIsValid,
+  formatAmount,
+  parseAmount,
+  stringIsFloat,
+  stringIsInteger
+} from 'lib';
 
 import type { CategoryType } from './types';
 
@@ -23,7 +25,7 @@ export const useCategories = () => {
           label: 'Bech32 address',
           identifier: 'bech32-to-hexadecimal',
           compute: (address: string) => {
-            const hex = new Address(address).hex();
+            const hex = new Address(address).toHex();
 
             return hex.length % 2 ? `0${hex}` : hex;
           },
@@ -40,7 +42,7 @@ export const useCategories = () => {
           title: 'Convert a hexadecimal address to a bech32 address',
           label: 'Hexadecimal address',
           identifier: 'hexadecimal-to-bech32',
-          compute: (address: string) => Address.fromHex(address).bech32(),
+          compute: (address: string) => Address.newFromHex(address).toBech32(),
           validate: {
             required: 'Hexadecimal address required.',
             test: {
@@ -51,7 +53,7 @@ export const useCategories = () => {
                 }
 
                 try {
-                  Address.fromHex(value);
+                  Address.newFromHex(value);
                   return true;
                 } catch {
                   return false;

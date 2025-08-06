@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 export const usePersistedState = <T>({
   storage,
   key,
-  initialValue,
+  initialValue
 }: {
   storage: Storage;
   key: string;
@@ -31,7 +31,7 @@ export const usePersistedState = <T>({
         console.error(err);
       }
     },
-    [key, storage, storedValue],
+    [key, storage, storedValue]
   );
 
   return [storedValue, setValue];

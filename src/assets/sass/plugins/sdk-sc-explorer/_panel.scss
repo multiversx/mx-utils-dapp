@@ -42,13 +42,22 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      a {
-        text-decoration: none;
+
+      mvx-explorer-link {
+        --mvx-black: var(--primary);
+        padding: 0.5rem;
+        border: 1px solid var(--primary);
+        border-radius: 0.25rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        a {
+          text-decoration: none;
+        }
         svg {
           height: 0.75rem;
+          margin-top: 0.25rem;
+          margin-left: 0.5rem;
         }
       }
     }

@@ -51,7 +51,7 @@ export const splitToken = () => {
             type: 'element',
             tagName: 'span',
             properties: {
-              className: `code-line`
+              className: 'code-line'
             },
             children: [...wordsElements]
           } as Element

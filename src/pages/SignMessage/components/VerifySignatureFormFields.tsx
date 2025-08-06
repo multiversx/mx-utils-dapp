@@ -3,9 +3,9 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 import classNames from 'classnames';
 
+import { addressIsValid, verifyMessage } from 'lib';
 import styles from 'pages/SignMessage/styles.module.scss';
-import { verifyMessage } from '@multiversx/sdk-dapp/hooks/signMessage/verifyMessage';
-import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
+
 import { InitialVerifyFormValuesType } from '../types';
 
 export const VerifySignatureFormFields = () => {
@@ -29,10 +29,10 @@ export const VerifySignatureFormFields = () => {
     return signedMessage;
   };
 
-  const onSubmit = (values: InitialVerifyFormValuesType) => {
+  const onSubmit = async (values: InitialVerifyFormValuesType) => {
     const signedMessage = getSignedMessage(values);
 
-    const { isVerified } = verifyMessage(signedMessage);
+    const { isVerified } = await verifyMessage(signedMessage);
     setVerifySuccess(isVerified);
   };
 

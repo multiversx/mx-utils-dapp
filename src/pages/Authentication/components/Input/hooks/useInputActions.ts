@@ -1,5 +1,3 @@
-import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
-import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
 import { useLocation } from 'react-router-dom';
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
 import { useChain } from 'hooks/useChain';
@@ -10,7 +8,6 @@ import { useTokenActions } from './useTokenActions';
 
 export const useInputActions = () => {
   const { search } = useLocation();
-  const { loginMethod } = useGetLoginInfo();
 
   const callbackRoute = useCallbackRoute();
   const logout = useLogout();
@@ -24,10 +21,8 @@ export const useInputActions = () => {
     const route = search
       ? `${window.location.origin}${routeNames.unlock}${search}&callbackUrl=${callbackRoute}`
       : `${window.location.origin}${routeNames.unlock}?callbackUrl=${callbackRoute}`;
-    const isWallet = loginMethod === LoginMethodsEnum.wallet;
-    const redirect = isWallet ? encodeURIComponent(route) : route;
 
-    await logout(redirect);
+    await logout(route);
   };
 
   const handlePasteToken = () => {
@@ -38,6 +33,6 @@ export const useInputActions = () => {
 
   return {
     handleGenerateToken,
-    handlePasteToken,
+    handlePasteToken
   };
 };

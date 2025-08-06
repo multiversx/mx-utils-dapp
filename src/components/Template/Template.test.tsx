@@ -1,10 +1,10 @@
-import {MemoryRouter, useLocation} from 'react-router-dom';
+import { MemoryRouter, useLocation } from 'react-router-dom';
 import { fireEvent, render, renderHook, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { ContextProvider } from 'context';
 
 import { Converters } from 'pages/Converters';
-import { vi } from 'vitest'
 
 /*
  * Mock the Template component by wrapping it inside the required providers.
@@ -23,14 +23,14 @@ const MockTemplate = () => (
  */
 
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual("react-router-dom") as object;
+  const actual = (await vi.importActual('react-router-dom')) as object;
   return {
     ...actual,
     useLocation: () => ({
       pathname: '/converters',
       hash: '#addresses-bech32-to-hexadecimal'
-    }),
-  }
+    })
+  };
 });
 
 /*
@@ -46,7 +46,7 @@ describe('Template test integration test.', () => {
    * Describe the mobile menu integration test, and mock the window size to be of a mobile viewport.
    */
 
-  describe('Interaction with the navigation menu on mobile.', async() => {
+  describe('Interaction with the navigation menu on mobile.', async () => {
     Object.assign(window, { innerWidth: 375 });
     render(<MockTemplate />);
 

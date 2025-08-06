@@ -1,4 +1,4 @@
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
+import { EnvironmentsEnum } from 'lib';
 
 export interface StateType {
   isMenuToggled: boolean;
@@ -7,5 +7,5 @@ export interface StateType {
 
 export const initializer: StateType = {
   isMenuToggled: false,
-  dappEnvironment: EnvironmentsEnum.mainnet,
+  dappEnvironment: EnvironmentsEnum.mainnet
 };

@@ -1,4 +1,4 @@
-import type { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
+import { EnvironmentsEnum } from 'lib';
 
 export interface EnvironmentPropsType {
   chain: EnvironmentsEnum;

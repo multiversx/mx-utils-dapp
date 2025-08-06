@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import type { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
-import type { NativeAuthDecoded } from '@multiversx/sdk-native-auth-server/lib/src/entities/native.auth.decoded';
+
+import { EnvironmentsEnum, NativeAuthDecoded } from 'lib';
 import type { TokenColorsEnum } from './enum';
 
 export type MetricType = NativeAuthDecoded | undefined;

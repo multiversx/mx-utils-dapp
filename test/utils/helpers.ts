@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import path from "path";
-import { GlobalDataEnum } from "./globalDataEnum";
-import { GlobalSelectorEnum } from "./globalSelectorEnum";
+import path from 'path';
+import { GlobalDataEnum } from './globalDataEnum';
+import { GlobalSelectorEnum } from './globalSelectorEnum';
 
 export const getSelector = async (selector: string) => {
   const element = await $(`[data-testid="${selector}"]`);
@@ -15,14 +14,13 @@ export const uploadFile = async (fileName: string) => {
   const file = await $('input[type="file"]');
   const filePath = path.join(__dirname, `/${fileName}`);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  await browser.execute((el) => ((el as any).style.display = "block"), file);
+  await browser.execute((el) => ((el as any).style.display = 'block'), file);
   file.waitForDisplayed();
   await file.setValue(filePath);
 };
 
 export const login = async () => {
-  const wallet = await $("button*=MultiversX Web Wallet");
+  const wallet = await $('button*=MultiversX Web Wallet');
   const pemBtn = await getSelector(GlobalSelectorEnum.pemBtn);
   const accesWallet = await getSelector(GlobalSelectorEnum.submitButton);
 

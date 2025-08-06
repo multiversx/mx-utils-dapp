@@ -1,11 +1,11 @@
 import {
   SignMessageSection,
   VerifySignatureForm,
-  VerifySignatureFormFields,
+  VerifySignatureFormFields
 } from './components';
 import {
   SignMessageSectionProvider,
-  useSignMessageSectionValue,
+  useSignMessageSectionValue
 } from './context';
 import styles from './styles.module.scss';
 

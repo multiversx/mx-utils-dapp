@@ -1,4 +1,4 @@
-import type { SetStateAction, Dispatch } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 
 import type { MetricType } from 'pages/Authentication/types';
 

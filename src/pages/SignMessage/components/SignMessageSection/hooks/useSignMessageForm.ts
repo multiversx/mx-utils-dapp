@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
 import { Address, Message } from '@multiversx/sdk-core';
-import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
-import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
-import { LoginMethodsEnum } from '@multiversx/sdk-dapp/types';
 import { useFormikContext } from 'formik';
 import { useLocation, useSearchParams } from 'react-router-dom';
+
 import { MESSAGE_KEY, SIGNATURE_KEY, STATUS_KEY } from 'localConstants/storage';
+import { ProviderTypeEnum, useGetAccountInfo, useGetLoginInfo } from 'lib';
 import { useSignMessageSectionContext } from 'pages/SignMessage/context';
 import { SignedMessageStatusesEnum } from 'pages/SignMessage/types';
+
 import { SignMessageFormValues } from '../types';
 
 export const useSignMessageForm = () => {
@@ -16,7 +16,7 @@ export const useSignMessageForm = () => {
     useSignMessageSectionContext();
 
   const { address } = useGetAccountInfo();
-  const { loginMethod } = useGetLoginInfo();
+  const { providerType } = useGetLoginInfo();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setSearchParams] = useSearchParams();
@@ -33,7 +33,7 @@ export const useSignMessageForm = () => {
       signStatusParam === SignedMessageStatusesEnum.signed;
 
     // If the user is using the web wallet, we need to get the message from session storage
-    if (loginMethod === LoginMethodsEnum.wallet && signatureParam) {
+    if (providerType === ProviderTypeEnum.crossWindow && signatureParam) {
       setFieldValue('message', persistedMessageToSign);
       setMessageToSign(persistedMessageToSign);
     } else {
@@ -51,7 +51,7 @@ export const useSignMessageForm = () => {
     if (signatureParam && isMessageSigned) {
       const signedPayload = new Message({
         ...(address ? { address: new Address(address) } : {}),
-        data: Buffer.from(persistedMessageToSign),
+        data: Buffer.from(persistedMessageToSign)
       });
 
       const messageObj = JSON.parse(JSON.stringify(signedPayload));
@@ -70,11 +70,11 @@ export const useSignMessageForm = () => {
     setFieldValue,
     setMessageToSign,
     setSearchParams,
-    setSignedMessagePayload,
+    setSignedMessagePayload
   ]);
 
   return {
     buildSignaturePayloadFromWebWalletResponse,
-    handleClear,
+    handleClear
   };
 };

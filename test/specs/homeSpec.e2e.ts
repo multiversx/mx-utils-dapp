@@ -1,14 +1,14 @@
-import Homepage from "../pageobjects/HomePage";
+import Homepage from '../pageobjects/HomePage';
 
-describe("My Login application", () => {
+describe('My Login application', () => {
   beforeEach(async () => {
-    await Homepage.open("/");
+    await Homepage.open('/');
   });
-  it("should propely display the title of the page", async () => {
+  it('should propely display the title of the page', async () => {
     await Homepage.titlesCheck();
   });
 
-  it("should use the propely href ", async () => {
+  it('should use the propely href ', async () => {
     await Homepage.checkHrefProps();
   });
 });

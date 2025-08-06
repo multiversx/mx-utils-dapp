@@ -1,10 +1,10 @@
 import {
   faArrowRightArrowLeft,
-  faHome,
-  faUser,
-  faMessage,
   faFile,
+  faHome,
+  faMessage,
   faRobot,
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 import { routeNames } from 'routes';
@@ -18,28 +18,28 @@ export const useNavigation = () => {
   const navigation: NavigationType[] = [
     {
       path: '/',
-      icon: faHome,
+      icon: faHome
     },
     {
       path: '/converters',
-      icon: faArrowRightArrowLeft,
+      icon: faArrowRightArrowLeft
     },
     {
       path: '/auth',
-      icon: faUser,
+      icon: faUser
     },
     {
       path: '/sign-message',
-      icon: faMessage,
+      icon: faMessage
     },
     {
       path: '/smart-contract',
-      icon: faFile,
+      icon: faFile
     },
     {
       path: routeNames.explainer,
-      icon: faRobot,
-    },
+      icon: faRobot
+    }
   ];
 
   /*
@@ -47,6 +47,6 @@ export const useNavigation = () => {
    */
 
   return {
-    navigation: new Map(navigation.map((item) => [item.path, item])),
+    navigation: new Map(navigation.map((item) => [item.path, item]))
   };
 };

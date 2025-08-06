@@ -11,7 +11,7 @@ export const Page404 = () => (
     </h1>
 
     <div className={styles.description} data-testid='page404-description'>
-      {`The page you're looking for doesn't seem to exist.`}
+      The page you're looking for doesn't seem to exist.
     </div>
 
     <div className={styles.description} data-testid='page404-description'>

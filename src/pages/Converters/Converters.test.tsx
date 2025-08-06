@@ -65,7 +65,7 @@ describe('Converters computing and displaying tests.', () => {
    * Test that each converter has all the required elements present in the document.
    */
 
-  test('Categories and converter elements all present in the document.',  () => {
+  test('Categories and converter elements all present in the document.', () => {
     categories.forEach(async (category) => {
       const name = await screen.findByTestId(category.name);
       const identifier = screen.getByTestId(category.identifier);

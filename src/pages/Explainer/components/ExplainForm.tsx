@@ -1,14 +1,15 @@
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import ReactMarkdown from 'react-markdown';
 import classNames from 'classnames';
 import { object, string } from 'yup';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+
+import { assistantApi, AssistantApiSSETypes } from 'helpers/assistantApi';
+import { useChain } from 'hooks/useChain';
 
 import styles from '../styles.module.scss';
-import { AssistantApiSSETypes, assistantApi } from 'helpers/assistantApi';
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useChain } from 'hooks/useChain';
 
 export const ExplainForm = () => {
   const [explainerResponse, setExplainerResponse] = useState<string | null>(

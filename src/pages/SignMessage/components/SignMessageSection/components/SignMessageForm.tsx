@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect } from 'react';
-import { CopyButton } from '@multiversx/sdk-dapp/UI/CopyButton';
 import classNames from 'classnames';
 import { ErrorMessage, Field, Form, useFormikContext } from 'formik';
 import { useExecuteOnce } from 'hooks/useExecuteOnce';
+import { MvxCopyButton } from 'lib';
 import { useSignMessageSectionContext } from 'pages/SignMessage/context';
 import styles from 'pages/SignMessage/styles.module.scss';
 import { useSignMessageForm } from '../hooks/useSignMessageForm';
@@ -48,7 +48,10 @@ export const SignMessageForm = () => {
             <pre data-testid='signaturePayload' className={styles.value}>
               {signedMessagePayload}
             </pre>
-            <CopyButton text={signedMessagePayload} className={styles.copy} />
+            <MvxCopyButton
+              text={signedMessagePayload}
+              className={styles.copy}
+            />
           </div>
         </div>
       )}

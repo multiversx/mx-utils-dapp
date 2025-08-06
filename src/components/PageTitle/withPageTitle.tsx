@@ -1,4 +1,4 @@
-import { useEffect, memo, ComponentType } from 'react';
+import { ComponentType, memo, useEffect } from 'react';
 
 /*
  * Handle the higher order component declaration.

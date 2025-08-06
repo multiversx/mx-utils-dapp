@@ -1,8 +1,10 @@
 import { Formik } from 'formik';
 import { object, string } from 'yup';
+
+import styles from 'pages/SignMessage/styles.module.scss';
+
 import { SignMessageForm } from './components/SignMessageForm';
 import { useSignMessageSectionActions } from './hooks/useSignMessageSectionActions';
-import styles from 'pages/SignMessage/styles.module.scss';
 
 export const SignMessageSection = () => {
   const { handleSignMessage } = useSignMessageSectionActions();
