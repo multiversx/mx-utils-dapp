@@ -1,5 +1,13 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { initApp } from 'lib';
 import { App } from './App';
-import './index.css';
+import { config } from './config';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
+initApp(config).then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+});
