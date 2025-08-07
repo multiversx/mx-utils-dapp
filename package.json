@@ -5,6 +5,7 @@
   "author": "MultiversX",
   "license": "GPL-3.0-or-later",
   "repository": "@multiversx/mx-utils-dapp",
+  "type": "module",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
@@ -70,7 +71,7 @@
     "sass": "1.89.2",
     "ts-node": "10.9.1",
     "typescript": "5.9.2",
-    "vite": "5.4.11",
+    "vite": "5.4.19",
     "vite-plugin-node-polyfills": "0.22.0",
     "vite-plugin-svgr": "4.3.0",
     "vite-tsconfig-paths": "5.1.3",
