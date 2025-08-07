@@ -23,7 +23,11 @@ export const InputForm = () => {
           >
             <FontAwesomeIcon icon={faPaste} size='lg' />
           </div>
-          <button onClick={handleGenerateToken} className={styles.generate}>
+          <button
+            onClick={handleGenerateToken}
+            className={styles.generate}
+            type='submit'
+          >
             Generate
           </button>
         </div>
