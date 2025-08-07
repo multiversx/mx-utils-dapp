@@ -1,5 +1,5 @@
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { ApiBaseUrls, explainerApiUrl } from 'config';
+import { EnvironmentsEnum } from 'lib';
 
 export interface GetExplanationEventSourceParameters {
   chain: EnvironmentsEnum;
@@ -11,14 +11,14 @@ export const AssistantApiSSETypes = {
   codeExplanation: {
     streamChunk: 'code-explanation-stream-chunk',
     chunkFinished: 'code-explanation-chunk-finished',
-    streamFailed: 'code-explanation-stream-failed',
-  },
+    streamFailed: 'code-explanation-stream-failed'
+  }
 };
 
 const AssistantApiEndpoints = {
   utils: {
-    smartContractExplanation: '/utils/smart_contract_explanation/',
-  },
+    smartContractExplanation: '/utils/smart_contract_explanation/'
+  }
 };
 
 const getBaseAssistantApiUrl = (chain: EnvironmentsEnum) => {
@@ -39,17 +39,17 @@ const getBaseAssistantApiUrl = (chain: EnvironmentsEnum) => {
 
 export const assistantApi = {
   getCodeExplanationEventSource: (
-    parameters: GetExplanationEventSourceParameters,
+    parameters: GetExplanationEventSourceParameters
   ) => {
     const { repositoryUrl } = parameters;
     const getExplanationEndpointUrl = `${getBaseAssistantApiUrl(
-      parameters.chain,
+      parameters.chain
     )}${explainerApiUrl}${
       AssistantApiEndpoints.utils.smartContractExplanation
     }`;
 
     return new EventSource(
-      `${getExplanationEndpointUrl}?repository_url=${repositoryUrl}`,
+      `${getExplanationEndpointUrl}?repository_url=${repositoryUrl}`
     );
-  },
+  }
 };

@@ -46,7 +46,7 @@ export const Converters = () => {
                 key={converter.title}
                 className={classNames(styles.converter, {
                   [styles.active]:
-                    hash === `#${category.identifier}-${converter.identifier}`,
+                    hash === `#${category.identifier}-${converter.identifier}`
                 })}
               >
                 <span

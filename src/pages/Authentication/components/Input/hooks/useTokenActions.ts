@@ -1,9 +1,10 @@
 import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo } from 'react';
-import { fallbackNetworkConfigurations } from '@multiversx/sdk-dapp/constants';
 import { NativeAuthServerConfig } from '@multiversx/sdk-native-auth-server/lib/src/entities/native.auth.server.config';
 import { useFormikContext } from 'formik';
 import debounce from 'lodash.debounce';
+
 import { useChain } from 'hooks/useChain';
+import { fallbackNetworkConfigurations } from 'lib';
 import { EXPIRY_SECONDS } from 'localConstants/nativeAuth';
 import { emptyMetrics } from 'pages/Authentication/constants/metrics.contants';
 import { useAuthenticationContext } from 'pages/Authentication/context';
@@ -30,16 +31,15 @@ export const useTokenActions = () => {
           apiUrl: fallbackNetworkConfigurations[chain].apiAddress,
           acceptedOrigins: [window.location.origin],
           maxExpirySeconds: EXPIRY_SECONDS,
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           isOriginAccepted: (_origin) => {
             return true;
           },
-          verifySignature,
+          verifySignature
         };
 
         const promises = [
           decodeToken(token, config),
-          validateToken(token, config),
+          validateToken(token, config)
         ];
 
         setIsValidating(true);
@@ -50,7 +50,7 @@ export const useTokenActions = () => {
           setFieldError('token', 'Token Undecodable');
           setFieldError(
             'message',
-            'The provided token is not a NativeAuth token.',
+            'The provided token is not a NativeAuth token.'
           );
           setMetrics(emptyMetrics);
           return;
@@ -75,12 +75,12 @@ export const useTokenActions = () => {
         setIsValidating(false);
       }
     },
-    [chain, setFieldError, setIsValidating, setMetrics],
+    [chain, setFieldError, setIsValidating, setMetrics]
   );
 
   const debouncedDecodeAndValidateToken = useMemo(
     () => debounce(decodeAndValidateToken, 200),
-    [decodeAndValidateToken],
+    [decodeAndValidateToken]
   );
 
   const handleChange = useCallback(
@@ -97,7 +97,7 @@ export const useTokenActions = () => {
         setFieldError('token', 'Token Undecodable');
         setFieldError(
           'message',
-          'The provided token is not a NativeAuth token.',
+          'The provided token is not a NativeAuth token.'
         );
         setMetrics(emptyMetrics);
         return;
@@ -110,15 +110,15 @@ export const useTokenActions = () => {
       setFieldTouched,
       debouncedDecodeAndValidateToken,
       setFieldError,
-      setMetrics,
-    ],
+      setMetrics
+    ]
   );
 
   const handlePreventDefault = useCallback(
     (event: FormEvent<HTMLDivElement>) => {
       event.preventDefault();
     },
-    [],
+    []
   );
 
   const handlePaste = useCallback(
@@ -132,7 +132,7 @@ export const useTokenActions = () => {
 
       handleChange(token);
     },
-    [handleChange, handlePreventDefault],
+    [handleChange, handlePreventDefault]
   );
 
   useEffect(() => {
@@ -144,6 +144,6 @@ export const useTokenActions = () => {
   return {
     handleChange,
     handlePaste,
-    handlePreventDefault,
+    handlePreventDefault
   };
 };

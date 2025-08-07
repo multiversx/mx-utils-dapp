@@ -1,9 +1,8 @@
-import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
-
+import { EnvironmentsEnum } from 'lib';
 import { StateType } from './state';
 
 export enum ActionTypeEnum {
-  switchDappEnvironment = 'switchDappEnvironment',
+  switchDappEnvironment = 'switchDappEnvironment'
 }
 
 export type DispatchType = (action: ActionType) => void;
@@ -17,7 +16,7 @@ const reducer = (state: StateType, action: ActionType) => {
     case ActionTypeEnum.switchDappEnvironment: {
       return {
         ...state,
-        dappEnvironment: action.dappEnvironment,
+        dappEnvironment: action.dappEnvironment
       };
     }
 

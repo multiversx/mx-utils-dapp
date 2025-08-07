@@ -1,6 +1,6 @@
-import Page from "./Page";
-import { RoutesEnum } from "../utils/globalDataEnum";
-import { dataConverters } from "../utils/testData";
+import Page from './Page';
+import { RoutesEnum } from '../utils/globalDataEnum';
+import { dataConverters } from '../utils/testData';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -57,7 +57,7 @@ class ConvertersPage extends Page {
   public async checkRequiredFields() {
     for (let index = 0; index < (await this.inputFields.length); index++) {
       await this.clickSubmitButton(index);
-      await this.checkErrorMessage(index, "required");
+      await this.checkErrorMessage(index, 'required');
     }
   }
 

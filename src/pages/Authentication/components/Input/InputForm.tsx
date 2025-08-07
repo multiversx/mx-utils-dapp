@@ -1,10 +1,11 @@
-import styles from './styles.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaste } from '@fortawesome/free-solid-svg-icons';
+import { Form } from 'formik';
+
 import { Textarea } from './components/Textarea';
 import { Status } from './components/Status';
-import { Form } from 'formik';
 import { useInputActions } from './hooks/useInputActions';
+import styles from './styles.module.scss';
 
 export const InputForm = () => {
   const { handleGenerateToken, handlePasteToken } = useInputActions();
@@ -22,7 +23,11 @@ export const InputForm = () => {
           >
             <FontAwesomeIcon icon={faPaste} size='lg' />
           </div>
-          <button onClick={handleGenerateToken} className={styles.generate}>
+          <button
+            onClick={handleGenerateToken}
+            className={styles.generate}
+            type='submit'
+          >
             Generate
           </button>
         </div>

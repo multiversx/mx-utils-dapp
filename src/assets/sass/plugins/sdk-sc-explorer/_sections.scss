@@ -29,12 +29,6 @@
         flex-basis: 48%;
       }
       &-value {
-        align-items: center;
-        .dapp-trim {
-          @media (max-width: 767px) {
-            max-width: 10rem;
-          }
-        }
         svg[data-icon='file-lines'] {
           color: var(--primary);
         }

@@ -1,11 +1,14 @@
 import { useCallback } from 'react';
-import { logout } from '@multiversx/sdk-dapp/utils/logout';
+
 import { PERSISTENCE_PREFIX } from 'localConstants';
+import { getAccountProvider } from 'lib';
 
 export const useLogout = () => {
+  const provider = getAccountProvider();
+
   const safeClearSessionStorage = useCallback(() => {
     const utilsKeys = Object.keys(sessionStorage).filter((key) =>
-      key.startsWith(PERSISTENCE_PREFIX),
+      key.startsWith(PERSISTENCE_PREFIX)
     );
     const utilsValues = utilsKeys.map((key) => sessionStorage.getItem(key));
     sessionStorage.clear();
@@ -19,15 +22,10 @@ export const useLogout = () => {
     safeClearSessionStorage();
   }, [safeClearSessionStorage]);
 
-  return useCallback(
-    async (
-      callbackUrl?: string,
-      onRedirect?: (callbackUrl?: string) => void,
-      shouldAttemptRelogin?: boolean,
-    ) => {
-      clearStorage();
-      await logout(callbackUrl, onRedirect, shouldAttemptRelogin);
-    },
-    [clearStorage],
-  );
+  return useCallback(async () => {
+    clearStorage();
+    if (provider.isInitialized()) {
+      await provider.logout();
+    }
+  }, [clearStorage]);
 };

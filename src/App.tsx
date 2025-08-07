@@ -1,17 +1,15 @@
-import { SignTransactionsModals } from '@multiversx/sdk-dapp/UI/SignTransactionsModals/SignTransactionsModals';
-import { TransactionsToastList } from '@multiversx/sdk-dapp/UI/TransactionsToastList';
 import {
-  Route,
-  Routes,
   BrowserRouter,
   Outlet,
-  useLocation,
+  Route,
+  Routes,
+  useLocation
 } from 'react-router-dom';
 import { Template } from 'components/Template';
 import { ContextProvider } from 'context';
 import { Page404 } from 'pages/Page404';
 import { Unlock } from 'pages/Unlock/Unlock';
-import { routes, routeNames } from 'routes';
+import { routeNames, routes } from 'routes';
 import 'assets/sass/theme.scss';
 
 /*
@@ -23,8 +21,6 @@ export const RoutedApp = () => {
   const previousLocation = location.state?.previousLocation;
   return (
     <ContextProvider>
-      <TransactionsToastList />
-      <SignTransactionsModals />
       <Routes location={previousLocation || location}>
         <Route
           path='/'

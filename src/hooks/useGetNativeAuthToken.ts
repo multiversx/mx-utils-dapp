@@ -1,4 +1,4 @@
-import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
+import { useGetLoginInfo } from 'lib';
 
 export const useGetNativeAuthToken = () => {
   const { tokenLogin } = useGetLoginInfo();

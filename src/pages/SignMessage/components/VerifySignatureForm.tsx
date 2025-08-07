@@ -1,9 +1,9 @@
 import { ChangeEvent, useState } from 'react';
-import { verifyMessage } from '@multiversx/sdk-dapp/hooks/signMessage/verifyMessage';
-import { addressIsValid } from '@multiversx/sdk-dapp/utils/account/addressIsValid';
 import classNames from 'classnames';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
+
+import { addressIsValid, verifyMessage } from 'lib';
 import styles from 'pages/SignMessage/styles.module.scss';
 
 export const VerifySignatureForm = () => {
@@ -13,8 +13,8 @@ export const VerifySignatureForm = () => {
 
   const initialValues = { signedMessage: '' };
 
-  const onSubmit = ({ signedMessage }: { signedMessage: string }) => {
-    const { address, isVerified, message } = verifyMessage(signedMessage);
+  const onSubmit = async ({ signedMessage }: { signedMessage: string }) => {
+    const { address, isVerified, message } = await verifyMessage(signedMessage);
     setVerifiedMessage(message);
     setSignerAddress(address);
     setVerifySuccess(isVerified);

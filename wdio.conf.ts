@@ -1,17 +1,17 @@
-import type { Options } from "@wdio/types";
+import type { Options } from '@wdio/types';
 export const config: Options.Testrunner = {
   //
   // ====================
   // Runner Configuration
   // ====================
   // WebdriverIO supports running e2e tests as well as unit and component tests.
-  runner: "local",
+  runner: 'local',
   autoCompileOpts: {
     autoCompile: true,
     tsNodeOpts: {
-      project: "./tsconfig.json",
-      transpileOnly: true,
-    },
+      project: './tsconfig.json',
+      transpileOnly: true
+    }
   },
 
   //
@@ -30,8 +30,8 @@ export const config: Options.Testrunner = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: ["./test/specs/**/*.ts"],
-  suites : { single:['test/specs/nativeAuthSpec.e2e.ts'] },
+  specs: ['./test/specs/**/*.ts'],
+  suites: { single: ['test/specs/nativeAuthSpec.e2e.ts'] },
   // Patterns to exclude.
   exclude: ['test/specs/SCInteractionsSpec.e2e.ts'],
   //
@@ -58,14 +58,12 @@ export const config: Options.Testrunner = {
   //
   capabilities: [
     {
-      browserName: "chrome",
-      browserVersion: "119.0.6045.105",
+      browserName: 'chrome',
+      browserVersion: '119.0.6045.105',
       'goog:chromeOptions': {
-        args: [
-          '--headless=new'
-        ]
-      },
-    },
+        args: ['--headless=new']
+      }
+    }
   ],
 
   //
@@ -75,7 +73,7 @@ export const config: Options.Testrunner = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: "info",
+  logLevel: 'info',
   //
   // Set specific log levels per logger
   // loggers:
@@ -99,7 +97,7 @@ export const config: Options.Testrunner = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: "https://localhost:3001/",
+  baseUrl: 'https://localhost:3001/',
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -123,7 +121,7 @@ export const config: Options.Testrunner = {
   //
   // Make sure you have the wdio adapter package for the specific framework installed
   // before running any tests.
-  framework: "mocha",
+  framework: 'mocha',
 
   //
   // The number of times to retry the entire specfile when it fails as a whole
@@ -138,14 +136,14 @@ export const config: Options.Testrunner = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
+  reporters: ['spec'],
 
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
-    ui: "bdd",
-    timeout: 60000,
-  },
+    ui: 'bdd',
+    timeout: 60000
+  }
 
   //
   // =====
