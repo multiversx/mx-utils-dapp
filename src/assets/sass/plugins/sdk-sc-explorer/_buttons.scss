@@ -59,6 +59,9 @@
       color: var(--warning);
     }
   }
+  &-interaction-form-button {
+    margin-top: 1.75rem;
+  }
   &-deploy-upgrade-file-form-button,
   &-interaction-modal-form-button,
   &-transaction-panel-button {
