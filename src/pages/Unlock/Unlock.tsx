@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { UnlockPanelManager, useGetLoginInfo } from 'lib';
+import { ProviderTypeEnum, UnlockPanelManager, useGetLoginInfo } from 'lib';
 import { routeNames } from 'routes';
 
 export const Unlock = () => {
@@ -12,13 +12,22 @@ export const Unlock = () => {
   const callbackRoute = callbackURL ?? routeNames.home.concat(search);
   const { isLoggedIn } = useGetLoginInfo();
 
+  const allowedProviders = [
+    ProviderTypeEnum.ledger,
+    ProviderTypeEnum.webview,
+    ProviderTypeEnum.extension,
+    ProviderTypeEnum.crossWindow,
+    ProviderTypeEnum.walletConnect
+  ];
+
   const unlockPanelManager = UnlockPanelManager.init({
     loginHandler: () => {
       navigate(callbackRoute);
     },
     onClose: () => {
       navigate(routeNames.home);
-    }
+    },
+    allowedProviders
   });
 
   const handleOpenUnlockPanel = () => {

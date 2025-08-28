@@ -3,6 +3,21 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+*::selection {
+  background: rgba(var(--neutral-300-rgb), 0.3);
+}
+
+// webkit being webkit
+input {
+  color-scheme: dark;
+  font-feature-settings: 'calt' 0;
+}
+input:is(:-webkit-autofill, :-webkit-autofill:focus) {
+  transition:
+    background-color 600000s 0s,
+    color 600000s 0s;
+}
+
 html {
   font-size: 16px;
 }
@@ -83,7 +98,7 @@ body {
 }
 
 .modal-backdrop {
-  --backdrop-zindex: 1050;
+  --backdrop-zindex: 15;
   --backdrop-bg: var(--background);
   --backdrop-opacity: 0.75;
   position: fixed;
