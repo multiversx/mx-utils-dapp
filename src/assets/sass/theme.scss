@@ -83,7 +83,7 @@ body {
 }
 
 .modal-backdrop {
-  --backdrop-zindex: 1050;
+  --backdrop-zindex: 15;
   --backdrop-bg: var(--background);
   --backdrop-opacity: 0.75;
   position: fixed;
