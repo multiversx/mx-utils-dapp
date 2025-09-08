@@ -15,15 +15,12 @@ import { EnvironmentsEnum, InitAppType } from './lib';
 
 (window as any).multiversx = {};
 
-export const config: InitAppType = {
-  storage: { getStorageCallback: () => sessionStorage },
-  dAppConfig: {
-    nativeAuth: true,
-    environment: EnvironmentsEnum.devnet,
-    providers: {
-      walletConnect: {
-        walletConnectV2ProjectId: '9b1a9564f91cb659ffe21b73d5c4e2d8'
-      }
+export const dAppConfig: InitAppType['dAppConfig'] = {
+  nativeAuth: true,
+  environment: EnvironmentsEnum.devnet,
+  providers: {
+    walletConnect: {
+      walletConnectV2ProjectId: '9b1a9564f91cb659ffe21b73d5c4e2d8'
     }
   }
 };

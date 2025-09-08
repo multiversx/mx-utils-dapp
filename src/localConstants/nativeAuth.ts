@@ -1,1 +1,1 @@
-export const EXPIRY_SECONDS = 7200;
+export const EXPIRY_SECONDS = 86400;

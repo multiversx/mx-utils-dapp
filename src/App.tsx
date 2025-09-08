@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import {
   BrowserRouter,
   Outlet,
@@ -5,22 +6,67 @@ import {
   Routes,
   useLocation
 } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+
 import { Template } from 'components/Template';
+import { dAppConfig } from 'config';
 import { ContextProvider } from 'context';
+import { useChain } from 'hooks/useChain';
+import { initApp, InitAppType, useGetNetworkConfig } from 'lib';
 import { Page404 } from 'pages/Page404';
 import { Unlock } from 'pages/Unlock/Unlock';
 import { routeNames, routes } from 'routes';
+
 import 'assets/sass/theme.scss';
 
 /*
  * Handle the component declaration.
  */
 
-export const RoutedApp = () => {
+const Main = () => {
+  const { chain } = useChain();
+  const { network } = useGetNetworkConfig();
+
+  const [initialized, setInitialized] = useState<boolean>(false);
+
+  const isMountingRef = useRef(false);
+
+  const initializeApp = async () => {
+    if ((isMountingRef.current && network.id === chain) || !chain) {
+      return;
+    }
+
+    isMountingRef.current = true;
+    const initConfig: InitAppType = {
+      storage: { getStorageCallback: () => sessionStorage },
+      dAppConfig: { ...dAppConfig, environment: chain }
+    };
+
+    try {
+      await initApp(initConfig);
+      setInitialized(true);
+    } catch (error) {
+      console.error('Error initializing app:', error);
+    }
+  };
+
+  useEffect(() => {
+    initializeApp();
+  }, [chain]);
+
+  return (
+    <>
+      {!initialized ? <FontAwesomeIcon icon={faSpinner} spin /> : <RoutedApp />}
+    </>
+  );
+};
+
+const RoutedApp = () => {
   const location = useLocation();
   const previousLocation = location.state?.previousLocation;
   return (
-    <ContextProvider>
+    <>
       <Routes location={previousLocation || location}>
         <Route
           path='/'
@@ -45,12 +91,14 @@ export const RoutedApp = () => {
           <Route path={routeNames.unlock} element={<Unlock />} />
         </Routes>
       )}
-    </ContextProvider>
+    </>
   );
 };
 
 export const App = () => (
   <BrowserRouter>
-    <RoutedApp />
+    <ContextProvider>
+      <Main />
+    </ContextProvider>
   </BrowserRouter>
 );

@@ -52,12 +52,6 @@ export const Template = (props: TemplateType) => {
     [callbackRoute]
   );
 
-  const { chain } = useChain();
-  useEffect(() => {
-    initializeNetwork({
-      environment: chain
-    });
-  }, [chain]);
   /*
    * Assign each route the icon and categories for enhanced mapping.
    */

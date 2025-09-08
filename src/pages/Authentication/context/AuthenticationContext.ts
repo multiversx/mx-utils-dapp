@@ -135,9 +135,9 @@ export const useAuthenticationValue = () => {
       }
 
       setInitialTokens(data);
-      setFetchingInitialTokens(false);
     } catch (err) {
       console.error(err);
+    } finally {
       setFetchingInitialTokens(false);
     }
   }, [chain, nativeAuthToken]);
