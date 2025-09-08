@@ -10,10 +10,19 @@ import Select, { components, SingleValue } from 'react-select';
 import { useDispatch } from 'context';
 import { ActionTypeEnum } from 'context/reducer';
 import { useChain } from 'hooks/useChain';
-import { EnvironmentsEnum } from 'lib';
-import { PERSISTED_NETWORK_KEY } from 'localConstants';
+import {
+  EnvironmentsEnum,
+  fallbackNetworkConfigurations,
+  getDefaultNativeAuthConfig,
+  initializeNetwork,
+  refreshNativeAuthTokenLogin,
+  setNativeAuthConfig,
+  useGetIsLoggedIn
+} from 'lib';
+import { GENERATED_TOKEN_CHAIN, PERSISTED_NETWORK_KEY } from 'localConstants';
 import styles from './styles.module.scss';
 import type { OptionType } from './types';
+import { useSignMessage } from './hooks/useSignMessage';
 
 const customComponents = {
   Control: (props: any) => (
@@ -47,11 +56,14 @@ const customComponents = {
 };
 
 export const Environment = () => {
+  const isLoggedIn = useGetIsLoggedIn();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const { chain } = useChain();
   const dispatch = useDispatch();
+
+  const signMessage = useSignMessage();
 
   const options: OptionType[] = Object.values(EnvironmentsEnum).map(
     (chain) => ({
@@ -63,6 +75,25 @@ export const Environment = () => {
   const onChange = useCallback(
     async (option: SingleValue<OptionType>) => {
       if (option) {
+        const chainNetworkConfig = fallbackNetworkConfigurations[option.value];
+        const { apiAddress } = await initializeNetwork({
+          environment: option.value,
+          customNetworkConfig: {
+            ...chainNetworkConfig,
+            skipFetchFromServer: false
+          }
+        });
+        const nativeAuthConfig = getDefaultNativeAuthConfig({ apiAddress });
+        setNativeAuthConfig(nativeAuthConfig);
+        if (isLoggedIn) {
+          await refreshNativeAuthTokenLogin({
+            signMessageCallback: signMessage,
+            nativeAuthClientConfig: {
+              apiAddress
+            }
+          });
+        }
+
         dispatch({
           type: ActionTypeEnum.switchDappEnvironment,
           dappEnvironment: option.value as EnvironmentsEnum
@@ -71,6 +102,11 @@ export const Environment = () => {
           PERSISTED_NETWORK_KEY,
           option.value as EnvironmentsEnum
         );
+        sessionStorage.setItem(
+          GENERATED_TOKEN_CHAIN,
+          option.value as EnvironmentsEnum
+        );
+
         navigate(pathname, { replace: true });
       }
     },
