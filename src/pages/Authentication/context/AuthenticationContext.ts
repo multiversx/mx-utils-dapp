@@ -144,7 +144,7 @@ export const useAuthenticationValue = () => {
 
   useEffect(() => {
     fetchInitialTokens();
-  }, [nativeAuthToken]);
+  }, []);
 
   return {
     metrics,

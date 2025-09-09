@@ -9,14 +9,8 @@ import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
 import { useCallbackRoute } from 'hooks/useCallbackRoute';
-import { useChain } from 'hooks/useChain';
 import { useLogout } from 'hooks/useLogout';
-import {
-  initializeNetwork,
-  MvxTrim,
-  useGetAccountInfo,
-  useGetIsLoggedIn
-} from 'lib';
+import { MvxTrim, useGetAccountInfo, useGetIsLoggedIn } from 'lib';
 import { routeNames, routes, RouteType } from 'routes';
 
 import { Footer } from './components/Footer';
@@ -52,12 +46,6 @@ export const Template = (props: TemplateType) => {
     [callbackRoute]
   );
 
-  const { chain } = useChain();
-  useEffect(() => {
-    initializeNetwork({
-      environment: chain
-    });
-  }, [chain]);
   /*
    * Assign each route the icon and categories for enhanced mapping.
    */

@@ -30,7 +30,7 @@ export const splitToken = () => {
           []
         );
 
-        const wordsElements = words.map((part, index) => {
+        const wordsElements = words.map((part: any, index: number) => {
           return {
             type: 'element',
             tagName: 'span',
