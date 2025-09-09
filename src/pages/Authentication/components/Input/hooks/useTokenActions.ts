@@ -79,7 +79,7 @@ export const useTokenActions = () => {
   );
 
   const debouncedDecodeAndValidateToken = useMemo(
-    () => debounce(decodeAndValidateToken, 200),
+    () => debounce(decodeAndValidateToken, 500),
     [decodeAndValidateToken]
   );
 
