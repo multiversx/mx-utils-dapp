@@ -67,19 +67,19 @@ For _development_ you will need to have the following:
 
 ### Step 1. Install modules
 
-From a terminal, navigate to the project folder and run `npm install` or `yarn install`.
+From a terminal, navigate to the project folder and run `npm install` or `pnpm install`.
 
 ### Step 2. Run the dashboard
 
-To run the project locally run `npm run start` or `yarn start` from the project folder. Open http://localhost:3001 to view it in the browser.
+To run the project locally run `npm run start` or `pnpm start` from the project folder. Open http://localhost:3001 to view it in the browser.
 
 ### Step 3. Build for testing and production use
 
-To build the project run `npm run build` or `yarn build` from the project folder.
+To build the project run `npm run build` or `pnpm build` from the project folder.
 
 ### Step 4. Preview the build locally
 
-To serve the build run `npm run preview` or `yarn preview` from the project folder.
+To serve the build run `npm run preview` or `pnpm preview` from the project folder.
 
 <!-- ROADMAP -->
 

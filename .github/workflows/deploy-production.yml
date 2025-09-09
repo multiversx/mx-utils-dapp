@@ -18,23 +18,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-      - name: Get node version
-        id: node
-        run: |
-          echo "version=$(node -v)" >> $GITHUB_OUTPUT
-      - name: Get node_modules cache
-        uses: actions/cache@v4
-        id: node_modules
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}-${{ steps.node.outputs.version }}
-      - name: Setup yarn
-        run: npm install -g yarn
+      - name: Setup pnpm
+        run: npm install -g pnpm
       - name: Install Dependencies
-        if: steps.node_modules.outputs.cache-hit != 'true'
-        run: yarn install
-      - run: yarn build
+        run: pnpm install --frozen-lockfile
+      - run: pnpm build
         env:
           CI: false
       - name: Configure AWS Credentials
