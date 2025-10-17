@@ -11,15 +11,20 @@ export const ApiBaseUrls = {
 
 export const miscApi = 'https://misc-api.multiversx.com';
 
+import { PERSISTED_NETWORK_KEY } from 'localConstants';
 import { EnvironmentsEnum, InitAppType } from './lib';
 
 (window as any).multiversx = {};
+
+const environment =
+  (sessionStorage.getItem(PERSISTED_NETWORK_KEY) as EnvironmentsEnum) ??
+  EnvironmentsEnum.mainnet;
 
 export const config: InitAppType = {
   storage: { getStorageCallback: () => sessionStorage },
   dAppConfig: {
     nativeAuth: true,
-    environment: EnvironmentsEnum.mainnet,
+    environment,
     providers: {
       walletConnect: {
         walletConnectV2ProjectId: '9b1a9564f91cb659ffe21b73d5c4e2d8'
