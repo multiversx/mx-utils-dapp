@@ -24,8 +24,8 @@ importers:
         specifier: 5.5.1
         version: 5.5.1(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@types/react@19.1.9)(axios@1.12.2)(bignumber.js@9.3.1)(protobufjs@7.5.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.8.3)(vue@3.5.25(typescript@5.8.3))
       '@multiversx/sdk-dapp-sc-explorer':
-        specifier: 0.0.7-beta.1
-        version: 0.0.7-beta.1(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.5.1(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@types/react@19.1.9)(axios@1.12.2)(bignumber.js@9.3.1)(protobufjs@7.5.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.8.3)(vue@3.5.25(typescript@5.8.3)))(@types/react@19.1.9)(axios@1.12.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(vue@3.5.25(typescript@5.8.3))
+        specifier: 0.0.7-beta.2
+        version: 0.0.7-beta.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.5.1(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@types/react@19.1.9)(axios@1.12.2)(bignumber.js@9.3.1)(protobufjs@7.5.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.8.3)(vue@3.5.25(typescript@5.8.3)))(@types/react@19.1.9)(axios@1.12.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(vue@3.5.25(typescript@5.8.3))
       '@multiversx/sdk-dapp-ui':
         specifier: 0.1.4
         version: 0.1.4(@types/react@19.1.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(vue@3.5.25(typescript@5.8.3))
@@ -1270,8 +1270,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@multiversx/sdk-dapp-sc-explorer@0.0.7-beta.1':
-    resolution: {integrity: sha512-kSZkmzP90KAFhA51FNjOgLHf29rbmEmJnyWDi2eQw7clAJP84cVsWG6BC0x0lIMbQ/pTnkqWHUPvNmUpwcEE0w==}
+  '@multiversx/sdk-dapp-sc-explorer@0.0.7-beta.2':
+    resolution: {integrity: sha512-BbP03JWyIKohizTDBlmcW5p9OSDiPc4KsN37QYijx3hdHy2LWpZXYRE2lYXt6N/9TpJaSrm5Qcys4dMHtPfuPg==}
     engines: {node: '>=20'}
     peerDependencies:
       '@multiversx/sdk-core': ^15.x
@@ -8640,7 +8640,7 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@multiversx/sdk-dapp-sc-explorer@0.0.7-beta.1(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.5.1(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@types/react@19.1.9)(axios@1.12.2)(bignumber.js@9.3.1)(protobufjs@7.5.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.8.3)(vue@3.5.25(typescript@5.8.3)))(@types/react@19.1.9)(axios@1.12.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(vue@3.5.25(typescript@5.8.3))':
+  '@multiversx/sdk-dapp-sc-explorer@0.0.7-beta.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.5.1(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@types/react@19.1.9)(axios@1.12.2)(bignumber.js@9.3.1)(protobufjs@7.5.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.8.3)(vue@3.5.25(typescript@5.8.3)))(@types/react@19.1.9)(axios@1.12.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(vue@3.5.25(typescript@5.8.3))':
     dependencies:
       '@multiversx/sdk-core': 15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4)
       '@multiversx/sdk-dapp': 5.5.1(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.3.1(bignumber.js@9.3.1)(protobufjs@7.5.4))(bignumber.js@9.3.1))(@types/react@19.1.9)(axios@1.12.2)(bignumber.js@9.3.1)(protobufjs@7.5.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.8.3)(vue@3.5.25(typescript@5.8.3))
