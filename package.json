@@ -22,7 +22,7 @@
     "@multiversx/sdk-core": "15.3.1",
     "@multiversx/sdk-dapp": "5.5.1",
     "@multiversx/sdk-dapp-sc-explorer": "0.0.7-beta.2",
-    "@multiversx/sdk-dapp-ui": "0.1.5",
+    "@multiversx/sdk-dapp-ui": "0.1.8",
     "@multiversx/sdk-dapp-utils": "3.0.2",
     "@multiversx/sdk-native-auth-server": "2.1.0",
     "@uiw/react-textarea-code-editor": "2.1.9",
