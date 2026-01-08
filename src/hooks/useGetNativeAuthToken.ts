@@ -1,4 +1,4 @@
-import { nativeAuth } from '@multiversx/sdk-dapp';
+import { nativeAuth } from '@multiversx/sdk-dapp/out/services/nativeAuth';
 import { useGetAccountInfo, useGetLoginInfo } from 'lib';
 
 export const useGetNativeAuthToken = () => {

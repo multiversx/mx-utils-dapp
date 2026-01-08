@@ -9,6 +9,10 @@
     --btn-active-bg: transparent;
     @extend .btn-link-base !optional;
     color: var(--primary);
+    &:hover {
+      color: var(--btn-active-color);
+      background-color: var(--btn-active-bg);
+    }
     @media (min-width: 768px) {
       font-size: 1rem;
     }

@@ -44,11 +44,17 @@
       gap: 1rem;
 
       mvx-explorer-link {
-        a {
-          text-decoration: none;
+        display: flex;
+        align-items: center;
+
+        .fa-arrow-up-right-from-square {
+          display: none;
         }
-        svg {
+        a {
           margin-left: 0.5rem;
+          padding: 0;
+          border: 0;
+          text-decoration: none;
         }
       }
     }
