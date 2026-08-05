@@ -18,17 +18,17 @@ importers:
         specifier: 15.4.1
         version: 15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9)
       '@multiversx/sdk-dapp':
-        specifier: 5.6.23
-        version: 5.6.23(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3))
+        specifier: 5.7.1
+        version: 5.7.1(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3))
       '@multiversx/sdk-dapp-sc-explorer':
         specifier: 0.0.7-beta.2
-        version: 0.0.7-beta.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.6.23(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3)))(@types/react@18.3.29)(axios@1.16.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vue@3.5.34(typescript@5.9.3))
+        version: 0.0.7-beta.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.7.1(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3)))(@types/react@18.3.29)(axios@1.16.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vue@3.5.34(typescript@5.9.3))
       '@multiversx/sdk-dapp-ui':
         specifier: 0.1.24
         version: 0.1.24(@types/react@18.3.29)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vue@3.5.34(typescript@5.9.3))
       '@multiversx/sdk-dapp-utils':
-        specifier: 3.0.2
-        version: 3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1)
+        specifier: 3.1.0
+        version: 3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1)
       '@multiversx/sdk-native-auth-server':
         specifier: 2.1.0
         version: 2.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))
@@ -95,10 +95,10 @@ importers:
         version: 18.3.7(@types/react@18.3.29)
       '@typescript-eslint/eslint-plugin':
         specifier: 8.59.4
-        version: 8.59.4(@typescript-eslint/parser@8.59.4(eslint@8.57.0)(typescript@5.9.3))(eslint@8.57.0)(typescript@5.9.3)
+        version: 8.59.4(@typescript-eslint/parser@8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
       '@typescript-eslint/parser':
         specifier: 8.59.4
-        version: 8.59.4(eslint@8.57.0)(typescript@5.9.3)
+        version: 8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
       '@vitejs/plugin-basic-ssl':
         specifier: 2.3.0
         version: 2.3.0(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0))
@@ -107,7 +107,7 @@ importers:
         version: 6.0.2(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0))
       '@wdio/cli':
         specifier: 8.46.0
-        version: 8.46.0
+        version: 8.46.0(supports-color@8.1.1)
       '@wdio/local-runner':
         specifier: 8.46.0
         version: 8.46.0
@@ -119,31 +119,31 @@ importers:
         version: 8.43.0
       eslint:
         specifier: 8.57.0
-        version: 8.57.0
+        version: 8.57.0(supports-color@8.1.1)
       eslint-config-prettier:
         specifier: 8.10.2
-        version: 8.10.2(eslint@8.57.0)
+        version: 8.10.2(eslint@8.57.0(supports-color@8.1.1))
       eslint-import-resolver-typescript:
         specifier: 3.10.1
-        version: 3.10.1(eslint-plugin-import@2.32.0)(eslint@8.57.0)
+        version: 3.10.1(eslint-plugin-import@2.32.0)(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)
       eslint-plugin-import:
         specifier: 2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.59.4(eslint@8.57.0)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0)
+        version: 2.32.0(@typescript-eslint/parser@8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0(supports-color@8.1.1))
       eslint-plugin-prettier:
         specifier: 5.5.5
-        version: 5.5.5(eslint-config-prettier@8.10.2(eslint@8.57.0))(eslint@8.57.0)(prettier@3.8.3)
+        version: 5.5.5(eslint-config-prettier@8.10.2(eslint@8.57.0(supports-color@8.1.1)))(eslint@8.57.0(supports-color@8.1.1))(prettier@3.8.3)
       eslint-plugin-react:
         specifier: 7.37.5
-        version: 7.37.5(eslint@8.57.0)
+        version: 7.37.5(eslint@8.57.0(supports-color@8.1.1))
       eslint-plugin-react-hooks:
         specifier: 4.6.2
-        version: 4.6.2(eslint@8.57.0)
+        version: 4.6.2(eslint@8.57.0(supports-color@8.1.1))
       jsdom:
         specifier: 22.1.0
-        version: 22.1.0
+        version: 22.1.0(supports-color@8.1.1)
       msw:
         specifier: 0.49.3
-        version: 0.49.3(@types/node@20.19.41)(typescript@5.9.3)
+        version: 0.49.3(@types/node@20.19.41)(supports-color@8.1.1)(typescript@5.9.3)
       prettier:
         specifier: 3.8.3
         version: 3.8.3
@@ -167,7 +167,7 @@ importers:
         version: 5.2.0(typescript@5.9.3)(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0))
       vitest:
         specifier: 4.1.7
-        version: 4.1.7(@types/node@20.19.41)(jsdom@22.1.0)(msw@0.49.3(@types/node@20.19.41)(typescript@5.9.3))(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0))
+        version: 4.1.7(@types/node@20.19.41)(jsdom@22.1.0(supports-color@8.1.1))(msw@0.49.3(@types/node@20.19.41)(supports-color@8.1.1)(typescript@5.9.3))(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0))
 
 packages:
 
@@ -441,38 +441,29 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@ledgerhq/devices@8.0.3':
-    resolution: {integrity: sha512-Q7/vqkGELSBuwFafFoTqlHIRyOjw8JqbSgiQwe2R38xN0RKtKIh+5E6UfMKyoExiq+SrQg0IC8P2LS+XdjOHLw==}
+  '@ledgerhq/devices@8.16.0':
+    resolution: {integrity: sha512-brXLPzkvGM3D5YNsWQ25P5G4SmWdSNBed9W8wKoOIRLGdRfvE+bg9mzFty0iZ+aRLBkLoXwX7xKIL9zUi6LBKQ==}
 
-  '@ledgerhq/devices@8.14.2':
-    resolution: {integrity: sha512-T3pnfrsQEC/eJU0XHIqWI6qww+CL1k3NumR2XGWlMz8lVpoZ9HhcuGoCkMevp+8SWmymgyNIIFue3jlNA5KiMw==}
+  '@ledgerhq/errors@6.37.0':
+    resolution: {integrity: sha512-T5yiKI5UX7ugeocdTF3TUsCIN2BH41Bio4ZeN410YFjFOf3es08n/5JyMzzKwzRgP0blG3HfBf7s7vJKqCSAeg==}
 
-  '@ledgerhq/errors@6.12.6':
-    resolution: {integrity: sha512-D+r2B09vaRO06wfGoss+rNgwqWSoK0bCtsaJWzlD2hv1zxTtucqVtSztbRFypIqxWTCb3ix5Nh2dWHEJVTp2Xw==}
+  '@ledgerhq/hw-transport-web-ble@6.35.0':
+    resolution: {integrity: sha512-nc4FAWZ0GtZO9ydDCKlvDzOEVdUXlGL/0nWPIOeCE5xxuXug5iR0uhC4Bl0qwlUCEnhewmXwLJsCFcCdr/N4QQ==}
 
-  '@ledgerhq/errors@6.35.0':
-    resolution: {integrity: sha512-qk9PbqIvze7NXGogVxNCsz60rNo5FrGj8gKqs7pcyDk+em5L6s70G7cRxR+1HTXdam4WoPfntUq+WX9zQUynkg==}
+  '@ledgerhq/hw-transport-webhid@6.36.0':
+    resolution: {integrity: sha512-1mKWm3LyGOgmaYlAiqbmaGoupOZHbj2Kow5sXLxKZzQa4kFvQuUdinYOWhs7T8hqJyAkz9WlHYyKM7aIs8kjNg==}
 
-  '@ledgerhq/hw-transport-web-ble@6.28.6':
-    resolution: {integrity: sha512-SsseU5T4ePhdvFdwUOsF207gyMgiHyymvRAV66/hpHCd0+m/81kV8nZneeD3Z1pG0XPG+tPlF90r7nLwtUoiXw==}
+  '@ledgerhq/hw-transport-webusb@6.35.0':
+    resolution: {integrity: sha512-8fBNqzQnyR3pKLE2AVxCAc54nHMEKz9/eAYLDENVRuDp+A23lBJYWErxSyoZ6riCM19jIhRvtHjB0o4PXpa2tg==}
 
-  '@ledgerhq/hw-transport-webhid@6.28.6':
-    resolution: {integrity: sha512-npU1mgL97KovpTUgcdORoOZ7eVFgwCA7zt0MpgUGUMRNJWDgCFsJslx7KrVXlCGOg87gLfDojreIre502I5pYg==}
-
-  '@ledgerhq/hw-transport-webusb@6.28.6':
-    resolution: {integrity: sha512-rzICsvhcFcL4wSAvRPe+b9EEWB8cxj6yWy3FZdfs7ufi/0muNpFXWckWv1TC34em55sGXu2cMcwMKXg/O/Lc0Q==}
-
-  '@ledgerhq/hw-transport@6.28.8':
-    resolution: {integrity: sha512-XxQVl4htd018u/M66r0iu5nlHi+J6QfdPsORzDF6N39jaz+tMqItb7tUlXM/isggcuS5lc7GJo7NOuJ8rvHZaQ==}
-
-  '@ledgerhq/hw-transport@6.35.2':
-    resolution: {integrity: sha512-eSXFFqMDAB2Ra/5uqmlru0cUyc2XDQPEKf4ITWHeMms2fHhETw9lcgAEl61vszkiz0RLUVB4VQsLJjj7O8kCvg==}
+  '@ledgerhq/hw-transport@6.35.5':
+    resolution: {integrity: sha512-P4+wtLewLWgxPtIb90h5kjpzXVlC6f4IBQBmvowVFkInvZt34ffXkX7wa5KfMzu4l3cqCcpNSqtPSCMp+0vuqg==}
 
   '@ledgerhq/logs@6.17.0':
     resolution: {integrity: sha512-yra33g5q/AU7+PwAws+GaVpQGUuxnDREjVBnviJjcaJLVKuLzI4pnj8Bd3nY3fypM5k1yZEYKEXfUuGFUjP2+w==}
 
-  '@lifeomic/axios-fetch@3.0.1':
-    resolution: {integrity: sha512-bwEgYXtGrn/F+yYqoUIAWBRzyqQ7yB1VL84gCq0uAk36GRoyoWyOzbE35VWeXlmkkoby91FnAwh4UhgayMM/og==}
+  '@lifeomic/axios-fetch@3.1.0':
+    resolution: {integrity: sha512-C6ceAnh8W19KuekFsCiK1A+AMBirQFTnoEqMZQ7HE6VXJ18zjGofdXxLU8RTo2gZp/yZK5ufmPwIvRtejj1gxg==}
     engines: {node: '>=12'}
 
   '@lit/react@1.0.8':
@@ -532,28 +523,28 @@ packages:
     resolution: {integrity: sha512-p2Dnqh9CMmlYxSwH4ks+qjqsvzQ6ak8CEIZxAJ+Xj6tYiB8r4sgqamPDkSLsxn9114nxud7bkdw2mvJ+kepRLQ==}
     engines: {node: '>=20.19.0'}
 
-  '@multiversx/sdk-dapp-utils@3.0.2':
-    resolution: {integrity: sha512-x2b2Gz5j0mDPUV2UK0fyDideGq/tfznvFJUJIJUMfKRy9Frni26UXZuQXCN4ngs344fd+8XoJOeviNV6cXSFdw==}
+  '@multiversx/sdk-dapp-utils@3.1.0':
+    resolution: {integrity: sha512-m3u2ymm+ME/+6Hbu0iNmi+CQbuImNOc8GeX+KtdW0tihQrMwEuWIECj/U5EapEFbGMlNbPb/YmwiMMfQ1bk/fQ==}
     peerDependencies:
       '@multiversx/sdk-core': ^14.0.0 || ^15.0.0
       bignumber.js: ^9.x
 
-  '@multiversx/sdk-dapp@5.6.23':
-    resolution: {integrity: sha512-2tPrhyZ+liKWbwzm2I4Hd1erbaA47lUh9ms7+k0DzAdn78QmWTvYI4/+0SjM1R8/jyHXR0TT5NdWbqBr78YTzQ==}
+  '@multiversx/sdk-dapp@5.7.1':
+    resolution: {integrity: sha512-Tzy5xkKVrwTjylJ31AXVRWPQFtEyb2fyJTUcM8gz8dEqe/VpYH1KzCjbUVZweRcd3K9+/h83R+gT5SLmiPAwOw==}
     peerDependencies:
       '@multiversx/sdk-core': ^14.x || ^15.x
       '@multiversx/sdk-dapp-utils': ^3.x
-      axios: '>=1.10.0'
+      axios: '>=1.15.0'
       bignumber.js: ^9.x
-      protobufjs: ^7.2.6
+      protobufjs: ^7.5.5
 
   '@multiversx/sdk-extension-provider@5.1.2':
     resolution: {integrity: sha512-jxu18WKnc8ZLaLdl6ePcLStG2aZB1f9W0m2wPJt2UbHnPMhnk/okoYZYWlHfiF/L8WZGzQn8VXwcmras/vdwlw==}
     peerDependencies:
       '@multiversx/sdk-core': ^14.0.0 || ^15.0.0
 
-  '@multiversx/sdk-hw-provider@8.1.2':
-    resolution: {integrity: sha512-Q/cIOi+3JiZ4/FV/608kEcaQAprv9NP2GmuxONdPW5YACIHGdS5WILsQTL6xqDxBsNEfN71DbbNHKEr7pqnq6Q==}
+  '@multiversx/sdk-hw-provider@8.2.0':
+    resolution: {integrity: sha512-WSPv72ykmPj/H9swxkD8lBbOSjnFAClGMxKntgDy5L9Uj3nUrEDbJRo0btW9ocJxRCVmkkcNoy2ze/Vp2AZngQ==}
     peerDependencies:
       '@multiversx/sdk-core': ^14.0.0 || ^15.0.0
 
@@ -2364,15 +2355,6 @@ packages:
       supports-color:
         optional: true
 
-  debug@4.3.7:
-    resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
-    engines: {node: '>=6.0'}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
     engines: {node: '>=6.0'}
@@ -2586,8 +2568,8 @@ packages:
   end-of-stream@1.4.5:
     resolution: {integrity: sha512-ooEGc6HP26xXq/N+GCGOT0JKCLDGrq2bQUZrQ7gyrJiZANJ/8YDTxTpQBXGMn+WbIQXNVpyWymm7KYVICQnyOg==}
 
-  engine.io-client@6.5.4:
-    resolution: {integrity: sha512-GeZeeRjpD2qf49cZQ0Wvh/8NJNfeXkXXcoGh+F77oEAgo9gUHwT1fCRxSNU+YEEaysOJTnsFHmM5oAcPy4ntvQ==}
+  engine.io-client@6.6.6:
+    resolution: {integrity: sha512-iY6QdftLQ9pyiPoX082bpf/u1UewnOaJrtJIF9T0++QB34lZrj0uP+Q/bj8AlUsAxqhnkTV2BS8SBZSxOmoV5Q==}
 
   engine.io-parser@5.2.3:
     resolution: {integrity: sha512-HqD3yTBfnBxIrbnM1DoD6Pcq8NECnh8d4As1Qgh0z5Gg3jRRIqijury0CL3ghu/edArpUYiYqQiDUQBIs4np3Q==}
@@ -3776,8 +3758,8 @@ packages:
     resolution: {integrity: sha512-wM1+Z03eypVAVUCE7QdSqpVIvelbOakn1M0bPDoA4SGWPx3sNDVUiMo3L6To6WWGClB7VyXnhQ4Sn7gxiJbE6A==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  linkifyjs@4.3.2:
-    resolution: {integrity: sha512-NT1CJtq3hHIreOianA8aSXn6Cw0JzYOuDQbOrSPe7gqFnCpKP++MQe3ODgO3oh2GJFORkAAdqredOa60z63GbA==}
+  linkifyjs@4.3.3:
+    resolution: {integrity: sha512-P8aEP5U/D1/IlTY2OeYsErdwh9bGuLE30NcXtKEjgdHcahveQoQwM2yZNsioQHsWFz0P7KKudisbrzCgR0sDHg==}
 
   listenercount@1.0.1:
     resolution: {integrity: sha512-3mk/Zag0+IJxeDrxSgaDPy4zZ3w05PRZeJNnlWhzFz5OkX49J4krc+A8X2d2M69vGMBEX0uyl8M+W+8gH+kBqQ==}
@@ -3840,8 +3822,8 @@ packages:
   lodash.startcase@4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
 
-  lodash.trimend@4.5.1:
-    resolution: {integrity: sha512-lsD+k73XztDsMBKPKvzHXRKFNMohTjoTKIIo4ADLn5dA65LZ1BqlAvSXhR2rPEC3BgAUQnzMnorqDtqn2z4IHA==}
+  lodash.trimend@4.18.0:
+    resolution: {integrity: sha512-8w2M3nZAWLN1OX/6mTPCwRlZiD/LhVyPV9l7DEbkd9wybExvg9AcCjbD19swj6oVzX5hcMZHp3/Y1b4Sl3sHKg==}
 
   lodash.union@4.6.0:
     resolution: {integrity: sha512-c4pB2CdGrGdjMKYLA+XiRDO7Y0PRQbm/Gzg8qMj+QH+pFVAoTp5sBpO0odL3FjoPCGjK96p6qsP+yQoiLoOBcw==}
@@ -4900,10 +4882,6 @@ packages:
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
-  rxjs@6.6.7:
-    resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
-    engines: {npm: '>=2.0.0'}
-
   rxjs@7.8.2:
     resolution: {integrity: sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==}
 
@@ -5045,8 +5023,8 @@ packages:
   snake-case@3.0.4:
     resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
 
-  socket.io-client@4.7.5:
-    resolution: {integrity: sha512-sJ/tqHOCe7Z50JCBCXrsY3I2k03iOiUe+tj1OmKeD2lXPiGH/RUCdTZFoqVyN7l1MnpIzPrGtLcijffmeouNlQ==}
+  socket.io-client@4.8.3:
+    resolution: {integrity: sha512-uP0bpjWrjQmUt5DTHq9RuoCBdFJF10cdX9X+a368j/Ft0wmaVgxlrjvK3kjvgCODOMMOz9lcaRzxmso0bTWZ/g==}
     engines: {node: '>=10.0.0'}
 
   socket.io-parser@4.2.6:
@@ -5866,18 +5844,6 @@ packages:
       utf-8-validate:
         optional: true
 
-  ws@8.17.1:
-    resolution: {integrity: sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.21.0:
     resolution: {integrity: sha512-Vsp28b7DRcimFQvrqu2Wek3z1iYxDCWqHYB8Qsnk/S4RfaCQzPGPyBNuVjJV3cd6UiKtUtp6sNM77gWvzcCH+g==}
     engines: {node: '>=10.0.0'}
@@ -5897,8 +5863,8 @@ packages:
   xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
 
-  xmlhttprequest-ssl@2.0.0:
-    resolution: {integrity: sha512-QKxVRxiRACQcVuQEYFsI1hhkrMlrXHPegbbd1yn9UHOmRxY+si12nQYzri3vbzt8VdTTRviqcKxcyllFas5z2A==}
+  xmlhttprequest-ssl@2.1.2:
+    resolution: {integrity: sha512-TEU+nJVUUnA4CYJFLvK5X9AOeH4KvDvhIfm0vV1GaQRtchnG0hgK5p8hw/xjv8cunWYCsiPCSDzObPyhEwq3KQ==}
     engines: {node: '>=0.4.0'}
 
   xtend@4.0.2:
@@ -6183,14 +6149,14 @@ snapshots:
 
   '@emotion/weak-memoize@0.4.0': {}
 
-  '@eslint-community/eslint-utils@4.9.1(eslint@8.57.0)':
+  '@eslint-community/eslint-utils@4.9.1(eslint@8.57.0(supports-color@8.1.1))':
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.2': {}
 
-  '@eslint/eslintrc@2.1.4':
+  '@eslint/eslintrc@2.1.4(supports-color@8.1.1)':
     dependencies:
       ajv: 6.15.0
       debug: 4.4.3(supports-color@8.1.1)
@@ -6266,7 +6232,7 @@ snapshots:
       '@fortawesome/fontawesome-svg-core': 7.2.0
       react: 18.3.1
 
-  '@humanwhocodes/config-array@0.11.14':
+  '@humanwhocodes/config-array@0.11.14(supports-color@8.1.1)':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
       debug: 4.4.3(supports-color@8.1.1)
@@ -6347,62 +6313,44 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@ledgerhq/devices@8.0.3':
+  '@ledgerhq/devices@8.16.0':
     dependencies:
-      '@ledgerhq/errors': 6.12.6
-      '@ledgerhq/logs': 6.17.0
-      rxjs: 6.6.7
-      semver: 7.8.1
-
-  '@ledgerhq/devices@8.14.2':
-    dependencies:
-      '@ledgerhq/errors': 6.35.0
-      '@ledgerhq/logs': 6.17.0
-      rxjs: 7.8.2
       semver: 7.7.3
 
-  '@ledgerhq/errors@6.12.6': {}
+  '@ledgerhq/errors@6.37.0': {}
 
-  '@ledgerhq/errors@6.35.0': {}
-
-  '@ledgerhq/hw-transport-web-ble@6.28.6':
+  '@ledgerhq/hw-transport-web-ble@6.35.0':
     dependencies:
-      '@ledgerhq/devices': 8.14.2
-      '@ledgerhq/errors': 6.35.0
-      '@ledgerhq/hw-transport': 6.35.2
+      '@ledgerhq/devices': 8.16.0
+      '@ledgerhq/errors': 6.37.0
+      '@ledgerhq/hw-transport': 6.35.5
       '@ledgerhq/logs': 6.17.0
       rxjs: 7.8.2
 
-  '@ledgerhq/hw-transport-webhid@6.28.6':
+  '@ledgerhq/hw-transport-webhid@6.36.0':
     dependencies:
-      '@ledgerhq/devices': 8.14.2
-      '@ledgerhq/errors': 6.35.0
-      '@ledgerhq/hw-transport': 6.35.2
+      '@ledgerhq/devices': 8.16.0
+      '@ledgerhq/errors': 6.37.0
+      '@ledgerhq/hw-transport': 6.35.5
       '@ledgerhq/logs': 6.17.0
 
-  '@ledgerhq/hw-transport-webusb@6.28.6':
+  '@ledgerhq/hw-transport-webusb@6.35.0':
     dependencies:
-      '@ledgerhq/devices': 8.14.2
-      '@ledgerhq/errors': 6.35.0
-      '@ledgerhq/hw-transport': 6.35.2
+      '@ledgerhq/devices': 8.16.0
+      '@ledgerhq/errors': 6.37.0
+      '@ledgerhq/hw-transport': 6.35.5
       '@ledgerhq/logs': 6.17.0
 
-  '@ledgerhq/hw-transport@6.28.8':
+  '@ledgerhq/hw-transport@6.35.5':
     dependencies:
-      '@ledgerhq/devices': 8.14.2
-      '@ledgerhq/errors': 6.35.0
-      events: 3.3.0
-
-  '@ledgerhq/hw-transport@6.35.2':
-    dependencies:
-      '@ledgerhq/devices': 8.14.2
-      '@ledgerhq/errors': 6.35.0
+      '@ledgerhq/devices': 8.16.0
+      '@ledgerhq/errors': 6.37.0
       '@ledgerhq/logs': 6.17.0
       events: 3.3.0
 
   '@ledgerhq/logs@6.17.0': {}
 
-  '@lifeomic/axios-fetch@3.0.1':
+  '@lifeomic/axios-fetch@3.1.0':
     dependencies:
       '@types/node-fetch': 2.6.13
 
@@ -6421,7 +6369,7 @@ snapshots:
       '@types/set-cookie-parser': 2.4.10
       set-cookie-parser: 2.7.2
 
-  '@mswjs/interceptors@0.17.10':
+  '@mswjs/interceptors@0.17.10(supports-color@8.1.1)':
     dependencies:
       '@open-draft/until': 1.0.3
       '@types/debug': 4.1.13
@@ -6462,11 +6410,11 @@ snapshots:
       - debug
       - supports-color
 
-  '@multiversx/sdk-dapp-form@3.2.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.6.23(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3)))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@multiversx/sdk-dapp-form@3.2.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.7.1(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3)))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@multiversx/sdk-core': 15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9)
-      '@multiversx/sdk-dapp': 5.6.23(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3))
-      '@multiversx/sdk-dapp-utils': 3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1)
+      '@multiversx/sdk-dapp': 5.7.1(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3))
+      '@multiversx/sdk-dapp-utils': 3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1)
       axios: 1.16.1
       bignumber.js: 9.3.1
       formik: 2.2.9(react@18.3.1)
@@ -6487,11 +6435,11 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@multiversx/sdk-dapp-sc-explorer@0.0.7-beta.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.6.23(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3)))(@types/react@18.3.29)(axios@1.16.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vue@3.5.34(typescript@5.9.3))':
+  '@multiversx/sdk-dapp-sc-explorer@0.0.7-beta.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.7.1(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3)))(@types/react@18.3.29)(axios@1.16.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vue@3.5.34(typescript@5.9.3))':
     dependencies:
       '@multiversx/sdk-core': 15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9)
-      '@multiversx/sdk-dapp': 5.6.23(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3))
-      '@multiversx/sdk-dapp-form': 3.2.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.6.23(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3)))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@multiversx/sdk-dapp': 5.7.1(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3))
+      '@multiversx/sdk-dapp-form': 3.2.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@multiversx/sdk-dapp@5.7.1(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3)))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@multiversx/sdk-dapp-ui': 0.1.24(@types/react@18.3.29)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vue@3.5.34(typescript@5.9.3))
       axios: 1.16.1
       bignumber.js: 9.3.1
@@ -6532,18 +6480,18 @@ snapshots:
       - vue
       - vue-router
 
-  '@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1)':
+  '@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1)':
     dependencies:
       '@multiversx/sdk-core': 15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9)
       bignumber.js: 9.3.1
 
-  '@multiversx/sdk-dapp@5.6.23(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3))':
+  '@multiversx/sdk-dapp@5.7.1(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(@multiversx/sdk-dapp-utils@3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1))(@types/react@18.3.29)(axios@1.16.1)(bignumber.js@9.3.1)(protobufjs@7.5.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3))':
     dependencies:
-      '@lifeomic/axios-fetch': 3.0.1
+      '@lifeomic/axios-fetch': 3.1.0
       '@multiversx/sdk-core': 15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9)
-      '@multiversx/sdk-dapp-utils': 3.0.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1)
+      '@multiversx/sdk-dapp-utils': 3.1.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(bignumber.js@9.3.1)
       '@multiversx/sdk-extension-provider': 5.1.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))
-      '@multiversx/sdk-hw-provider': 8.1.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))
+      '@multiversx/sdk-hw-provider': 8.2.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))
       '@multiversx/sdk-native-auth-client': 2.0.1(axios@1.16.1)
       '@multiversx/sdk-wallet-connect-provider': 6.1.5(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))(typescript@5.9.3)
       '@multiversx/sdk-web-wallet-cross-window-provider': 3.2.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))
@@ -6552,15 +6500,15 @@ snapshots:
       axios: 1.16.1
       bignumber.js: 9.3.1
       immer: 10.1.1
-      linkifyjs: 4.3.2
+      linkifyjs: 4.3.3
       lodash.isempty: 4.4.0
       lodash.isequal: 4.5.0
       lodash.isstring: 4.0.1
       lodash.startcase: 4.4.0
-      lodash.trimend: 4.5.1
+      lodash.trimend: 4.18.0
       lodash.uniq: 4.5.0
       protobufjs: 7.5.9
-      socket.io-client: 4.7.5
+      socket.io-client: 4.8.3
       zustand: 4.4.7(@types/react@18.3.29)(immer@10.1.1)(react@18.3.1)
     optionalDependencies:
       '@multiversx/sdk-dapp-ui': 0.1.24(@types/react@18.3.29)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vue@3.5.34(typescript@5.9.3))
@@ -6599,14 +6547,14 @@ snapshots:
     dependencies:
       '@multiversx/sdk-core': 15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9)
 
-  '@multiversx/sdk-hw-provider@8.1.2(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))':
+  '@multiversx/sdk-hw-provider@8.2.0(@multiversx/sdk-core@15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9))':
     dependencies:
-      '@ledgerhq/devices': 8.0.3
-      '@ledgerhq/errors': 6.12.6
-      '@ledgerhq/hw-transport': 6.28.8
-      '@ledgerhq/hw-transport-web-ble': 6.28.6
-      '@ledgerhq/hw-transport-webhid': 6.28.6
-      '@ledgerhq/hw-transport-webusb': 6.28.6
+      '@ledgerhq/devices': 8.16.0
+      '@ledgerhq/errors': 6.37.0
+      '@ledgerhq/hw-transport': 6.35.5
+      '@ledgerhq/hw-transport-web-ble': 6.35.0
+      '@ledgerhq/hw-transport-webhid': 6.36.0
+      '@ledgerhq/hw-transport-webusb': 6.35.0
       '@multiversx/sdk-core': 15.4.1(bignumber.js@9.3.1)(protobufjs@7.5.9)
       buffer: 6.0.3
       platform: 1.3.6
@@ -7279,15 +7227,15 @@ snapshots:
       '@types/node': 20.19.41
     optional: true
 
-  '@typescript-eslint/eslint-plugin@8.59.4(@typescript-eslint/parser@8.59.4(eslint@8.57.0)(typescript@5.9.3))(eslint@8.57.0)(typescript@5.9.3)':
+  '@typescript-eslint/eslint-plugin@8.59.4(@typescript-eslint/parser@8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.59.4(eslint@8.57.0)(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
       '@typescript-eslint/scope-manager': 8.59.4
-      '@typescript-eslint/type-utils': 8.59.4(eslint@8.57.0)(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.59.4(eslint@8.57.0)(typescript@5.9.3)
+      '@typescript-eslint/type-utils': 8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.59.4(eslint@8.57.0(supports-color@8.1.1))(typescript@5.9.3)
       '@typescript-eslint/visitor-keys': 8.59.4
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
       ignore: 7.0.5
       natural-compare: 1.4.0
       ts-api-utils: 2.5.0(typescript@5.9.3)
@@ -7295,19 +7243,19 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.59.4(eslint@8.57.0)(typescript@5.9.3)':
+  '@typescript-eslint/parser@8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.59.4
       '@typescript-eslint/types': 8.59.4
-      '@typescript-eslint/typescript-estree': 8.59.4(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.59.4(supports-color@8.1.1)(typescript@5.9.3)
       '@typescript-eslint/visitor-keys': 8.59.4
       debug: 4.4.3(supports-color@8.1.1)
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.59.4(typescript@5.9.3)':
+  '@typescript-eslint/project-service@8.59.4(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@5.9.3)
       '@typescript-eslint/types': 8.59.4
@@ -7325,13 +7273,13 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  '@typescript-eslint/type-utils@8.59.4(eslint@8.57.0)(typescript@5.9.3)':
+  '@typescript-eslint/type-utils@8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/types': 8.59.4
-      '@typescript-eslint/typescript-estree': 8.59.4(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.59.4(eslint@8.57.0)(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.59.4(supports-color@8.1.1)(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.59.4(eslint@8.57.0(supports-color@8.1.1))(typescript@5.9.3)
       debug: 4.4.3(supports-color@8.1.1)
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
       ts-api-utils: 2.5.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -7339,9 +7287,9 @@ snapshots:
 
   '@typescript-eslint/types@8.59.4': {}
 
-  '@typescript-eslint/typescript-estree@8.59.4(typescript@5.9.3)':
+  '@typescript-eslint/typescript-estree@8.59.4(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
-      '@typescript-eslint/project-service': 8.59.4(typescript@5.9.3)
+      '@typescript-eslint/project-service': 8.59.4(supports-color@8.1.1)(typescript@5.9.3)
       '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@5.9.3)
       '@typescript-eslint/types': 8.59.4
       '@typescript-eslint/visitor-keys': 8.59.4
@@ -7354,13 +7302,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.59.4(eslint@8.57.0)(typescript@5.9.3)':
+  '@typescript-eslint/utils@8.59.4(eslint@8.57.0(supports-color@8.1.1))(typescript@5.9.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@8.57.0)
+      '@eslint-community/eslint-utils': 4.9.1(eslint@8.57.0(supports-color@8.1.1))
       '@typescript-eslint/scope-manager': 8.59.4
       '@typescript-eslint/types': 8.59.4
-      '@typescript-eslint/typescript-estree': 8.59.4(typescript@5.9.3)
-      eslint: 8.57.0
+      '@typescript-eslint/typescript-estree': 8.59.4(supports-color@8.1.1)(typescript@5.9.3)
+      eslint: 8.57.0(supports-color@8.1.1)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -7468,13 +7416,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.7(msw@0.49.3(@types/node@20.19.41)(typescript@5.9.3))(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0))':
+  '@vitest/mocker@4.1.7(msw@0.49.3(@types/node@20.19.41)(supports-color@8.1.1)(typescript@5.9.3))(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0))':
     dependencies:
       '@vitest/spy': 4.1.7
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      msw: 0.49.3(@types/node@20.19.41)(typescript@5.9.3)
+      msw: 0.49.3(@types/node@20.19.41)(supports-color@8.1.1)(typescript@5.9.3)
       vite: 8.0.14(@types/node@20.19.41)(sass@1.100.0)
 
   '@vitest/pretty-format@2.1.9':
@@ -7819,7 +7767,7 @@ snapshots:
       '@walletconnect/window-getters': 1.0.1
       tslib: 1.14.1
 
-  '@wdio/cli@8.46.0':
+  '@wdio/cli@8.46.0(supports-color@8.1.1)':
     dependencies:
       '@types/node': 22.19.19
       '@vitest/snapshot': 2.1.9
@@ -7828,7 +7776,7 @@ snapshots:
       '@wdio/logger': 8.38.0
       '@wdio/protocols': 8.44.0
       '@wdio/types': 8.41.0
-      '@wdio/utils': 8.46.0
+      '@wdio/utils': 8.46.0(supports-color@8.1.1)
       async-exit-hook: 2.0.1
       chalk: 5.6.2
       chokidar: 4.0.3
@@ -7859,7 +7807,7 @@ snapshots:
     dependencies:
       '@wdio/logger': 8.38.0
       '@wdio/types': 8.41.0
-      '@wdio/utils': 8.46.0
+      '@wdio/utils': 8.46.0(supports-color@8.1.1)
       decamelize: 6.0.1
       deepmerge-ts: 5.1.0
       glob: 10.5.0
@@ -7917,7 +7865,7 @@ snapshots:
       '@types/node': 22.19.19
       '@wdio/logger': 8.38.0
       '@wdio/types': 8.41.0
-      '@wdio/utils': 8.46.0
+      '@wdio/utils': 8.46.0(supports-color@8.1.1)
       mocha: 10.8.2
     transitivePeerDependencies:
       - bare-abort-controller
@@ -7946,7 +7894,7 @@ snapshots:
       '@wdio/globals': 8.46.0
       '@wdio/logger': 8.38.0
       '@wdio/types': 8.41.0
-      '@wdio/utils': 8.46.0
+      '@wdio/utils': 8.46.0(supports-color@8.1.1)
       deepmerge-ts: 5.1.0
       expect-webdriverio: 4.15.4
       gaze: 1.1.3
@@ -7974,7 +7922,7 @@ snapshots:
     dependencies:
       '@types/node': 22.19.19
 
-  '@wdio/utils@8.46.0':
+  '@wdio/utils@8.46.0(supports-color@8.1.1)':
     dependencies:
       '@puppeteer/browsers': 1.9.1
       '@wdio/logger': 8.38.0
@@ -7982,13 +7930,13 @@ snapshots:
       decamelize: 6.0.1
       deepmerge-ts: 5.1.0
       edgedriver: 5.6.1
-      geckodriver: 4.2.1
+      geckodriver: 4.2.1(supports-color@8.1.1)
       get-port: 7.2.0
       import-meta-resolve: 4.2.0
       locate-app: 2.5.0
       safaridriver: 0.1.2
       split2: 4.2.0
-      wait-port: 1.1.0
+      wait-port: 1.1.0(supports-color@8.1.1)
     transitivePeerDependencies:
       - bare-abort-controller
       - bare-buffer
@@ -8727,10 +8675,6 @@ snapshots:
     dependencies:
       ms: 2.1.2
 
-  debug@4.3.7:
-    dependencies:
-      ms: 2.1.3
-
   debug@4.4.3(supports-color@8.1.1):
     dependencies:
       ms: 2.1.3
@@ -8960,13 +8904,13 @@ snapshots:
     dependencies:
       once: 1.4.0
 
-  engine.io-client@6.5.4:
+  engine.io-client@6.6.6:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
-      debug: 4.3.7
+      debug: 4.4.3(supports-color@8.1.1)
       engine.io-parser: 5.2.3
-      ws: 8.17.1
-      xmlhttprequest-ssl: 2.0.0
+      ws: 8.21.0
+      xmlhttprequest-ssl: 2.1.2
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -9119,9 +9063,9 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
-  eslint-config-prettier@8.10.2(eslint@8.57.0):
+  eslint-config-prettier@8.10.2(eslint@8.57.0(supports-color@8.1.1)):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
 
   eslint-import-resolver-node@0.3.10:
     dependencies:
@@ -9131,33 +9075,33 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@8.57.0):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.3(supports-color@8.1.1)
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
       get-tsconfig: 4.14.0
       is-bun-module: 2.0.0
       stable-hash: 0.0.5
       tinyglobby: 0.2.16
       unrs-resolver: 1.12.2
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.59.4(eslint@8.57.0)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0(supports-color@8.1.1))
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.59.4(eslint@8.57.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0):
+  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0(supports-color@8.1.1)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
-      '@typescript-eslint/parser': 8.59.4(eslint@8.57.0)(typescript@5.9.3)
-      eslint: 8.57.0
+      '@typescript-eslint/parser': 8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
+      eslint: 8.57.0(supports-color@8.1.1)
       eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@8.57.0)
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.4(eslint@8.57.0)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0(supports-color@8.1.1)):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9
@@ -9166,9 +9110,9 @@ snapshots:
       array.prototype.flatmap: 1.3.3
       debug: 3.2.7
       doctrine: 2.1.0
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
       eslint-import-resolver-node: 0.3.10
-      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.59.4(eslint@8.57.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0)
+      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.0(supports-color@8.1.1))
       hasown: 2.0.3
       is-core-module: 2.16.2
       is-glob: 4.0.3
@@ -9180,26 +9124,26 @@ snapshots:
       string.prototype.trimend: 1.0.9
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      '@typescript-eslint/parser': 8.59.4(eslint@8.57.0)(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.59.4(eslint@8.57.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-prettier@5.5.5(eslint-config-prettier@8.10.2(eslint@8.57.0))(eslint@8.57.0)(prettier@3.8.3):
+  eslint-plugin-prettier@5.5.5(eslint-config-prettier@8.10.2(eslint@8.57.0(supports-color@8.1.1)))(eslint@8.57.0(supports-color@8.1.1))(prettier@3.8.3):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
       prettier: 3.8.3
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.12
     optionalDependencies:
-      eslint-config-prettier: 8.10.2(eslint@8.57.0)
+      eslint-config-prettier: 8.10.2(eslint@8.57.0(supports-color@8.1.1))
 
-  eslint-plugin-react-hooks@4.6.2(eslint@8.57.0):
+  eslint-plugin-react-hooks@4.6.2(eslint@8.57.0(supports-color@8.1.1)):
     dependencies:
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
 
-  eslint-plugin-react@7.37.5(eslint@8.57.0):
+  eslint-plugin-react@7.37.5(eslint@8.57.0(supports-color@8.1.1)):
     dependencies:
       array-includes: 3.1.9
       array.prototype.findlast: 1.2.5
@@ -9207,7 +9151,7 @@ snapshots:
       array.prototype.tosorted: 1.1.4
       doctrine: 2.1.0
       es-iterator-helpers: 1.3.2
-      eslint: 8.57.0
+      eslint: 8.57.0(supports-color@8.1.1)
       estraverse: 5.3.0
       hasown: 2.0.3
       jsx-ast-utils: 3.3.5
@@ -9230,13 +9174,13 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint@8.57.0:
+  eslint@8.57.0(supports-color@8.1.1):
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@8.57.0)
+      '@eslint-community/eslint-utils': 4.9.1(eslint@8.57.0(supports-color@8.1.1))
       '@eslint-community/regexpp': 4.12.2
-      '@eslint/eslintrc': 2.1.4
+      '@eslint/eslintrc': 2.1.4(supports-color@8.1.1)
       '@eslint/js': 8.57.0
-      '@humanwhocodes/config-array': 0.11.14
+      '@humanwhocodes/config-array': 0.11.14(supports-color@8.1.1)
       '@humanwhocodes/module-importer': 1.0.1
       '@nodelib/fs.walk': 1.2.8
       '@ungap/structured-clone': 1.3.1
@@ -9370,7 +9314,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.3.4
+      debug: 4.4.3(supports-color@8.1.1)
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -9570,12 +9514,12 @@ snapshots:
     dependencies:
       globule: 1.3.4
 
-  geckodriver@4.2.1:
+  geckodriver@4.2.1(supports-color@8.1.1):
     dependencies:
       '@wdio/logger': 8.38.0
       decamelize: 6.0.1
-      http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.6
+      http-proxy-agent: 7.0.2(supports-color@8.1.1)
+      https-proxy-agent: 7.0.6(supports-color@8.1.1)
       node-fetch: 3.3.2
       tar-fs: 3.1.2
       unzipper: 0.10.14
@@ -9634,7 +9578,7 @@ snapshots:
     dependencies:
       basic-ftp: 5.3.1
       data-uri-to-buffer: 6.0.2
-      debug: 4.3.4
+      debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -9926,7 +9870,7 @@ snapshots:
 
   http-cache-semantics@4.2.0: {}
 
-  http-proxy-agent@5.0.0:
+  http-proxy-agent@5.0.0(supports-color@8.1.1):
     dependencies:
       '@tootallnate/once': 2.0.1
       agent-base: 6.0.2
@@ -9934,7 +9878,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  http-proxy-agent@7.0.2:
+  http-proxy-agent@7.0.2(supports-color@8.1.1):
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
@@ -9955,7 +9899,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  https-proxy-agent@7.0.6:
+  https-proxy-agent@7.0.6(supports-color@8.1.1):
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
@@ -10312,7 +10256,7 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jsdom@22.1.0:
+  jsdom@22.1.0(supports-color@8.1.1):
     dependencies:
       abab: 2.0.6
       cssstyle: 3.0.0
@@ -10321,7 +10265,7 @@ snapshots:
       domexception: 4.0.0
       form-data: 4.0.5
       html-encoding-sniffer: 3.0.0
-      http-proxy-agent: 5.0.0
+      http-proxy-agent: 5.0.0(supports-color@8.1.1)
       https-proxy-agent: 5.0.1
       is-potential-custom-element-name: 1.0.1
       nwsapi: 2.2.23
@@ -10458,7 +10402,7 @@ snapshots:
 
   lines-and-columns@2.0.4: {}
 
-  linkifyjs@4.3.2: {}
+  linkifyjs@4.3.3: {}
 
   listenercount@1.0.1: {}
 
@@ -10508,7 +10452,7 @@ snapshots:
 
   lodash.startcase@4.4.0: {}
 
-  lodash.trimend@4.5.1: {}
+  lodash.trimend@4.18.0: {}
 
   lodash.union@4.6.0: {}
 
@@ -10894,10 +10838,10 @@ snapshots:
 
   ms@2.1.3: {}
 
-  msw@0.49.3(@types/node@20.19.41)(typescript@5.9.3):
+  msw@0.49.3(@types/node@20.19.41)(supports-color@8.1.1)(typescript@5.9.3):
     dependencies:
       '@mswjs/cookies': 0.2.2
-      '@mswjs/interceptors': 0.17.10
+      '@mswjs/interceptors': 0.17.10(supports-color@8.1.1)
       '@open-draft/until': 1.0.3
       '@types/cookie': 0.4.1
       '@types/js-levenshtein': 1.1.3
@@ -11172,10 +11116,10 @@ snapshots:
     dependencies:
       '@tootallnate/quickjs-emscripten': 0.23.0
       agent-base: 7.1.4
-      debug: 4.3.4
+      debug: 4.4.3(supports-color@8.1.1)
       get-uri: 6.0.5
-      http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.6
+      http-proxy-agent: 7.0.2(supports-color@8.1.1)
+      https-proxy-agent: 7.0.6(supports-color@8.1.1)
       pac-resolver: 7.0.1
       socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
@@ -11402,9 +11346,9 @@ snapshots:
   proxy-agent@6.3.1:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.3.4
-      http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.6
+      debug: 4.4.3(supports-color@8.1.1)
+      http-proxy-agent: 7.0.2(supports-color@8.1.1)
+      https-proxy-agent: 7.0.6(supports-color@8.1.1)
       lru-cache: 7.18.3
       pac-proxy-agent: 7.2.0
       proxy-from-env: 1.1.0
@@ -11897,10 +11841,6 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
-  rxjs@6.6.7:
-    dependencies:
-      tslib: 1.14.1
-
   rxjs@7.8.2:
     dependencies:
       tslib: 2.8.1
@@ -12051,11 +11991,11 @@ snapshots:
       dot-case: 3.0.4
       tslib: 2.8.1
 
-  socket.io-client@4.7.5:
+  socket.io-client@4.8.3:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
-      debug: 4.3.7
-      engine.io-client: 6.5.4
+      debug: 4.4.3(supports-color@8.1.1)
+      engine.io-client: 6.6.6
       socket.io-parser: 4.2.6
     transitivePeerDependencies:
       - bufferutil
@@ -12072,7 +12012,7 @@ snapshots:
   socks-proxy-agent@8.0.5:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.3.4
+      debug: 4.4.3(supports-color@8.1.1)
       socks: 2.8.9
     transitivePeerDependencies:
       - supports-color
@@ -12755,10 +12695,10 @@ snapshots:
       fsevents: 2.3.3
       sass: 1.100.0
 
-  vitest@4.1.7(@types/node@20.19.41)(jsdom@22.1.0)(msw@0.49.3(@types/node@20.19.41)(typescript@5.9.3))(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0)):
+  vitest@4.1.7(@types/node@20.19.41)(jsdom@22.1.0(supports-color@8.1.1))(msw@0.49.3(@types/node@20.19.41)(supports-color@8.1.1)(typescript@5.9.3))(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0)):
     dependencies:
       '@vitest/expect': 4.1.7
-      '@vitest/mocker': 4.1.7(msw@0.49.3(@types/node@20.19.41)(typescript@5.9.3))(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0))
+      '@vitest/mocker': 4.1.7(msw@0.49.3(@types/node@20.19.41)(supports-color@8.1.1)(typescript@5.9.3))(vite@8.0.14(@types/node@20.19.41)(sass@1.100.0))
       '@vitest/pretty-format': 4.1.7
       '@vitest/runner': 4.1.7
       '@vitest/snapshot': 4.1.7
@@ -12779,7 +12719,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 20.19.41
-      jsdom: 22.1.0
+      jsdom: 22.1.0(supports-color@8.1.1)
     transitivePeerDependencies:
       - msw
 
@@ -12799,7 +12739,7 @@ snapshots:
     dependencies:
       xml-name-validator: 4.0.0
 
-  wait-port@1.1.0:
+  wait-port@1.1.0(supports-color@8.1.1):
     dependencies:
       chalk: 4.1.2
       commander: 9.5.0
@@ -12833,7 +12773,7 @@ snapshots:
       '@wdio/logger': 8.38.0
       '@wdio/protocols': 8.44.0
       '@wdio/types': 8.41.0
-      '@wdio/utils': 8.46.0
+      '@wdio/utils': 8.46.0(supports-color@8.1.1)
       deepmerge-ts: 5.1.0
       got: 12.6.1
       ky: 0.33.3
@@ -12854,7 +12794,7 @@ snapshots:
       '@wdio/protocols': 8.44.0
       '@wdio/repl': 8.40.3
       '@wdio/types': 8.41.0
-      '@wdio/utils': 8.46.0
+      '@wdio/utils': 8.46.0(supports-color@8.1.1)
       archiver: 7.0.1
       aria-query: 5.3.2
       css-shorthand-properties: 1.1.2
@@ -12986,15 +12926,13 @@ snapshots:
 
   ws@8.16.0: {}
 
-  ws@8.17.1: {}
-
   ws@8.21.0: {}
 
   xml-name-validator@4.0.0: {}
 
   xmlchars@2.2.0: {}
 
-  xmlhttprequest-ssl@2.0.0: {}
+  xmlhttprequest-ssl@2.1.2: {}
 
   xtend@4.0.2: {}
 
