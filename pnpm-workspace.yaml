@@ -1,0 +1,12 @@
+allowBuilds:
+  '@fortawesome/fontawesome-common-types': false
+  '@fortawesome/fontawesome-svg-core': false
+  '@fortawesome/free-solid-svg-icons': false
+  '@parcel/watcher': false
+  '@swc/core': false
+  edgedriver: false
+  geckodriver: false
+  keccak: false
+  msw: false
+  protobufjs: false
+  unrs-resolver: false

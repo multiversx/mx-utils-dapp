@@ -24,7 +24,7 @@ export const Unlock = () => {
     loginHandler: () => {
       navigate(callbackRoute);
     },
-    onClose: () => {
+    onClose: async () => {
       navigate(routeNames.home);
     },
     allowedProviders

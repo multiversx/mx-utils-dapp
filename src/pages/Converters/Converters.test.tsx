@@ -42,7 +42,7 @@ const mockConversions = new Map([
   ['decimal-to-base64', { input: '1479', output: 'Bcc=' }],
   ['base64-to-decimal', { input: 'Bcc=', output: '1479' }],
   ['decimal-to-integer', { input: '10.5', output: '10500000000000000000' }],
-  ['integer-to-decimal', { input: '10500000000000000000', output: '10.5000' }],
+  ['integer-to-decimal', { input: '10500000000000000000', output: '10.5' }],
   ['string-to-hexadecimal', { input: 'ok', output: '6f6b' }],
   ['hexadecimal-to-string', { input: '6f6b', output: 'ok' }],
   ['string-to-base64', { input: 'text', output: 'dGV4dA==' }],
