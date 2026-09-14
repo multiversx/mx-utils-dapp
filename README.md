@@ -60,7 +60,7 @@ Follow the next step to start using this dApp.
 
 For _development_ you will need to have the following:
 
-- node version >=18.18.2
+- node version >=24.15.0
 - npm
 
 ### Installation and running

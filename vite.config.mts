@@ -1,11 +1,9 @@
 import dns from 'dns';
-import path from 'path';
 import basicSsl from '@vitejs/plugin-basic-ssl';
-import react from '@vitejs/plugin-react-swc';
-import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vitest/config';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import svgr from 'vite-plugin-svgr';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 (dns as any).setDefaultResultOrder('verbatim');
@@ -15,26 +13,22 @@ export default () => {
     plugins: [
       react(),
       basicSsl(),
-      tsconfigPaths(),
       svgr(),
       nodePolyfills({
         globals: { Buffer: true, global: true, process: true }
       })
     ],
     resolve: {
-      alias: {
-        '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap')
-      }
+      tsconfigPaths: true
     },
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern-compiler',
           quietDeps: true,
           silenceDeprecations: [
-            'legacy-js-api',
             'import',
             'global-builtin',
-            'mixed-decls',
             'abs-percent',
             'color-functions'
           ]
@@ -62,6 +56,16 @@ export default () => {
       port: 3001,
       strictPort: true,
       host: 'localhost'
+    },
+    test: {
+      environment: 'jsdom',
+      globals: true,
+      setupFiles: ['src/tests/setup.ts'],
+      server: {
+        deps: {
+          inline: [/@multiversx\//]
+        }
+      }
     }
   });
 };

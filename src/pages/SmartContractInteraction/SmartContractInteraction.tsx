@@ -10,6 +10,8 @@ import {
 import { routeNames } from 'routes';
 import styles from './styles.module.scss';
 
+import '@multiversx/sdk-dapp-sc-explorer/out/styles.css';
+
 const customClassNames = {
   badgePrimaryClassName: 'badge-outline badge-outline-primary-alt',
   badgeSecondaryClassName: 'badge-outline badge-outline-grey',
